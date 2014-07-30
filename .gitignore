@@ -2,5 +2,5 @@
 vendor/*
 composer.phar
 .DS_Store
-app/storage
+
 app/tests
