@@ -135,7 +135,7 @@
 
         <div id="welcome_recent_activity" class="col-md-8 tab-content" style="height:200px;">
         <!-- Tab panes -->
-          <div class="tab-pane active" id="activity">...</div>
+          <div class="tab-pane active" id="activity"></div>
           <div class="tab-pane" id="log">
                 <form id="activity_form" name="activity_form" method="post">
                     <div class="logSide-container">

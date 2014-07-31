@@ -3,7 +3,7 @@ jQuery(document).ready(function() {
 });
 
 $(document).ready(function() {
-   
+
     $('#escapingBallG').hide(); // Hide the spinner
     $('img#teamUserPic').tooltip();
     $('.activityLikeImg img').tooltip({
@@ -43,7 +43,7 @@ $(document).ready(function() {
                 var createdDate = new Date(data.created_at.date.replace(/-/g, "/"));
                 var joined = createdDate.getFullYear();
 
-                $('.hovercard').html('<span id="hovercard-bg"><img id="bg" class="bg" src="../assets/img/site/bg/bg-02.jpg"><img class="img-circle" id="profileImg" src=/' + data.pic + '></span><h3>' + eval('data.userFirst') + ' ' + eval('data.userLast') + '</h3>' + '<div id="memberDate" class="col-md-offset-4 col-md-2"><span class="glyphicon glyphicon-calendar"></span><span>' + joined + '</span></div><div id="memberDate" class="col-md-offset-1 col-md-2"><span class="glyphicon glyphicon-time"></span><span>1.2k</span></div><div id="memberDate" class="col-md-offset-1 col-md-2"><span class="glyphicon glyphicon-stats"></span><span>500</span></div><span id="label">Pro</span><span id="points">205/1000</span><div id="progress"><div class="bar" id = "reward_1" style="width:10%">10%</div></div>');
+                $('.hovercard').html('<span id="hovercard-bg"><img id="bg" class="bg" src="../assets/img/site/bg/bg-02.jpg"><img class="img-circle" id="profileImg" src=' + data.pic + '></span><h3>' + eval('data.userFirst') + ' ' + eval('data.userLast') + '</h3>' + '<div id="memberDate" class="col-md-offset-4 col-md-2"><span class="glyphicon glyphicon-calendar"></span><span>' + joined + '</span></div><div id="memberDate" class="col-md-offset-1 col-md-2"><span class="glyphicon glyphicon-time"></span><span>1.2k</span></div><div id="memberDate" class="col-md-offset-1 col-md-2"><span class="glyphicon glyphicon-stats"></span><span>500</span></div><span id="label">Pro</span><span id="points">205/1000</span><div id="progress"><div class="bar" id = "reward_1" style="width:10%">10%</div></div>');
 
             }
         });

@@ -31,4 +31,15 @@ protected $guarded = array('id');
     public static function validate($data) {
         return Validator::make($data, static::$rules, static::$messages);
     }
+
+  public static function favorites()
+  {
+    return $favorites = DB::table('activities')
+        ->join('users', 'activities.user_id', '=', 'users.id')
+        ->where('users.id',Auth::user()->id)
+        ->groupBy('activity_name')
+        ->orderBy(DB::raw('COUNT(activities.activity_name)'), 'desc')
+        ->take(3)
+        ->get(array('activities.activity_name'));
+  }
 }

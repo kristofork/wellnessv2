@@ -28,37 +28,37 @@
                                 <div class="profilePicContainer"> 
                                     <span rel="hovercard" data-url="{{$activity->users_id}}">
                                         <div class="hovercard"></div>
-                                    {{HTML::image($activity->pic, $activity->userfirst, array('id'=> 'profilePic'));}}
+                                    {{HTML::image($activity->pic, $activity->first_name, array('id'=> 'profilePic'));}}
                                     </span>
                                 </div>
-                                <div class="recentActivityName">{{ $activity->userfirst}} {{ substr($activity->userlast, 0, 1) }}. </div>
+                                <div class="recentActivityName">{{ $activity->first_name}} {{ substr($activity->last_name, 0, 1) }}. </div>
                                 @foreach($badges as $badge)
                                     {{HTML::image($badge->image . "-sm.png", 'test', array('class'=> 'badge-small', 'title'=> $badge->name));}}
                                 @endforeach
 
-                                <div class="recentActivityText">Logged {{ secondsToString(hoursToSeconds($activity->acttime )) }} of <strong>{{ $activity->actname }} </strong></div>
+                                <div class="recentActivityText">Logged {{ secondsToString(hoursToSeconds($activity->activity_time )) }} of <strong>{{ $activity->activity_name }} </strong></div>
                             </div>
                             @elseif ($activity->type == "read")
                             <div class="recentActivityDesc">
                                     <div class="profilePicContainer"> 
-                                        {{HTML::image($activity->pic, $activity->userfirst, array('id'=> 'profilePic'));}} 
+                                        {{HTML::image($activity->pic, $activity->first_name, array('id'=> 'profilePic'));}} 
                                     </div>
-                                <div class="recentActivityName">{{ $activity->userfirst}} {{ substr($activity->userlast, 0, 1) }}. </div>
+                                <div class="recentActivityName">{{ $activity->first_name}} {{ substr($activity->last_name, 0, 1) }}. </div>
                                 @foreach($badges as $badge)
                                     {{HTML::image($badge->image . "-sm.png", 'test', array('class'=> 'badge-small', 'title'=> $badge->name));}}
                                 @endforeach
-                                <div class="recentActivityText">Read <strong>{{ $activity->actname }} </strong></div>
+                                <div class="recentActivityText">Read <strong>{{ $activity->activity_name }} </strong></div>
                             </div>
                             @else
                             <div class="recentActivityDesc">
                                 <div class="profilePicContainer"> 
-                                    {{HTML::image($activity->pic, $activity->userfirst, array('id'=> 'profilePic'));}} 
+                                    {{HTML::image($activity->pic, $activity->first_name, array('id'=> 'profilePic'));}} 
                                 </div>
-                                <div class="recentActivityName">{{ $activity->userfirst}} {{ substr($activity->userlast, 0, 1) }}. </div>
+                                <div class="recentActivityName">{{ $activity->first_name}} {{ substr($activity->last_name, 0, 1) }}. </div>
                                 @foreach($badges as $badge)
                                     {{HTML::image($badge->image . "-sm.png", 'test', array('class'=> 'badge-small', 'title'=> $badge->name));}}
                                 @endforeach                    
-                                <div class="recentActivityText">Lost {{ ounceToPounds($activity->goal_num ) }} last week towards their <strong>{{ $activity->actname }} goal </strong></div>
+                                <div class="recentActivityText">Lost {{ ounceToPounds($activity->goal_num ) }} last week towards their <strong>{{ $activity->activity_name }} goal </strong></div>
                             </div>
                             @endif
                             
@@ -81,7 +81,7 @@
                                 </div>
                             @endif
                         <!--Conditional: User cannot like own activities and cannot like activities more than once -->
-                        @if(Auth::user()->username != $activity->userName &&  $liked == NULL)
+                        @if(Auth::user()->username != $activity->username &&  $liked == NULL)
 
                         <!-- Begin of test spinner -->
 
@@ -120,7 +120,7 @@
                 <li class="nav-header">Favorite Activities</li>
 
                 @foreach ($fav_activities as $favs)
-                <li>{{ $favs->actName }} </li>
+                <li>{{ $favs->activity_name }} </li>
                 @endforeach
 
             </ul>

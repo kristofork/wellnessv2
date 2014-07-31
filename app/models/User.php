@@ -65,7 +65,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
     public function team()
     {
-        return $this->hasOne('Team', 'teamNum');
+        return $this->hasOne('Team', 'id');
     }
 
     public function goalUser()

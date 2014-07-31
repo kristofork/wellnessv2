@@ -80,4 +80,33 @@ function currentyear(){
     return array ('start' => $varStart, 'end' => $varEnd);
 }
 
+        // 
+        function currentYearDate()
+        {
+
+        if (date('m') >= 1 && date('m')<= 5) {
+        $varStart = (date("Y-m-d",mktime(0,0,0,06,01,date("Y")-1)));
+        $varEnd = (date("Y-m-d", mktime(0,0,0,05, 31, date("Y"))));
+            }
+            else{
+                $varStart = (date("Y-m-d",mktime(0,0,0,06,01, date("Y"))));
+                $varEnd = (date("Y-m-d", mktime(0,0,0,05, 31, date("Y") + 1)));
+                }
+            return array($varStart, $varEnd);
+        }
+
+        function lastYearDate()
+        {
+        // Last Year
+        if (date('m') >= 1 && date('m')<= 5)
+            {
+                $varStart = (date("Y-m-d",mktime(0,0,0,06,01,date("Y")-2)));
+                $varEnd = (date("Y-m-d", mktime(0,0,0,05, 31, date("Y")-1)));
+            }
+        else{
+            $varStart = (date("Y-m-d",mktime(0,0,0,06,01, date("Y") - 1)));
+            $varEnd = (date("Y-m-d", mktime(0,0,0,05, 31, date("Y") )));
+            }
+            return array($varStart, $varEnd);
+        }
 ?>

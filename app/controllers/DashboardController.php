@@ -19,7 +19,9 @@ class DashboardController extends BaseController
 
 		return View::make('dashboard.index')
 			->with('title', 'Dashboard')
+			->with('teamname',Team::teamName())
 			->with('hoursToReward', User::hoursToReward())
+			->with('userYearStats', Team::userYearStat($team))
 			->with('rewards', Reward::current())
 			->with('activities', DB::table('activities')
 				->join('users', 'users.id', '=', 'activities.user_id')
@@ -53,28 +55,11 @@ class DashboardController extends BaseController
 
 	public function donutChart()
 	{
-
-		function currentYearDate()
-		{
-
-		if (date('m') >= 1 && date('m')<= 5) {
-		$varStart = (date("Y-m-d",mktime(0,0,0,06,01,date("Y")-1)));
-		$varEnd = (date("Y-m-d", mktime(0,0,0,05, 31, date("Y"))));
-			}
-			else{
-				$varStart = (date("Y-m-d",mktime(0,0,0,06,01, date("Y"))));
-				$varEnd = (date("Y-m-d", mktime(0,0,0,05, 31, date("Y") + 1)));
-				}
-			return array($varStart, $varEnd);
-		}
-		$currentYearDates = currentYearDate();
-
-
-
+		$team = Team::teamId();
 		// Current Year
-		$sql = "SELECT u.id AS id , u.first_name AS user, ROUND(SUM(TIME_TO_SEC(a.activity_time))/3600,2) AS yrTotal 
-		FROM users u LEFT OUTER JOIN activities a ON a.user_id = u.id 
-		WHERE a.team_id= '23' GROUP BY id";
+		$sql = "SELECT u.id AS id , u.first_name AS user, ROUND((c.time)/3600,2) AS yrTotal 
+		FROM users u LEFT OUTER JOIN current_year_stats c ON c.user_id = u.id 
+		WHERE c.team_id= $team GROUP BY id";
 		
 		// Last Year
 		//$sql1 = "SELECT ROUND(SUM(TIME_TO_SEC(actTime))/3600,2) as name FROM activities WHERE userName = 'wkkerns' AND type = 'time' AND actDate >= $lastYearDates[0] AND actDate <= $lastYearDates[1] GROUP BY MONTH(actDate)ORDER BY (CASE 

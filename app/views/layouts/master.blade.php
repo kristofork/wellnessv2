@@ -79,14 +79,14 @@
 
         <!-- Team -->
         <ul class="navCustom" id="navTeam">
-                <h5 id="sideHeader">Team: {{ team::find(Auth::user()->team_id)->teamName; }}</h5>
-                @foreach ($teamMembers as $member)
-                @if ($member->id != Auth::user()->id)
-                <li class="userInfo" id="{{$member->id}}"><a class="navProfileLink" role="button" data-toggle="modal" href="#statDetailsModal">{{HTML::image($member->pic, $member->first_name, array("id" => "navProfileImage")) }}
+                <h5 id="sideHeader">Team: {{ $teamname}}</h5>
+                @foreach ($userYearStats as $userYearStat)
+                @if ($userYearStat->id != Auth::user()->id)
+                <li class="userInfo" id="{{$userYearStat->id}}"><a class="navProfileLink" role="button" data-toggle="modal" href="#statDetailsModal">{{HTML::image($userYearStat->pic, $userYearStat->first_name, array("id" => "navProfileImage")) }}
 
-                    {{$member->first_name}}  {{ $member->last_name}}</a>
+                    {{$userYearStat->first_name}}  {{ $userYearStat->last_name}}</a>
                     <span id="team-progress" class="pull-left">
-                        <div class="bar progress-low" id = "team-reward" style="width: {{ percentageRound(500000, $member->userTotalHrs); }}%">{{ percentageRound(500000, $member->userTotalHrs); }}%</div>
+                        <div class="bar progress-low" id = "team-reward" style="width: {{ percentageRound(500000, $userYearStat->time); }}%">{{ percentageRound(500000, $userYearStat->time); }}%</div>
                     </span>
                 </li>
                 @endif
