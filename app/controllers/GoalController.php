@@ -37,9 +37,9 @@ class GoalController extends BaseController
 
 	public function check()
 	{
-		$username = Auth::user()->username;
+		$id = Auth::user()->id;
         $currentDateTime = convertTimeIso(date('Y-m-d H:i:s'));
-        $goal = DB::select(DB::raw("SELECT * FROM  `activities` WHERE userName = '$username' AND WEEK( created_at ) = WEEK('$currentDateTime') AND type = 'goal'"));
+        $goal = DB::select(DB::raw("SELECT * FROM  `activities` WHERE user_id = '$id' AND WEEK( created_at ) = WEEK('$currentDateTime') AND type = 'goal'"));
 		$result = array('success'=> true, 'message'=> $goal);
 		return Response::json($result);
 	}

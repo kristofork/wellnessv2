@@ -58,7 +58,7 @@ class ActivityController extends BaseController {
         }
         else{
         $username = Auth::user()->username;
-        $userteam = Auth::user()->teamNum;
+        $userteam = Auth::user()->team_id;
         $userpic = Auth::user()->pic;
         $userfirst = Auth::user()->userFirst;
         $userlast = Auth::user()->userLast;
@@ -70,7 +70,7 @@ class ActivityController extends BaseController {
         $activity->actTime = $input['acttime'];
         $activity->actIntensity = $input['actintensity'];
         $activity->factPt = $input['factpt'];
-        $activity->teamNum = $userteam;
+        $activity->team_id = $userteam;
         $activity->type = $input['type'];
         $activity->save();
 
@@ -171,14 +171,14 @@ public function read($id)
     public function check($data)
     {
 
-        $username = Auth::user()->username;
+        $id = Auth::user()->id;
         $dayTotal = DB::table('activities')
-                    ->select(DB::raw('SUM(TIME_TO_SEC( actTime )) AS DayTotal'))
-                    ->where('username', $username)
-                    ->where('actDate', $data)
+                    ->select(DB::raw('SUM(TIME_TO_SEC( activity_time )) AS DayTotal'))
+                    ->where('id', $id)
+                    ->where('activity_date', $data)
                     ->get();
 
-        $weekTotal = DB::select(DB::raw("SELECT SUM(TIME_TO_SEC( actTime )) AS weekTotal FROM  `activities` WHERE userName = '$username' AND WEEK( actDate ) = WEEK('$data') GROUP BY WEEK( actDate )"));
+        $weekTotal = DB::select(DB::raw("SELECT SUM(TIME_TO_SEC( activity_time )) AS weekTotal FROM  `activities` WHERE id = '$id' AND WEEK( activity_date ) = WEEK('$data') GROUP BY WEEK( activity_date )"));
         if( empty($weekTotal)){ $weekTotal = [["weekTotal"=> "0"]];}
 
         $result = array('daytotal'=> $dayTotal, 'weektotal'=> $weekTotal);

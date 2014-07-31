@@ -14,15 +14,15 @@
     <!-- Start of Sidr right 
         <div class="dashbar" id="sidr-right">
             <ul class="">
-                <h1>Team: {{ team::find(Auth::user()->teamNum)->teamName; }}</h1>
+                <h1>Team: {{ team::find(Auth::user()->team_id)->teamName; }}</h1>
                 @foreach ($teamMembers as $member)
                 @if ($member->id != Auth::user()->id)
-                <li class="userInfo" id="{{$member->id}}"><a class="navProfileLink" role="button" data-toggle="modal" href="#statDetailsModal">{{HTML::image($member->pic, $member->userfirst, array("id" => "navProfileImage")) }}
+                <li class="userInfo" id="{{$member->id}}"><a class="navProfileLink" role="button" data-toggle="modal" href="#statDetailsModal">{{HTML::image($member->pic, $member->first_name, array("id" => "navProfileImage")) }}
                     <div class="hourProgress">
                         {{HTML::image('/assets/img/site/stats.png')}}
                     </div>
 
-                    {{$member->userfirst}}  {{ $member->userlast}}</a>
+                    {{$member->first_name}}  {{ $member->last_name}}</a>
                 </li>
                 @endif
                 @endforeach
@@ -69,11 +69,11 @@
             <div class="activity_row row">
                 {{ HTML::image('/assets/img/site/pencil.png', 'Other', array('class'=> 'img-round', 'id'=> 'other', 'title'=> 'other')); }}
                 <label for="activity_text_input">Activity:</label>
-                <input id="activity_text_input" name="actname" />
+                <input id="activity_text_input" name="activity_name" />
             </div> <!-- End of activity row 
             <div class="activity_row row">
             <div class="summary_item">Time: <span id="time_value">00:15:00</span></div>
-            <input id="time_val" type="hidden" name="acttime" />
+            <input id="time_val" type="hidden" name="activity_time" />
                 <div id="time_slider"></div>
             </div> <!-- End of activity row 
             <div class="activity_row row">
@@ -164,13 +164,13 @@
 
             <div class="log-row col-md-offset-2 col-md-6">
                 <div class="col-md-12">
-                        <input id="activity_text_input" name="actname" type="text" class="form-control" placeholder="Activity" />
+                        <input id="activity_text_input" name="activity_name" type="text" class="form-control" placeholder="Activity" />
                 </div> 
             </div>
             <div class="log-row col-md-offset-2 col-md-6">
                     <div class="col-md-6">
                         <div class="summary_item">Time: <span id="time_value">00:15:00</span></div>
-                        <input id="time_val" type="hidden" name="acttime" />
+                        <input id="time_val" type="hidden" name="activity_time" />
                         <div id="time_slider" class="custom-slide"></div>
                     </div>
                     <div class="col-md-6">
@@ -236,13 +236,13 @@
 
             <div class="log-row col-md-offset-2 col-md-6">
                 <div class="col-md-12">
-                        <input id="activity_text_input" name="actname" type="text" class="form-control" placeholder="Activity" />
+                        <input id="activity_text_input" name="activity_name" type="text" class="form-control" placeholder="Activity" />
                 </div> 
             </div>
             <div class="log-row col-md-offset-2 col-md-6">
                     <div class="col-md-6">
                         <div class="summary_item">Time: <span id="time_value">00:15:00</span></div>
-                        <input id="time_val" type="hidden" name="acttime" />
+                        <input id="time_val" type="hidden" name="activity_time" />
                         <div id="time_slider" class="custom-slide"></div>
                     </div>
                     <div class="col-md-6">
@@ -350,37 +350,37 @@
                                         <div class="profilePicContainer"> 
                                             <span rel="hovercard" data-url="{{$activity->users_id}}">
                                                 <div class="hovercard"></div>
-                                                    {{HTML::image($activity->pic, $activity->userfirst, array('id'=> 'profilePic'));}}
+                                                    {{HTML::image($activity->pic, $activity->first_name, array('id'=> 'profilePic'));}}
                                             </span>
                                         </div>
-                                        <div class="recentActivityName">{{ $activity->userfirst}} {{ substr($activity->userlast, 0, 1) }}. </div>
+                                        <div class="recentActivityName">{{ $activity->first_name}} {{ substr($activity->last_name, 0, 1) }}. </div>
                                             @foreach($badges as $badge)
                                             {{HTML::image($badge->image . "-sm.png", 'test', array('class'=> 'badge-small', 'title'=> $badge->name));}}
                                             @endforeach
 
-                                        <div class="recentActivityText">Logged {{ secondsToString(hoursToSeconds($activity->acttime )) }} of <strong>{{ $activity->actname }} </strong></div>
+                                        <div class="recentActivityText">Logged {{ secondsToString(hoursToSeconds($activity->activity_time )) }} of <strong>{{ $activity->activity_name }} </strong></div>
                                     </div>
                                 @elseif ($activity->type == "read")
                                     <div class="recentActivityDesc">
                                         <div class="profilePicContainer"> 
-                                            {{HTML::image($activity->pic, $activity->userfirst, array('id'=> 'profilePic'));}} 
+                                            {{HTML::image($activity->pic, $activity->first_name, array('id'=> 'profilePic'));}} 
                                         </div>
-                                    <div class="recentActivityName">{{ $activity->userfirst}} {{ substr($activity->userlast, 0, 1) }}. </div>
+                                    <div class="recentActivityName">{{ $activity->first_name}} {{ substr($activity->last_name, 0, 1) }}. </div>
                                         @foreach($badges as $badge)
                                         {{HTML::image($badge->image . "-sm.png", 'test', array('class'=> 'badge-small', 'title'=> $badge->name));}}
                                         @endforeach
-                                        <div class="recentActivityText">Read <strong>{{ $activity->actname }} </strong></div>
+                                        <div class="recentActivityText">Read <strong>{{ $activity->activity_name }} </strong></div>
                                     </div>
                                 @else
                                 <div class="recentActivityDesc">
                                         <div class="profilePicContainer"> 
-                                            {{HTML::image($activity->pic, $activity->userfirst, array('id'=> 'profilePic'));}} 
+                                            {{HTML::image($activity->pic, $activity->first_name, array('id'=> 'profilePic'));}} 
                                         </div>
-                                    <div class="recentActivityName">{{ $activity->userfirst}} {{ substr($activity->userlast, 0, 1) }}. </div>
+                                    <div class="recentActivityName">{{ $activity->first_name}} {{ substr($activity->last_name, 0, 1) }}. </div>
                                         @foreach($badges as $badge)
                                         {{HTML::image($badge->image . "-sm.png", 'test', array('class'=> 'badge-small', 'title'=> $badge->name));}}
                                         @endforeach                         
-                                        <div class="recentActivityText">Lost {{ ounceToPounds($activity->goal_num ) }} last week towards their <strong>{{ $activity->actname }} goal </strong></div>
+                                        <div class="recentActivityText">Lost {{ ounceToPounds($activity->goal_num ) }} last week towards their <strong>{{ $activity->activity_name }} goal </strong></div>
                                     </div>
                                 @endif
 
@@ -407,7 +407,7 @@
                                 </div>
                             @endif
                         <!--Conditional: User cannot like own activities and cannot like activities more than once -->
-                        @if(Auth::user()->username != $activity->userName &&  $liked == NULL)
+                        @if(Auth::user()->username != $activity->username &&  $liked == NULL)
 
                         <!-- Begin of test spinner -->
 

@@ -6,7 +6,7 @@ class DashboardController extends BaseController
 	{
 		$numberOfTeamMembers = 0;
 		$numberOfteamMembersReward = 0;
-		$team = Auth::user()->teamNum;
+		$team = Auth::user()->team_id;
 		$user = Auth::user()->id;
 		$userData = Auth::user();
 		$username = Auth::user()->username;
@@ -22,16 +22,16 @@ class DashboardController extends BaseController
 			->with('hoursToReward', User::hoursToReward())
 			->with('rewards', Reward::current())
 			->with('activities', DB::table('activities')
-				->join('users', 'users.username', '=', 'activities.username')
+				->join('users', 'users.id', '=', 'activities.user_id')
 				->orderBy('activities.created_at', 'desc')
 				->take(10)
-				->get(array(DB::raw('users.id as `users_id`'), 'users.userfirst', 'users.userlast', 'users.userName', 'activities.id', 'activities.actname', 'activities.likeCount','activities.type','activities.goal_num', 'users.pic', 'activities.created_at', 'activities.acttime')))
+				->get(array(DB::raw('users.id as `users_id`'), 'users.first_name', 'users.last_name', 'users.username', 'activities.id', 'activities.activity_name', 'activities.likeCount','activities.type','activities.goal_num', 'users.pic', 'activities.created_at', 'activities.activity_time')))
 			->with('activity_likes',DB::table('activity_likes')
 				->where('user_id',$user)
 				->get(array('activity_likes.user_id','activity_likes.act_id')))
 			->with('teamMembers', DB::table('users')
-				->where('teamNum', $team)
-				->get(array('users.id','users.userfirst','users.userlast','users.pic','users.userTotalHrs')))
+				->where('team_id', $team)
+				->get(array('users.id','users.first_name','users.last_name','users.pic','users.userTotalHrs')))
 			->with('goals', DB::table('goals_users')
 				->join('goals','goals.id','=', 'goals_users.goal_id')
 				->where('user_id', $user)
@@ -72,9 +72,9 @@ class DashboardController extends BaseController
 
 
 		// Current Year
-		$sql = "SELECT u.id AS id , u.userFirst AS user, ROUND(SUM(TIME_TO_SEC(a.actTime))/3600,2) AS yrTotal 
-		FROM users u LEFT OUTER JOIN activities a ON a.userName = u.userName 
-		WHERE a.teamNum= '23' GROUP BY id";
+		$sql = "SELECT u.id AS id , u.first_name AS user, ROUND(SUM(TIME_TO_SEC(a.activity_time))/3600,2) AS yrTotal 
+		FROM users u LEFT OUTER JOIN activities a ON a.user_id = u.id 
+		WHERE a.team_id= '23' GROUP BY id";
 		
 		// Last Year
 		//$sql1 = "SELECT ROUND(SUM(TIME_TO_SEC(actTime))/3600,2) as name FROM activities WHERE userName = 'wkkerns' AND type = 'time' AND actDate >= $lastYearDates[0] AND actDate <= $lastYearDates[1] GROUP BY MONTH(actDate)ORDER BY (CASE 

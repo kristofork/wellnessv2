@@ -44,8 +44,8 @@
             <div id="pageTitle">{{$title}}
 
         <li class="dropdown pull-right headProfile">
-        {{HTML::image(Auth::user()->pic, Auth::user()->userFirst, array("id" => "navProfileImage")) }}
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{Auth::user()->userFirst}} {{Auth::user()->userLast}} <b class="caret"></b></a>
+        {{HTML::image(Auth::user()->pic, Auth::user()->first_name, array("id" => "navProfileImage")) }}
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{Auth::user()->first_name}} {{Auth::user()->last_name}} <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a href="editprofile">Edit Profile</a></li>
             <li><a href="#">Another action</a></li>
@@ -63,11 +63,11 @@
                     <li class=""><a href="#top"><span class="glyphicon glyphicon-chevron-up"></span>Top</a></li>
                     <h5 id="sideHeader">NAVIGATION</h5>
                     <li id="profileLink" style="display: none;">
-                        <a class="navProfileLink" id="left-menu" href="#left-menu">{{HTML::image(Auth::user()->pic, Auth::user()->userFirst, array("id" => "navProfileImage")) }}</a>                    
+                        <a class="navProfileLink" id="left-menu" href="#left-menu">{{HTML::image(Auth::user()->pic, Auth::user()->first_name, array("id" => "navProfileImage")) }}</a>                    
                         <div class="userProgress">
                             <input type="text" value="0" rel="55" class="dial">
                         </div>
-                        <h5 class="linkText">{{ Auth::user()->userFirst; }}</h5>
+                        <h5 class="linkText">{{ Auth::user()->first_name; }}</h5>
                     </li>
                     <li class="{{ Request::is( 'blog') ? 'active' : '' }}"><a href="{{ URL::to('blog') }}"><span class="glyphicon glyphicon-home"></span>Home</a></li>
                     <li class="{{ Request::is( 'log') ? 'active' : '' }}"><a href="{{ URL::to('log') }}"><span class="glyphicon glyphicon-pencil"></span>Log</a></li>
@@ -79,12 +79,12 @@
 
         <!-- Team -->
         <ul class="navCustom" id="navTeam">
-                <h5 id="sideHeader">Team: {{ team::find(Auth::user()->teamNum)->teamName; }}</h5>
+                <h5 id="sideHeader">Team: {{ team::find(Auth::user()->team_id)->teamName; }}</h5>
                 @foreach ($teamMembers as $member)
                 @if ($member->id != Auth::user()->id)
-                <li class="userInfo" id="{{$member->id}}"><a class="navProfileLink" role="button" data-toggle="modal" href="#statDetailsModal">{{HTML::image($member->pic, $member->userfirst, array("id" => "navProfileImage")) }}
+                <li class="userInfo" id="{{$member->id}}"><a class="navProfileLink" role="button" data-toggle="modal" href="#statDetailsModal">{{HTML::image($member->pic, $member->first_name, array("id" => "navProfileImage")) }}
 
-                    {{$member->userfirst}}  {{ $member->userlast}}</a>
+                    {{$member->first_name}}  {{ $member->last_name}}</a>
                     <span id="team-progress" class="pull-left">
                         <div class="bar progress-low" id = "team-reward" style="width: {{ percentageRound(500000, $member->userTotalHrs); }}%">{{ percentageRound(500000, $member->userTotalHrs); }}%</div>
                     </span>

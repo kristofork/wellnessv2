@@ -15,7 +15,7 @@ class UserController extends BaseController
 		$data = DB::table('users')
 			->join('teams', function($join)
 			{
-				$join->on('users.teamNum', '=', 'teams.teamNum');
+				$join->on('users.team_id', '=', 'teams.id');
 			})
 			->get();
 			return Response::json($data);
@@ -106,7 +106,7 @@ class UserController extends BaseController
 	{
 
 		$user = User::find($id); 
-		$team = Auth::user()->teamNum;
+		$team = Auth::user()->team_id;
 		$currentuser = Auth::user()->id;
 		$todaysDate = date('Y-m-d');
 		$reward1 = Reward::find(1);
@@ -117,7 +117,7 @@ class UserController extends BaseController
 		return View::make('profile.user')
 			->with('title', 'Profile')
 			->with('teamMembers', DB::table('users')
-				->where('teamNum', $team)
+				->where('team_id', $team)
 				->get(array('users.id','users.userfirst','users.userlast','users.pic','users.userTotalHrs')))
 			->with('fav_activities', DB::table('activities')
 				->join('users', 'activities.userName', '=', 'users.username')
@@ -331,12 +331,12 @@ class UserController extends BaseController
 
 	function hovercard($id){
 
-		$sql = "SELECT Count(*) AS count FROM `activities` WHERE userName = 'wkkerns' AND type = 'time'";
+		$sql = "SELECT Count(*) AS count FROM `activities` WHERE id = '190' AND type = 'time'";
 		$count = DB::select($sql);
 		$count = json_encode($count, JSON_NUMERIC_CHECK);
 		$count= json_decode($count);
 		$user = User::find($id);
-		$result = array('userFirst' => $user->userFirst, 'userLast' => $user->userLast, 'pic' => $user->pic, 'created_at' => $user->created_at, 'activities' => $count);
+		$result = array('userFirst' => $user->first_name, 'userLast' => $user->last_name, 'pic' => $user->pic, 'created_at' => $user->created_at, 'activities' => $count);
 
 		return Response::json($result);
 

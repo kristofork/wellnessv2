@@ -2,9 +2,9 @@
 
 class Team extends Eloquent 
 {
-	protected $primaryKey = 'teamNum';
+	protected $primaryKey = 'id';
     public function user()
     {
-        return $this->hasMany('User','teamNum');
+        return $this->hasMany('User','team_id');
     }
 }
