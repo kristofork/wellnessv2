@@ -42,4 +42,9 @@ protected $guarded = array('id');
         ->take(3)
         ->get(array('activities.activity_name'));
   }
+
+  public static function activityTotal($id)
+  {
+    return $activity_total = Activity::where('user_id', $id)->count();
+  }
 }

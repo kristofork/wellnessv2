@@ -172,11 +172,13 @@ class UserController extends BaseController
 	// Edit user profile
 	public function editMyProfile()
 	{
-		$team = Auth::user()->teamNum;
+		$team = Auth::user()->team_id;
 		return View::make('profile.edit')
+		->with('teamname',Team::teamName())
+		->with('userYearStats', Team::userYearStat($team))
 		->with('title', 'Edit Profile')
 		->with('teamMembers', DB::table('users')
-			->where('teamNum', $team)
+			->where('team_id', $team)
 			->get(array('users.id','users.first_name','users.last_name','users.pic')));
 	}
 
@@ -256,7 +258,7 @@ class UserController extends BaseController
 		$upload_success = Input::file('file')->move($destinationPath, $filename);
 		 
 		if( $upload_success ) {
-			Image::open($destinationPath.'/'.$filename)->grab(200)->save($destinationPath.'/'.$filename);
+			Image::open($destinationPath.'/'.$filename)->grab(50)->save($destinationPath.'/'.$filename);
 			return Response::json(array('files'=>array('name'=>url($destinationPath.'/'.$filename.'?'.time()))), 200);
 		} else {
 		   return Response::json('error', 400);
@@ -299,13 +301,12 @@ class UserController extends BaseController
 	}
 
 	function hovercard($id){
-
-		$sql = "SELECT Count(*) AS count FROM `activities` WHERE id = '190' AND type = 'time'";
-		$count = DB::select($sql);
-		$count = json_encode($count, JSON_NUMERIC_CHECK);
-		$count= json_decode($count);
+		$count = Activity::activityTotal($id);
 		$user = User::find($id);
-		$result = array('userFirst' => $user->first_name, 'userLast' => $user->last_name, 'pic' => $user->pic, 'created_at' => $user->created_at, 'activities' => $count);
+		$time = $user->userTotalHrs / 3600;
+		$year = new DateTime($user->created_at);
+		$year = $year->format('Y');
+		$result = array('userFirst' => $user->first_name, 'userLast' => $user->last_name, 'pic' => $user->pic, 'created_at' => $user->created_at, 'activities' => $count, 'time' => $time, 'year' => $year);
 
 		return Response::json($result);
 

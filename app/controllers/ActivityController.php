@@ -57,18 +57,18 @@ class ActivityController extends BaseController {
             return Response::json($v->errors());
         }
         else{
-        $username = Auth::user()->username;
+        $id = Auth::user()->id;
         $userteam = Auth::user()->team_id;
         $userpic = Auth::user()->pic;
-        $userfirst = Auth::user()->userFirst;
-        $userlast = Auth::user()->userLast;
+        $userfirst = Auth::user()->first_name;
+        $userlast = Auth::user()->last_name;
 
         $activity = new Activity;
-        $activity->userName = $username;
-        $activity->actName = $input['actname'];
-        $activity->actDate = $input['actdate'];
-        $activity->actTime = $input['acttime'];
-        $activity->actIntensity = $input['actintensity'];
+        $activity->user_id = $id;
+        $activity->activity_name = $input['actname'];
+        $activity->activity_date = $input['actdate'];
+        $activity->activity_time = $input['acttime'];
+        $activity->activity_intensity = $input['actintensity'];
         $activity->factPt = $input['factpt'];
         $activity->team_id = $userteam;
         $activity->type = $input['type'];
@@ -174,11 +174,11 @@ public function read($id)
         $id = Auth::user()->id;
         $dayTotal = DB::table('activities')
                     ->select(DB::raw('SUM(TIME_TO_SEC( activity_time )) AS DayTotal'))
-                    ->where('id', $id)
+                    ->where('user_id', $id)
                     ->where('activity_date', $data)
                     ->get();
 
-        $weekTotal = DB::select(DB::raw("SELECT SUM(TIME_TO_SEC( activity_time )) AS weekTotal FROM  `activities` WHERE id = '$id' AND WEEK( activity_date ) = WEEK('$data') GROUP BY WEEK( activity_date )"));
+        $weekTotal = DB::select(DB::raw("SELECT SUM(TIME_TO_SEC( activity_time )) AS weekTotal FROM  `activities` WHERE user_id = '$id' AND YEARWEEK( activity_date ) = YEARWEEK('$data') GROUP BY YEARWEEK( activity_date )"));
         if( empty($weekTotal)){ $weekTotal = [["weekTotal"=> "0"]];}
 
         $result = array('daytotal'=> $dayTotal, 'weektotal'=> $weekTotal);
