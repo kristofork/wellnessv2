@@ -411,15 +411,7 @@
 
                         <!-- Begin of test spinner -->
 
-                          <div class="applaud" id='{{ $activity->id}}'>
-                            <div class="ui-spinner">
-                              <span class="side side-left">
-                                <span class="fill"></span>
-                              </span>
-                              <span class="side side-right">
-                                <span class="fill"></span>
-                              </span>
-                            </div>
+                          <div id="like-heart" class="glyphicon glyphicon-heart" id='{{ $activity->id}}'>
                           </div>
                         <!-- End of test spinner -->
 

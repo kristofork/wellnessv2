@@ -26,7 +26,7 @@ body
 .headbar
 {
   height: 50px;
-  background-color:#007CFF;
+  background-color:#3C3C3C;
 }
 li.headProfile
 {
@@ -201,7 +201,7 @@ img#teamUserPic{
 
 #welcome_recent_activity
 {
-  background-color:#fff;
+  background-color:#202020;
   margin-left:15px;
   margin-top: 15px;
 
@@ -235,7 +235,7 @@ img#teamUserPic{
     margin-right: 18px;
 }
 .activityIcon{
-  float:left;
+  float:;
 }
 @media (max-width: 953px) {
 .activityIcon{
@@ -400,12 +400,14 @@ height:40px;
 }
 .activityHR{
     background-image: -moz-linear-gradient(left center , rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.75), rgba(0, 0, 0, 0));
+    background-image: -webkit-linear-gradient(left , rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.75), rgba(0, 0, 0, 0));
     border: 0 none;
     height: 1px;
     width:100%;
     margin:10px auto;
     display: inline-block;
 }
+
 .like-circle{
     display: inline-block;
     height: 25px;
@@ -438,10 +440,10 @@ ul.navCustom li.active p{
   color:rgba(255, 152, 0, 0.93);
 }
 .active, .active a{
-color: #54D657;
+color: #00a0f0;
 }
 .navContainer {
-  background-color: rgba(244, 244, 244, 0.9); 
+  background-color: #202020; 
   float:left;
   width: 17.5em;
   border-right: 1px solid rgba(215, 215, 215, 0.41);
@@ -514,7 +516,7 @@ border-radius:5px;
 
 #navSide > li a, #navTeam > li a, #sideHeader
 {
-  color: #939393;
+  color: #fff;
   font-size: 14px;
   font-weight: 900;
   line-height: 40px;
@@ -523,7 +525,9 @@ border-radius:5px;
 {
   text-decoration: none;
 }
-
+ul#navSide li.active a{
+  color:#00a0f0;
+}
 #navSide li > a span
 {
   vertical-align: middle;
@@ -578,7 +582,7 @@ display: none;
 
 }
 .timeContainer{
-  float:right;
+  float:left;
   margin-top: 1em;
   font-weight: 700;
   font-size: 12px;
@@ -1030,6 +1034,7 @@ hr{
   left: 5px;
   display: block;
 }
+#like-heart{cursor:pointer ;margin-top: 1em; text-align: center;}
 /* End Spinner Style */
 
 @media screen and (min-width: 769px) {
@@ -1209,7 +1214,7 @@ margin-top: 15px;
   margin-right: 20px;
 }
 #dash-nav li.active {
-    border-bottom: 5px solid #54D657;
+    border-bottom: 5px solid #00a0f0;
 }
 #dash-nav .nav li a:hover, #dash-nav .nav li a:focus {
     background-color:rgba(0, 0, 0, 0.36);
