@@ -137,23 +137,48 @@
         <!-- Tab panes -->
           <div class="tab-pane active" id="activity">
             <div class="row">
-                <div class="col-md-4">
-                    <span class="glyphicon glyphicon-time"></span><span>500</span>
-                </div>
-                <div class="col-md-4">
-                    <div id="img-container">
-                        <img class="img-circle" id="stats_profileImg" src='/assets/img/users/avatars/190.jpg'>
+                <div class="col-md-2 stats_data_container">
+                    <div class="row">
+                        <h5>Current Week</h5>
+                        <span>5 hr</span>
                     </div>
-                    <div id="stats-container">
-                        <span id="label">Pro</span><span id="points">205/1000</span>
-                    </div>
-                    <span id="stats-progress">
-                        <div id="progress"><div class="bar progress-low" id = "team-reward" style="width:10%">10%</div></div>
-                    </span>    
                 </div>
-                <div class="col-md-4">
-                    <h3>Badges</h3>
-                    <span class="glyphicon glyphicon-certificate"></span><span>0 of 10</span>
+                <div class="col-md-2 stats_data_container">
+                    <div class="row">
+                        <h5>Last Week</h5>
+                        <span>8 hr</span>
+                    </div>
+                </div>
+                <div class="col-md-4" id="stats_profile">
+                    <div class="row" id="stats_profile_name">
+                        <h5>William Kerns</h5>
+                    </div>
+                    <div class="row" id="stats_profile_image">
+                        <div id="img-container">
+                            <img class="img-circle" id="stats_profileImg" src='/assets/img/users/avatars/190.jpg'>
+                        </div>
+                        <div id="stats-container">
+                            <span id="label">Gym Rat</span><span id="points">205/1000</span>
+                        </div>
+                        <span id="stats-progress">
+                            <div id="progress"><div class="bar progress-low" id = "team-reward" style="width:10%">10%</div></div>
+                        </span>  
+                    </div>  
+                    <div class="row" id="stats_profile_date">
+                        <h6>Active member since 2010</h6>
+                    </div>
+                </div>
+                <div class="col-md-2 stats_data_container">
+                    <div class="row">
+                    <h5>Rank</h5>
+                    <span>15 of 200</span>
+                    </div>   
+                </div>
+                <div class="col-md-2 stats_data_container">
+                    <div class="row">
+                    <h5>Team Rank</h5>
+                    <span>3 of 20</span>
+                    </div>
                 </div>
             </div>
           </div>
@@ -172,13 +197,13 @@
                           </div>
                         </div>  
                     <div class="log-row col-md-offset-2 col-md-6">
-                        <div class="col-md-9">
-                            <div class="">Activity - <span id="date_value">Today</span>
+                        <div class="col-md-8">
+                            <div class="summary_item">Date:<span id="date_value">Today</span>
                                 <input type="hidden" id="activity_datepicker" name="actdate" />
                                 <span class="glypicon glyphicon-date"></span>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div id="points" class="summary_item">Points: <span id="points_value">2</span></div>
                         </div>
                     </div>

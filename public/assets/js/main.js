@@ -56,47 +56,6 @@ $(document).ready(function() {
         $(this).children(".hovercard").hide();
     }
 
-    /*Start of knob
-    $(".dial").knob({
-        'width': 50,
-        'height': 50,
-        'readOnly': true,
-        'fgColor': '#00FF87',
-        'bgColor': 'rgba(0, 0, 0, 0.39)',
-        'thickness': 0.2,
-        'displayInput': false
-    });
-    $('.dial').each(function() {
-        var $this = $(this);
-        var myVal = $this.attr("rel");
-        $({
-            value: 0
-        }).animate({
-            value: myVal
-        }, {
-            duration: 2000,
-            easing: 'swing',
-            step: function() {
-                $this.val(Math.ceil(this.value)).trigger('change');
-            }
-        })
-    });
-    End of Knob*/
-
-    /*
-    $('#right-menu').sidr({
-        name: 'sidr-right',
-        side: 'right',
-        speed: 400,
-        onOpen: function() {
-            $("#welcome_recent_activity").css("opacity", "0.1")
-        },
-        onClose: function() {
-            $("#welcome_recent_activity").css("opacity", "1")
-        }
-    });
-
-*/
 
     // Activity Feed Hover 
     $('.recentActivity li').hoverIntent(function() {

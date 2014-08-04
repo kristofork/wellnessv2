@@ -1,49 +1,52 @@
-function minDate(){
-    var startDay   = 01;
+function minDate() {
+    var startDay = 01;
     var startMonth = 06;
     var startYear;
-    var endDay     = 31;
-    var endMonth   = 05;
+    var endDay = 31;
+    var endMonth = 05;
     var endYear;
-    var cDate      = new Date();
-    var cMonth     = cDate.getMonth();
-    var cYear      = cDate.getFullYear();
+    var cDate = new Date();
+    var cMonth = cDate.getMonth();
+    var cYear = cDate.getFullYear();
 
-    if (cMonth >= 0 && cMonth <= 4){
+    if (cMonth >= 0 && cMonth <= 4) {
         startYear = cYear - 1;
-        endYear   = cYear;
-        }
-    else{
-    startYear = cYear;
-    endYear   = cYear + 1;
+        endYear = cYear;
+    } else {
+        startYear = cYear;
+        endYear = cYear + 1;
     }
-var startDateFinal = startYear + "," + startMonth + "," + startDay;
+    var startDateFinal = startYear + "," + startMonth + "," + startDay;
     return startDateFinal;
 }
 
 $(document).ready(function($) {
-    $( "#datepicker, #datepicker-running" ).datepicker({
+    $("#datepicker, #datepicker-running").datepicker({
         inline: true,
         dateFormat: 'yy-mm-dd',
         altField: '#activity_datepicker',
         altFormat: 'yy-mm-dd',
         minDate: new Date(minDate()),
         maxDate: new Date(),
-        beforeSend: function(){
+        beforeSend: function() {
             $('#escapingBallG').show(); // Show the spinner
         },
-        complete: function(){
-              $('#escapingBallG').hide(); // Hide the spinner
+        complete: function() {
+            $('#escapingBallG').hide(); // Hide the spinner
         },
-        onSelect: function(dateText, inst){
+        onSelect: function(dateText, inst) {
             var theDate = new Date(Date.parse($(this).datepicker('getDate')));
             var dateSelected = $.datepicker.formatDate('yy-mm-dd', theDate);
             var dateFormatted = $.datepicker.formatDate('MM d, yy', theDate); // Ex. November 11, 2013
             $("#date_value").text(dateFormatted);
+            // Reset slider back to starting position
+            $("#time_slider").slider({
+                value: 15
+            });
             $.ajax({
                 type: "GET",
                 url: "activitycheck/" + dateSelected,
-                success: function(result){
+                success: function(result) {
                     var weekSecToMin = secondsToTime(result.weektotal[0].weekTotal);
                     var daySecToMin = secondsToTime(result.daytotal[0].DayTotal);
                     $("span#day").text(daySecToMin);
@@ -57,8 +60,8 @@ $(document).ready(function($) {
 
     var currentdate = $("#activity_datepicker").datepicker('setDate', new Date());
 
-// Onload grab Current day and week numbers.
-            var dateSelected = $("#activity_datepicker").prop('value');
-            getTime(dateSelected);
+    // Onload grab Current day and week numbers.
+    var dateSelected = $("#activity_datepicker").prop('value');
+    getTime(dateSelected);
 
 });
