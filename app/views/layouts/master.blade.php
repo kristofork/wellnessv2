@@ -23,7 +23,7 @@
         {{ HTML::style('assets/css/bootstrap.css') }}
         
 
-        {{ HTML::style('assets/css/styles.css') }}
+        {{ HTML::style('assets/css/less/style.css') }}
         {{ HTML::style('assets/css/spinner.css') }}
         {{ HTML::style('assets/css/jquery.sidr.dark.css') }}
         {{ HTML::style('assets/css/jquery-ui-slider-pips.css') }}

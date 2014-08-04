@@ -13,6 +13,9 @@ $(document).ready(function() {
         placement: "bottom"
     });
     $('#team-progress').tooltip();
+    $('.like-heart').tooltip({
+        placement: "right"
+    });
 
     // Navigation - return page to the top
     $("a[href='#top']").click(function() {
@@ -286,7 +289,7 @@ function datelimits() {
         $("#time_value").text("00:15:00");
         $('button#submit[type="submit"]').removeAttr('disabled');
         $("#time_slider").slider("option", "disabled", false);
-        $("span#week, span#day").css("color", "green");
+        $("span#week, span#day").css("color", "rgb(85, 253, 85)");
     }
 }
 //IE Check

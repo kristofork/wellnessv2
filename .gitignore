@@ -2,5 +2,5 @@
 vendor/*
 composer.phar
 .DS_Store
-
+/node_modules
 app/tests

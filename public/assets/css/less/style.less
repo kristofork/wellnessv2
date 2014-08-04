@@ -1,3 +1,4 @@
+@import "custom-vars";
 /* Background */
 #background{
     top:0;
@@ -6,6 +7,7 @@
     width: 100%;
     height: 100%;
     z-index:-1000;
+    background-color:#000;
 }
 .bg{
     width:100%;
@@ -82,9 +84,9 @@ ul.recentActivity:before{
 
 .teamMemberBox{
   width:42px;
-	height: 42px;
-	border-radius: 25px;
-	margin:10px 10px 0 0;
+  height: 42px;
+  border-radius: 25px;
+  margin:10px 10px 0 0;
 background: -moz-linear-gradient(left, rgba(0,0,0,0.59) 0%, rgba(33,33,33,0.6) 18%, rgba(33,33,33,0.6) 33%, rgba(33,33,33,0.6) 45%, rgba(0,0,0,0.59) 100%); /* FF3.6+ */
 background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,0.59)), color-stop(18%,rgba(33,33,33,0.6)), color-stop(33%,rgba(33,33,33,0.6)), color-stop(45%,rgba(33,33,33,0.6)), color-stop(100%,rgba(0,0,0,0.59))); /* Chrome,Safari4+ */
 background: -webkit-linear-gradient(left, rgba(0,0,0,0.59) 0%,rgba(33,33,33,0.6) 18%,rgba(33,33,33,0.6) 33%,rgba(33,33,33,0.6) 45%,rgba(0,0,0,0.59) 100%); /* Chrome10+,Safari5.1+ */
@@ -94,7 +96,7 @@ background: linear-gradient(to right, rgba(0,0,0,0.59) 0%,rgba(33,33,33,0.6) 18%
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#96000000', endColorstr='#96000000',GradientType=1 ); /* IE6-9 */
 }
 .teamMemberPic{
-	width:100%;
+  width:100%;
   text-align: center;
 }
 #likeUserPic{
@@ -103,36 +105,36 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#96000000', e
   border-radius: 25px;
 }
 img#teamUserPic{
-	border-radius: 25px;
+  border-radius: 25px;
   width:3em;
   height:3em;
 }
 .teamMemberName{
   color:#fff;
-	font-family: 'Telex', sans-serif;
-	font-size: 14px;
-	float:left;
-	margin-left:15px;
+  font-family: 'Telex', sans-serif;
+  font-size: 14px;
+  float:left;
+  margin-left:15px;
   display:none;
 }
 .teamMemberTitle{
-	font-family: 'Telex', sans-serif;
-	color:#C1C0C0;
-	margin-left:15px;
-	margin-top:-4px;
-	font-size: 12px;
-	float: left;
+  font-family: 'Telex', sans-serif;
+  color:#C1C0C0;
+  margin-left:15px;
+  margin-top:-4px;
+  font-size: 12px;
+  float: left;
   display: none;
 }
 .teamMemberBadges img{
-	width:11px;
-	margin-left: 15px;
-	margin-top:-8px;
+  width:11px;
+  margin-left: 15px;
+  margin-top:-8px;
 }
 .teamMemberDetails{
-		float: right;
-		width:14px;
-		margin-right:3px;
+    float: right;
+    width:14px;
+    margin-right:3px;
     display: none;
 }
 
@@ -162,7 +164,6 @@ img#teamUserPic{
     box-shadow        : inset 0 -1px 1px rgba(255,255,255,0.3);
 }
 
-}
 .meter > span {
   display: block;
   height: 100%;
@@ -201,17 +202,17 @@ img#teamUserPic{
 
 #welcome_recent_activity
 {
-  background-color:#202020;
+  background-color:@site_black;
   margin-left:15px;
   margin-top: 15px;
 
 }
 
 .recentActivity li{
-	list-style: none;
+  list-style: none;
 }
 .recentActivityName{
-	float:left;
+  float:left;
   color:#48A9ED;
   font-weight:700;
   margin-right: 5px;
@@ -444,7 +445,7 @@ ul.navCustom li.active p{
 color: #00a0f0;
 }
 .navContainer {
-  background-color: #202020; 
+  background-color: @site_black; 
   float:left;
   width: 17.5em;
   border-right: 1px solid rgba(215, 215, 215, 0.41);
@@ -571,10 +572,10 @@ display: none;
   line-height: 27px;
 }
 .navProfileLink{
-	line-height: 40px; /* Allows profile image to be centered */
+  line-height: 40px; /* Allows profile image to be centered */
 }
 #navProfileImage{
-	height:1.5em;
+  height:1.5em;
   width:1.5em;
   border-radius: 25px;
   margin-right:10px;
@@ -591,8 +592,8 @@ display: none;
   color:#54D657;
 }
 abbr.timeago{
-	border-bottom: 0px none;
-	cursor: auto;
+  border-bottom: 0px none;
+  cursor: auto;
   margin-left:5px;
 }
 .statsContainer{
@@ -753,7 +754,7 @@ font-family: 'Chelsea Market', cursive; font-weight: 400;
 line-height: normal;
 }
 .goals-block{
-  background-color: #51ADEE;
+  background-color: @site_black;
 }
 .scroll-block img{
   margin-bottom: 2%;
@@ -1229,7 +1230,7 @@ margin-top: 15px;
   margin-top: 15px;
 }
 .tab-pane{
-  color:#000;
+  color:@site_white;
 }
 
 #time_slider .ui-slider-tip {
@@ -1281,9 +1282,10 @@ Date Picker
 */
 
 #datepicker .ui-datepicker-header, #datepicker-running .ui-datepicker-header{
-  color: #F03434;
   border: none;
-  background: none repeat scroll 0 0 #F1F0F0;
+  background: #222 url("../../css/jquery-ui/images/ui-bg_highlight-soft_0_222_1x100.png") 50% 50% repeat-x;
+  color: #ffffff;
+  font-weight: bold;
 }
 #datepicker .ui-widget, #datepicker-running .ui-widget{
     font-family: Helvetica Neue UltraLight,Verdana,Arial,sans-serif;
@@ -1291,15 +1293,20 @@ Date Picker
 }
 #datepicker .ui-widget-content, #datepicker-running .ui-widget-content{
   border: none;
+  background: #222 url("../../css/jquery-ui/images/ui-bg_flat_75_222_40x100.png") 50% 50% repeat-x;
+  color: #ffffff;
+}
+#datepicker .ui-widget-content a {
+  color: #ffffff;
 }
 #datepicker .ui-widget-header .ui-icon, #datepicker-running .ui-widget-header .ui-icon{
-  background-image: url("http://download.jqueryui.com/themeroller/images/ui-icons_F03434_256x240.png");
+background-image: url("../../css/jquery-ui/images/ui-icons_0af_256x240.png");
 }
 #datepicker .ui-state-default, #datepicker-running .ui-state-default{
-  color:#555555;
-  background-image: none;
-  background-color: #fff;
-  border:none;
+  border: 1px solid #222;
+  background: #222 url("../../css/jquery-ui/images/ui-bg_glass_0_222_1x400.png") 50% 50% repeat-x;
+  font-weight: normal;
+  color: #ffffff;
 }
 #datepicker .ui-state-highlight, #datepicker-running .ui-state-highlight{
     background-color: #F03434;
@@ -1310,18 +1317,17 @@ Date Picker
 
 }
 #datepicker .ui-state-hover, #datepicker-running .ui-state-hover{
-  color:#fff;
-  background-image: none;
-  background-color: #000;
-  border:none;
+  border: 1px solid #ffffff;
+  background: #5f5 url("../../css/jquery-ui/images/ui-bg_glass_75_5f5_1x400.png") 50% 50% repeat-x;
+  font-weight: normal;
+  color: #212121;
   border-radius:8px;
 
 }
 #datepicker .ui-state-active, #datepicker-running .ui-state-active{
-  color:#fff;
-  background-image: none;
-  background-color: #00D1FF;
-  border:none;
+  background: #0af url("../../css/jquery-ui/images/ui-bg_glass_65_0af_1x400.png");
+  font-weight: normal;
+  color: #fff;
   border-radius:8px;
 
 }
@@ -1343,7 +1349,6 @@ div.ui-datepicker{
 }
 #datepicker-container{
 position: absolute;
-top:6%;
 right:0px;
 }
 #datepicker-center{
@@ -1422,4 +1427,33 @@ font-size:25px;
 }
 li.userInfo{
   height: 50px;
+}
+
+/* Dashboard Stats */
+
+#img-container
+{
+  display: block;
+}
+
+#stats_profileImg
+{
+  display: block;
+  margin: 0 auto;
+}
+#stats-progress {
+    background-color: #6C6C6C;
+    border-radius: 34px;
+    height: 10px;
+    width: 100px;
+    font-size: 8px;
+    display: block;
+    margin:0 auto;
+}
+
+#stats-container{
+  display: block;
+}
+#stats-title{
+  margin:0 auto;
 }
