@@ -101,6 +101,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     	return $reward;
     }
 
+    public static function UserTitle()
+    {
+    	return Badge::find(Auth::user()->badge_id)->name;
+    }
+
+    public static function UserPoints($points)
+    {
+    	$points_required = DB::table('badges')->select('required')
+         ->where('required', '<', $points)
+         ->orderBy('required')
+         ->limit(1)
+         ->get();
+         return $points_required;
+    }
 
     public static $picRules = array(
     	'file' => 'required|mimes:jpeg|max:500',

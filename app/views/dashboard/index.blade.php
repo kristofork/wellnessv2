@@ -158,7 +158,7 @@
                             <img class="img-circle" id="stats_profileImg" src='/assets/img/users/avatars/190.jpg'>
                         </div>
                         <div id="stats-container">
-                            <span id="label">Gym Rat</span><span id="points">205/1000</span>
+                            <span id="label">{{ $user_title }}</span><span id="points">{{$user_points}}/{{$badge_points['0']->required}}</span>
                         </div>
                         <span id="stats-progress">
                             <div id="progress"><div class="bar progress-low" id = "team-reward" style="width:10%">10%</div></div>
@@ -416,6 +416,17 @@
                                         {{HTML::image($badge->image . "-sm.png", 'test', array('class'=> 'badge-small', 'title'=> $badge->name));}}
                                         @endforeach
                                         <div class="recentActivityText">Read <strong>{{ $activity->activity_name }} </strong></div>
+                                    </div>
+                                @elseif ($activity->type == "rank")
+                                    <div class="recentActivityDesc">
+                                        <div class="profilePicContainer"> 
+                                            {{HTML::image($activity->pic, $activity->first_name, array('id'=> 'profilePic'));}} 
+                                        </div>
+                                    <div class="recentActivityName">{{ $activity->first_name}} {{ substr($activity->last_name, 0, 1) }}. </div>
+                                        @foreach($badges as $badge)
+                                        {{HTML::image($badge->image . "-sm.png", 'test', array('class'=> 'badge-small', 'title'=> $badge->name));}}
+                                        @endforeach
+                                        <div class="recentActivityText"><strong>{{ $activity->activity_name }} </strong></div>
                                     </div>
                                 @else
                                 <div class="recentActivityDesc">

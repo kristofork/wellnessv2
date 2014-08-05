@@ -303,10 +303,11 @@ class UserController extends BaseController
 	function hovercard($id){
 		$count = Activity::activityTotal($id);
 		$user = User::find($id);
+		$title = Badge::find($user->badge_id)->name;
 		$time = $user->userTotalHrs / 3600;
 		$year = new DateTime($user->created_at);
 		$year = $year->format('Y');
-		$result = array('userFirst' => $user->first_name, 'userLast' => $user->last_name, 'pic' => $user->pic, 'created_at' => $user->created_at, 'activities' => $count, 'time' => $time, 'year' => $year);
+		$result = array('userFirst' => $user->first_name, 'userLast' => $user->last_name, 'pic' => $user->pic, 'created_at' => $user->created_at, 'activities' => $count, 'time' => $time, 'year' => $year, 'title' => $title);
 
 		return Response::json($result);
 

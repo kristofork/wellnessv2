@@ -57,11 +57,14 @@ class ActivityController extends BaseController {
             return Response::json($v->errors());
         }
         else{
+        $user = Auth::user();
         $id = Auth::user()->id;
         $userteam = Auth::user()->team_id;
         $userpic = Auth::user()->pic;
         $userfirst = Auth::user()->first_name;
         $userlast = Auth::user()->last_name;
+        $badge_id = Auth::user()->badge_id;
+        $badge = Badge::find($badge_id);
 
         $activity = new Activity;
         $activity->user_id = $id;
@@ -72,11 +75,30 @@ class ActivityController extends BaseController {
         $activity->factPt = $input['factpt'];
         $activity->team_id = $userteam;
         $activity->type = $input['type'];
-        $activity->save();
 
-            $result = array('success'=> true, 'message'=> 'Activity Saved!','userpic' => $userpic, 'acttime' => $acttimeConverted, 'actname' => $input['actname'], 'firstname'=> $userfirst, 'lastname' => $userlast, 'currentTime' => $currentDateTime);
+        if($activity->save())
+        {
+            $points = User::find($id)->userTotalPts;
+            if($points > $badge->required)
+            {
+            
+                $user->badge_id = ++$badge_id;
+                $user->save();
+                $new_badge_id = User::find($id)->badge_id;
+                $new_badge = Badge::find($new_badge_id);
+                $activity = new Activity;
+                $activity->user_id = $id;
+                $activity->activity_name = 'Acheived the rank of '. $new_badge->name;
+                $activity->team_id = $userteam;
+                $activity->type = 'rank';
+                $activity->save();
+            }
+                $result = array('success'=> true, 'message'=> 'Activity Saved!','userpic' => $userpic, 'acttime' => $acttimeConverted, 'actname' => $input['actname'], 'firstname'=> $userfirst, 'lastname' => $userlast, 'currentTime' => $currentDateTime);
 
-        return Response::json($result);
+            return Response::json($result);
+        }
+
+
 
         }
 

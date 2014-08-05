@@ -8,6 +8,7 @@ class DashboardController extends BaseController
 		$numberOfteamMembersReward = 0;
 		$team = Auth::user()->team_id;
 		$user = Auth::user()->id;
+		$points = Auth::user()->userTotalPts;
 		$userData = Auth::user();
 		$username = Auth::user()->username;
 		$todaysDate = date('Y-m-d');
@@ -19,6 +20,9 @@ class DashboardController extends BaseController
 
 		return View::make('dashboard.index')
 			->with('title', 'Dashboard')
+			->with('user_title', User::UserTitle())
+			->with('user_points', $points)
+			->with('badge_points',User::UserPoints($points))
 			->with('teamname',Team::teamName())
 			->with('hoursToReward', User::hoursToReward())
 			->with('userYearStats', Team::userYearStat($team))
