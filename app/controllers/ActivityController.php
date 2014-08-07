@@ -58,13 +58,14 @@ class ActivityController extends BaseController {
         }
         else{
         $user = Auth::user();
-        $id = Auth::user()->id;
-        $userteam = Auth::user()->team_id;
-        $userpic = Auth::user()->pic;
-        $userfirst = Auth::user()->first_name;
-        $userlast = Auth::user()->last_name;
-        $badge_id = Auth::user()->badge_id;
-        $badge = Badge::find($badge_id);
+        $id = $user->id;
+        $userteam = $user->team_id;
+        $userpic = $user->pic;
+        $userfirst = $user->first_name;
+        $userlast = $user->last_name;
+
+        $rank_id =$user->rank_id;
+        $rank = Rank::find($rank_id);
 
         $activity = new Activity;
         $activity->user_id = $id;
@@ -76,22 +77,26 @@ class ActivityController extends BaseController {
         $activity->team_id = $userteam;
         $activity->type = $input['type'];
 
+        // If activity was submitted successfully
         if($activity->save())
-        {
+        {   // Get the user's points and check if they are over their current required rank
             $points = User::find($id)->userTotalPts;
-            if($points > $badge->required)
+            if($points > $rank->required)
             {
-            
-                $user->badge_id = ++$badge_id;
+                // User meets requirements for the next rank
+                // increase their rank by 1
+                $user->rank_id = ++$rank_id;
                 $user->save();
-                $new_badge_id = User::find($id)->badge_id;
-                $new_badge = Badge::find($new_badge_id);
+                $new_rank_id = User::find($id)->rank_id; // Get user's new rank
+                $new_rank = Rank::find($new_rank_id);
+                // Add to the activity table
                 $activity = new Activity;
                 $activity->user_id = $id;
-                $activity->activity_name = 'Acheived the rank of '. $new_badge->name;
+                $activity->activity_name = 'Acheived the rank of '. $new_rank->name;
                 $activity->team_id = $userteam;
                 $activity->type = 'rank';
                 $activity->save();
+                
             }
                 $result = array('success'=> true, 'message'=> 'Activity Saved!','userpic' => $userpic, 'acttime' => $acttimeConverted, 'actname' => $input['actname'], 'firstname'=> $userfirst, 'lastname' => $userlast, 'currentTime' => $currentDateTime);
 

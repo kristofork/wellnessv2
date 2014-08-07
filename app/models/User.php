@@ -83,6 +83,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     	return $this->hasMany('Badge');
     }
 
+    public function ranks()
+    {
+    	return $this->hasOne('Rank');
+    }
+
     public static function hoursToReward()
     {
     	$reward = [];
@@ -103,17 +108,22 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
     public static function UserTitle()
     {
-    	return Badge::find(Auth::user()->badge_id)->name;
+    	$user = Auth::user()->rank_id;
+    	$rank = Rank::find($user);
+    	return $rank->name;
     }
 
-    public static function UserPoints($points)
+    public static function UserPoints($id)
     {
-    	$points_required = DB::table('badges')->select('required')
-         ->where('required', '<', $points)
-         ->orderBy('required')
-         ->limit(1)
-         ->get();
-         return $points_required;
+    	$points_required = DB::table('ranks')->select('required')
+         ->where('id', $id )
+         ->first();
+         return $points_required->required;
+    }
+
+    public static function UserRank()
+    {
+    	
     }
 
     public static $picRules = array(

@@ -43,8 +43,28 @@ protected $guarded = array('id');
         ->get(array('activities.activity_name'));
   }
 
+
   public static function activityTotal($id)
   {
     return $activity_total = Activity::where('user_id', $id)->count();
+  }
+
+  public static function activity_time_week($id)
+  {
+    $sql = "SELECT SUM(TIME_TO_SEC(COALESCE(a.activity_time,'00:00:00'))) AS TotalTime 
+            FROM activities a
+            WHERE a.user_id = $id
+            AND YEARWEEK(a.activity_date)=YEARWEEK(CURRENT_DATE)";
+    $result = DB::select($sql);
+    return secondsToString($result['0']->TotalTime);
+  }
+  public static function activity_time_lastweek($id)
+  {
+    $sql = "SELECT SUM(TIME_TO_SEC(COALESCE(a.activity_time,'00:00:00'))) AS TotalTime 
+      FROM activities a 
+      where a.id= $id
+      AND YEARWEEK(a.activity_date)=YEARWEEK(CURRENT_DATE - INTERVAL 7 DAY)";
+    $result = DB::select($sql);
+    return secondsToString($result['0']->TotalTime);
   }
 }

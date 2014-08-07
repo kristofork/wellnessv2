@@ -140,13 +140,13 @@
                 <div class="col-md-2 stats_data_container">
                     <div class="row">
                         <h5>Current Week</h5>
-                        <span>5 hr</span>
+                        <span>{{$time_week}}</span>
                     </div>
                 </div>
                 <div class="col-md-2 stats_data_container">
                     <div class="row">
                         <h5>Last Week</h5>
-                        <span>8 hr</span>
+                        <span>{{$time_lastweek}}</span>
                     </div>
                 </div>
                 <div class="col-md-4" id="stats_profile">
@@ -158,7 +158,7 @@
                             <img class="img-circle" id="stats_profileImg" src='/assets/img/users/avatars/190.jpg'>
                         </div>
                         <div id="stats-container">
-                            <span id="label">{{ $user_title }}</span><span id="points">{{$user_points}}/{{$badge_points['0']->required}}</span>
+                            <span id="label">{{ $user_title }}</span><span id="points">{{$user_points}}/{{$required_points}}</span>
                         </div>
                         <span id="stats-progress">
                             <div id="progress"><div class="bar progress-low" id = "team-reward" style="width:10%">10%</div></div>
