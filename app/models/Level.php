@@ -1,9 +1,8 @@
 <?php
 
-class Rank extends Eloquent {
+class Level extends Eloquent {
 	protected $fillable = [];
-	protected $table = "rankTbl";
-	protected $primaryKey  = 'rank';
+	protected $table = "ranks";
 
 	public function user()
 	{

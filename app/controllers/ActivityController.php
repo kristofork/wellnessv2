@@ -65,7 +65,7 @@ class ActivityController extends BaseController {
         $userlast = $user->last_name;
 
         $rank_id =$user->rank_id;
-        $rank = Rank::find($rank_id);
+        $rank = Level::find($rank_id);
 
         $activity = new Activity;
         $activity->user_id = $id;
@@ -88,7 +88,7 @@ class ActivityController extends BaseController {
                 $user->rank_id = ++$rank_id;
                 $user->save();
                 $new_rank_id = User::find($id)->rank_id; // Get user's new rank
-                $new_rank = Rank::find($new_rank_id);
+                $new_rank = Level::find($new_rank_id);
                 // Add to the activity table
                 $activity = new Activity;
                 $activity->user_id = $id;

@@ -15,11 +15,6 @@
 Route::get('/',array('as' => 'home', 'uses'=>'HomeController@index'));
 
 
-
-Route::get('login', array('as' => 'login', function () { 
-	return View::make('login.index');
- }))->before('guest');
-
 // Send the POST action to the Login controller. Function Login()
 Route::post('login', array('as'=> 'login', 'uses'=> 'LoginController@login' ));
 

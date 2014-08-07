@@ -1130,13 +1130,17 @@ div.admin.teams {
   display: inline-block;
   line-height: 20px;
   text-align: center;
-  width: 100px;
+  width: 21%;
+  margin-bottom: 10px;
   background-color: rgba(0, 0, 0, 0.37);
   color: #fff;
   margin-right: 20px;
 }
 #dash-nav li.active {
   border-bottom: 5px solid #00a0f0;
+}
+#dash-nav li.active a {
+  color: #00aaff;
 }
 #dash-nav .nav li a:hover,
 #dash-nav .nav li a:focus {
@@ -1291,7 +1295,7 @@ div.ui-datepicker {
 }
 #points_value,
 #date_value {
-  font-size: 24px;
+  font-size: 20px;
   color: #00D1FF;
 }
 #timeContainer {
@@ -1390,3 +1394,16 @@ li.userInfo {
 #stats_profile_image {
   height: 60%;
 }
+.stats_data_container .row span {
+  color: #00aaff;
+  font-size: 1.8em;
+}
+ul.nav.tabs li a,
+ul.nav.tabs li a.disabled,
+ul#navSide.navCustom li a.disabled {
+  color: grey;
+}
+ul.nav.tabs li a span {
+  font-size: 10px;
+}
+/*# sourceMappingURL=style.css.map */

@@ -31,6 +31,28 @@ function secondsToString ($time){
     	}
 }
 
+/* Convert the seconds to a string */
+function secondsToStringShort ($secs){
+        if (empty($secs))
+        {
+            return 0;
+        }
+ $output = '';
+    if($secs>=3600){
+        $hours = floor($secs/3600);
+        $secs = $secs%3600;
+        $output .= $hours.' hr';
+        if($hours != 1) $output .= 's';
+        if($secs > 0) $output .= ' ';
+        }
+    if($secs>=60){
+        $minutes = floor($secs/60);
+        $secs = $secs%60;
+        $output .= $minutes.' m';
+        }
+    return $output;
+}
+
 /* Round off to the tenths place */
 function percentageRound ( $milestone, $usertime)
 {

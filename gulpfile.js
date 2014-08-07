@@ -12,6 +12,9 @@ gulp.task('less', function() {
     gulp.src('public/assets/css/less/*.less')
         .pipe(watch())
         .pipe(less())
+        .pipe(smless({
+            generateSourceMap: true
+        }))
         .pipe(rename("style.css"))
         .pipe(gulp.dest('./public/assets/css/less'))
         .pipe(livereload(server));
@@ -27,4 +30,4 @@ gulp.task('sourcemaps', function() {
 });
 
 
-gulp.task('default', ['sourcemaps', 'less']);
+gulp.task('default', ['less']);

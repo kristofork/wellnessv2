@@ -69,29 +69,31 @@
                         </div>
                         <h5 class="linkText">{{ Auth::user()->first_name; }}</h5>
                     </li>
-                    <li class="{{ Request::is( 'blog') ? 'active' : '' }}"><a href="{{ URL::to('blog') }}"><span class="glyphicon glyphicon-home"></span>Home</a></li>
-                    <li class="{{ Request::is( 'log') ? 'active' : '' }}"><a href="{{ URL::to('log') }}"><span class="glyphicon glyphicon-pencil"></span>Log</a></li>
-                    <li class="{{ Request::is( 'blog') ? 'active' : '' }}"><a href="{{ URL::to('blog') }}"><span class="glyphicon glyphicon-book"></span><span id="badge-data" class="badge pull-right">3</span>Read</a></li>
+                    <li class="{{ Request::is( 'blog') ? 'active' : '' }}"><a href="#"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+                    <li class="{{ Request::is( 'log') ? 'active' : '' }}"><a class="disabled" href="#"><span class="glyphicon glyphicon-lock"></span>Log</a></li>
+                    <li class="{{ Request::is( 'blog') ? 'active' : '' }}"><a class="disabled" href="#"><span class="glyphicon glyphicon-lock"></span>Read</a></li>
                     <li class="{{ Request::is( 'dashboard') ? 'active' : '' }}"><a href="{{ URL::to('dashboard') }}"><span class="glyphicon glyphicon-dashboard"></span><span id="badge-data" class="badge pull-right">1</span>Dashboard</a></li>
                     <li class="{{ Request::is( 'user/*') ? 'active' : '' }}"><a href="user/{{Auth::user()->id}}"><span class="glyphicon glyphicon-user"></span>Me</a></li>
-                    <li class="{{ Request::is( 'goal') ? 'active' : '' }}"><a href="{{ URL::to('goals') }}"><span class="glyphicon glyphicon-flag"></span>Acheive</a></li>
+                    <li class="{{ Request::is( 'goal') ? 'active' : '' }}"><a class="disabled" href="#"><span class="glyphicon glyphicon-lock"></span>Acheive</a></li>
                 </ul>
+            <!-- If user is on a team -->    
+            @if($teamname != "Individuals")
+                <!-- Team -->
+                <ul class="navCustom" id="navTeam">
+                    <h5 id="sideHeader">Team: {{ $teamname}}</h5>
+                    @foreach ($userYearStats as $userYearStat)
+                    @if ($userYearStat->id != Auth::user()->id)
+                    <li class="userInfo" id="{{$userYearStat->id}}"><a class="navProfileLink" role="button" data-toggle="modal" href="#statDetailsModal">{{HTML::image($userYearStat->pic, $userYearStat->first_name, array("id" => "navProfileImage")) }}
 
-        <!-- Team -->
-        <ul class="navCustom" id="navTeam">
-                <h5 id="sideHeader">Team: {{ $teamname}}</h5>
-                @foreach ($userYearStats as $userYearStat)
-                @if ($userYearStat->id != Auth::user()->id)
-                <li class="userInfo" id="{{$userYearStat->id}}"><a class="navProfileLink" role="button" data-toggle="modal" href="#statDetailsModal">{{HTML::image($userYearStat->pic, $userYearStat->first_name, array("id" => "navProfileImage")) }}
-
-                    {{$userYearStat->first_name}}  {{ $userYearStat->last_name}}</a>
-                    <span id="team-progress" class="pull-left">
-                        <div class="bar progress-low" id = "team-reward" style="width: {{ percentageRound(500000, $userYearStat->time); }}%">{{ percentageRound(500000, $userYearStat->time); }}%</div>
-                    </span>
-                </li>
-                @endif
-                @endforeach
-            </ul>       
+                        {{$userYearStat->first_name}}  {{ $userYearStat->last_name}}</a>
+                        <span id="team-progress" class="pull-left">
+                            <div class="bar progress-low" id = "team-reward" style="width: {{ percentageRound(500000, $userYearStat->time); }}%">{{ percentageRound(500000, $userYearStat->time); }}%</div>
+                        </span>
+                    </li>
+                    @endif
+                    @endforeach
+                </ul>   
+            @endif    
         </div>
         <!-- End of Nav -->
 

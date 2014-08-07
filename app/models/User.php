@@ -121,9 +121,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
          return $points_required->required;
     }
 
-    public static function UserRank()
+    public static function userCount()
     {
-    	
+        return User::all()->count();
     }
 
     public static $picRules = array(

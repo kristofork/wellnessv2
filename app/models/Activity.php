@@ -56,15 +56,15 @@ protected $guarded = array('id');
             WHERE a.user_id = $id
             AND YEARWEEK(a.activity_date)=YEARWEEK(CURRENT_DATE)";
     $result = DB::select($sql);
-    return secondsToString($result['0']->TotalTime);
+    return secondsToStringShort($result['0']->TotalTime);
   }
   public static function activity_time_lastweek($id)
   {
     $sql = "SELECT SUM(TIME_TO_SEC(COALESCE(a.activity_time,'00:00:00'))) AS TotalTime 
       FROM activities a 
-      where a.id= $id
+      where a.user_id= $id
       AND YEARWEEK(a.activity_date)=YEARWEEK(CURRENT_DATE - INTERVAL 7 DAY)";
     $result = DB::select($sql);
-    return secondsToString($result['0']->TotalTime);
+    return secondsToStringShort($result['0']->TotalTime);
   }
 }
