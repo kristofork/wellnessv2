@@ -212,4 +212,14 @@ public function read($id)
         return Response::json($result);
     }
 
+    public static function pagination($data)
+    {
+        $from = $data;
+        $to = $data + 10;
+
+        $result = DB::select(DB::raw("SELECT SQL_CALC_FOUND_ROWS *, UNIX_TIMESTAMP(activity_date) as logDate FROM activities JOIN users ON activities.user_id = users.id ORDER BY logDate DESC LIMIT $to, $from"));
+
+        return Response::json($result);
+    }
+
 }

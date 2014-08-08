@@ -287,7 +287,6 @@
                     <li id="{{$activeId}}">
 
                         <div class="activityBox">
-                                <?php $badges = DB::table('badge_user')->join('badges', 'badges.id', '=', 'badge_user.badge_id')->where('user_id', $activity->users_id)->get(array('badges.name', 'badges.desc', 'badges.image')) ?>
 
                                 @if ($activity->type == "time")
                                     <div class="recentActivityDesc">
@@ -298,10 +297,6 @@
                                             </span>
                                         </div>
                                         <div class="recentActivityName">{{ $activity->first_name}} {{ substr($activity->last_name, 0, 1) }}. </div>
-                                            @foreach($badges as $badge)
-                                            {{HTML::image($badge->image . "-sm.png", 'test', array('class'=> 'badge-small', 'title'=> $badge->name));}}
-                                            @endforeach
-
                                         <div class="recentActivityText">Logged {{ secondsToString(hoursToSeconds($activity->activity_time )) }} of <strong>{{ $activity->activity_name }} </strong></div>
                                     </div>
                                 @elseif ($activity->type == "read")
@@ -310,9 +305,6 @@
                                             {{HTML::image($activity->pic, $activity->first_name, array('id'=> 'profilePic'));}} 
                                         </div>
                                     <div class="recentActivityName">{{ $activity->first_name}} {{ substr($activity->last_name, 0, 1) }}. </div>
-                                        @foreach($badges as $badge)
-                                        {{HTML::image($badge->image . "-sm.png", 'test', array('class'=> 'badge-small', 'title'=> $badge->name));}}
-                                        @endforeach
                                         <div class="recentActivityText">Read <strong>{{ $activity->activity_name }} </strong></div>
                                     </div>
                                 @elseif ($activity->type == "rank")
@@ -321,9 +313,6 @@
                                             {{HTML::image($activity->pic, $activity->first_name, array('id'=> 'profilePic'));}} 
                                         </div>
                                     <div class="recentActivityName">{{ $activity->first_name}} {{ substr($activity->last_name, 0, 1) }}. </div>
-                                        @foreach($badges as $badge)
-                                        {{HTML::image($badge->image . "-sm.png", 'test', array('class'=> 'badge-small', 'title'=> $badge->name));}}
-                                        @endforeach
                                         <div class="recentActivityText"><strong>{{ $activity->activity_name }} </strong></div>
                                     </div>
                                 @else
@@ -332,9 +321,6 @@
                                             {{HTML::image($activity->pic, $activity->first_name, array('id'=> 'profilePic'));}} 
                                         </div>
                                     <div class="recentActivityName">{{ $activity->first_name}} {{ substr($activity->last_name, 0, 1) }}. </div>
-                                        @foreach($badges as $badge)
-                                        {{HTML::image($badge->image . "-sm.png", 'test', array('class'=> 'badge-small', 'title'=> $badge->name));}}
-                                        @endforeach                         
                                         <div class="recentActivityText">Lost {{ ounceToPounds($activity->goal_num ) }} last week towards their <strong>{{ $activity->activity_name }} goal </strong></div>
                                     </div>
                                 @endif
@@ -379,6 +365,9 @@
                 </li>
                 <hr class="activityHR" />
                 @endforeach
+                <li id ='more' class="load-more" num_loaded='10' data-icon="arrow-d">
+                    <a href="#" style="text-align: center">Load More <span class="glyphicon glyphicon-chevron-down"></span></a>
+                </li>
             </ul>
         </div>
 
@@ -401,6 +390,7 @@
 {{ HTML::script('assets/js/form/weight.js') }}
 {{ HTML::script('js/charts/chart.js')}}
 {{ HTML::script('js/charts/dark-theme.js')}}
+{{ HTML::script('js/activities/pagination.js') }}
 <script type="text/javascript">
     teamChart(); // start donut chart
 </script>
