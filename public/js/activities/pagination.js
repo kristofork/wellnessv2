@@ -14,13 +14,14 @@
 				$.each(data, function(item,val){
 					console.log(val);
 					var html = "<li>";
+						html +="<div class='activityBox'>"
 					    html +="<div class='recentActivityDesc'>";
 						html +="<div class='profilePicContainer'>";
 						html +="<span rel='hovercard' data-url="+val.user_id+"><div class='hovercard'></div>";
-						html +="<img src="+ val.pic + " /></span></div>";
-		                html +="<div class='recentActivityName'>"+ val.first_name + val.last_name +". </div>";
-		                html +="<div class='recentActivityText'>Logged "+ val.activity_time+" of <strong>"+ val.activity_name+" </strong></div></div>";
-						html +="</li>";
+						html +="<img id='profilePic' src="+ val.pic + " /></span></div>";
+		                html +="<div class='recentActivityName'>"+ val.first_name +" "+ val.last_name.charAt(0) +". </div>";
+		                html +="<div class='recentActivityText'>Logged "+ val.activity_time+" of <strong>"+ val.activity_name+" </strong></div></div></div>";
+						html +="</li><hr class='activityHR' />";
 					    $(html).appendTo('ul.recentActivity').hide().slideDown("slow", function()
 					    {
                         	$("li.activityItem, img#ajaximg").animate({opacity: "1"}, 600);

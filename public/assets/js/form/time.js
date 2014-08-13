@@ -65,6 +65,6 @@ $(document).ready(function($) {
             SummaryPoints();
         }
     });
-    //$("#time_slider").slider("pips").slider("float");
+    $("#time_slider").slider("pips").slider("float");
 
 });

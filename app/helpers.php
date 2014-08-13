@@ -41,14 +41,12 @@ function secondsToStringShort ($secs){
     if($secs>=3600){
         $hours = floor($secs/3600);
         $secs = $secs%3600;
-        $output .= $hours.' hr';
-        if($hours != 1) $output .= 's';
-        if($secs > 0) $output .= ' ';
+        $output .= $hours.'h ';
         }
     if($secs>=60){
         $minutes = floor($secs/60);
         $secs = $secs%60;
-        $output .= $minutes.' m';
+        $output .= $minutes.'m';
         }
     return $output;
 }

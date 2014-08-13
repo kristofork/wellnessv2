@@ -41,20 +41,18 @@
         <div class="main-container">
     @if (Auth::check()==true)
         <div class="headbar">
-            <div id="pageTitle">{{$title}}
+            <span id="pageTitle">{{$title}}
 
         <li class="dropdown pull-right headProfile">
         {{HTML::image(Auth::user()->pic, Auth::user()->first_name, array("id" => "navProfileImage")) }}
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{Auth::user()->first_name}} {{Auth::user()->last_name}} <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="editprofile">Edit Profile</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href="editprofile"><span class="glyphicon glyphicon-edit"></span> Edit Profile</a></li>
             <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a href="{{ URL::to('logout')}}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
           </ul>
         </li>
-        </div>
+        </span>
 
         </div>
         <!-- Navbar -->
@@ -62,13 +60,6 @@
                 <ul class="navCustom" id="navSide">
                     <li class=""><a href="#top"><span class="glyphicon glyphicon-chevron-up"></span>Top</a></li>
                     <h5 id="sideHeader">NAVIGATION</h5>
-                    <li id="profileLink" style="display: none;">
-                        <a class="navProfileLink" id="left-menu" href="#left-menu">{{HTML::image(Auth::user()->pic, Auth::user()->first_name, array("id" => "navProfileImage")) }}</a>                    
-                        <div class="userProgress">
-                            <input type="text" value="0" rel="55" class="dial">
-                        </div>
-                        <h5 class="linkText">{{ Auth::user()->first_name; }}</h5>
-                    </li>
                     <li class="{{ Request::is( 'blog') ? 'active' : '' }}"><a href="#"><span class="glyphicon glyphicon-home"></span>Home</a></li>
                     <li class="{{ Request::is( 'log') ? 'active' : '' }}"><a class="disabled" href="#"><span class="glyphicon glyphicon-lock"></span>Log</a></li>
                     <li class="{{ Request::is( 'blog') ? 'active' : '' }}"><a class="disabled" href="#"><span class="glyphicon glyphicon-lock"></span>Read</a></li>
@@ -134,8 +125,8 @@
         {{ HTML::script('assets/js/bootstrap/bootstrap.min.js') }}
         {{ HTML::script('assets/js/timeplugin.js')}}
         {{ HTML::script('assets/js/main.js')}}
+        {{ HTML::script('js/activities/new_activityCheck.js')}}
         <script type="text/javascript" src="assets/js/slider-pips/jquery-ui-slider-pips.js"></script>
-
 
     </body>
 </html>

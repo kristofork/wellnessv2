@@ -222,4 +222,10 @@ public function read($id)
         return Response::json($result);
     }
 
+    public function newActivities($data)
+    {
+        $result =  Activity::where('created_at','>', $data)->get()->count();
+        return Response::json($result);
+    }
+
 }

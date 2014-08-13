@@ -50,6 +50,7 @@ Route::post('user/applaud/{id}', array('as' => 'user_applaud', 'uses' => 'Applau
 Route::post('activity/{data}', array('as' => 'activity', 'uses' => 'ActivityController@store'));
 Route::post('activityread/{id}', array('as' => 'read', 'uses' => 'ActivityController@read'));
 Route::get('activitycheck/{data}',array('as'=> 'timecheck', 'uses' => 'ActivityController@check'));
+Route::get('newactivities/{data}', array('as'=> 'newactivity', 'uses' => 'ActivityController@newActivities'));
 Route::post('goal/update_progress', array('as'=> 'update_progress','uses'=>'GoalController@update_progress'));
 Route::get('goal/check',array('as'=>'goalcheck', 'uses'=>'GoalController@check'));
 }

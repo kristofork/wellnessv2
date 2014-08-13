@@ -3,7 +3,7 @@ jQuery(document).ready(function() {
 });
 
 $(document).ready(function() {
-
+    
     $('#escapingBallG').hide(); // Hide the spinner
     $('img#teamUserPic').tooltip();
     $('.activityLikeImg img').tooltip({
