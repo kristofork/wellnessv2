@@ -2,7 +2,7 @@
 
 class Activity extends Eloquent {
 	public static $tables = 'activities';
-protected $guarded = array('id');
+
 	public function user()
 	{
 		return $this->belongsTo('User');

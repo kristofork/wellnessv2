@@ -5,6 +5,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
+    protected $guarded = array('password');
 	/**
 	 * The database table used by the model.
 	 *
@@ -75,7 +76,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
     public function activities()
     {
-        return $this->hasMany('Activity', 'userName');
+        return $this->hasMany('Activity');
     }
 
     public function badges()

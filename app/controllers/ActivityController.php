@@ -216,8 +216,12 @@ public function read($id)
     {
         $from = $data;
         $to = $data + 10;
-
-        $result = DB::select(DB::raw("SELECT SQL_CALC_FOUND_ROWS *, UNIX_TIMESTAMP(activity_date) as logDate FROM activities JOIN users ON activities.user_id = users.id ORDER BY logDate DESC LIMIT $to, $from"));
+        $result = Activity::orderBy('activities.created_at', 'desc')
+        ->join('users','activities.user_id', '=','users.id')
+        ->skip($from)
+        ->take(10)
+        ->get(array('users.first_name', 'users.last_name', 'users.username', 'activities.id', 'activities.activity_name', 'activities.likeCount','activities.type','activities.goal_num', 'users.pic', 'activities.created_at', 'activities.activity_time'));
+        //$result = DB::select("SELECT SQL_CALC_FOUND_ROWS *, UNIX_TIMESTAMP(a.activity_date) as logDate FROM activities a JOIN users u ON a.user_id = u.id ORDER BY logDate DESC LIMIT $to, $from");
 
         return Response::json($result);
     }
