@@ -88,21 +88,25 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     {
     	return $this->hasOne('Rank');
     }
+    public function currentYearStats()
+    {
+        return $this->hasOne('CurrentYearStat');
+    }
 
+    // Average per day to meet Reward
     public static function hoursToReward()
     {
-    	$reward = [];
     	$currents = Reward::current();
 	    $today = strtotime(date('Y-m-d'));
 		foreach ($currents as $current) {
     	$deadline = strtotime($current->deadline);
     	$milestone = $current->milestone;
-    	$userTime = Auth::User()->userTotalHrs;
+    	$userTime = Auth::User()->currentYearStats->time;
     	$result = ($milestone - $userTime) / floor(($deadline- $today) / (24 * 60 *60));
     	$result = round($result / 60 / 60,1);    	
     	$hrs = floor($result);
     	$mins = round(($result - $hrs) *60);
-    	$reward[] =array('name' => $current->name, 'time' => intval($hrs). ":". intval($mins));
+    	$reward =array('name' => $current->name, 'time' => intval($hrs). ":". intval($mins));
     }
     	return $reward;
     }
@@ -110,7 +114,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     public static function UserTitle()
     {
     	$user = Auth::user()->rank_id;
-    	$rank = Rank::find($user);
+    	$rank = Level::find($user);
     	return $rank->name;
     }
 

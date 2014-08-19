@@ -14,8 +14,9 @@
 				// Loop through the data array and add to the end of the ul
 				$.each(data, function(item,val){
 					console.log(val);
-					var d = new Date(val.created_at);
+					var d = new Date(val.created_at.replace(/-/g,"/"));
 					var n = d.toISOString();
+					
 					var html = "<li>";
 						html +="<div class='activityBox'>"
 					    html +="<div class='recentActivityDesc'>";

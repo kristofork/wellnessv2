@@ -223,16 +223,16 @@ function datelimits() {
     var dayMax = (7200 - daySeconds) / 60;
     var weekValue = secondsToTime(28800 - weekSeconds);
     if (daySeconds == 7200 && weekSeconds == 28800) { // Day and week limits are reached
-        $('button#submit[type="submit"]').attr('disabled', 'disabled');
+        $('button#submitact[type="submit"]').attr('disabled', 'disabled');
         $("span#week, span#day").css("color", "red");
         $("#time_slider").slider("option", "disabled", true);
     } else if (daySeconds >= 7200) { // Day limit is reached
-        $('button#submit[type="submit"]').attr('disabled', 'disabled');
+        $('button#submitact[type="submit"]').attr('disabled', 'disabled');
         $("span#day").css("color", "red");
         $("#time_slider").slider("option", "disabled", true);
     } else if (weekSeconds >= 28800) // Week limit is reached
     {
-        $('button#submit[type="submit"]').attr('disabled', 'disabled');
+        $('button#submitact[type="submit"]').attr('disabled', 'disabled');
         $("span#week, span#day").css("color", "red");
         $("#time_slider").slider("option", "disabled", true);
     } else {
@@ -246,7 +246,7 @@ function datelimits() {
         });
         $("#time_val").attr('value', "00:15:00");
         $("#time_value").text("00:15:00");
-        $('button#submit[type="submit"]').removeAttr('disabled');
+        $('button#submitact[type="submit"]').removeAttr('disabled');
         $("#time_slider").slider("option", "disabled", false);
         $("span#week, span#day").css("color", "rgb(85, 253, 85)");
     }

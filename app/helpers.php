@@ -6,6 +6,13 @@ function convertTimeIso($datetime)
     return $newdatetime->format(DateTime::ISO8601);
 }
 
+function convertIsoTime($iso)
+{
+    $datetime = strtotime($iso);
+
+    $return = date('Y-m-d H:i:s', $datetime); 
+}
+
 /* Convert 00:00:00 to total amount of seconds */
 function hoursToSeconds ($hour) { // $hour must be a string type: "HH:mm:ss"
     $parse = array();

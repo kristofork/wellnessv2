@@ -16,14 +16,12 @@ class DashboardController extends BaseController
 		$todaysDate = date('Y-m-d');
 		$reward1 = Reward::find(1);
 		$reward2 = Reward::find(2);
-		$reward3 = Reward::find(3);
-		$reward4 = Reward::find(4);
-		$reward5 = Reward::find(5);
 
 		return View::make('dashboard.index')
 			->with('title', 'Dashboard') 							// title of page
 			->with('user_title', User::UserTitle()) 				// Rank title
 			->with('user_points', $points)							// User's points
+			->with('user_time', $user->currentYearStats->time)		// User's time
 			->with('required_points',User::UserPoints($user_rank))	// Next Level Points
 			->with('teamname',Team::teamName())						// Team Name
 			->with('time_week', Activity::activity_time_week($user_id))
@@ -54,7 +52,7 @@ class DashboardController extends BaseController
 				->where('startdate', '<=', $todaysDate)
 				->where('deadline', '>=', $todaysDate)
 				->get())
-			->with(array('user' => $userData, 'reward1' => $reward1, 'reward2' => $reward2,'reward3' => $reward3, 'reward4' => $reward4, 'reward5' => $reward5));
+			->with(array('user' => $userData, 'reward1' => $reward1, 'reward2' => $reward2));
 	}
 
 	public function teamMembers(){

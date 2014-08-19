@@ -2,6 +2,12 @@
 
 class CurrentYearStat extends Eloquent 
 {
-	protected $primaryKey = 'id';
+	
+	protected $table = 'current_year_stats';
+
+	public function user()
+	{
+		return $this->belongsTo('User');
+	}
 
 }

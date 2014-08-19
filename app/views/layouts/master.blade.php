@@ -125,7 +125,9 @@
         {{ HTML::script('assets/js/bootstrap/bootstrap.min.js') }}
         {{ HTML::script('assets/js/timeplugin.js')}}
         {{ HTML::script('assets/js/main.js')}}
+        @if($title = "Dashboard" || $title = "Profile")
         {{ HTML::script('js/activities/new_activityCheck.js')}}
+        @endif
         <script type="text/javascript" src="assets/js/slider-pips/jquery-ui-slider-pips.js"></script>
 
     </body>

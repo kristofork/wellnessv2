@@ -26,9 +26,11 @@ $(document).ready(function() {
             },
             success: function(result) {
                 if (result.success == true) {
+                    var d = new Date();
+                    var n = d.toISOString();
                     html = "<li class='activityItem'><div class='activityBox'>";
-                    html += "<div class='recentActivityDesc'><div class='profilePicContainer'><img id='profilePic' src='" + result.userpic + "' /></div><div class='recentActivityName'>" + result.firstname + " " + result.lastname.charAt(0) + "." + "</div><div class='recentActivityText'>Logged " + result.acttime + " of <strong>" + result.actname + "</strong> </div></div>";
-                    html += "<div class='timeContainer'><abbr class='timeago'> " + now + "</abbr></div>";
+                    html += "<div class='recentActivityDesc'><div class='profilePicContainer'><span rel='hovercard' data-url='190'><div class='hovercard'></div><img id='profilePic' src='" + result.userpic + "' /></span></div><div class='recentActivityName'>" + result.firstname + " " + result.lastname.charAt(0) + "." + "</div><div class='recentActivityText'>Logged " + result.acttime + " of <strong>" + result.actname + "</strong> </div></div>";
+                    html += "<div class='timeContainer'><span class='glyphicon glyphicon-time'></span><abbr class='timeago' title='" + n + "'> " + now + "</abbr></div>";
                     html += "<div class='activityIcon'><img src='/assets/img/badges/timeActivity.png' /></div>";
                     html += " </div></li><hr class='activityHR' />";
 

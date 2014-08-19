@@ -5,6 +5,9 @@ function teamChart() {
         success: function(json) {
             // Create the chart
             chart = new Highcharts.Chart({
+                credits:{
+                    enabled: false
+                },
                 chart: {
                     renderTo: 'donutChart',
                     type: 'pie'
