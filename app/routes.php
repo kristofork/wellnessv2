@@ -35,7 +35,13 @@ Route::get('dashboard',array('as' => 'dashboard', 'uses' => 'DashboardController
 
 Route::get('goals',array('as' => 'goals','uses' => 'GoalController@index'))->before('auth');
 
-Route::get('admin',array('as'=> 'admin', 'uses' => 'AdminController@index'));
+// Admin Routes
+Route::group(array('before' => array('auth|admin')), function()
+{
+	Route::get('admin',array('as'=> 'admin', 'uses' => 'AdminController@index'));
+});
+
+
 
 
 

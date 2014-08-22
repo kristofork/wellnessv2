@@ -5,9 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>
-            @section('title')
             Fitness Force 2.1
-            @show
         </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!--[if lt IE 10]>
@@ -39,7 +37,7 @@
 
         <!-- Container -->
         <div class="main-container">
-    @if (Auth::check()==true)
+
         <div class="headbar">
             <span id="pageTitle">{{$title}}
 
@@ -70,48 +68,11 @@
                     <li class="{{ Request::is( 'admin') ? 'active' : '' }}"><a class="" href="{{ URL::to('admin') }}"><span class="glyphicon glyphicon-tower"></span>Admin</a></li>
                     @endif
                 </ul>
-            <!-- If user is on a team -->    
-            @if($teamname != "Individuals")
-                <!-- Team -->
-                <ul class="navCustom" id="navTeam">
-                    <h5 id="sideHeader">Team: {{ $teamname}}</h5>
-                    @foreach ($userYearStats as $userYearStat)
-                    @if ($userYearStat->id != Auth::user()->id)
-                    <li class="userInfo" id="{{$userYearStat->id}}"><a class="navProfileLink" role="button" data-toggle="modal" href="#statDetailsModal">{{HTML::image($userYearStat->pic, $userYearStat->first_name, array("id" => "navProfileImage")) }}
 
-                        {{$userYearStat->first_name}}  {{ $userYearStat->last_name}}</a>
-                        <span id="team-progress" class="pull-left">
-                            <div class="bar progress-low" id = "team-reward" style="width: {{ percentageRound(500000, $userYearStat->time); }}%">{{ percentageRound(500000, $userYearStat->time); }}%</div>
-                        </span>
-                    </li>
-                    @endif
-                    @endforeach
-                </ul>   
-            @endif    
         </div>
         <!-- End of Nav -->
 
 
-    @endif
-
-            <!-- if browser does not meet the minimum req -->
-                <div class="modal hide fade" id="browser">
-                <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3>Bad IE</h3>
-                </div>
-                <div class="modal-body">
-                <p>Sorry! Internet Explorer 9 and below are not supported. Please upgrade your browser or use one of the supported browsers listed below. Sorry for any inconvenience!</p>
-                </div>
-                <div class="modal-footer">
-                    {{ HTML::image_link("https://www.google.com/intl/en/chrome/browser/" , 'assets/img/site/browsers/ch.gif', 'Chrome', array("class"=>"browser-icon", 'title'=> 'Chrome 4 or Higher', 'data-toggle' =>'tooltip')) }}
-                    {{ HTML::image_link("http://www.mozilla.org/en-US/firefox/new/" , 'assets/img/site/browsers/ff.gif', 'FireFox', array("class"=>"browser-icon", 'title'=> 'FireFox 4 or Higher', 'data-toggle' =>'tooltip')) }}
-                    {{ HTML::image_link("http://www.microsoft.com/en-us/download/internet-explorer-10-details.aspx" , 'assets/img/site/browsers/ie.gif', 'Internet Explorer', array("class"=>"browser-icon", 'title'=> 'IE 10 or Higher', 'data-toggle' =>'tooltip')) }}
-                    {{ HTML::image_link("http://support.apple.com/kb/DL1531" , 'assets/img/site/browsers/sa.gif', 'Safari', array("class"=>"browser-icon", 'title'=> 'Safari 5 or Higher', 'data-toggle' =>'tooltip')) }}
-                    {{ HTML::image_link("http://www.opera.com/" , 'assets/img/site/browsers/o.gif', 'Safari', array("class"=>"browser-icon", 'title'=> 'Opera 10.5 or Higher', 'data-toggle' =>'tooltip')) }}
-                <a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>
-                </div>
-                </div>
 
             <!-- check for flash notification message -->
             @if(Session::has('flash_notice'))
@@ -127,11 +88,7 @@
         {{ HTML::script('assets/js/jquery-ui-1.10.3.min.js') }}
         {{ HTML::script('assets/js/bootstrap/bootstrap.min.js') }}
         {{ HTML::script('assets/js/timeplugin.js')}}
-        {{ HTML::script('assets/js/main.js')}}
-        @if($title = "Dashboard" || $title = "Profile")
-        <script src="{{ asset('js/activities/new_activityCheck.js') }}"></script>
-        @endif
-        <script type="text/javascript" src="{{asset('assets/js/slider-pips/jquery-ui-slider-pips.js')}}"></script>
+
 
     </body>
 </html>

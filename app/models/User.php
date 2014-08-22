@@ -142,4 +142,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     	return Validator::make($data, static::$picRules, static::$picMessages);
     }
 
+    public function isAdmin()
+    {
+       return $this->role === "admin";
+    }
+
 }

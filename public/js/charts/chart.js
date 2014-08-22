@@ -17,7 +17,7 @@ function teamChart() {
                 },
                 yAxis: {
                     title: {
-                        text: 'Total percent market share'
+                        text: 'Total percent of activity'
                     }
                 },
                 plotOptions: {
@@ -32,7 +32,7 @@ function teamChart() {
                     }
                 },
                 series: [{
-                    name: 'Browsers',
+                    name: 'Team Members',
                     data: json,
                     size: '60%',
                     innerSize: '30%',
@@ -45,3 +45,60 @@ function teamChart() {
         }
     })
 }
+
+function activityChart() {
+    $.ajax({
+        type: "GET",
+        url: "/user-activity",
+        success: function(json) {
+            chart = new Highcharts.Chart({
+                credits: {
+                    enabled: false
+                },
+                chart: {
+                    renderTo: 'container',
+                    type: 'line',
+                    marginRight: 130,
+                    marginBottom: 25
+                },
+                title: {
+                    text: 'Activity Time',
+                    x: -20 //center
+                },
+                subtitle: {
+                    text: '',
+                    x: -20
+                },
+                xAxis: {
+                    categories: ['Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May']
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Hours'
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+                },
+                tooltip: {
+                    formatter: function() {
+                        return '<b>' + this.series.name + '</b><br/>' +
+                            this.x + ': ' + this.y;
+                    }
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'top',
+                    x: -10,
+                    y: 100,
+                    borderWidth: 0
+                },
+                series: json
+            });
+        }
+    });
+    }

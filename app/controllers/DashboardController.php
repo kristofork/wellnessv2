@@ -24,6 +24,7 @@ class DashboardController extends BaseController
 			->with('user_time', $user->currentYearStats->time)		// User's time
 			->with('required_points',User::UserPoints($user_rank))	// Next Level Points
 			->with('teamname',Team::teamName())						// Team Name
+			->with('isAdmin', $user->isAdmin())
 			->with('time_week', Activity::activity_time_week($user_id))
 			->with('time_lastweek', Activity::activity_time_lastweek($user_id))
 			->with('hoursToReward', User::hoursToReward())

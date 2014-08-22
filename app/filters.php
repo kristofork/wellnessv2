@@ -33,6 +33,17 @@ App::after(function($request, $response)
 |
 */
 
+// Admin Panel
+
+// filters.php
+Route::filter('admin', function($route, $request)
+{
+ if ( ! Auth::user()->isAdmin()) {
+ return App::abort(401, 'You are not authorized.');
+ }
+});
+
+
 Route::filter('auth', function()
 {
 	if (Auth::guest()) return Redirect::guest('login')

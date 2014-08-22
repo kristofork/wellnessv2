@@ -244,6 +244,7 @@
         <div id="donutChart" class="sidebar-right"></div>
 
         <div class="sidebar-right">
+
             <h4 id="sidebar-heading">Reward Progress</h4>
             <div class="sidebar-padding">
                 @foreach($rewards as $reward)
@@ -370,7 +371,7 @@
 
 {{ HTML::script('assets/js/highcharts/highcharts.js')}}
 {{ HTML::script('assets/js/highcharts/modules/exporting.js')}}
-{{ HTML::script('assets/js/jquery.fixedposition.1.0.0-min.js')}}
+
 {{ HTML::script('assets/js/jquery.hoverIntent.minified.js')}}
 {{ HTML::script('assets/js/canvasjs.min.js')}}
 {{ HTML::script('assets/js/jquery.sidr.min.js')}}

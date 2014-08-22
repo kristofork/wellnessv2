@@ -111,13 +111,12 @@ class UserController extends BaseController
 		$todaysDate = date('Y-m-d');
 		$reward1 = Reward::find(1);
 		$reward2 = Reward::find(2);
-		$reward3 = Reward::find(3);
-		$reward4 = Reward::find(4);
-		$reward5 = Reward::find(5);
 		return View::make('profile.user')
 			->with('title', 'Profile')
 			->with('teamname',Team::teamName())
 			->with('userYearStats', Team::userYearStat($team))
+			->with('user_time', $user->currentYearStats->time)		// User's time
+			->with('hoursToReward', User::hoursToReward())
 			->with('teamMembers', DB::table('users')
 				->where('team_id', $team)
 				->get(array('users.id','users.first_name','users.last_name','users.pic','users.userTotalHrs')))
@@ -136,7 +135,7 @@ class UserController extends BaseController
 				->where('deadline', '>=', $todaysDate)
 				->get())
 			->with('rewards', Reward::current())
-			->with(array('user' => $user, 'reward1' => $reward1, 'reward2' => $reward2,'reward3' => $reward3, 'reward4' => $reward4, 'reward5' => $reward5));
+			->with(array('user' => $user, 'reward1' => $reward1, 'reward2' => $reward2));
 	}
 
 	// show user's profile
