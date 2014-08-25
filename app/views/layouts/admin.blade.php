@@ -32,7 +32,7 @@
 
     <body>
     <div id="background">
-        <img id="background-img" class="bg" src="../assets/img/site/bg/bg-01.jpg">
+        <img id="background-img" class="bg" src="{{asset('assets/img/site/bg/bg-01.jpg')}}">
     </div>
 
         <!-- Container -->

@@ -47,7 +47,7 @@
                 </div>
                 <div class="col-xs-4 col-md-4" id="stats_profile">
                     <div class="row" id="stats_profile_name">
-                        <h5>William Kerns</h5>
+                        <h5>{{$name['first_name']}} {{$name['last_name']}}</h5>
                     </div>
                     <div class="row" id="stats_profile_image">
                         <div id="img-container">

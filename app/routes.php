@@ -38,7 +38,12 @@ Route::get('goals',array('as' => 'goals','uses' => 'GoalController@index'))->bef
 // Admin Routes
 Route::group(array('before' => array('auth|admin')), function()
 {
+
 	Route::get('admin',array('as'=> 'admin', 'uses' => 'AdminController@index'));
+	Route::get('/admin/create',array('as' => 'admin_user.create', 'uses' => 'AdminController@createUser'));
+	Route::get('/admin/{id}/edit',array('as'=> 'admin_user.edit', 'uses' => 'AdminController@editUser'));
+	Route::put('/admin/update/{id}',array('as'=> 'admin_user.update', 'uses' => 'AdminController@updateUser'));
+	Route::post('/admin', array('as' => 'admin_user.store', 'uses' => 'AdminController@storeUser'));
 });
 
 
@@ -59,4 +64,5 @@ Route::get('activitycheck/{data}',array('as'=> 'timecheck', 'uses' => 'ActivityC
 Route::get('newactivities/{data}', array('as'=> 'newactivity', 'uses' => 'ActivityController@newActivities'));
 Route::post('goal/update_progress', array('as'=> 'update_progress','uses'=>'GoalController@update_progress'));
 Route::get('goal/check',array('as'=>'goalcheck', 'uses'=>'GoalController@check'));
+Route::get('admin/ajax/{type}', array('as'=> 'item.type', 'uses'=> 'AdminController@getAdminType'))->where('type', 'user|team');
 }

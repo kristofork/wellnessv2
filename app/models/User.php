@@ -146,5 +146,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     {
        return $this->role === "admin";
     }
+    public function showUsers()
+    {
+        $users = User::paginate(5);
+ 
+        if (Request::ajax()) {
+            return Response::json(View::make('posts', array('posts' => $users))->render());
+        }
+ 
+        return View::make('admin', array('posts' => $users));
+    }
 
 }

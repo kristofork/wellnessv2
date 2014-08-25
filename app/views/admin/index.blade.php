@@ -22,10 +22,14 @@
 
         <div class="sidebar-right">
 
-            <h4 id="sidebar-heading">Actions</h4>
+            <h4 id="sidebar-heading">Stats</h4>
             <div class="sidebar-padding">
-
-
+				@if(Session::has('message'))
+				<div class="alert alert-success">
+				    <button type="button" class="close" data-dismiss="alert">x</button>
+				    <p>{{Session::get('message') }} </p>
+				</div>
+				@endif
             </div>
                 <div style="clear: both"></div> 
         </div>
@@ -34,21 +38,70 @@
     <!-- End of Sidebar Right-->
 
     <!-- Start of Recent Activity (middle column) -->
-    <div class="col-md-8 admin_usersCol">
-    	<ul>
-	    @foreach($allusers as $user)
-	    	<li>
-	    		{{$user->first_name}}
-    			<button type="button" class="btn btn-danger pull-right">Delete <span class="glyphicon glyphicon-remove"></span></button>
-				<button type="button" class="btn btn-default pull-right">Edit <span class="glyphicon glyphicon-cog"></span></button>
-  				<button type="button" class="btn btn-info pull-right">View <span class="glyphicon glyphicon-eye-open"></span></button>
-	    	</li>
-	        
-	    @endforeach
-    	</ul>
-    	<?php echo $allusers->links(); ?>
+    <div class="col-md-8 admin_usersCol tab-content">
+    	<div class="tab-pane active fluid-container" id="user">
+	    	<ul id="users"></ul>
+
+    	</div> <!-- End of User Tab-->
+    	<div class="tab-pane fluid-container" id="team">
+	    	<ul id="teams"></ul>
+    	</div> <!-- End of Team Tab-->
     </div> <!-- End of Middle Column-->
 
 </div> <!-- End of Main-Row -->
+
+    <script>
+ 
+$(function() {
+
+    function getPaginationSelectedPage(url) {
+        var chunks = url.split('?');
+        var baseUrl = chunks[0];
+        var querystr = chunks[1].split('&');
+        var pg = 1;
+        for (i in querystr) {
+            var qs = querystr[i].split('=');
+            if (qs[0] == 'page') {
+                pg = qs[1];
+                break;
+            }
+        }
+        return pg;
+    }
+
+
+    $('#users').on('click', '.pagination a', function(e) {
+        e.preventDefault();
+        var pg = getPaginationSelectedPage($(this).attr('href'));
+
+        $.ajax({
+            url: '/admin/ajax/user',
+            data: { page: pg },
+            success: function(data) {
+                $('#users').html(data);
+                $("html, body").animate({ scrollTop: 0 }, "fast");
+            }
+        });
+    });
+
+    $('#teams').on('click', '.pagination a', function(e) {
+        e.preventDefault();
+        var pg = getPaginationSelectedPage($(this).attr('href'));
+
+        $.ajax({
+            url: '/admin/ajax/team',
+            data: { page: pg },
+            success: function(data) {
+                $('#teams').html(data);
+                $("html, body").animate({ scrollTop: 0 }, "fast");
+            }
+        });
+    });
+
+    $('#users').load('/admin/ajax/user?page=1');
+    $('#teams').load('/admin/ajax/team?page=1');
+});
+ 
+    </script>
 
 @stop
