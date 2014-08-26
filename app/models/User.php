@@ -2,10 +2,15 @@
 
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
     protected $guarded = array('password');
+
+    use SoftDeletingTrait;
+
+    protected $dates = ['deleted_at'];
 	/**
 	 * The database table used by the model.
 	 *

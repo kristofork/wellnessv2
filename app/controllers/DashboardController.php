@@ -18,8 +18,9 @@ class DashboardController extends BaseController
 		$reward2 = Reward::find(2);
 
 		return View::make('dashboard.index')
-			->with('title', 'Dashboard')
-			->with('name',array('first_name'=> $user->first_name, 'last_name'=> $user->last_name)) 							// title of page
+			->with('title', 'Dashboard') // Page title
+			->with('name',array('first_name'=> $user->first_name, 'last_name'=> $user->last_name))
+			->with('pic',$user->pic)
 			->with('user_title', User::UserTitle()) 				// Rank title
 			->with('user_points', $points)							// User's points
 			->with('user_time', $user->currentYearStats->time)		// User's time

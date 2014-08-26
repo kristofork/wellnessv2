@@ -3,12 +3,7 @@
 
 
 @section('content')
-@if(Session::has('message'))
-<div class="alert alert-success">
-    <button type="button" class="close" data-dismiss="alert">x</button>
-    <p>{{Session::get('message') }} </p>
-</div>
-@endif
+
 
 <div class="main-row">
     <div class="container-fluid">
@@ -22,9 +17,17 @@
                 <li><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Water </span><span class="glyphicon glyphicon-lock"></span></a></li>
                 <li><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Pedometer </span><span class="glyphicon glyphicon-lock"></span></a></li>
                 <li><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Goal </span><span class="glyphicon glyphicon-lock"></span></a></li>
+                <li><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Team </span><span class="glyphicon glyphicon-lock"></span></a></li>
                 </ul>
                 <!-- Nav tabs -->
             </div>
+@if(Session::has('message'))
+<div id="dash-side-right" class="alert alert-success" style="width:29%">
+    <button type="button" class="close" data-dismiss="alert">x</button>
+    <p>{{Session::get('message') }} </p>
+</div>
+@endif
+
         </div>
     </div>
 
@@ -51,7 +54,7 @@
                     </div>
                     <div class="row" id="stats_profile_image">
                         <div id="img-container">
-                            <img class="img-circle" id="stats_profileImg" src='/assets/img/users/avatars/190.jpg'>
+                            <img class="img-circle" id="stats_profileImg" src='{{$pic}}'>
                         </div>
                         <div id="stats-container">
                             <span id="label">{{ $user_title }}</span><span id="points">{{$user_points}}/{{$required_points}}</span>
@@ -266,6 +269,11 @@
     <!-- End of Sidebar Right-->
         <!-- Start of Recent Activity (middle column) -->
         <div class="col-md-8" id="welcome_recent_activity">
+            <div class="btn-group pull-right">
+              <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-user"></span></button>
+              <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-flag"></span></button>
+              <button type="button" class="btn btn-default btn-xs active"><span class="glyphicon glyphicon-globe"></span></button>
+            </div>
             <ul class="recentActivity">
 
                 @foreach($activities as $activity)

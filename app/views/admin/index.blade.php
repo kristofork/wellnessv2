@@ -40,10 +40,12 @@
     <!-- Start of Recent Activity (middle column) -->
     <div class="col-md-8 admin_usersCol tab-content">
     	<div class="tab-pane active fluid-container" id="user">
+    		<a class="btn btn-default btn-xs" href="admin/create" role="button"><span class="glyphicon glyphicon-plus"></span></a>
 	    	<ul id="users"></ul>
 
     	</div> <!-- End of User Tab-->
     	<div class="tab-pane fluid-container" id="team">
+    		<a class="btn btn-default btn-xs" href="admin/team/create" role="button"><span class="glyphicon glyphicon-plus"></span></a>
 	    	<ul id="teams"></ul>
     	</div> <!-- End of Team Tab-->
     </div> <!-- End of Middle Column-->

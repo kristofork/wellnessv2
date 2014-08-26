@@ -43,7 +43,13 @@ Route::group(array('before' => array('auth|admin')), function()
 	Route::get('/admin/create',array('as' => 'admin_user.create', 'uses' => 'AdminController@createUser'));
 	Route::get('/admin/{id}/edit',array('as'=> 'admin_user.edit', 'uses' => 'AdminController@editUser'));
 	Route::put('/admin/update/{id}',array('as'=> 'admin_user.update', 'uses' => 'AdminController@updateUser'));
+	Route::delete('/admin/delete/{id}',array('as'=> 'admin_user.destroy', 'uses' => 'AdminController@destroyUser'));
 	Route::post('/admin', array('as' => 'admin_user.store', 'uses' => 'AdminController@storeUser'));
+	Route::get('/admin/team/create',array('as' => 'admin_team.create', 'uses' => 'AdminController@createTeam'));
+	Route::post('/admin/team', array('as' => 'admin_team.store', 'uses' => 'AdminController@storeTeam'));
+	Route::get('/admin/team/{id}/edit', array('as'=> 'admin_team.edit', 'uses' => 'AdminController@editTeam'));
+	Route::put('/admin/team/update/{id}',array('as'=> 'admin_team.update', 'uses' => 'AdminController@updateTeam'));
+	Route::delete('/admin/team/delete/{id}', array('as' => 'admin_team.destroy', 'uses' => 'AdminController@destroyTeam'));
 });
 
 

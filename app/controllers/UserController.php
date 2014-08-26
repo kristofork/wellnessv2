@@ -117,6 +117,7 @@ class UserController extends BaseController
 			->with('userYearStats', Team::userYearStat($team))
 			->with('user_time', $user->currentYearStats->time)		// User's time
 			->with('hoursToReward', User::hoursToReward())
+			->with('isAdmin',$user->isAdmin())
 			->with('teamMembers', DB::table('users')
 				->where('team_id', $team)
 				->get(array('users.id','users.first_name','users.last_name','users.pic','users.userTotalHrs')))

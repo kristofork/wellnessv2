@@ -1,7 +1,13 @@
 <?php
 
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
+
 class Team extends Eloquent 
 {
+    
+    use SoftDeletingTrait;
+
+    protected $dates = ['deleted_at'];
 	protected $primaryKey = 'id';
     public function user()
     {
