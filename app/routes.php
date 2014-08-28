@@ -34,6 +34,7 @@ Route::get('user/{id}', array('as' => 'showProfile', 'uses' => 'UserController@s
 Route::get('dashboard',array('as' => 'dashboard', 'uses' => 'DashboardController@index'))->before('auth');
 
 Route::get('goals',array('as' => 'goals','uses' => 'GoalController@index'))->before('auth');
+Route::post('updatePassword', array('as' => 'user.updatePassword', 'uses'=>'UserController@updatePassword'));
 
 // Admin Routes
 Route::group(array('before' => array('auth|admin')), function()
@@ -43,6 +44,7 @@ Route::group(array('before' => array('auth|admin')), function()
 	Route::get('/admin/create',array('as' => 'admin_user.create', 'uses' => 'AdminController@createUser'));
 	Route::get('/admin/{id}/edit',array('as'=> 'admin_user.edit', 'uses' => 'AdminController@editUser'));
 	Route::put('/admin/update/{id}',array('as'=> 'admin_user.update', 'uses' => 'AdminController@updateUser'));
+	Route::get('/admin/password/{id}',array('as'=> 'admin_user.password_reset', 'uses' => 'AdminController@resetPassword'));
 	Route::delete('/admin/delete/{id}',array('as'=> 'admin_user.destroy', 'uses' => 'AdminController@destroyUser'));
 	Route::post('/admin', array('as' => 'admin_user.store', 'uses' => 'AdminController@storeUser'));
 	Route::get('/admin/team/create',array('as' => 'admin_team.create', 'uses' => 'AdminController@createTeam'));

@@ -111,7 +111,7 @@
         </div>
 
         <!-- Start of Sidebar Right -->
-    <div style="width:31%; float:left; margin-top:15px;">
+    <div style="width:31%; float:left; margin-top:5px;">
 
         <div class="sidebar-right">
             <ul class="nav nav-list">

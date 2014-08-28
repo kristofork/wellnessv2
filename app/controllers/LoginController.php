@@ -23,6 +23,8 @@ class LoginController extends BaseController {
 				$user->password = Hash::make($password);
 				$user->save();
 				Auth::login($user);
+				return Redirect::route('dashboard')
+					->with('message', "Welcome!");
 			}
 			else
 		    {

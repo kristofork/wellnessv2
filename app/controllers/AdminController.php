@@ -216,6 +216,26 @@ class AdminController extends baseController
 		return Redirect::to('admin');
 	}
 
+
+	public function resetPassword($id)
+	{
+		$string = str_random(8);
+		$user = User::find($id);
+		$user->password = Hash::make($string);
+		$user->save();
+		
+		$email = $user->email;
+		$name = $user->first_name;
+		$data = array( 'email' => $email, 'name' => $name, 'password' => $string);
+		Mail::send('emails.password_reset', $data, function($message) use($email, $name)
+		{
+		    $message->to($email, $name)->subject('Password Reset');
+		});
+
+		Session::flash('message', 'Password was changed!');
+		return Redirect::to('admin');
+	}
+
 public function getAdminType($type)
 {
     $items_per_page = Input::get('per_pg', 10);

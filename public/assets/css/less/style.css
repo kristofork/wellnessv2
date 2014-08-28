@@ -191,10 +191,11 @@ img#teamUserPic {
 }
 #welcome_recent_activity,
 .admin_usersCol,
-.admin_edituser {
+.admin_edituser,
+.user_edituser {
   background-color: #222222;
   margin-left: 15px;
-  margin-top: 15px;
+  margin-top: 5px;
 }
 .admin_usersCol,
 .admin_edituser {
@@ -642,7 +643,8 @@ img#clock {
 }
 img#profile {
   display: block;
-  margin: 0 auto;
+  margin: 10px auto;
+  float: left;
 }
 .goal-status,
 .goal-details {
@@ -695,6 +697,10 @@ img#profile {
 }
 fieldset#picFormBtn {
   text-align: center;
+}
+#updatepicform {
+  float: right;
+  margin: 18px auto;
 }
 .sidebarContainer {
   background: -moz-linear-gradient(left, rgba(0, 0, 0, 0.59) 0%, rgba(33, 33, 33, 0.6) 18%, rgba(33, 33, 33, 0.6) 33%, rgba(33, 33, 33, 0.6) 45%, rgba(0, 0, 0, 0.59) 100%);
@@ -1167,7 +1173,7 @@ div.admin.teams {
 #dash-side-right {
   width: 30%;
   float: right;
-  margin-top: 15px;
+  margin-top: 5px;
 }
 .tab-pane {
   color: #ffffff;

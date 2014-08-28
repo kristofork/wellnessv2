@@ -21,12 +21,12 @@
                 </ul>
                 <!-- Nav tabs -->
             </div>
-@if(Session::has('message'))
-<div id="dash-side-right" class="alert alert-success" style="width:29%">
-    <button type="button" class="close" data-dismiss="alert">x</button>
-    <p>{{Session::get('message') }} </p>
-</div>
-@endif
+            @if(Session::has('message'))
+            <div id="dash-side-right" class="alert alert-success" style="width:29%">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <p>{{Session::get('message') }} </p>
+            </div>
+            @endif
 
         </div>
     </div>

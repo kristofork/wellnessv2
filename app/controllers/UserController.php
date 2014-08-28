@@ -101,6 +101,29 @@ class UserController extends BaseController
     {
         return User::find($id)->delete();
     }	
+
+    public function updatePassword()
+    {
+		// validate
+		// read more on validation at http://laravel.com/docs/validation
+		$rules = array(
+			'password' => 'confirmed|min:6');
+		$validator = Validator::make(Input::all(), $rules);
+
+		// process the login
+		if ($validator->fails()) {
+			return Redirect::to('editprofile')
+				->withErrors($validator);
+		} else{
+    	$user = Auth::user();
+    	$user->password = Hash::make(Input::get('password'));
+    	$user->save();
+    	Session::flash('message', 'Password updated!');
+    	return Redirect::to('editprofile');
+    	}
+
+    }
+
 	// find user profile
 	public function showProfile($id)
 	{
@@ -172,11 +195,13 @@ class UserController extends BaseController
 	// Edit user profile
 	public function editMyProfile()
 	{
-		$team = Auth::user()->team_id;
+		$user = Auth::user();
+		$team = $user->team_id;
 		return View::make('profile.edit')
 		->with('teamname',Team::teamName())
 		->with('userYearStats', Team::userYearStat($team))
 		->with('title', 'Edit Profile')
+		->with('isAdmin', $user->isAdmin())
 		->with('teamMembers', DB::table('users')
 			->where('team_id', $team)
 			->get(array('users.id','users.first_name','users.last_name','users.pic')));
@@ -228,7 +253,7 @@ class UserController extends BaseController
 		}
 		
 		if( $upload_success ) {
-			Session::flash('status_message', 'Your picture was updated!');
+			Session::flash('message', 'Your picture was updated!');
 		    return Response::json('success', 200);
 			} else {
 			return Response::json('error', 400);

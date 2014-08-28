@@ -100,9 +100,9 @@ jQuery(function(){
     ImageSpinner = new Spinner(opts).spin(document.getElementById('previewSpinner'));
     ImageSpinner.stop();
 
-    $('#lostpetform').submit(function() {
+    $('#updatepicform').submit(function() {
       ImageSpinner.spin(document.getElementById('previewSpinner'));
-      $.post("previewpic", $("#lostpetform").serialize())
+      $.post("previewpic", $("#updatepicform").serialize())
           .done(function(data) { location.reload();
  })
           .fail(function() { alert("error"); })

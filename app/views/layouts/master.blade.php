@@ -47,7 +47,7 @@
         {{HTML::image(Auth::user()->pic, Auth::user()->first_name, array("id" => "navProfileImage")) }}
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{Auth::user()->first_name}} {{Auth::user()->last_name}} <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="editprofile"><span class="glyphicon glyphicon-edit"></span> Edit Profile</a></li>
+            <li><a href="/editprofile"><span class="glyphicon glyphicon-edit"></span> Edit Profile</a></li>
             <li class="divider"></li>
             <li><a href="{{ URL::to('logout')}}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
           </ul>
@@ -64,7 +64,7 @@
                     <li class="{{ Request::is( 'log') ? 'active' : '' }}"><a class="disabled" href="#"><span class="glyphicon glyphicon-lock"></span>Log</a></li>
                     <li class="{{ Request::is( 'blog') ? 'active' : '' }}"><a class="disabled" href="#"><span class="glyphicon glyphicon-lock"></span>Read</a></li>
                     <li class="{{ Request::is( 'dashboard') ? 'active' : '' }}"><a href="{{ URL::to('dashboard') }}"><span class="glyphicon glyphicon-dashboard"></span><span id="badge-data" class="badge pull-right hidden"></span>Dashboard</a></li>
-                    <li class="{{ Request::is( 'user/*') ? 'active' : '' }}"><a href="user/{{Auth::user()->id}}"><span class="glyphicon glyphicon-user"></span>Me</a></li>
+                    <li class="{{ Request::is( 'user/*') || Request::is('editprofile') ? 'active' : '' }}"><a href="user/{{Auth::user()->id}}"><span class="glyphicon glyphicon-user"></span>Me</a></li>
                     <li class="{{ Request::is( 'goal') ? 'active' : '' }}"><a class="disabled" href="#"><span class="glyphicon glyphicon-lock"></span>Acheive</a></li>
                     @if($isAdmin)
                     <li class="{{ Request::is( 'admin') ? 'active' : '' }}"><a class="" href="{{ URL::to('admin') }}"><span class="glyphicon glyphicon-tower"></span>Admin</a></li>
