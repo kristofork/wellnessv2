@@ -81,7 +81,7 @@
 
                         {{$userYearStat->first_name}}  {{ $userYearStat->last_name}}</a>
                         <span id="team-progress" class="pull-left">
-                            <div class="bar progress-low" id = "team-reward" style="width: {{ percentageRound(500000, $userYearStat->time); }}%">{{ percentageRound(500000, $userYearStat->time); }}%</div>
+                            <div class="bar progress-high" id = "team-reward" style="width: {{ percentageRound(500000, $userYearStat->time); }}%">{{ percentageRound(500000, $userYearStat->time); }}%</div>
                         </span>
                     </li>
                     @endif

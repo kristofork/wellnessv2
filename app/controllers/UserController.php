@@ -292,7 +292,7 @@ class UserController extends BaseController
 
 
 
-	public function hourChart()
+	public function hourChart($id)
 	{
 
 		$currentYearDates = currentYearDate();
@@ -303,11 +303,11 @@ class UserController extends BaseController
 		$currentFinish =  $currentYearDates[1];
 
 		// Current Year
-		$sql = "SELECT ROUND(SUM(TIME_TO_SEC(activity_time))/3600,2) as name FROM activities WHERE activity_date Between '$currentStart' AND '$currentFinish' AND user_id = 190 AND type = 'time' GROUP BY MONTH(activity_date)ORDER BY (CASE 
+		$sql = "SELECT ROUND(SUM(TIME_TO_SEC(activity_time))/3600,2) as name FROM activities WHERE activity_date Between '$currentStart' AND '$currentFinish' AND user_id =". $id ."  AND type = 'time' GROUP BY MONTH(activity_date)ORDER BY (CASE 
           WHEN activity_date = MONTH(NOW())THEN 0 ELSE 1 END) ASC, activity_date ASC";
 		
 		// Last Year
-		$sql1 = "SELECT ROUND(SUM(TIME_TO_SEC(activity_time))/3600,2) as name FROM activities WHERE activity_date between '$oldStart' AND '$oldFinish' AND user_id = 190 AND type = 'time' GROUP BY MONTH(activity_date)ORDER BY (CASE 
+		$sql1 = "SELECT ROUND(SUM(TIME_TO_SEC(activity_time))/3600,2) as name FROM activities WHERE activity_date between '$oldStart' AND '$oldFinish' AND user_id = ". $id ." AND type = 'time' GROUP BY MONTH(activity_date)ORDER BY (CASE 
           WHEN activity_date = MONTH(NOW())THEN 0 ELSE 1 END) ASC, activity_date ASC";
 		
 

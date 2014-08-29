@@ -24,9 +24,21 @@
 						html +="<span rel='hovercard' data-url="+val.user_id+"><div class='hovercard'></div>";
 						html +="<img id='profilePic' src="+ val.pic + " /></span></div>";
 		                html +="<div class='recentActivityName'>"+ val.first_name +" "+ val.last_name.charAt(0) +". </div>";
-		                html +="<div class='recentActivityText'>Logged "+ val.activity_time+" of <strong>"+ val.activity_name+" </strong></div></div>";
-		                html +="<div class='timeContainer'><span class='glyphicon glyphicon-time'></span><abbr class='timeago' title='"+ n +"'>&nbsp;</abbr></div></div>";
-						html +="</li><hr class='activityHR' />";
+		                html +="<div class='recentActivityText'>Logged "+ secToString(timeToSeconds(val.activity_time))+" of <strong>"+ val.activity_name+" </strong></div></div>";
+		                html +="<div class='timeContainer'><span class='glyphicon glyphicon-time'></span><abbr class='timeago' title='"+ n +"'>&nbsp;</abbr></div>";
+		                if(val.type == "time")
+		                {
+		                	html += "<div class='activityIcon'><img src='/assets/img/badges/timeActivity.png'/></div>";
+		                }
+		                else if(val.type == "read")
+		                {
+		                	html += "<div class='activityIcon'><img src='/assets/img/badges/readActivity.png'/></div>"
+		                }
+		                else
+		                {
+		                	html += "<div class='activityIcon'><img src='/assets/img/badges/goalActivity.png'/></div>"
+		                }
+						html +="</div></li><hr class='activityHR' />";
 					    $(html).appendTo('ul.recentActivity').hide().slideDown("slow", function()
 					    {
                         	$("li.activityItem, img#ajaximg").animate({opacity: "1"}, 600);

@@ -13,11 +13,11 @@
                 <li class="active"><a href="#activity" data-toggle="tab"><span class="hidden-xs">Stats </span><span class="glyphicon glyphicon-stats"></span> </a></li>
                 <li><a href="#log" data-toggle="tab"><span class="hidden-xs">Log </span><span class="glyphicon glyphicon-calendar"></span> </a></li>
                 <li><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Running </span><span class="glyphicon glyphicon-lock"></span></a></li>
-                <li><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Weight </span><span class="glyphicon glyphicon-lock"></span></a></li>
+                <li class="last"><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Weight </span><span class="glyphicon glyphicon-lock"></span></a></li>
                 <li><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Water </span><span class="glyphicon glyphicon-lock"></span></a></li>
                 <li><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Pedometer </span><span class="glyphicon glyphicon-lock"></span></a></li>
                 <li><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Goal </span><span class="glyphicon glyphicon-lock"></span></a></li>
-                <li><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Team </span><span class="glyphicon glyphicon-lock"></span></a></li>
+                <li class="last"><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Team </span><span class="glyphicon glyphicon-lock"></span></a></li>
                 </ul>
                 <!-- Nav tabs -->
             </div>
@@ -60,11 +60,11 @@
                             <span id="label">{{ $user_title }}</span><span id="points">{{$user_points}}/{{$required_points}}</span>
                         </div>
                         <span id="stats-progress">
-                            <div id="progress"><div class="bar progress-low" id = "team-reward" style="width:10%">10%</div></div>
+                            <div id="progress"><div class="bar progress-high" id = "team-reward" style="text-align:left;color:#000;width:{{ percentageRound($required_points,$user_points) }}%">{{ percentageRound($required_points,$user_points) }}%</div></div>
                         </span>  
                     </div>  
                     <div class="row" id="stats_profile_date">
-                        <h6>Active member since 2010</h6>
+                        <h6>Active member since {{$year}}</h6>
                     </div>
                 </div>
                 <div class="col-xs-2 col-md-2 stats_data_container">
@@ -275,101 +275,7 @@
               <button type="button" class="btn btn-default btn-xs active"><span class="glyphicon glyphicon-globe"></span></button>
             </div>
             <ul class="recentActivity">
-
-                @foreach($activities as $activity)
-                <?php
-                    $moreNamesArray = NULL;
-                    $liked = NULL; // Set to default to NULL
-                    $activeId = $activity->id;
-                    $likeids = Activity::find($activity->id)->likeCount; // Query the amount of total likes
-                        if ($likeids != 0)  // Prevents error for activities with no 'likes' in the Activity_like table
-                            $liked = DB::table('activity_likes')->where('user_id',Auth::user()->id)->where('act_id',$activity->id)->pluck('user_id');  // Query to check if the currently logged in user liked the activity. 
-                 ?>
-
-                    <li id="{{$activeId}}">
-
-                        <div class="activityBox">
-
-                                @if ($activity->type == "time")
-                                    <div class="recentActivityDesc">
-                                        <div class="profilePicContainer"> 
-                                            <span rel="hovercard" data-url="{{$activity->users_id}}">
-                                                <div class="hovercard"></div>
-                                                    {{HTML::image($activity->pic, $activity->first_name, array('id'=> 'profilePic'));}}
-                                            </span>
-                                        </div>
-                                        <div class="recentActivityName">{{ $activity->first_name}} {{ substr($activity->last_name, 0, 1) }}. </div>
-                                        <div class="recentActivityText">Logged {{ secondsToString(hoursToSeconds($activity->activity_time )) }} of <strong>{{ $activity->activity_name }} </strong></div>
-                                    </div>
-                                @elseif ($activity->type == "read")
-                                    <div class="recentActivityDesc">
-                                        <div class="profilePicContainer"> 
-                                            {{HTML::image($activity->pic, $activity->first_name, array('id'=> 'profilePic'));}} 
-                                        </div>
-                                    <div class="recentActivityName">{{ $activity->first_name}} {{ substr($activity->last_name, 0, 1) }}. </div>
-                                        <div class="recentActivityText">Read <strong>{{ $activity->activity_name }} </strong></div>
-                                    </div>
-                                @elseif ($activity->type == "rank")
-                                    <div class="recentActivityDesc">
-                                        <div class="profilePicContainer"> 
-                                            {{HTML::image($activity->pic, $activity->first_name, array('id'=> 'profilePic'));}} 
-                                        </div>
-                                    <div class="recentActivityName">{{ $activity->first_name}} {{ substr($activity->last_name, 0, 1) }}. </div>
-                                        <div class="recentActivityText"><strong>{{ $activity->activity_name }} </strong></div>
-                                    </div>
-                                @else
-                                <div class="recentActivityDesc">
-                                        <div class="profilePicContainer"> 
-                                            {{HTML::image($activity->pic, $activity->first_name, array('id'=> 'profilePic'));}} 
-                                        </div>
-                                    <div class="recentActivityName">{{ $activity->first_name}} {{ substr($activity->last_name, 0, 1) }}. </div>
-                                        <div class="recentActivityText">Lost {{ ounceToPounds($activity->goal_num ) }} last week towards their <strong>{{ $activity->activity_name }} goal </strong></div>
-                                    </div>
-                                @endif
-
-                        <div class="timeContainer"><span class="glyphicon glyphicon-time"></span><abbr class="timeago" title="{{ convertTimeIso($activity->created_at) }}">&nbsp;</abbr></div>
-
-                        <div class="activityIcon">
-                            @if ($activity->type == "time")
-                            {{HTML::image("/assets/img/badges/timeActivity.png", "Time Activty");}} 
-                            @elseif ($activity->type == "read")
-                            {{HTML::image("/assets/img/badges/readActivity.png", "Read Activty");}}
-                            @else
-                            {{HTML::image("/assets/img/badges/goalActivity.png", "Goal Activty");}}
-                            @endif
-                        </div>
-
-                    
-                   
-
-                            @if($likeids > 0) <!-- Conditional: If no likes, skip to like button -->
-                                <div class="activityLikeImg" id="{{ $activity->id }}">
-                                <span class="glyphicon glyphicon-heart" style="color:#FF5566"></span>
-                                <span>{{ $activity->likeCount }}</span>
-
-                                </div>
-                            @endif
-                        <!--Conditional: User cannot like own activities and cannot like activities more than once -->
-                        @if(Auth::user()->username != $activity->username &&  $liked == NULL)
-
-                        <!-- Begin of test spinner -->
-
-                          <div class="glyphicon glyphicon-heart like-heart" id='{{ $activity->id}}' title="Click to like!"></div>
-                        <!-- End of test spinner -->
-
-
-                        @else
-
-                    
-
-                        @endif
-                    </div> <!-- End Activitybox-->
-                </li>
-                <hr class="activityHR" />
-                @endforeach
-                <li id ='more' class="load-more" num_loaded='10' data-icon="arrow-d">
-                    <a href="#" style="text-align: center">Load More <span class="glyphicon glyphicon-chevron-down"></span></a>
-                </li>
+                @include('_partials.activityfeed');
             </ul>
         </div>
 

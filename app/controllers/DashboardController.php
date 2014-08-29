@@ -16,6 +16,8 @@ class DashboardController extends BaseController
 		$todaysDate = date('Y-m-d');
 		$reward1 = Reward::find(1);
 		$reward2 = Reward::find(2);
+		$year = new DateTime($user->created_at);
+		$year = $year->format('Y');
 
 		return View::make('dashboard.index')
 			->with('title', 'Dashboard') // Page title
@@ -26,6 +28,7 @@ class DashboardController extends BaseController
 			->with('user_time', $user->currentYearStats->time)		// User's time
 			->with('required_points',User::UserPoints($user_rank))	// Next Level Points
 			->with('teamname',Team::teamName())						// Team Name
+			->with('year', $year)									// Start Year
 			->with('isAdmin', $user->isAdmin())
 			->with('time_week', Activity::activity_time_week($user_id))
 			->with('time_lastweek', Activity::activity_time_lastweek($user_id))

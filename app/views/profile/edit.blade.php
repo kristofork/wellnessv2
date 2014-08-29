@@ -125,8 +125,7 @@
             <h4 id="sidebar-heading">Tips</h4>
             <div class="sidebar-padding">
             	<ul>
-            		<li>All images must be under 1MB in size</li>
-            		<li>Images are resized on selection</li>
+            		<li>Passwords must be at least 6 characters.</li>
             	</ul>
             </div>
                 <div style="clear: both"></div> 

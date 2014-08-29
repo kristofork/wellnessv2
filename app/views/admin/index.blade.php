@@ -10,7 +10,7 @@
                 <li class="active"><a href="#user" data-toggle="tab"><span class="hidden-xs">Users </span><span class="glyphicon glyphicon-user"></span> </a></li>
                 <li><a href="#team" data-toggle="tab"><span class="hidden-xs">Teams </span><span class="glyphicon glyphicon-list-alt"></span> </a></li>
                 <li><a href="#settings" data-toggle="" class="disabled"><span class="hidden-xs">Settings </span><span class="glyphicon glyphicon-wrench"></span></a></li>
-                <li><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Rewards </span><span class="glyphicon glyphicon-gift"></span></a></li>
+                <li class="last"><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Rewards </span><span class="glyphicon glyphicon-gift"></span></a></li>
                 </ul>
                 <!-- Nav tabs -->
             </div>

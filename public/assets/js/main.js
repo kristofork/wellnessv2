@@ -46,7 +46,7 @@ $(document).ready(function() {
                 var createdDate = new Date(data.created_at.date.replace(/-/g, "/"));
                 var joined = createdDate.getFullYear();
 
-                $('.hovercard').html('<span id="hovercard-bg"><img id="bg" class="bg" src="../assets/img/site/bg/bg-02.jpg"><img class="img-circle" id="profileImg" src=' + data.pic + '></span><h3>' + eval('data.userFirst') + ' ' + eval('data.userLast') + '</h3>' + '<div id="memberDate" class="col-md-offset-4 col-md-2"><span class="glyphicon glyphicon-calendar"></span><span>' + data.year + '</span></div><div id="memberDate" class="col-md-offset-1 col-md-2"><span class="glyphicon glyphicon-time"></span><span>' + data.time + '</span></div><div id="memberDate" class="col-md-offset-1 col-md-2"><span class="glyphicon glyphicon-stats"></span><span>' + data.activities + '</span></div><span id="label">' + data.title + '</span><span id="points">205/1000</span><div id="progress"><div class="bar" id = "reward_1" style="width:10%">10%</div></div>');
+                $('.hovercard').html('<span id="hovercard-bg"><img id="bg" class="bg" src="../assets/img/site/bg/bg-02.jpg"><img class="img-circle" id="profileImg" src=/' + data.pic + '></span><h3>' + eval('data.userFirst') + ' ' + eval('data.userLast') + '</h3>' + '<div id="memberDate" class="col-md-offset-4 col-md-2"><span class="glyphicon glyphicon-calendar"></span><span>' + data.year + '</span></div><div id="memberDate" class="col-md-offset-1 col-md-2"><span class="glyphicon glyphicon-time"></span><span>' + data.time + '</span></div><div id="memberDate" class="col-md-offset-1 col-md-2"><span class="glyphicon glyphicon-stats"></span><span>' + data.activities + '</span></div><span id="label">' + data.title + '</span><span id="points">205/1000</span><div id="progress"><div class="bar" id = "reward_1" style="width:10%">10%</div></div>');
 
             }
         });
@@ -122,6 +122,20 @@ function timeToSeconds(time) {
     time = time.split(/:/);
     return time[0] * 3600 + time[1] * 60;
 }
+
+function secToString(sec){
+    if (sec.length === 0)
+    {
+        return 0;
+    }
+    if(60 < sec && sec <= 3600){
+        return Math.floor(sec / 60) + ' minutes';
+    }
+    if(3600 < sec && sec <= 86400){
+        return Math.floor(sec / 3600) + ' hours';
+    }
+}
+
 // Converts seconds to time format -  00:00
 function secondsToTime(sec) {
     var h = Math.floor(sec / 3600); //Get whole hours

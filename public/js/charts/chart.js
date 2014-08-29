@@ -47,9 +47,10 @@ function teamChart() {
 }
 
 function activityChart() {
+    var url = window.location.href.split('/');
     $.ajax({
         type: "GET",
-        url: "/user-activity",
+        url: "/user-activity/" + url[4],
         success: function(json) {
             chart = new Highcharts.Chart({
                 credits: {

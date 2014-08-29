@@ -207,6 +207,7 @@ img#teamUserPic{
   background-color:@site_black;
   margin-left:15px;
   margin-top: 5px;
+  margin-bottom:10px;
 
 }
 .admin_usersCol, .admin_edituser
@@ -1218,17 +1219,22 @@ cursor:default;
 
 #dash-nav{
 margin-top: 15px;
+margin-left: 15px;
+padding:0;
 }
 
 #dash-nav li{
   display: inline-block;
   line-height: 20px;
   text-align: center;
-  width:21%;
+  width:24%;
   margin-bottom: 10px;
   background-color: rgba(0, 0, 0, 0.37);
   color:#fff;
-  margin-right: 20px;
+  margin-right: 10px;
+}
+#dash-nav li.last{
+  margin-right: 0;
 }
 // phones
 @media (max-width: 767px) {
@@ -1441,7 +1447,7 @@ font-size:25px;
 }
 .progress-high
 {
-  background-color: #B0E83A;
+  background-color: @site_blue;
 }
 .progress-complete
 {
