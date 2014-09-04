@@ -41,7 +41,7 @@
         <div class="main-container">
     @if (Auth::check()==true)
         <div class="headbar">
-            <span id="pageTitle">{{$title}}
+            <span id="pageTitle">{{$title}}</span>
 
         <li class="dropdown pull-right headProfile">
         {{HTML::image(Auth::user()->pic, Auth::user()->first_name, array("id" => "navProfileImage")) }}
@@ -52,7 +52,7 @@
             <li><a href="{{ URL::to('logout')}}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
           </ul>
         </li>
-        </span>
+        
 
         </div>
         <!-- Navbar -->

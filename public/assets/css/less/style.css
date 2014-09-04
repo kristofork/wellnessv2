@@ -33,7 +33,8 @@ a.dropdown-toggle {
   color: #fff;
   text-decoration: none;
 }
-#pageTitle {
+#pageTitle,
+li.headProfile {
   font-size: 20px;
   line-height: 50px;
   margin-left: 38px;
@@ -1142,37 +1143,54 @@ div.admin.teams {
 #memberDate > span {
   cursor: default;
 }
+.tab-row {
+  display: inline-block;
+  width: 100%;
+  clear: both;
+}
 #dash-nav {
   margin-top: 15px;
   margin-left: 15px;
   padding: 0;
 }
-#dash-nav li {
-  display: inline-block;
+#dash-nav div.tab-row li {
+  display: block;
   line-height: 20px;
   text-align: center;
   width: 24%;
+  padding: 0;
   margin-bottom: 10px;
   background-color: rgba(0, 0, 0, 0.37);
   color: #fff;
-  margin-right: 10px;
+  margin-right: 1.2%;
 }
-#dash-nav li.last {
+#dash-nav div.tab-row li.last {
   margin-right: 0;
+}
+.nav > div > li > a {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+}
+@media (min-width: 991px) {
+  #dash-nav {
+    width: 66.7%;
+  }
 }
 @media (max-width: 767px) {
   #dash-nav li {
-    width: 15%;
+    width: 23%;
+    display: inline-block;
   }
 }
-#dash-nav li.active {
+#dash-nav div.tab-row li.active {
   border-bottom: 5px solid #00a0f0;
 }
-#dash-nav li.active a {
+#dash-nav div.tab-row li.active a {
   color: #00aaff;
 }
-#dash-nav .nav li a:hover,
-#dash-nav .nav li a:focus {
+#dash-nav div.tab-row li a:hover,
+#dash-nav div.tab-row li a:focus {
   background-color: rgba(0, 0, 0, 0.36);
   outline: none;
 }

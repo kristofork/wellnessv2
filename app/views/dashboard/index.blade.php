@@ -6,18 +6,20 @@
 
 
 <div class="main-row">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-8" id="dash-nav">
+            <div class="" id="dash-nav">
                 <ul class="nav tabs">
-                <li class="active"><a href="#activity" data-toggle="tab"><span class="hidden-xs">Stats </span><span class="glyphicon glyphicon-stats"></span> </a></li>
-                <li><a href="#log" data-toggle="tab"><span class="hidden-xs">Log </span><span class="glyphicon glyphicon-calendar"></span> </a></li>
-                <li><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Running </span><span class="glyphicon glyphicon-lock"></span></a></li>
-                <li class="last"><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Weight </span><span class="glyphicon glyphicon-lock"></span></a></li>
-                <li><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Water </span><span class="glyphicon glyphicon-lock"></span></a></li>
-                <li><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Pedometer </span><span class="glyphicon glyphicon-lock"></span></a></li>
-                <li><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Goal </span><span class="glyphicon glyphicon-lock"></span></a></li>
-                <li class="last"><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Team </span><span class="glyphicon glyphicon-lock"></span></a></li>
+                    <div class="tab-row">
+                        <li class="active col-md-3 col-sm-3"><a href="#activity" data-toggle="tab"><span class="hidden-xs">Stats </span><span class="glyphicon glyphicon-stats"></span> </a></li>
+                        <li class="col-md-3 col-sm-3"><a href="#log" data-toggle="tab"><span class="hidden-xs">Log </span><span class="glyphicon glyphicon-calendar"></span> </a></li>
+                        <li class="col-md-3 col-sm-3"><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Running </span><span class="glyphicon glyphicon-lock"></span></a></li>
+                        <li class="last col-md-3 col-sm-3"><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Weight </span><span class="glyphicon glyphicon-lock"></span></a></li>
+                    </div>
+                    <div class="tab-row">
+                        <li class="col-md-3 col-sm-3"><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Water </span><span class="glyphicon glyphicon-lock"></span></a></li>
+                        <li class="col-md-3 col-sm-3"><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Pedometer </span><span class="glyphicon glyphicon-lock"></span></a></li>
+                        <li class="col-md-3 col-sm-3"><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Goal </span><span class="glyphicon glyphicon-lock"></span></a></li>
+                        <li class="last col-md-3 col-sm-3"><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Team </span><span class="glyphicon glyphicon-lock"></span></a></li>
+                    </div>
                 </ul>
                 <!-- Nav tabs -->
             </div>
@@ -27,9 +29,6 @@
                 <p>{{Session::get('message') }} </p>
             </div>
             @endif
-
-        </div>
-    </div>
 
 
         <div id="welcome_recent_activity" class="col-md-8 tab-content" style="height:200px;">
