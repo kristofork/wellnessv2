@@ -27,7 +27,7 @@
         {{ HTML::style('assets/css/jquery-ui-slider-pips.css') }}
         <link href='http://fonts.googleapis.com/css?family=Telex' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,400,600' rel='stylesheet' type='text/css'>
     </head>
 
     <body>
@@ -86,7 +86,7 @@
         <!-- Scripts are placed here -->
         
         {{ HTML::script('assets/js/jquery-ui-1.10.3.min.js') }}
-        {{ HTML::script('assets/js/bootstrap/bootstrap.min.js') }}
+        {{ HTML::script('assets/js/bootstrap/bootstrap.js') }}
         {{ HTML::script('assets/js/timeplugin.js')}}
 
 

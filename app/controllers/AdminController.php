@@ -243,14 +243,21 @@ public function getAdminType($type)
     if ($type == 'user') {
         $items = User::orderBy('last_name', 'asc')->paginate($items_per_page);
         $view = View::make('admin.user_type')->with('items', $items);
-    } else {
+    } elseif ($type == 'team') {
         $items = Team::orderBy('teamName','asc')->paginate($items_per_page);
         $view = View::make('admin.team_type')->with('items', $items);
+    }else{
+    	return User::showRewardUsers();
     }
 
     
     echo $view;
     exit;
+}
+
+public function getRewardUsers()
+{
+	return User::showRewardUsers();
 }
 
 }

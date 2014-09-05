@@ -15,7 +15,7 @@
 }
 body
 {
-  font-family: Telex, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family: Open Sans,Telex, Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 .main-container
 {
@@ -511,7 +511,6 @@ border-radius:5px;
 }
 .sidebar-right{
   background-color: @site_black;
-  margin-left: 15px;
   color:#fff;
 }
 .sidebar-padding{
@@ -526,7 +525,7 @@ border-radius:5px;
   color:#DE50CB;
 }
 
-#navSide > li a, #navTeam > li a, #sideHeader
+#navSide > li a, #navTeam > li a, #sideHeader, #navSide > li > a > #nav-text
 {
   color: #fff;
   font-size: 14px;
@@ -1068,6 +1067,12 @@ hr{
 /* ******************************** */
 /* Admin ui                         */
 /* ******************************** */
+.admin_data_container{
+  
+}
+.admin_data_container .row{
+text-align: center;
+}
 .teamContainer{
   margin-left:31px;
   height: 100%;
@@ -1228,8 +1233,8 @@ margin-left: 15px;
 padding:0;
 }
 
-#dash-nav div.tab-row li{
-  display: block;
+#dash-nav li{
+  display: inline-block;
   line-height: 20px;
   text-align: center;
   width:24%;
@@ -1237,9 +1242,9 @@ padding:0;
   margin-bottom: 10px;
   background-color: rgba(0, 0, 0, 0.37);
   color:#fff;
-  margin-right: 1.2%;
+  margin-right: 0.9%;
 }
-#dash-nav div.tab-row li.last{
+#dash-nav li.last{
   margin-right: 0;
 }
 .nav > div > li > a{
@@ -1248,11 +1253,16 @@ padding:0;
   padding: 10px 15px;
 }
 
+@media(max-width: 1513px){
+  #dash-nav li{
+    width: 24.4%;
+    margin-right: 0;
+  }
+}
+
 //tablets
 @media (min-width: 991px) {
-#dash-nav{
-  width:66.7%;
-} 
+
 }
 // phones
 @media (max-width: 767px) {
@@ -1261,15 +1271,16 @@ padding:0;
   display: inline-block;
   }
 }
-#dash-nav div.tab-row li.active {
+#dash-nav li.active {
     border-bottom: 5px solid #00a0f0;
 }
-#dash-nav div.tab-row li.active a{
+#dash-nav li.active a{
   color:@site_blue;
 }
-#dash-nav div.tab-row li a:hover, #dash-nav div.tab-row li a:focus {
+#dash-nav li a:hover, #dash-nav li a:focus {
     background-color:rgba(0, 0, 0, 0.36);
     outline: none;
+    text-decoration: none;
 }
 
 #dash-side-right{
@@ -1530,7 +1541,7 @@ li.userInfo{
   height:60%;
 }
 
-.stats_data_container .row span{
+.stats_data_container .row span, .admin_data_container .row span{
   color:@site_blue;
   font-size:1.5em;
 }
@@ -1545,3 +1556,8 @@ ul.nav.tabs li a span.glyphicon
 }
 
 
+//Custom Alert
+.alert-custom{
+color: #0af;
+background-color:rgba(0, 0, 0, 0.37);
+}

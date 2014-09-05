@@ -14,7 +14,7 @@
   height: 100%;
 }
 body {
-  font-family: Telex, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family: Open Sans, Telex, Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 .main-row {
   margin-left: 17.5em;
@@ -494,7 +494,6 @@ ul.navCustom {
 }
 .sidebar-right {
   background-color: #222222;
-  margin-left: 15px;
   color: #fff;
 }
 .sidebar-padding {
@@ -509,7 +508,8 @@ ul.navCustom {
 }
 #navSide > li a,
 #navTeam > li a,
-#sideHeader {
+#sideHeader,
+#navSide > li > a > #nav-text {
   color: #fff;
   font-size: 14px;
   font-weight: 900;
@@ -1009,6 +1009,9 @@ hr {
 /* ******************************** */
 /* Admin ui                         */
 /* ******************************** */
+.admin_data_container .row {
+  text-align: center;
+}
 .teamContainer {
   margin-left: 31px;
   height: 100%;
@@ -1153,8 +1156,8 @@ div.admin.teams {
   margin-left: 15px;
   padding: 0;
 }
-#dash-nav div.tab-row li {
-  display: block;
+#dash-nav li {
+  display: inline-block;
   line-height: 20px;
   text-align: center;
   width: 24%;
@@ -1162,9 +1165,9 @@ div.admin.teams {
   margin-bottom: 10px;
   background-color: rgba(0, 0, 0, 0.37);
   color: #fff;
-  margin-right: 1.2%;
+  margin-right: 0.9%;
 }
-#dash-nav div.tab-row li.last {
+#dash-nav li.last {
   margin-right: 0;
 }
 .nav > div > li > a {
@@ -1172,9 +1175,10 @@ div.admin.teams {
   display: block;
   padding: 10px 15px;
 }
-@media (min-width: 991px) {
-  #dash-nav {
-    width: 66.7%;
+@media (max-width: 1513px) {
+  #dash-nav li {
+    width: 24.4%;
+    margin-right: 0;
   }
 }
 @media (max-width: 767px) {
@@ -1183,16 +1187,17 @@ div.admin.teams {
     display: inline-block;
   }
 }
-#dash-nav div.tab-row li.active {
+#dash-nav li.active {
   border-bottom: 5px solid #00a0f0;
 }
-#dash-nav div.tab-row li.active a {
+#dash-nav li.active a {
   color: #00aaff;
 }
-#dash-nav div.tab-row li a:hover,
-#dash-nav div.tab-row li a:focus {
+#dash-nav li a:hover,
+#dash-nav li a:focus {
   background-color: rgba(0, 0, 0, 0.36);
   outline: none;
+  text-decoration: none;
 }
 #dash-side-right {
   width: 30%;
@@ -1440,7 +1445,8 @@ li.userInfo {
 #stats_profile_image {
   height: 60%;
 }
-.stats_data_container .row span {
+.stats_data_container .row span,
+.admin_data_container .row span {
   color: #00aaff;
   font-size: 1.5em;
 }
@@ -1451,5 +1457,9 @@ ul#navSide.navCustom li a.disabled {
 }
 ul.nav.tabs li a span.glyphicon {
   font-size: 10px;
+}
+.alert-custom {
+  color: #0af;
+  background-color: rgba(0, 0, 0, 0.37);
 }
 /*# sourceMappingURL=style.css.map */

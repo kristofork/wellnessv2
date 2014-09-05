@@ -12,7 +12,7 @@
         </div>
 
         <!-- Start of Sidebar Right -->
-    <div style="width:31%; float:left; margin-top:5px;">
+    <div id="dash-side-right">
 
         <div class="sidebar-right">
             <ul class="nav nav-list">

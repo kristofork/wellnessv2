@@ -6,25 +6,24 @@
 
 
 <div class="main-row">
-            <div class="" id="dash-nav">
+            <div class="col-md-8" id="dash-nav">
                 <ul class="nav tabs">
-                    <div class="tab-row">
-                        <li class="active col-md-3 col-sm-3"><a href="#activity" data-toggle="tab"><span class="hidden-xs">Stats </span><span class="glyphicon glyphicon-stats"></span> </a></li>
-                        <li class="col-md-3 col-sm-3"><a href="#log" data-toggle="tab"><span class="hidden-xs">Log </span><span class="glyphicon glyphicon-calendar"></span> </a></li>
-                        <li class="col-md-3 col-sm-3"><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Running </span><span class="glyphicon glyphicon-lock"></span></a></li>
-                        <li class="last col-md-3 col-sm-3"><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Weight </span><span class="glyphicon glyphicon-lock"></span></a></li>
-                    </div>
-                    <div class="tab-row">
-                        <li class="col-md-3 col-sm-3"><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Water </span><span class="glyphicon glyphicon-lock"></span></a></li>
-                        <li class="col-md-3 col-sm-3"><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Pedometer </span><span class="glyphicon glyphicon-lock"></span></a></li>
-                        <li class="col-md-3 col-sm-3"><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Goal </span><span class="glyphicon glyphicon-lock"></span></a></li>
-                        <li class="last col-md-3 col-sm-3"><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Team </span><span class="glyphicon glyphicon-lock"></span></a></li>
-                    </div>
+                    
+                        <li class="active "><a href="#activity" data-toggle="tab"><span class="hidden-xs">Stats </span><span class="glyphicon glyphicon-stats"></span> </a></li>
+                        <li class=""><a href="#log" data-toggle="tab"><span class="hidden-xs">Log </span><span class="glyphicon glyphicon-calendar"></span> </a></li>
+                        <li class=""><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Running </span><span class="glyphicon glyphicon-lock"></span></a></li>
+                        <li class="last "><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Weight </span><span class="glyphicon glyphicon-lock"></span></a></li>
+                    
+                        <li class=""><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Water </span><span class="glyphicon glyphicon-lock"></span></a></li>
+                        <li class=""><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Pedometer </span><span class="glyphicon glyphicon-lock"></span></a></li>
+                        <li class=""><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Goal </span><span class="glyphicon glyphicon-lock"></span></a></li>
+                        <li class="last "><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Team </span><span class="glyphicon glyphicon-lock"></span></a></li>
+                    
                 </ul>
                 <!-- Nav tabs -->
             </div>
             @if(Session::has('message'))
-            <div id="dash-side-right" class="alert alert-success" style="width:29%">
+            <div id="dash-side-right" class="alert alert-custom">
                 <button type="button" class="close" data-dismiss="alert">x</button>
                 <p>{{Session::get('message') }} </p>
             </div>

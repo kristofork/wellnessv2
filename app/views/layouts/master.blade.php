@@ -29,7 +29,7 @@
         {{ HTML::style('assets/css/jquery-ui-slider-pips.css') }}
         <link href='http://fonts.googleapis.com/css?family=Telex' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,400,600' rel='stylesheet' type='text/css'>
     </head>
 
     <body>
@@ -60,20 +60,20 @@
                 <ul class="navCustom" id="navSide">
                     <li class=""><a href="#top"><span class="glyphicon glyphicon-chevron-up"></span>Top</a></li>
                     <h5 id="sideHeader">NAVIGATION</h5>
-                    <li class="{{ Request::is( 'blog') ? 'active' : '' }}"><a href="#"><span class="glyphicon glyphicon-home"></span>Home</a></li>
-                    <li class="{{ Request::is( 'log') ? 'active' : '' }}"><a class="disabled" href="#"><span class="glyphicon glyphicon-lock"></span>Log</a></li>
-                    <li class="{{ Request::is( 'blog') ? 'active' : '' }}"><a class="disabled" href="#"><span class="glyphicon glyphicon-lock"></span>Read</a></li>
-                    <li class="{{ Request::is( 'dashboard') ? 'active' : '' }}"><a href="{{ URL::to('dashboard') }}"><span class="glyphicon glyphicon-dashboard"></span><span id="badge-data" class="badge pull-right hidden"></span>Dashboard</a></li>
-                    <li class="{{ Request::is( 'user/*') || Request::is('editprofile') ? 'active' : '' }}"><a href="user/{{Auth::user()->id}}"><span class="glyphicon glyphicon-user"></span>Me</a></li>
-                    <li class="{{ Request::is( 'goal') ? 'active' : '' }}"><a class="disabled" href="#"><span class="glyphicon glyphicon-lock"></span>Acheive</a></li>
+                    <li class="{{ Request::is( 'blog') ? 'active' : '' }}"><a href="#"><span class="glyphicon glyphicon-home"></span><span class="hidden-xs" id="nav-text">Home</span></a></li>
+                    <li class="{{ Request::is( 'log') ? 'active' : '' }}"><a class="disabled" href="#"><span class="glyphicon glyphicon-lock"></span><span class="hidden-xs" id="nav-text">Log</span></a></li>
+                    <li class="{{ Request::is( 'blog') ? 'active' : '' }}"><a class="disabled" href="#"><span class="glyphicon glyphicon-lock"></span><span class="hidden-xs" id="nav-text">Read</span></a></li>
+                    <li class="{{ Request::is( 'dashboard') ? 'active' : '' }}"><a href="{{ URL::to('dashboard') }}"><span class="glyphicon glyphicon-dashboard"></span><span id="badge-data" class="badge pull-right hidden"></span><span class="hidden-xs" id="nav-text">Dashboard</span></a></li>
+                    <li class="{{ Request::is( 'user/*') || Request::is('editprofile') ? 'active' : '' }}"><a href="user/{{Auth::user()->id}}"><span class="glyphicon glyphicon-user"></span><span class="hidden-xs" id="nav-text">Me</span></a></li>
+                    <li class="{{ Request::is( 'goal') ? 'active' : '' }}"><a class="disabled" href="#"><span class="glyphicon glyphicon-lock"></span><span class="hidden-xs" id="nav-text">Acheive</span></a></li>
                     @if($isAdmin)
-                    <li class="{{ Request::is( 'admin') ? 'active' : '' }}"><a class="" href="{{ URL::to('admin') }}"><span class="glyphicon glyphicon-tower"></span>Admin</a></li>
+                    <li class="{{ Request::is( 'admin') ? 'active' : '' }}"><a class="" href="{{ URL::to('admin') }}"><span class="glyphicon glyphicon-tower"></span><span class="hidden-xs" id="nav-text">Admin</span></a></li>
                     @endif
                 </ul>
             <!-- If user is on a team -->    
             @if($teamname != "Individuals")
                 <!-- Team -->
-                <ul class="navCustom" id="navTeam">
+                <ul class="navCustom hidden-xs" id="navTeam">
                     <h5 id="sideHeader">Team: {{ $teamname}}</h5>
                     @foreach ($userYearStats as $userYearStat)
                     @if ($userYearStat->id != Auth::user()->id)

@@ -3,39 +3,21 @@
 @section('content')
 
 <div class="main-row">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-8" id="dash-nav">
-                <ul class="nav tabs">
-                <li class="active"><a href="#user" data-toggle="tab"><span class="hidden-xs">Users </span><span class="glyphicon glyphicon-user"></span> </a></li>
-                <li><a href="#team" data-toggle="tab"><span class="hidden-xs">Teams </span><span class="glyphicon glyphicon-list-alt"></span> </a></li>
-                <li><a href="#settings" data-toggle="" class="disabled"><span class="hidden-xs">Settings </span><span class="glyphicon glyphicon-wrench"></span></a></li>
-                <li class="last"><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Rewards </span><span class="glyphicon glyphicon-gift"></span></a></li>
+            <div class="col-md-8" id="dash-nav">
+                <ul class="nav tabs" role="tablist">
+                        <li class="active"><a href="#user" data-toggle="tab"><span class="hidden-xs">Users </span><span class="glyphicon glyphicon-user"></span> </a></li>
+                        <li><a href="#team" data-toggle="tab"><span class="hidden-xs">Teams </span><span class="glyphicon glyphicon-list-alt"></span> </a></li>
+                        <li><a href="#reward" data-toggle="tab"><span class="hidden-xs">Rewards </span><span class="glyphicon glyphicon-gift"></span></a></li>
+                        <li class="last"><a href="#settings" data-toggle="tab" class="disabled"><span class="hidden-xs">Settings </span><span class="glyphicon glyphicon-wrench"></span></a></li>
                 </ul>
                 <!-- Nav tabs -->
             </div>
-        </div>
-    </div>
-
-    <!-- Start of Sidebar Right -->
-    <div id="dash-side-right" class="hidden-sm hidden-xs">
-
-        <div class="sidebar-right">
-
-            <h4 id="sidebar-heading">Stats</h4>
-            <div class="sidebar-padding">
-				@if(Session::has('message'))
-				<div class="alert alert-success">
-				    <button type="button" class="close" data-dismiss="alert">x</button>
-				    <p>{{Session::get('message') }} </p>
-				</div>
-				@endif
-            </div>
-                <div style="clear: both"></div> 
-        </div>
-
-    </div>
-    <!-- End of Sidebar Right-->
+             @if(Session::has('message'))
+                <div class="alert alert-custom">
+                    <button type="button" class="close" data-dismiss="alert">x</button>
+                    <p>{{Session::get('message') }} </p>
+                </div>
+            @endif
 
     <!-- Start of Recent Activity (middle column) -->
     <div class="col-md-8 admin_usersCol tab-content">
@@ -48,7 +30,38 @@
     		<a class="btn btn-default btn-xs" href="admin/team/create" role="button"><span class="glyphicon glyphicon-plus"></span></a>
 	    	<ul id="teams"></ul>
     	</div> <!-- End of Team Tab-->
+        <div class="tab-pane fluid-container" id="reward">
+            <ul id="rewards"></ul>
+        </div> <!-- End of Team Tab-->
     </div> <!-- End of Middle Column-->
+
+    <!-- Start of Sidebar Right -->
+    <div id="dash-side-right" class="hidden-sm hidden-xs">
+
+        <div class="sidebar-right">
+
+            <div id="sidebar-heading">User Stats</div>
+            <div class="sidebar-padding">
+                <div class="row">
+                    <div class="col-xs-6 col-md-6 admin_data_container">
+                        <div class="row">
+                            <span>198</span>
+                            <h5>Active Users</h5>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-6 admin_data_container">
+                        <div class="row">
+                            <span>0.87</span>
+                            <h5>On Pace</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div style="clear: both"></div> 
+        </div>
+
+    </div>
+    <!-- End of Sidebar Right-->
 
 </div> <!-- End of Main-Row -->
 
@@ -70,7 +83,6 @@ $(function() {
         }
         return pg;
     }
-
 
     $('#users').on('click', '.pagination a', function(e) {
         e.preventDefault();
@@ -102,6 +114,7 @@ $(function() {
 
     $('#users').load('/admin/ajax/user?page=1');
     $('#teams').load('/admin/ajax/team?page=1');
+    $('#rewards').load('/admin/ajax/reward');
 });
  
     </script>

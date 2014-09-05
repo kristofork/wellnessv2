@@ -162,4 +162,21 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return View::make('admin', array('posts' => $users));
     }
 
+    public static function showRewardUsers()
+    {   $result = array();
+        $reward =  Reward::Current();
+        $users = User::with('currentYearStats')->get();
+    
+        foreach($users as $user)
+        {
+          
+          if($user){
+            $result = array('user' => $user->first_name);
+          }
+
+        }
+
+        return View::make('admin', array('posts' => $result));
+    }
+
 }
