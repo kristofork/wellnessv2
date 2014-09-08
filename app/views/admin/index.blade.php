@@ -5,9 +5,9 @@
 <div class="main-row">
             <div class="col-md-8" id="dash-nav">
                 <ul class="nav tabs" role="tablist">
-                        <li class="active"><a href="#user" data-toggle="tab"><span class="hidden-xs">Users </span><span class="glyphicon glyphicon-user"></span> </a></li>
-                        <li><a href="#team" data-toggle="tab"><span class="hidden-xs">Teams </span><span class="glyphicon glyphicon-list-alt"></span> </a></li>
-                        <li><a href="#reward" data-toggle="tab"><span class="hidden-xs">Rewards </span><span class="glyphicon glyphicon-gift"></span></a></li>
+                        <li class="active"><a href="#user" data-toggle="tab" data-target="#user, #user_stats"><span class="hidden-xs">Users </span><span class="glyphicon glyphicon-user"></span> </a></li>
+                        <li><a href="#team" data-toggle="tab" data-target="#team, #team_stats"><span class="hidden-xs">Teams </span><span class="glyphicon glyphicon-list-alt"></span> </a></li>
+                        <li><a href="#reward" data-toggle="tab" data-target="#reward-tab, #reward_stats"><span class="hidden-xs">Rewards </span><span class="glyphicon glyphicon-gift"></span></a></li>
                         <li class="last"><a href="#settings" data-toggle="tab" class="disabled"><span class="hidden-xs">Settings </span><span class="glyphicon glyphicon-wrench"></span></a></li>
                 </ul>
                 <!-- Nav tabs -->
@@ -30,16 +30,19 @@
     		<a class="btn btn-default btn-xs" href="admin/team/create" role="button"><span class="glyphicon glyphicon-plus"></span></a>
 	    	<ul id="teams"></ul>
     	</div> <!-- End of Team Tab-->
-        <div class="tab-pane fluid-container" id="reward">
+        <div class="tab-pane fluid-container" id="reward-tab">
+        <div class="btn-group pull-right reward-type" data-toggle="buttons">
+          <button type="button" class="btn btn-default btn-xs active" data-filter="Halfway Mark">&#189;</button>
+          <button type="button" class="btn btn-default btn-xs" data-filter="Finish Line"><span class="glyphicon glyphicon-flag"></span></button>
+        </div>
             <ul id="rewards"></ul>
         </div> <!-- End of Team Tab-->
     </div> <!-- End of Middle Column-->
 
     <!-- Start of Sidebar Right -->
-    <div id="dash-side-right" class="hidden-sm hidden-xs">
+    <div id="dash-side-right" class="hidden-sm hidden-xs tab-content">
 
-        <div class="sidebar-right">
-
+        <div class="sidebar-right tab-pane active" id="user_stats">
             <div id="sidebar-heading">User Stats</div>
             <div class="sidebar-padding">
                 <div class="row">
@@ -59,6 +62,48 @@
             </div>
                 <div style="clear: both"></div> 
         </div>
+        <div class="sidebar-right tab-pane" id="team_stats">
+
+            <div id="sidebar-heading">Team Stats</div>
+            <div class="sidebar-padding">
+                <div class="row">
+                    <div class="col-xs-6 col-md-6 admin_data_container">
+                        <div class="row">
+                            <span>15</span>
+                            <h5>Team Count</h5>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-6 admin_data_container">
+                        <div class="row">
+                            <span>0.57</span>
+                            <h5>Team Ratio</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div style="clear: both"></div> 
+        </div>
+        <div class="sidebar-right tab-pane" id="reward_stats">
+
+            <div id="sidebar-heading">Reward Stats</div>
+            <div class="sidebar-padding">
+                <div class="row">
+                    <div class="col-xs-6 col-md-6 admin_data_container">
+                        <div class="row">
+                            <span>15</span>
+                            <h5>Team Count</h5>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-6 admin_data_container">
+                        <div class="row">
+                            <span>0.57</span>
+                            <h5>Team Ratio</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div style="clear: both"></div> 
+        </div>
 
     </div>
     <!-- End of Sidebar Right-->
@@ -69,6 +114,7 @@
  
 $(function() {
 
+// Start of Pagination Script
     function getPaginationSelectedPage(url) {
         var chunks = url.split('?');
         var baseUrl = chunks[0];
@@ -114,7 +160,28 @@ $(function() {
 
     $('#users').load('/admin/ajax/user?page=1');
     $('#teams').load('/admin/ajax/team?page=1');
-    $('#rewards').load('/admin/ajax/reward');
+    $('#rewards').load('/admin/ajax/reward?page=1');
+
+    // End of Pagination Script
+    
+    // Nav-Tab History with hash links
+      var hash = window.location.hash;
+      hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+
+      $('#dash-nav .tabs a').click(function (e) {
+        $(this).tab('show');
+        var scrollmem = $('body').scrollTop();
+        window.location.hash = this.hash;
+        $('html,body').scrollTop(scrollmem);
+      });
+    // End of Nav-Tab History
+
+    $('.reward-type button').on('click', function(e){
+        var filter = $(this).data('filter');
+        alert(filter);
+    })
+
+
 });
  
     </script>

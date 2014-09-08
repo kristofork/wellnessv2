@@ -98,6 +98,22 @@ class ActivityController extends BaseController {
                 $activity->save();
                 
             }
+            // Get the user's total time and check if they completed the time goal
+            $time = User::find($id)->currentYearStats;
+            // Get the current time reward
+            $reward = Reward::current();
+            if($time->time >= $reward[0]->milestone){
+                try{
+                    $goal = new RewardActivity;
+                    $goal->user_id = $id;
+                    $goal->name = $reward[0]->name;
+                    $goal->alert = 1;
+                    $goal->save();
+                }catch(Exception $e){
+                    echo "Error";
+                }
+            }
+
                 $result = array('success'=> true, 'message'=> 'Activity Saved!','userpic' => $userpic, 'acttime' => $acttimeConverted, 'actname' => $input['actname'], 'firstname'=> $userfirst, 'lastname' => $userlast, 'currentTime' => $currentDateTime);
 
             return Response::json($result);
