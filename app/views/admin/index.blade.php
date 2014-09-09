@@ -31,10 +31,16 @@
 	    	<ul id="teams"></ul>
     	</div> <!-- End of Team Tab-->
         <div class="tab-pane fluid-container" id="reward-tab">
-        <div class="btn-group pull-right reward-type" data-toggle="buttons">
-          <button type="button" class="btn btn-default btn-xs active" data-filter="Halfway Mark">&#189;</button>
-          <button type="button" class="btn btn-default btn-xs" data-filter="Finish Line"><span class="glyphicon glyphicon-flag"></span></button>
-        </div>
+            {{ Form::open(array('url' => 'admin/reward-filter', 'method' => 'GET')) }}
+                <div class="btn-group pull-right reward-type" data-toggle="buttons">
+                    <label class="btn btn-default btn-xs active">
+                        <input type="radio" name="filter" value="Halfway Mark">&#189;
+                    </label>
+                    <label class="btn btn-default btn-xs">
+                        <input type="radio" name="filter" value="Finish Line"><span class="glyphicon glyphicon-flag"></span>
+                    </label>
+                </div>
+            {{ Form::close() }}
             <ul id="rewards"></ul>
         </div> <!-- End of Team Tab-->
     </div> <!-- End of Middle Column-->
@@ -176,10 +182,12 @@ $(function() {
       });
     // End of Nav-Tab History
 
-    $('.reward-type button').on('click', function(e){
-        var filter = $(this).data('filter');
-        alert(filter);
-    })
+    $('.reward-type input[type=radio]').on('change', function(e) {
+        var value = $("input[name='filter']:checked").val()
+        $.get( "/admin/reward-filter/" + value, function( data ) {
+          alert( data );
+        });
+    });
 
 
 });

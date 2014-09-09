@@ -52,6 +52,7 @@ Route::group(array('before' => array('auth|admin')), function()
 	Route::get('/admin/team/{id}/edit', array('as'=> 'admin_team.edit', 'uses' => 'AdminController@editTeam'));
 	Route::put('/admin/team/update/{id}',array('as'=> 'admin_team.update', 'uses' => 'AdminController@updateTeam'));
 	Route::delete('/admin/team/delete/{id}', array('as' => 'admin_team.destroy', 'uses' => 'AdminController@destroyTeam'));
+	Route::get('admin/reward-filter/{type}', array('as'=> 'admin_reward.update', 'uses'=> 'AdminController@getRewardFilter'));
 
 });
 

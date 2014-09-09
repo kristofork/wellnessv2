@@ -249,19 +249,28 @@ public function getAdminType($type)
         $items = Team::orderBy('teamName','asc')->paginate($items_per_page);
         $view = View::make('admin.team_type')->with('items', $items);
     }else{
-    	$filter = Input::all();
         //$items = RewardActivity::join('users', 'reward_activities.user_id', '=', 'users.id')->orderBy('users.last_name')->paginate($items_per_page, $columns);
         $items = RewardActivity::join('users', function($join)
         {
+        	$filter = Input::get('filter');
+        	if($filter === null)
+        	{
+        		$filter = "Halfway Mark";
+        	}
         	$join->on('reward_activities.user_id', '=', 'users.id')
-        		->where('reward_activities.name','=', 'Halfway Mark');
+        		->where('reward_activities.name','=', $filter);
         })->paginate($items_per_page, $columns);
         $view = View::make('admin.reward_type')->with('items', $items);
     }
 
-    
     echo $view;
     exit;
+}
+
+public function getRewardFilter($filter)
+{
+
+	return $filter;
 }
 
 
