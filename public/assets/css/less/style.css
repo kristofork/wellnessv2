@@ -1202,7 +1202,8 @@ div.admin.teams {
 #dash-side-right {
   width: 30%;
   float: right;
-  margin-top: 5px;
+  margin-top: 15px;
+  border-radius: 0;
 }
 .tab-pane {
   color: #ffffff;
@@ -1461,5 +1462,17 @@ ul.nav.tabs li a span.glyphicon {
 .alert-custom {
   color: #0af;
   background-color: rgba(0, 0, 0, 0.37);
+}
+.alert-custom button.close {
+  color: #fff;
+}
+.alert-custom button.close:hover {
+  color: #fff;
+}
+#custom-glyph-user {
+  font-size: 7px;
+  position: absolute;
+  padding: 2px;
+  left: 0;
 }
 /*# sourceMappingURL=style.css.map */

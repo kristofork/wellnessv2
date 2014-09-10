@@ -18,14 +18,14 @@ class DashboardController extends BaseController
 		$reward2 = Reward::find(2);
 		$year = new DateTime($user->created_at);
 		$year = $year->format('Y');
-
+		$columns = array(DB::raw('users.id as `users_id`'), 'users.first_name', 'users.last_name', 'users.username', 'activities.id', 'activities.activity_name', 'activities.likeCount','activities.type','activities.goal_num', 'users.pic', 'activities.created_at', 'activities.activity_time');
 		return View::make('dashboard.index')
 			->with('title', 'Dashboard') // Page title
 			->with('name',array('first_name'=> $user->first_name, 'last_name'=> $user->last_name))
 			->with('pic',$user->pic)
 			->with('user_title', User::UserTitle()) 				// Rank title
 			->with('user_points', $points)							// User's points
-			->with('user_time', $user->currentYearStats->time)		// User's time
+			->with('user_time', $user->currentYearStats ? $user->currentYearStats->time : "0")		// User's time $user->currentYearStats->time ? $user->currentYearStats->time : 0
 			->with('required_points',User::UserPoints($user_rank))	// Next Level Points
 			->with('teamname',Team::teamName())						// Team Name
 			->with('year', $year)									// Start Year
@@ -34,7 +34,7 @@ class DashboardController extends BaseController
 			->with('time_lastweek', Activity::activity_time_lastweek($user_id))
 			->with('hoursToReward', User::hoursToReward())
 			->with('userYearStats', Team::userYearStat($team))
-			->with('user_rank',$user->ranks->rank)
+			->with('user_rank',$user->ranks ? $user->ranks->rank : "0")
 			->with('user_count',User::userCount())
 			->with('team_rank',Team::Rank($team))
 			->with('team_count',Team::Count())
@@ -43,7 +43,7 @@ class DashboardController extends BaseController
 				->join('users', 'users.id', '=', 'activities.user_id')
 				->orderBy('activities.created_at', 'desc')
 				->take(10)
-				->get(array(DB::raw('users.id as `users_id`'), 'users.first_name', 'users.last_name', 'users.username', 'activities.id', 'activities.activity_name', 'activities.likeCount','activities.type','activities.goal_num', 'users.pic', 'activities.created_at', 'activities.activity_time')))
+				->get($columns))
 			->with('activity_likes',DB::table('activity_likes')
 				->where('user_id',$user_id)
 				->get(array('activity_likes.user_id','activity_likes.act_id')))

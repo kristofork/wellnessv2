@@ -1,4 +1,4 @@
-
+                
                 @foreach($activities as $activity)
                 <?php
                     $moreNamesArray = NULL;
@@ -17,7 +17,7 @@
                                     <div class="recentActivityDesc">
                                         <div class="profilePicContainer"> 
                                             <span rel="hovercard" data-url="{{$activity->users_id}}">
-                                                <div class="hovercard"></div>
+                                                <div class="hovercard hidden-sm hidden-xs"></div>
                                                     {{HTML::image($activity->pic, $activity->first_name, array('id'=> 'profilePic'));}}
                                             </span>
                                         </div>

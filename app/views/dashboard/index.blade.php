@@ -10,7 +10,7 @@
                 <ul class="nav tabs">
                     
                         <li class="active "><a href="#activity" data-toggle="tab"><span class="hidden-xs">Stats </span><span class="glyphicon glyphicon-stats"></span> </a></li>
-                        <li class=""><a href="#log" data-toggle="tab"><span class="hidden-xs">Log </span><span class="glyphicon glyphicon-calendar"></span> </a></li>
+                        <li class=""><a href="#log" data-toggle="tab"><span class="hidden-xs">Log </span><span class="glyphicon glyphicon-time"></span> </a></li>
                         <li class=""><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Running </span><span class="glyphicon glyphicon-lock"></span></a></li>
                         <li class="last "><a href="#" data-toggle="" class="disabled"><span class="hidden-xs">Weight </span><span class="glyphicon glyphicon-lock"></span></a></li>
                     
@@ -126,13 +126,13 @@
                                 
                                     <div class="btn-group-container">
                                         <div class="btn-group intensity" data-toggle="buttons">
-                                          <label class="btn btn-primary">
+                                          <label class="btn btn-primary low">
                                             <input type="radio" name="actintensity" id="intLow" value="1"> <span class="glyphicon glyphicon-fire" style="color:yellow"></span>
                                           </label>
-                                          <label class="btn btn-primary active">
+                                          <label class="btn btn-primary moderate active">
                                             <input type="radio" name="actintensity" id="intMod" value="2" > <span class="glyphicon glyphicon-fire" style="color:orange"></span>
                                           </label>
-                                          <label class="btn btn-primary">
+                                          <label class="btn btn-primary high">
                                             <input type="radio" name="actintensity" id="intHigh" value="3"> <span class="glyphicon glyphicon-fire" style="color:red"></span>
                                           </label>
                                         </div>
@@ -267,11 +267,19 @@
     <!-- End of Sidebar Right-->
         <!-- Start of Recent Activity (middle column) -->
         <div class="col-md-8" id="welcome_recent_activity">
-            <div class="btn-group pull-right">
-              <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-user"></span></button>
-              <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-flag"></span></button>
-              <button type="button" class="btn btn-default btn-xs active"><span class="glyphicon glyphicon-globe"></span></button>
-            </div>
+            {{ Form::open(array('url' => 'activity-filter', 'method' => 'GET')) }}
+                <div class="btn-group pull-right activity-type" data-toggle="buttons">
+                    <label class="btn btn-default btn-xs">
+                        <input type="radio" name="filter" value="User"><span class="glyphicon glyphicon-user"></span>
+                    </label>
+                    <label class="btn btn-default btn-xs">
+                        <input type="radio" name="filter" value="Team"><span id="custom-glyph-user" style="font-size:8px" class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-user"></span>
+                    </label>
+                    <label class="btn btn-default btn-xs active">
+                        <input type="radio" name="filter" value="Everyone"><span class="glyphicon glyphicon-globe"></span>
+                    </label>
+                </div>
+            {{ Form::close() }}
             <ul class="recentActivity">
                 @include('_partials.activityfeed');
             </ul>
@@ -299,6 +307,15 @@
 {{ HTML::script('js/activities/pagination.js') }}
 <script type="text/javascript">
     teamChart(); // start donut chart
+
+        // Reward Filter
+    $('.activity-type input[type=radio]').on('change', function(e) {
+        var value = $("input[name='filter']:checked").val()
+       $.get( "/activity-filter/" + value, function( data ) {
+          $('.recentActivity').html(data);
+          jQuery("abbr.timeago").timeago();
+        }); 
+    });
 </script>
 @stop
                                    

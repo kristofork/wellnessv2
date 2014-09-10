@@ -54,7 +54,7 @@
                 <div class="row">
                     <div class="col-xs-6 col-md-6 admin_data_container">
                         <div class="row">
-                            <span>198</span>
+                            <span>{{$userCount}}</span>
                             <h5>Active Users</h5>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                 <div class="row">
                     <div class="col-xs-6 col-md-6 admin_data_container">
                         <div class="row">
-                            <span>15</span>
+                            <span>{{$teamCount - 1}}</span>
                             <h5>Team Count</h5>
                         </div>
                     </div>
@@ -97,7 +97,7 @@
                     <div class="col-xs-6 col-md-6 admin_data_container">
                         <div class="row">
                             <span>15</span>
-                            <h5>Team Count</h5>
+                            <h5>Reward Count</h5>
                         </div>
                     </div>
                     <div class="col-xs-6 col-md-6 admin_data_container">
@@ -116,82 +116,5 @@
 
 </div> <!-- End of Main-Row -->
 
-    <script>
- 
-$(function() {
-
-// Start of Pagination Script
-    function getPaginationSelectedPage(url) {
-        var chunks = url.split('?');
-        var baseUrl = chunks[0];
-        var querystr = chunks[1].split('&');
-        var pg = 1;
-        for (i in querystr) {
-            var qs = querystr[i].split('=');
-            if (qs[0] == 'page') {
-                pg = qs[1];
-                break;
-            }
-        }
-        return pg;
-    }
-
-    $('#users').on('click', '.pagination a', function(e) {
-        e.preventDefault();
-        var pg = getPaginationSelectedPage($(this).attr('href'));
-
-        $.ajax({
-            url: '/admin/ajax/user',
-            data: { page: pg },
-            success: function(data) {
-                $('#users').html(data);
-                $("html, body").animate({ scrollTop: 0 }, "fast");
-            }
-        });
-    });
-
-    $('#teams').on('click', '.pagination a', function(e) {
-        e.preventDefault();
-        var pg = getPaginationSelectedPage($(this).attr('href'));
-
-        $.ajax({
-            url: '/admin/ajax/team',
-            data: { page: pg },
-            success: function(data) {
-                $('#teams').html(data);
-                $("html, body").animate({ scrollTop: 0 }, "fast");
-            }
-        });
-    });
-
-    $('#users').load('/admin/ajax/user?page=1');
-    $('#teams').load('/admin/ajax/team?page=1');
-    $('#rewards').load('/admin/ajax/reward?page=1');
-
-    // End of Pagination Script
-    
-    // Nav-Tab History with hash links
-      var hash = window.location.hash;
-      hash && $('ul.nav a[href="' + hash + '"]').tab('show');
-
-      $('#dash-nav .tabs a').click(function (e) {
-        $(this).tab('show');
-        var scrollmem = $('body').scrollTop();
-        window.location.hash = this.hash;
-        $('html,body').scrollTop(scrollmem);
-      });
-    // End of Nav-Tab History
-
-    $('.reward-type input[type=radio]').on('change', function(e) {
-        var value = $("input[name='filter']:checked").val()
-        $.get( "/admin/reward-filter/" + value, function( data ) {
-          alert( data );
-        });
-    });
-
-
-});
- 
-    </script>
-
+{{HTML::script('js/admin/pagination.js')}}
 @stop

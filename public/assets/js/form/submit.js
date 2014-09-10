@@ -49,7 +49,7 @@ $(document).ready(function() {
                     $("span#time_value").text("00:15:00");
                     $("#time_val").val("00:15:00");
                     $(".intensity").find(".active").removeClass("active");
-                    $("button#intMod.btn").addClass("active");
+                    $(".intensity label.moderate").addClass("active");
                     $("input#hiddenintensity").val("2");
                     $("input#points_hidden").val("2");
                     $("span#points_value").text("2");

@@ -53,7 +53,7 @@ Route::group(array('before' => array('auth|admin')), function()
 	Route::put('/admin/team/update/{id}',array('as'=> 'admin_team.update', 'uses' => 'AdminController@updateTeam'));
 	Route::delete('/admin/team/delete/{id}', array('as' => 'admin_team.destroy', 'uses' => 'AdminController@destroyTeam'));
 	Route::get('admin/reward-filter/{type}', array('as'=> 'admin_reward.update', 'uses'=> 'AdminController@getRewardFilter'));
-
+	Route::get('admin/ajax/{type}', array('as'=> 'item.type', 'uses'=> 'AdminController@getAdminType'))->where('type', 'user|team|reward');
 });
 
 
@@ -74,5 +74,5 @@ Route::get('activitycheck/{data}',array('as'=> 'timecheck', 'uses' => 'ActivityC
 Route::get('newactivities/{data}', array('as'=> 'newactivity', 'uses' => 'ActivityController@newActivities'));
 Route::post('goal/update_progress', array('as'=> 'update_progress','uses'=>'GoalController@update_progress'));
 Route::get('goal/check',array('as'=>'goalcheck', 'uses'=>'GoalController@check'));
-Route::get('admin/ajax/{type}', array('as'=> 'item.type', 'uses'=> 'AdminController@getAdminType'))->where('type', 'user|team|reward');
+Route::get('activity-filter/{type}', array('as'=>'activity.filter', 'uses'=> 'ActivityController@getActivityFilter'));
 }

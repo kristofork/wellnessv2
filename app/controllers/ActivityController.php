@@ -248,4 +248,36 @@ public function read($id)
         return Response::json($result);
     }
 
+    public static function getActivityFilter($type)
+    {
+        $columns = array(DB::raw('users.id as `users_id`'),'users.first_name', 'users.last_name', 'users.username', 'activities.id', 'activities.activity_name', 'activities.likeCount','activities.type','activities.goal_num', 'users.pic', 'activities.created_at', 'activities.activity_time');
+        if($type == 'Everyone'){
+        $activities = DB::table('activities')
+                ->join('users', 'users.id', '=', 'activities.user_id')
+                ->orderBy('activities.created_at', 'desc')
+                ->take(15)
+                ->get($columns);
+        } elseif($type == "Team"){
+            $team = Auth::user()->team_id;
+        $activities = DB::table('activities')
+                ->join('users', 'users.id', '=', 'activities.user_id')
+                ->where('activities.team_id','=', $team)
+                ->orderBy('activities.created_at', 'desc')
+                ->take(10)
+                ->get($columns);
+
+        }else{
+            $user = Auth::user()->id;
+        $activities = DB::table('activities')
+                ->join('users', 'users.id', '=', 'activities.user_id')
+                ->where('activities.user_id','=', $user)
+                ->orderBy('activities.created_at', 'desc')
+                ->take(10)
+                ->get($columns);
+        }
+        $view = View::make('_partials.activityfeed')->with('activities', $activities);
+        echo $view;
+        exit;
+    }
+
 }

@@ -3,7 +3,7 @@
 class Activity extends Eloquent {
 	public static $tables = 'activities';
 
-	public function user()
+	public function users()
 	{
 		return $this->belongsTo('User');
 	}

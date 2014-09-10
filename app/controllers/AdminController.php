@@ -11,7 +11,9 @@ class AdminController extends baseController
 		->with('isAdmin',$user->isAdmin())
 		->with('allusers',User::orderBy('last_name', 'asc')->paginate(15))
 		->with('allteams',Team::orderBy('teamName','asc')->paginate(10))
-		->with('allrewards',RewardActivity::with('users')->paginate(10));
+		->with('allrewards',RewardActivity::with('users')->paginate(10))
+		->with('userCount', User::all()->count())
+		->with('teamCount', Team::all()->count());
 	}
 
 	public function storeTeam()
@@ -259,7 +261,7 @@ public function getAdminType($type)
         	}
         	$join->on('reward_activities.user_id', '=', 'users.id')
         		->where('reward_activities.name','=', $filter);
-        })->paginate($items_per_page, $columns);
+        })->orderBy('users.last_name','asc')->paginate($items_per_page, $columns);
         $view = View::make('admin.reward_type')->with('items', $items);
     }
 
@@ -269,8 +271,17 @@ public function getAdminType($type)
 
 public function getRewardFilter($filter)
 {
+	$items_per_page = Input::get('per_pg', 10);
+    $columns = array('reward_activities.*','users.first_name', 'users.last_name');
 
-	return $filter;
+        $items = RewardActivity::join('users', function($join) use ($filter)
+        {
+        	$join->on('reward_activities.user_id', '=', 'users.id')
+        		->where('reward_activities.name','=', $filter);
+        })->orderBy('users.last_name','asc')->paginate($items_per_page, $columns);
+        $view = View::make('admin.reward_type')->with('items', $items);
+        echo $view;
+    exit;
 }
 
 

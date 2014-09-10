@@ -106,12 +106,19 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		foreach ($currents as $current) {
     	$deadline = strtotime($current->deadline);
     	$milestone = $current->milestone;
-    	$userTime = Auth::User()->currentYearStats->time;
-    	$result = ($milestone - $userTime) / floor(($deadline- $today) / (24 * 60 *60));
-    	$result = round($result / 60 / 60,1);    	
-    	$hrs = floor($result);
-    	$mins = round(($result - $hrs) *60);
-    	$reward =array('name' => $current->name, 'time' => intval($hrs). ":". intval($mins));
+    	$userTime = Auth::user()->currentYearStats ? Auth::user()->currentYearStats->time : "0";
+    	$result = ($milestone - $userTime) / ($deadline- $today);
+    	$result = round($result *24 * 60 * 60,1);    	
+    	$hrs = floor($result / 3600);
+        $totalmins = $result % 3600 ;
+        $mins = ($totalmins == '0.0') ? $mins = '00' : round(($totalmins) /60);
+        $str = '';
+        if($mins < 10 ){
+            $str .= "0";
+            $str .= $mins;
+            $mins = $str;
+        }
+    	$reward =array('name' => $current->name, 'time' => intval($hrs). ":". $mins);
     }
     	return $reward;
     }
