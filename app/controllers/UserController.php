@@ -138,7 +138,7 @@ class UserController extends BaseController
 			->with('title', 'Profile')
 			->with('teamname',Team::teamName())
 			->with('userYearStats', Team::userYearStat($team))
-			->with('user_time', $user->currentYearStats->time)		// User's time
+			->with('user_time', $user->currentYearStats ? $user->currentYearStats->time : "0")		// User's time
 			->with('hoursToReward', User::hoursToReward())
 			->with('isAdmin',$user->isAdmin())
 			->with('teamMembers', DB::table('users')

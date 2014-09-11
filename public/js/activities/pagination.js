@@ -1,15 +1,19 @@
 // When the load more button is clicked 
-	$('#more').on("click", function(e) {
+	$('li#more.load-more').on("click", function(e) {
 		e.stopPropagation();
 		e.preventDefault();
+		// get the current selected filter
+		var type = $('.activity-type label.active input').attr('value');
 		// set variable to the number that is loaded. Default is 10
 		var loaded = $(this).attr('num_loaded');
 		// Change the value from a string to a int
 		var loaded = parseInt(loaded);
 		//Construct AJAX call
 		$.ajax({
-			url:'activities_pag/' + loaded,
-			type:'get',
+			url:'activities_pag/',
+			data: {filter: type, load: loaded},
+			dataType: 'json',
+			type:'post',
 			success: function(data){	// When returning a successful ajax GET run
 				// Loop through the data array and add to the end of the ul
 				$.each(data, function(item,val){

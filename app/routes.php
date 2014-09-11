@@ -64,7 +64,7 @@ if (Request::ajax()){
 Route::post('applaud/{id}', array('as' => 'applaud', 'uses' => 'ApplaudController@create'));
 Route::get('user-info/{id}', array('as' => 'user_profile', 'uses' => 'UserController@show'));
 Route::get('user-activity/{id}', array('as' => 'user_activity_chart', 'uses' => 'UserController@hourChart'));
-Route::get('activities_pag/{data}', array('as' => 'activities_pag', 'uses' => 'ActivityController@pagination'));
+Route::post('activities_pag/', array('as' => 'activities_pag', 'uses' => 'ActivityController@pagination'));
 Route::get('team-donut', array('as' => 'team_donut_chart', 'uses' => 'DashboardController@donutChart'));
 Route::get('hovercard/{id}', array('as' => 'hovercard', 'uses' => 'UserController@hovercard'));
 Route::post('user/applaud/{id}', array('as' => 'user_applaud', 'uses' => 'ApplaudController@create'));

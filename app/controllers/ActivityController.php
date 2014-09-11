@@ -228,18 +228,40 @@ public function read($id)
         return Response::json($result);
     }
 
-    public static function pagination($data)
+    public static function pagination()
     {
-        $from = $data;
-        $to = $data + 10;
-        $result = Activity::orderBy('activities.created_at', 'desc')
-        ->join('users','activities.user_id', '=','users.id')
-        ->skip($from)
-        ->take(10)
-        ->get(array('users.first_name', 'users.last_name', 'users.username', 'activities.id', 'activities.activity_name', 'activities.likeCount','activities.type','activities.goal_num', 'users.pic', 'activities.created_at', 'activities.activity_time'));
-        //$result = DB::select("SELECT SQL_CALC_FOUND_ROWS *, UNIX_TIMESTAMP(a.activity_date) as logDate FROM activities a JOIN users u ON a.user_id = u.id ORDER BY logDate DESC LIMIT $to, $from");
+        $input = Input::all();
+        $from = $input['load'];
+        $type = $input['filter'];
+        $columns = array('users.first_name', 'users.last_name', 'users.username', 'activities.id', 'activities.activity_name', 'activities.likeCount','activities.type','activities.goal_num', 'users.pic', 'activities.created_at', 'activities.activity_time');
+        if($type == 'Everyone')
+        {
+                $activities = Activity::orderBy('activities.created_at', 'desc')
+                ->join('users','activities.user_id', '=','users.id')
+                ->skip($from)
+                ->take(10)
+                ->get($columns);
+        } elseif($type == 'Team')
+        {
+            $team = Auth::user()->team_id;
+                $activities = Activity::orderBy('activities.created_at', 'desc')
+                ->join('users','activities.user_id', '=','users.id')
+                ->where('activities.team_id','=',$team)
+                ->skip($from)
+                ->take(10)
+                ->get($columns);
+        }else
+        {
+            $user = Auth::user()->id;
+                $activities = Activity::orderBy('activities.created_at', 'desc')
+                ->join('users','activities.user_id', '=','users.id')
+                ->where('activities.user_id', '=', $user)
+                ->skip($from)
+                ->take(10)
+                ->get($columns);
+        }
 
-        return Response::json($result);
+        return Response::json($activities);
     }
 
     public function newActivities($data)
@@ -255,7 +277,7 @@ public function read($id)
         $activities = DB::table('activities')
                 ->join('users', 'users.id', '=', 'activities.user_id')
                 ->orderBy('activities.created_at', 'desc')
-                ->take(15)
+                ->take(10)
                 ->get($columns);
         } elseif($type == "Team"){
             $team = Auth::user()->team_id;

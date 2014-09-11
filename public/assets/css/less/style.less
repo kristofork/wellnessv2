@@ -17,9 +17,21 @@ body
 {
   font-family: Open Sans,Telex, Helvetica Neue, Helvetica, Arial, sans-serif;
 }
-.main-container
-{
-  
+@media (min-width: 992px) {
+  .cover-container {
+    width: 700px;
+  }
+}
+@media (min-width: 768px) {
+  /* Start the vertical centering */
+  .site-wrapper-inner {
+    vertical-align: middle;
+  }
+  /* Handle the widths */
+  .cover-container {
+    width: 100%; /* Must be percentage or pixels for horizontal alignment */
+    margin-top:12%;
+  }
 }
 .main-row
 {
@@ -65,7 +77,13 @@ text-shadow: 1px 1px #222;
 }
 
 #home_recent_activity{
-margin-top:120px;
+margin-top:56px;
+}
+
+#login-form, #home_recent_activity{
+background-color: rgba(0, 0, 0, 0.6);
+color: #fff;
+border: none;
 }
 
 ul.recentActivity{
@@ -209,6 +227,9 @@ img#teamUserPic{
   margin-top: 5px;
   margin-bottom:10px;
 
+}
+#welcome_recent_activity h2{
+  color:#fff;
 }
 .admin_usersCol, .admin_edituser
 {
@@ -514,7 +535,7 @@ border-radius:5px;
   color:#fff;
 }
 .sidebar-padding{
-  padding:20px;
+  padding:10px;
 }
 #navSide a
 {
@@ -536,8 +557,8 @@ border-radius:5px;
 {
   text-decoration: none;
 }
-ul#navSide li.active a{
-  color:#00a0f0;
+ul#navSide li.active a, ul#navSide li.active a #nav-text{
+  color:@site_blue;
 }
 #navSide li > a span
 {
@@ -1286,7 +1307,7 @@ padding:0;
 #dash-side-right{
   width:30%;
   float:right;
-  margin-top: 15px;
+  margin-top: 5px;
   border-radius: 0;
 }
 .tab-pane{
@@ -1576,4 +1597,12 @@ background-color:rgba(0, 0, 0, 0.37);
   position: absolute;
   padding: 2px;
   left: 0;
+}
+
+// Favorite Activity
+ul#fav-activity li {
+  text-align: center;
+  font-size: 28px;
+  color: @site_blue;
+  padding: 5px;
 }

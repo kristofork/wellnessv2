@@ -91,5 +91,6 @@
                 <hr class="activityHR" />
                 @endforeach
                 <li id ='more' class="load-more" num_loaded='10' data-icon="arrow-d">
-                    <a href="#" style="text-align: center">Load More <span class="glyphicon glyphicon-chevron-down"></span></a>
+                    <a href="" style="text-align: center">Load More <span class="glyphicon glyphicon-chevron-down"></span></a>
                 </li>
+                {{ HTML::script('js/activities/pagination.js') }}

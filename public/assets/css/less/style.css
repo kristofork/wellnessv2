@@ -16,6 +16,23 @@
 body {
   font-family: Open Sans, Telex, Helvetica Neue, Helvetica, Arial, sans-serif;
 }
+@media (min-width: 992px) {
+  .cover-container {
+    width: 700px;
+  }
+}
+@media (min-width: 768px) {
+  /* Start the vertical centering */
+  .site-wrapper-inner {
+    vertical-align: middle;
+  }
+  /* Handle the widths */
+  .cover-container {
+    width: 100%;
+    /* Must be percentage or pixels for horizontal alignment */
+    margin-top: 12%;
+  }
+}
 .main-row {
   margin-left: 17.5em;
 }
@@ -55,7 +72,13 @@ li.headProfile {
   letter-spacing: 2px;
 }
 #home_recent_activity {
-  margin-top: 120px;
+  margin-top: 56px;
+}
+#login-form,
+#home_recent_activity {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: none;
 }
 ul.recentActivity {
   list-style-type: none;
@@ -198,6 +221,9 @@ img#teamUserPic {
   margin-left: 15px;
   margin-top: 5px;
   margin-bottom: 10px;
+}
+#welcome_recent_activity h2 {
+  color: #fff;
 }
 .admin_usersCol,
 .admin_edituser {
@@ -497,7 +523,7 @@ ul.navCustom {
   color: #fff;
 }
 .sidebar-padding {
-  padding: 20px;
+  padding: 10px;
 }
 #navSide a {
   font-size: 19px;
@@ -519,8 +545,9 @@ ul.navCustom {
 #navTeam > li a:hover {
   text-decoration: none;
 }
-ul#navSide li.active a {
-  color: #00a0f0;
+ul#navSide li.active a,
+ul#navSide li.active a #nav-text {
+  color: #00aaff;
 }
 #navSide li > a span {
   vertical-align: middle;
@@ -1202,7 +1229,7 @@ div.admin.teams {
 #dash-side-right {
   width: 30%;
   float: right;
-  margin-top: 15px;
+  margin-top: 5px;
   border-radius: 0;
 }
 .tab-pane {
@@ -1474,5 +1501,11 @@ ul.nav.tabs li a span.glyphicon {
   position: absolute;
   padding: 2px;
   left: 0;
+}
+ul#fav-activity li {
+  text-align: center;
+  font-size: 28px;
+  color: #00aaff;
+  padding: 5px;
 }
 /*# sourceMappingURL=style.css.map */

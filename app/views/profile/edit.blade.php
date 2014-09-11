@@ -80,21 +80,17 @@
 		</div><!-- End of Picture Tab -->
 		<div class="tab-pane fluid-container" id="password">
 			{{ Form::open(array('action' => 'UserController@updatePassword'))}}
-			    <div class="form-group">
-		    	<div class="col-sm-offset-3 col-sm-6">
+			    <div class="form-group col-sm-offset-3 col-sm-6">
+			    	<label for="password">New Password</label>
 				    <input type="password" name="password" class="form-control" placeholder="New Password">
 				</div>
-			</div>
-		    <div class="form-group">
-		    	<div class="col-sm-offset-3 col-sm-6">
+		    	<div class="form-group col-sm-offset-3 col-sm-6">
+		    		<label for="password_confirmation">Confirm Password</label>
 				    <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password">
 				</div>
-			</div>
-		    <div class="form-group">
-		    	<div class="col-sm-offset-3 col-sm-6">
+			    <div class="form-group col-sm-offset-3 col-sm-6">
 				    <input class="btn btn-primary btn-sm btn-block" type="submit" value="Reset Password">
 				</div>
-			</div>
 			        @if(Session::has('status'))
 		            <p>{{ Session::get('status') }}</p>
 		        @endif

@@ -25,7 +25,7 @@ class DashboardController extends BaseController
 			->with('pic',$user->pic)
 			->with('user_title', User::UserTitle()) 				// Rank title
 			->with('user_points', $points)							// User's points
-			->with('user_time', $user->currentYearStats ? $user->currentYearStats->time : "0")		// User's time $user->currentYearStats->time ? $user->currentYearStats->time : 0
+			->with('user_time', $user->currentYearStats ? $user->currentYearStats->time : "0")		// User's time
 			->with('required_points',User::UserPoints($user_rank))	// Next Level Points
 			->with('teamname',Team::teamName())						// Team Name
 			->with('year', $year)									// Start Year

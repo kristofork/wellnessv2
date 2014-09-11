@@ -39,7 +39,7 @@ class Activity extends Eloquent {
         ->where('users.id',Auth::user()->id)
         ->groupBy('activity_name')
         ->orderBy(DB::raw('COUNT(activities.activity_name)'), 'desc')
-        ->take(3)
+        ->take(1)
         ->get(array('activities.activity_name'));
   }
 
