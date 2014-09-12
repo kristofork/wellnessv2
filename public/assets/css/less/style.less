@@ -78,6 +78,7 @@ text-shadow: 1px 1px #222;
 
 #home_recent_activity{
 margin-top:56px;
+height:100px;
 }
 
 #login-form, #home_recent_activity{
@@ -268,6 +269,9 @@ img#teamUserPic{
 }
 .activityIcon{
   margin-top:1em;
+  width:12%;
+  float:left;
+  text-align:center;
 }
 @media (max-width: 953px) {
 .activityIcon{
@@ -415,16 +419,18 @@ display: none;
 width:40px;
 height:40px;
 }
-.recentActivity li:first-child
-{
-  margin-top: 20px;
-}
+
 .activityLikeImg{
   width:50%;
-  margin-left:4em;
+  margin-left:4.5em;
   float: left;
   overflow: visible;
+  margin-top:-25px;
 
+}
+.activityLikeImg span.like-count{
+  color:#fff;
+  font-size:10px;
 }
 .activityBox{
   width:100%;
@@ -615,11 +621,12 @@ display: none;
 }
 .timeContainer{
   float:left;
-  margin-top: 1em;
+  margin-top: 1.3em;
   font-weight: 700;
   font-size: 12px;
-  width:14em;
+  width:20%;
   color:#54D657;
+  text-align:right;
 }
 abbr.timeago{
   border-bottom: 0px none;

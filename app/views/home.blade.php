@@ -57,72 +57,89 @@
                 </div>
 
     <div class="cover-container">
-            <div class="col-md-offset-1 col-md-5 well well-small" id="home_recent_activity">
-                    <h2>Recent Activity</h2>
-                    <ul class="recentActivity">
-        
-                    </ul>
+
+            <div class="col-md-offset-1 col-md-5 well well-small" id="home_recent_activity" style="overflow:hidden">
+                    <ul class="recentActivity"></ul>
+            </div>
+
+            <div class="col-md-3 col-md-offset-1">
+                <div id="welcomeBox">
+                    <h3>Welcome to Wellness</h3>
                 </div>
-                <div class="col-md-3 col-md-offset-1">
-                    <div id="welcomeBox">
-                        <h3>Welcome to Wellness</h3>
-                    </div>
-                        
-                        {{ Form::open(array('url'=>'login','action'=> 'POST', 'class' => 'well form-horizontal', 'id'=> 'login-form', 'role' => 'form')) }}
-                            <div class="form-group">
-                                
-                                <div class="col-md-12">
-                                    {{ Form::label('username', 'Username:', array('class'=> 'control-label')) }}
-                                {{ Form::text('username', Input::old('username'), array('placeholder' => 'Your Username', 'id' => 'username', 'class'=> 'form-control')) }}
-                                </div>
+                    
+                    {{ Form::open(array('url'=>'login','action'=> 'POST', 'class' => 'well form-horizontal', 'id'=> 'login-form', 'role' => 'form')) }}
+                        <div class="form-group">
+                            
+                            <div class="col-md-12">
+                                {{ Form::label('username', 'Username:', array('class'=> 'control-label')) }}
+                            {{ Form::text('username', Input::old('username'), array('placeholder' => 'Your Username', 'id' => 'username', 'class'=> 'form-control')) }}
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    {{ Form::label('password', 'Password:', array('class' => 'control-label')) }}
-                                    {{ Form::password('password', array('placeholder' => 'Your Password', 'id' => 'password', 'class'=> 'form-control')) }}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-offset-3 col-md-9">
-                                    {{ Form::submit('Login', array('class' => 'btn btn-success', 'id'=> 'loginBtn')) }}
-                                    <!-- Spinner Start-->
-                                    <div id="escapingBallG">
-                                    <div id="escapingBall_1" class="escapingBallG">
-                                    </div>
-                                    </div>
-                                </div>
-                                <!-- Spinner Stop-->
-                            </div>
-                        {{ Form::close() }}
-                        @if($errors->has())
-                        <div class="alert alert-error">
-                            <button type="button" class="close" data-dismiss="alert">x</button>
-                            <ul>
-                            {{ $errors->first('username', '<li>:message</li>') }}
-                            {{ $errors->first('password', '<li>:message</li>') }}
-                            </ul>
                         </div>
-                        @elseif (!is_null(Session::get('status_error')))
-                        <div class="alert alert-error">
-                            <button type="button" class="close" data-dismiss="alert">x</button>
-                            @if (is_array(Session::get('status_error')))
-                            <ul>
-                            @foreach (Session::get('status_error') as $error)
-                    <li>{{ $error }}</li>
-                            @endforeach
-                            </ul>
-                            @else
-                                {{ Session::get('status_error') }}
-                            @endif
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                {{ Form::label('password', 'Password:', array('class' => 'control-label')) }}
+                                {{ Form::password('password', array('placeholder' => 'Your Password', 'id' => 'password', 'class'=> 'form-control')) }}
+                            </div>
                         </div>
-                        @endif
-                </div>
+                        <div class="form-group">
+                            <div class="col-md-9">
+                                @if(Session::has('flash_notice'))
+                                    <span>{{Session::get('flash_notice')}}</span>
+                                @endif 
+                            </div>
+                            <div class="col-md-3">
+                                {{ Form::submit('Login', array('class' => 'btn btn-success', 'id'=> 'loginBtn')) }}
+                            </div>
+
+                        </div>
+                    {{ Form::close() }}
+
+            </div>
+            <div class="col-md-offset-1 col-md-5 well well-small" id="home_recent_activity" style="margin-top:-120px">
+                <ul class="top-users"></ul>
+            </div>
+
     </div>
 
         {{ HTML::script('assets/js/jquery-ui-1.10.3.min.js') }}
         {{ HTML::script('assets/js/bootstrap/bootstrap.min.js') }}
         {{ HTML::script('assets/js/timeplugin.js')}}
-        {{ HTML::script('assets/js/main.js')}}
+        
+
+        <script type="text/javascript">
+        $(function() {
+            $('ul.recentActivity').load('/activity-minifeed', function(){
+                jQuery("abbr.timeago").timeago();
+
+                    // hide all quotes except the first
+                    $('ul.recentActivity li').hide().eq(0).show();
+
+                    var pause = 4000;
+                    var motion = 500;
+
+                    var quotes= $('li');
+                    var count = quotes.length;
+                    var i = 0;
+
+                    setTimeout(transition,pause);
+
+                    function transition(){
+                        quotes.eq(i).slideUp(500);
+
+                        if(++i>=count){
+                            i=0;
+                        }
+
+                        quotes.eq(i).animate({opacity:'toggle', top:'0px'}, 500);
+                        
+                        setTimeout(transition, pause);
+                    }
+
+
+            });
+        });
+
+        </script>
 
     </body>
 </html>

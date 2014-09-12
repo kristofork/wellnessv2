@@ -68,7 +68,7 @@
                             @if($likeids > 0) <!-- Conditional: If no likes, skip to like button -->
                                 <div class="activityLikeImg" id="{{ $activity->id }}">
                                 <span class="glyphicon glyphicon-heart" style="color:#FF5566"></span>
-                                <span>{{ $activity->likeCount }}</span>
+                                <span class="like-count">{{ $activity->likeCount }}</span>
 
                                 </div>
                             @endif

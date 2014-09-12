@@ -41,6 +41,6 @@ class LoginController extends BaseController {
 		Auth::Logout();
 
 		return Redirect::route('home')
-			->with('flash_notice', 'You are successfully logged out.');
+			->with('flash_notice', 'Come back soon!');
 	}
 }

@@ -75,4 +75,5 @@ Route::get('newactivities/{data}', array('as'=> 'newactivity', 'uses' => 'Activi
 Route::post('goal/update_progress', array('as'=> 'update_progress','uses'=>'GoalController@update_progress'));
 Route::get('goal/check',array('as'=>'goalcheck', 'uses'=>'GoalController@check'));
 Route::get('activity-filter/{type}', array('as'=>'activity.filter', 'uses'=> 'ActivityController@getActivityFilter'));
+Route::get('activity-minifeed', array('as'=> 'minifeed', 'uses' => 'ActivityController@getMiniFeed'));
 }
