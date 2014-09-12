@@ -22,7 +22,18 @@
                                             </span>
                                         </div>
                                         <div class="recentActivityName hidden-sm hidden-xs">{{ $activity->first_name}} {{ substr($activity->last_name, 0, 1) }}. </div>
-                                        <div class="recentActivityText">Logged {{ secondsToString(hoursToSeconds($activity->activity_time )) }} of <strong>{{ $activity->activity_name }} </strong></div>
+                                        <div class="recentActivityText">Logged {{ secondsToString(hoursToSeconds($activity->activity_time )) }} of <strong>{{ $activity->activity_name }} </strong>
+                                            @if($likeids > 0) <!-- Conditional: If no likes, skip to like button -->
+                                                <div class="activityLikeImg" id="{{ $activity->id }}">
+                                                    <span class="glyphicon glyphicon-heart" style="color:#FF5566"></span>
+                                                    <span class="like-count">{{ $activity->likeCount }}</span>
+                                                </div>
+                                            @endif
+                                        <!--Conditional: User cannot like own activities and cannot like activities more than once -->
+                                        @if(Auth::user()->username != $activity->username &&  $liked == NULL)
+                                          <div class="glyphicon glyphicon-heart like-heart" id='{{ $activity->id}}' title="Click to like!"></div>                  
+                                        @endif
+                                        </div>
                                     </div>
                                 @elseif ($activity->type == "read")
                                     <div class="recentActivityDesc">
@@ -62,30 +73,6 @@
                             @endif
                         </div>
 
-                    
-                   
-
-                            @if($likeids > 0) <!-- Conditional: If no likes, skip to like button -->
-                                <div class="activityLikeImg" id="{{ $activity->id }}">
-                                <span class="glyphicon glyphicon-heart" style="color:#FF5566"></span>
-                                <span class="like-count">{{ $activity->likeCount }}</span>
-
-                                </div>
-                            @endif
-                        <!--Conditional: User cannot like own activities and cannot like activities more than once -->
-                        @if(Auth::user()->username != $activity->username &&  $liked == NULL)
-
-                        <!-- Begin of test spinner -->
-
-                          <div class="glyphicon glyphicon-heart like-heart" id='{{ $activity->id}}' title="Click to like!"></div>
-                        <!-- End of test spinner -->
-
-
-                        @else
-
-                    
-
-                        @endif
                     </div> <!-- End Activitybox-->
                 </li>
                 <hr class="activityHR" />

@@ -85,17 +85,6 @@ ul.recentActivity {
   list-style-type: none;
   position: relative;
 }
-ul.recentActivity:before {
-  background: none repeat scroll 0 0 rgba(255, 255, 255, 0.01);
-  bottom: 0;
-  content: "";
-  left: 12.7em;
-  margin-left: -10px;
-  position: absolute;
-  top: 0;
-  width: 10px;
-  z-index: -12;
-}
 .teamMemberBox {
   width: 42px;
   height: 42px;
@@ -262,7 +251,7 @@ img#teamUserPic {
   margin-right: 18px;
 }
 .activityIcon {
-  margin-top: 1em;
+  margin-top: 0.7em;
   width: 12%;
   float: left;
   text-align: center;
@@ -411,25 +400,41 @@ img.badge-small {
   font-size: 0.7em;
   border-bottom: dashed 1px grey;
 }
-.recentActivity li img#profilePic {
+.centerContainer {
+  margin: 0 auto;
+  float: none;
+  width: 25%;
+}
+ul.top-users {
+  margin-bottom: 0;
+  padding: 0 10px;
+}
+ul.top-users li {
+  display: inline-block;
+}
+#top-user-trophy {
+  display: inline-block;
+  height: 5%;
+  width: 5%;
+  margin-left: 5px;
+}
+#top-user-trophy img {
+  width: 100%;
+}
+.recentActivity li img#profilePic,
+.top-users li img#profilePic {
   width: 40px;
   height: 40px;
 }
 .activityLikeImg {
-  width: 50%;
-  margin-left: 4.5em;
-  float: left;
-  overflow: visible;
-  margin-top: -25px;
-}
-.activityLikeImg span.like-count {
-  color: #fff;
-  font-size: 10px;
+  font-size: 12px;
 }
 .activityBox {
   width: 100%;
-  float: left;
-  line-height: 35px;
+  line-height: 20px;
+}
+ul.recentActivity {
+  padding: 0 10px;
 }
 .activityHR {
   background-image: -moz-linear-gradient(left center, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.75), rgba(0, 0, 0, 0));

@@ -11,7 +11,13 @@
                             </span>
                         </div>
                         <div class="recentActivityName hidden-sm hidden-xs">{{ $activity->first_name}} {{ substr($activity->last_name, 0, 1) }}. </div>
-                        <div class="recentActivityText">Logged {{ secondsToString(hoursToSeconds($activity->activity_time )) }} of <strong>{{ $activity->activity_name }} </strong></div>
+                        <div class="recentActivityText">Logged {{ secondsToString(hoursToSeconds($activity->activity_time )) }} of <strong>{{ $activity->activity_name }} </strong>
+                            @if($activity->likeCount > 0) <!-- Conditional: If no likes, skip to like button -->
+                                <span class="activityLikeImg" id="{{ $activity->id }}"> <span class="glyphicon glyphicon-heart" style="color:#FF5566"><span style="color:#fff;font-size:9px">{{ $activity->likeCount }}</span></span>
+                                
+                                </span>
+                            @endif
+                        </div>
                     </div>
                 @elseif ($activity->type == "read")
                     <div class="recentActivityDesc">
@@ -39,7 +45,7 @@
                     </div>
                 @endif
 
-        <div class="timeContainer"><span class="glyphicon glyphicon-time"></span><abbr class="timeago" title="{{ convertTimeIso($activity->created_at) }}">&nbsp;</abbr></div>
+        <div class="timeContainer"><span class="glyphicon glyphicon-time hidden-sm hidden-xs"></span><abbr class="timeago" title="{{ convertTimeIso($activity->created_at) }}">&nbsp;</abbr></div>
 
         <div class="activityIcon hidden-sm hidden-xs">
             @if ($activity->type == "time")
@@ -50,13 +56,6 @@
             {{HTML::image("/assets/img/badges/goalActivity.png", "Goal Activty");}}
             @endif
         </div>
-
-            @if($activity->likeCount > 0) <!-- Conditional: If no likes, skip to like button -->
-                <div class="activityLikeImg" id="{{ $activity->id }}">
-                <span class="glyphicon glyphicon-heart" style="color:#FF5566"></span>
-                <span>{{ $activity->likeCount }}</span>
-                </div>
-            @endif
 
     </div> <!-- End Activitybox-->
 </li>

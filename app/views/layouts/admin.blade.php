@@ -58,8 +58,6 @@
                 <ul class="navCustom" id="navSide">
                     <li class=""><a href="#top"><span class="glyphicon glyphicon-chevron-up"></span>Top</a></li>
                     <h5 id="sideHeader">NAVIGATION</h5>
-                    <li class="{{ Request::is( 'blog') ? 'active' : '' }}"><a href="#"><span class="glyphicon glyphicon-home"></span>Home</a></li>
-                    <li class="{{ Request::is( 'log') ? 'active' : '' }}"><a class="disabled" href="#"><span class="glyphicon glyphicon-lock"></span>Log</a></li>
                     <li class="{{ Request::is( 'blog') ? 'active' : '' }}"><a class="disabled" href="#"><span class="glyphicon glyphicon-lock"></span>Read</a></li>
                     <li class="{{ Request::is( 'dashboard') ? 'active' : '' }}"><a href="{{ URL::to('dashboard') }}"><span class="glyphicon glyphicon-dashboard"></span><span id="badge-data" class="badge pull-right hidden"></span>Dashboard</a></li>
                     <li class="{{ Request::is( 'user/*') ? 'active' : '' }}"><a href="user/{{Auth::user()->id}}"><span class="glyphicon glyphicon-user"></span>Me</a></li>

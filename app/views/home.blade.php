@@ -108,16 +108,17 @@
 
         <script type="text/javascript">
         $(function() {
+            $('ul.top-users').load('/topusers');
             $('ul.recentActivity').load('/activity-minifeed', function(){
                 jQuery("abbr.timeago").timeago();
 
                     // hide all quotes except the first
                     $('ul.recentActivity li').hide().eq(0).show();
 
-                    var pause = 4000;
+                    var pause = 6000;
                     var motion = 500;
 
-                    var quotes= $('li');
+                    var quotes= $('ul.recentActivity li');
                     var count = quotes.length;
                     var i = 0;
 
