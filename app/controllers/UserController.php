@@ -189,7 +189,6 @@ class UserController extends BaseController
 				->where('user_id',$user)
 				->get(array('activity_likes.user_id','activity_likes.act_id')))
 			->with(array('user' => $user, 'reward1' => $reward1, 'reward2' => $reward2,'reward3' => $reward3, 'reward4' => $reward4, 'reward5' => $reward5));
-
 	}
 
 	// Edit user profile
@@ -258,7 +257,6 @@ class UserController extends BaseController
 			} else {
 			return Response::json('error', 400);
 			}
-
 	}
 
 	// process image upload
@@ -321,11 +319,11 @@ class UserController extends BaseController
 		$json1 = json_encode($json1, JSON_NUMERIC_CHECK);
 		$json1 = json_decode($json1);
 
-
 		return Response::json(array(['name' => 'Current Year' ,'data' => $json], ['name' => 'Last Year' ,'data' => $json1]));
 	}
 
-	function hovercard($id){
+	function hovercard($id)
+	{
 		$count = Activity::activityTotal($id);
 		$user = User::find($id);
 		$title = Badge::find($user->rank_id)->name;
@@ -335,9 +333,5 @@ class UserController extends BaseController
 		$result = array('userFirst' => $user->first_name, 'userLast' => $user->last_name, 'pic' => $user->pic, 'created_at' => $user->created_at, 'activities' => $count, 'time' => $time, 'year' => $year, 'title' => $title);
 
 		return Response::json($result);
-
 	}
-
-
-
 }

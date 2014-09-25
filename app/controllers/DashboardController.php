@@ -4,21 +4,21 @@ class DashboardController extends BaseController
 {
 	public function index()
 	{
-		$numberOfTeamMembers = 0;
+		$numberOfTeamMembers       = 0;
 		$numberOfteamMembersReward = 0;
-		$user = Auth::user();
-		$team = $user->team_id;
-		$user_id = $user->id;
-		$points = $user->userTotalPts;
-		$userData = $user;
-		$username = $user->username;
-		$user_rank = $user->rank_id;
-		$todaysDate = date('Y-m-d');
-		$reward1 = Reward::find(1);
-		$reward2 = Reward::find(2);
-		$year = new DateTime($user->created_at);
-		$year = $year->format('Y');
-		$columns = array(DB::raw('users.id as `users_id`'), 'users.first_name', 'users.last_name', 'users.username', 'activities.id', 'activities.activity_name', 'activities.likeCount','activities.type','activities.goal_num', 'users.pic', 'activities.created_at', 'activities.activity_time');
+		$user                      = Auth::user();
+		$team                      = $user->team_id;
+		$user_id                   = $user->id;
+		$points                    = $user->userTotalPts;
+		$userData                  = $user;
+		$username                  = $user->username;
+		$user_rank                 = $user->rank_id;
+		$todaysDate                = date('Y-m-d');
+		$reward1                   = Reward::find(1);
+		$reward2                   = Reward::find(2);
+		$year                      = new DateTime($user->created_at);
+		$year                      = $year->format('Y');
+		$columns                   = array(DB::raw('users.id as `users_id`'), 'users.first_name', 'users.last_name', 'users.username', 'activities.id', 'activities.activity_name', 'activities.likeCount','activities.type','activities.goal_num', 'users.pic', 'activities.created_at', 'activities.activity_time');
 		return View::make('dashboard.index')
 			->with('title', 'Dashboard') // Page title
 			->with('name',array('first_name'=> $user->first_name, 'last_name'=> $user->last_name))

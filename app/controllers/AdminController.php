@@ -7,13 +7,13 @@ class AdminController extends baseController
 		$user = Auth::user();
 
 		return View::make('admin.index')
-		->with('title', 'Admin Panel')
-		->with('isAdmin',$user->isAdmin())
-		->with('allusers',User::orderBy('last_name', 'asc')->paginate(15))
-		->with('allteams',Team::orderBy('teamName','asc')->paginate(10))
-		->with('allrewards',RewardActivity::with('users')->paginate(10))
-		->with('userCount', User::all()->count())
-		->with('teamCount', Team::all()->count());
+			->with('title', 'Admin Panel')
+			->with('isAdmin',$user->isAdmin())
+			->with('allusers',User::orderBy('last_name', 'asc')->paginate(15))
+			->with('allteams',Team::orderBy('teamName','asc')->paginate(10))
+			->with('allrewards',RewardActivity::with('users')->paginate(10))
+			->with('userCount', User::all()->count())
+			->with('teamCount', Team::all()->count());
 	}
 
 	public function storeTeam()
@@ -139,25 +139,25 @@ class AdminController extends baseController
 				->withInput(Input::except('password'));
 		} else {
 			// store
-			$user = new User;
+			$user             = new User;
 			$user->first_name = Input::get('first_name');
-			$user->last_name = Input::get('last_name');
+			$user->last_name  = Input::get('last_name');
 			$user->email      = Input::get('email');
-			$user->username = strstr($user->email, '@', true); 
-			$user->team_id = Input::get('team');
-			$user->password = Hash::make('password1@');
+			$user->username   = strstr($user->email, '@', true); 
+			$user->team_id    = Input::get('team');
+			$user->password   = Hash::make('password1@');
 			$user->save();
 
-			$stat = new CurrentYearStat;
+			$stat          = new CurrentYearStat;
 			$stat->user_id = $user->id;
 			$stat->team_id = Input::get('team');
 			$stat->save();
 
-			$rank = new Rank;
-			$rank->user_id = $user->id;
+			$rank           = new Rank;
+			$rank->user_id  = $user->id;
 			$rank->username = $user->username;
-			$rank->rank = 0;
-			$rank->rankLw = 0;
+			$rank->rank     = 0;
+			$rank->rankLw   = 0;
 			$rank->save();
 
 			// redirect
@@ -169,7 +169,7 @@ class AdminController extends baseController
 	public function createUser()
 	{
 		$teams = Team::all()->lists('teamName','id');
-		$auth = Auth::user();
+		$auth  = Auth::user();
 		return View::make('admin.create_user')
 			->with('title', 'Create User')
 			->with('isAdmin',$auth->isAdmin())
@@ -182,9 +182,9 @@ class AdminController extends baseController
 		// read more on validation at http://laravel.com/docs/validation
 		$rules = array(
 			'first_name' => 'required',
-			'last_name'	 =>	'required',
+			'last_name'  =>	'required',
 			'email'      => 'required|email',
-			'team' 	 => 'required'
+			'team'       => 'required'
 		);
 		$validator = Validator::make(Input::all(), $rules);
 
@@ -195,11 +195,11 @@ class AdminController extends baseController
 				->withInput(Input::except('password'));
 		} else {
 			// store
-			$user = User::find($id);
-			$user->first_name       = Input::get('first_name');
-			$user->last_name        = Input::get('last_name');
-			$user->email      		= Input::get('email');
-			$user->team_id 			= Input::get('team');
+			$user             = User::find($id);
+			$user->first_name = Input::get('first_name');
+			$user->last_name  = Input::get('last_name');
+			$user->email      = Input::get('email');
+			$user->team_id    = Input::get('team');
 			$user->save();
 
 			// redirect
@@ -228,8 +228,8 @@ class AdminController extends baseController
 		$user->save();
 		
 		$email = $user->email;
-		$name = $user->first_name;
-		$data = array( 'email' => $email, 'name' => $name, 'password' => $string);
+		$name  = $user->first_name;
+		$data  = array( 'email' => $email, 'name' => $name, 'password' => $string);
 		Mail::send('emails.password_reset', $data, function($message) use($email, $name)
 		{
 		    $message->to($email, $name)->subject('Password Reset');
@@ -241,8 +241,8 @@ class AdminController extends baseController
 
 public function getAdminType($type)
 {
-    $items_per_page = Input::get('per_pg', 10);
-    $columns = array('reward_activities.*','users.first_name', 'users.last_name');
+	$items_per_page = Input::get('per_pg', 10);
+	$columns        = array('reward_activities.*','users.first_name', 'users.last_name');
 
     if ($type == 'user') {
         $items = User::orderBy('last_name', 'asc')->paginate($items_per_page);
@@ -272,7 +272,7 @@ public function getAdminType($type)
 public function getRewardFilter($filter)
 {
 	$items_per_page = Input::get('per_pg', 10);
-    $columns = array('reward_activities.*','users.first_name', 'users.last_name');
+	$columns        = array('reward_activities.*','users.first_name', 'users.last_name');
 
         $items = RewardActivity::join('users', function($join) use ($filter)
         {

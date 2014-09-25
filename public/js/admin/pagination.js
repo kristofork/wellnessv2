@@ -1,6 +1,5 @@
 $(function() {
-
-// Start of Pagination Script
+    // Start of Pagination Script
     function getPaginationSelectedPage(url) {
         var chunks = url.split('?');
         var baseUrl = chunks[0];
@@ -21,10 +20,14 @@ $(function() {
 
         $.ajax({
             url: '/admin/ajax/user',
-            data: { page: pg },
+            data: {
+                page: pg
+            },
             success: function(data) {
                 $('#users').html(data);
-                $("html, body").animate({ scrollTop: 0 }, "fast");
+                $("html, body").animate({
+                    scrollTop: 0
+                }, "fast");
             }
         });
     });
@@ -35,10 +38,14 @@ $(function() {
 
         $.ajax({
             url: '/admin/ajax/team',
-            data: { page: pg },
+            data: {
+                page: pg
+            },
             success: function(data) {
                 $('#teams').html(data);
-                $("html, body").animate({ scrollTop: 0 }, "fast");
+                $("html, body").animate({
+                    scrollTop: 0
+                }, "fast");
             }
         });
     });
@@ -48,10 +55,14 @@ $(function() {
 
         $.ajax({
             url: '/admin/ajax/reward',
-            data: { page: pg },
+            data: {
+                page: pg
+            },
             success: function(data) {
                 $('#rewards').html(data);
-                $("html, body").animate({ scrollTop: 0 }, "fast");
+                $("html, body").animate({
+                    scrollTop: 0
+                }, "fast");
             }
         });
     });
@@ -61,25 +72,25 @@ $(function() {
     $('#rewards').load('/admin/ajax/reward?page=1');
 
     // End of Pagination Script
-    
-    // Nav-Tab History with hash links
-      var hash = window.location.hash;
-      hash && $('ul.nav a[href="' + hash + '"]').tab('show');
 
-      $('#dash-nav .tabs a').click(function (e) {
+    // Nav-Tab History with hash links
+    var hash = window.location.hash;
+    hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+
+    $('#dash-nav .tabs a').click(function(e) {
         $(this).tab('show');
         var scrollmem = $('body').scrollTop();
         window.location.hash = this.hash;
         $('html,body').scrollTop(scrollmem);
-      });
+    });
     // End of Nav-Tab History
 
     // Reward Filter
     $('.reward-type input[type=radio]').on('change', function(e) {
         var value = $("input[name='filter']:checked").val()
-        $.get( "/admin/reward-filter/" + value, function( data ) {
-          $('#rewards').html(data);
+        $.get("/admin/reward-filter/" + value, function(data) {
+            $('#rewards').html(data);
         });
     });
-    
+
 });

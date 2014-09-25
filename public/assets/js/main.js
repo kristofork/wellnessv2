@@ -3,7 +3,7 @@ jQuery(document).ready(function() {
 });
 
 $(document).ready(function() {
-    
+
     $('#escapingBallG').hide(); // Hide the spinner
     $('img#teamUserPic').tooltip();
     $('.activityLikeImg img').tooltip({
@@ -123,15 +123,14 @@ function timeToSeconds(time) {
     return time[0] * 3600 + time[1] * 60;
 }
 
-function secToString(sec){
-    if (sec.length === 0)
-    {
+function secToString(sec) {
+    if (sec.length === 0) {
         return 0;
     }
-    if(60 < sec && sec <= 3600){
+    if (60 < sec && sec <= 3600) {
         return Math.floor(sec / 60) + ' minutes';
     }
-    if(3600 < sec && sec <= 86400){
+    if (3600 < sec && sec <= 86400) {
         return Math.floor(sec / 3600) + ' hours';
     }
 }

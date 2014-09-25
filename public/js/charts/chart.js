@@ -5,7 +5,7 @@ function teamChart() {
         success: function(json) {
             // Create the chart
             chart = new Highcharts.Chart({
-                credits:{
+                credits: {
                     enabled: false
                 },
                 chart: {
@@ -102,4 +102,4 @@ function activityChart() {
             });
         }
     });
-    }
+}
