@@ -46,8 +46,8 @@ $(document).ready(function() {
                 var createdDate = new Date(data.created_at.date.replace(/-/g, "/"));
                 var joined = createdDate.getFullYear();
 
-                $('.hovercard').html('<span id="hovercard-bg"><img id="bg" class="bg" src="../assets/img/site/bg/bg-02.jpg"><img class="img-circle" id="profileImg" src=/' + data.pic + '></span><h3>' + eval('data.userFirst') + ' ' + eval('data.userLast') + '</h3>' + '<div id="memberDate" class="col-md-offset-4 col-md-2"><span class="glyphicon glyphicon-calendar"></span><span>' + data.year + '</span></div><div id="memberDate" class="col-md-offset-1 col-md-2"><span class="glyphicon glyphicon-time"></span><span>' + data.time + '</span></div><div id="memberDate" class="col-md-offset-1 col-md-2"><span class="glyphicon glyphicon-stats"></span><span>' + data.activities + '</span></div><span id="label">' + data.title + '</span><span id="points">205/1000</span><div id="progress"><div class="bar" id = "reward_1" style="width:10%">10%</div></div>');
-
+                $('.hovercard').html('<span id="hovercard-bg"><img id="bg" class="bg" src="../assets/img/site/bg/bg-02.jpg"><img class="img-circle" id="profileImg" src=/' + data.pic + '></span><h3>' + eval('data.userFirst') + ' ' + eval('data.userLast') + '</h3>' + '<div id="memberDate" class="col-md-offset-4 col-md-2"><div class="glyphicon glyphicon-calendar"></div><div>' + data.year + '</div></div><div id="memberDate" class="col-md-offset-1 col-md-2"><div class="glyphicon glyphicon-time"></div><div>' + data.time + '</div></div><div id="memberDate" class="col-md-offset-1 col-md-2"><div class="glyphicon glyphicon-stats"></div><div>' + data.activities + '</div></div><div id="label">' + data.title + '</div><div id="points">205/1000</div><span id="progress"><div class="bar" id="team-reward" style="width: 10%">10%</div></span>');
+                    
             }
         });
     }

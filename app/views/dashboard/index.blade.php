@@ -6,7 +6,7 @@
     <div class="col-md-8" id="dash-nav">
         <ul class="nav tabs">
 
-            <li class="active ">
+            <li class="active">
                 <a href="#activity" data-toggle="tab">
                     <span class="hidden-xs">Stats</span>
                     <span class="glyphicon glyphicon-stats"></span>
@@ -24,7 +24,7 @@
                     <span class="glyphicon glyphicon-lock"></span>
                 </a>
             </li>
-            <li class="last ">
+            <li class="last">
                 <a href="#" data-toggle="" class="disabled">
                     <span class="hidden-xs">Weight</span>
                     <span class="glyphicon glyphicon-lock"></span>
@@ -49,7 +49,7 @@
                     <span class="glyphicon glyphicon-lock"></span>
                 </a>
             </li>
-            <li class="last ">
+            <li class="last">
                 <a href="#" data-toggle="" class="disabled">
                     <span class="hidden-xs">Team</span>
                     <span class="glyphicon glyphicon-lock"></span>
@@ -114,11 +114,11 @@
                 <div class="col-xs-2 col-md-2 stats_data_container">
                     <div class="row">
                         @if ($teamname != "Individuals")
-                        <span>{{$team_rank}} of {{$team_count}}</span>
+                            <span>{{$team_rank}} of {{$team_count}}</span>
                         @else
-                        <span>0 of 0</span>
+                            <span>0 of 0</span>
                         @endif
-                        <h5>Team Rank</h5>
+                            <h5>Team Rank</h5>
                     </div>
                 </div>
             </div>
@@ -360,7 +360,8 @@
     <!-- End of Sidebar Right-->
     <!-- Start of Recent Activity (middle column) -->
     <div class="col-md-8" id="welcome_recent_activity">
-        {{ Form::open(array('url' => 'activity-filter', 'method' => 'GET')) }}
+        <h2>Recent Activity</h2>
+        {{ Form::open(array('url' => 'activity-filter', 'method' => 'GET', 'id' => 'activity-type-form')) }}
         <div class="btn-group pull-right activity-type" data-toggle="buttons">
             <label class="btn btn-default btn-xs">
                 <input type="radio" name="filter" value="User">

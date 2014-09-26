@@ -61,7 +61,7 @@
                     <a href="#top">
                         <span class="glyphicon glyphicon-chevron-up"></span>Top</a>
                 </li>
-                <h5 id="sideHeader">NAVIGATION</h5>
+                <h5 id="sideHeader">Navigation</h5>
                 <li class="{{ Request::is( 'blog') ? 'active' : '' }}">
                     <a class="disabled" href="#">
                         <span class="glyphicon glyphicon-lock"></span>

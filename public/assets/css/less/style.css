@@ -102,7 +102,6 @@ ul.recentActivity {
   /* IE10+ */
   background: linear-gradient(to right, rgba(0, 0, 0, 0.59) 0%, rgba(33, 33, 33, 0.6) 18%, rgba(33, 33, 33, 0.6) 33%, rgba(33, 33, 33, 0.6) 45%, rgba(0, 0, 0, 0.59) 100%);
   /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#96000000', endColorstr='#96000000', GradientType=1);
   /* IE6-9 */
 }
 .teamMemberPic {
@@ -214,6 +213,7 @@ img#teamUserPic {
 }
 #welcome_recent_activity h2 {
   color: #fff;
+  font-size: 18px;
 }
 .admin_usersCol,
 .admin_edituser {
@@ -435,6 +435,7 @@ ul.top-users li {
 }
 ul.recentActivity {
   padding: 0 10px;
+  margin-top: 20px;
 }
 .activityHR {
   background-image: -moz-linear-gradient(left center, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.75), rgba(0, 0, 0, 0));
@@ -756,7 +757,6 @@ fieldset#picFormBtn {
   /* IE10+ */
   background: linear-gradient(to right, rgba(0, 0, 0, 0.59) 0%, rgba(33, 33, 33, 0.6) 18%, rgba(33, 33, 33, 0.6) 33%, rgba(33, 33, 33, 0.6) 45%, rgba(0, 0, 0, 0.59) 100%);
   /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#96000000', endColorstr='#96000000', GradientType=1);
   /* IE6-9 */
   padding: 16px;
   color: #fff;
@@ -766,57 +766,6 @@ fieldset#picFormBtn {
 }
 .browser-icon {
   float: left;
-}
-/* Goal page */
-.scroll-block {
-  color: #FFFFFF;
-  margin-top: -10px;
-  padding-bottom: 80px;
-  padding-top: 80px;
-  position: relative;
-  width: 100%;
-  text-align: center;
-}
-.scroll-block h2 {
-  font-family: 'Chelsea Market', cursive;
-  font-weight: 400;
-  line-height: normal;
-}
-.goals-block {
-  background-color: #222222;
-}
-.scroll-block img {
-  margin-bottom: 2%;
-  margin-top: 2%;
-}
-.goals-block p {
-  font-family: 'Nothing You Could Do', cursive;
-  font-weight: 400;
-  font-size: 22px;
-  line-height: normal;
-  margin-left: 2%;
-  margin-right: 2%;
-}
-.how-block {
-  background-color: #EE5166;
-}
-.what-block {
-  background-color: #000;
-}
-.what-block p {
-  font-family: 'Chelsea Market', cursive;
-  font-weight: 400;
-}
-.achieve-block {
-  background-color: #2CDA52;
-}
-.achieve-block p {
-  font-family: 'Chelsea Market', cursive;
-  font-weight: 400;
-}
-.achieve-block span {
-  font-size: 60px;
-  line-height: normal;
 }
 #toggleSidebar {
   -webkit-transition-duration: 0.5s;
@@ -1034,7 +983,7 @@ hr {
   display: block;
 }
 .like-heart {
-  cursor: pointer ;
+  cursor: pointer;
   margin-top: 1em;
   text-align: center;
 }
@@ -1104,6 +1053,7 @@ div.admin.teams {
 }
 /* Hover Card */
 .hovercard {
+  font-size: 12px;
   display: none;
   position: absolute;
   width: 300px;
@@ -1155,6 +1105,7 @@ div.admin.teams {
   bottom: 0;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
   height: 10px;
+  line-height: 10px;
   margin-bottom: 5px;
   overflow: hidden;
   position: absolute;
@@ -1166,18 +1117,16 @@ div.admin.teams {
   background-color: #68E568;
 }
 .hovercard #label {
-  bottom: -12px;
   display: block;
-  margin-left: 5px;
   position: relative;
   text-align: center;
   width: 32%;
+  font-size: 12px;
 }
 .hovercard #points {
   bottom: 10px;
   font-size: 10px;
   display: block;
-  margin-left: 5px;
   width: 32%;
   text-align: center;
   position: relative;
@@ -1436,6 +1385,14 @@ div.ui-datepicker {
 }
 li.userInfo {
   height: 50px;
+}
+/* Activity Type Form */
+#activity-type-form {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-right: 40px;
+  margin-top: 20px;
 }
 /* Dashboard Stats */
 #img-container {

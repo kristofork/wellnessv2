@@ -20,7 +20,6 @@ Highcharts.theme = {
     title: {
         style: {
             color: '#E0E0E3',
-            textTransform: 'uppercase',
             fontSize: '20px'
         }
     },
