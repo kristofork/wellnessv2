@@ -1,4 +1,35 @@
 /* Site Colors */
+/* Fonts */
+@font-face {
+  font-family: DejaVuSans;
+  src: url("../../fonts/dejavu-sans/DejaVuSans.ttf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: SourceSansPro-Regular;
+  src: url("../../fonts/source-sans-pro/SourceSansPro-Regular.otf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: SourceSansPro-Bold;
+  src: url("../../fonts/source-sans-pro/SourceSansPro-Bold.otf");
+}
+body {
+  font-family: "SourceSansPro-Regular", sans-serif;
+  font-size: 16px;
+}
+h1 {
+  font-size: 3.998em;
+}
+h2 {
+  font-size: 2.827em;
+}
+h3 {
+  font-size: 1.999em;
+}
+h4 {
+  font-size: 1.414em;
+}
 /* Background */
 #background {
   top: 0;
@@ -12,9 +43,6 @@
 .bg {
   width: 100%;
   height: 100%;
-}
-body {
-  font-family: Open Sans, Telex, Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 @media (min-width: 992px) {
   .cover-container {
@@ -64,12 +92,10 @@ li.headProfile {
 }
 #welcomeBox {
   color: #fff;
-  text-shadow: 1px 1px #222;
 }
-#welcomeBox #slogan {
-  font-family: 'Calligraffitti', cursive;
-  font-size: 1.5em;
-  letter-spacing: 2px;
+#welcomeBox h1 {
+  font-size: 3.998em;
+  font-family: DejaVuSans;
 }
 #home_recent_activity {
   margin-top: 56px;
@@ -80,6 +106,10 @@ li.headProfile {
   background-color: rgba(0, 0, 0, 0.6);
   color: #fff;
   border: none;
+}
+#login-form label {
+  font-weight: 400;
+  font-size: 1em;
 }
 ul.recentActivity {
   list-style-type: none;

@@ -57,15 +57,21 @@
                 </div>
 
     <div class="cover-container">
-
-            <div class="col-md-offset-1 col-md-5 well well-small" id="home_recent_activity" style="overflow:hidden">
+            
+        <div class="col-md-offset-1 col-md-5">
+            <div id="welcomeBox">
+                <h1>Wellness</h1>
+                <h4>by Urban Engineers, Inc.</h4>
+            </div> 
+        </div>
+  
+            <div class="col-md-offset-1 col-md-5 well well-small hidden" id="home_recent_activity" style="overflow:hidden">
+ 
                     <ul class="recentActivity"></ul>
             </div>
 
             <div class="col-md-3 col-md-offset-1">
-                <div id="welcomeBox">
-                    <h3>Welcome to Wellness</h3>
-                </div>
+
                     
                     {{ Form::open(array('url'=>'login','action'=> 'POST', 'class' => 'well form-horizontal', 'id'=> 'login-form', 'role' => 'form')) }}
                         <div class="form-group">
@@ -95,7 +101,8 @@
                     {{ Form::close() }}
 
             </div>
-            <div class="col-md-offset-1 col-md-5 well well-small" id="home_recent_activity" style="margin-top:-120px">
+
+            <div class="col-md-offset-1 col-md-5 well well-small hidden" id="home_recent_activity" style="margin-top:-120px">
                 <ul class="top-users"></ul>
             </div>
 
