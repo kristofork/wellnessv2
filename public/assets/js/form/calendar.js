@@ -22,7 +22,9 @@ function minDate() {
 
 $(document).ready(function($) {
     $("#datepicker, #datepicker-running").datepicker({
-        inline: true,
+        showOn: "button",
+        buttonImage: "../assets/img/site/calendar-blk.png",
+        buttonImageOnly: true,
         dateFormat: 'yy-mm-dd',
         altField: '#activity_datepicker',
         altFormat: 'yy-mm-dd',
@@ -40,7 +42,7 @@ $(document).ready(function($) {
             var dateFormatted = $.datepicker.formatDate('MM d, yy', theDate); // Ex. November 11, 2013
             $("#date_value").text(dateFormatted);
             // Reset slider back to starting position
-            $("#time_slider").slider({
+            $("#time_slider2").slider({
                 value: 15
             });
             $.ajax({

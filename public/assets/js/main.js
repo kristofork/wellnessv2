@@ -3,8 +3,8 @@ jQuery(document).ready(function() {
 });
 
 $(document).ready(function() {
-
-    $('#escapingBallG').hide(); // Hide the spinner
+    // Tooltips
+    $('.bouncywrap').hide(); // Hide the spinner
     $('img#teamUserPic').tooltip();
     $('.activityLikeImg img').tooltip({
         placement: "top"
@@ -16,6 +16,7 @@ $(document).ready(function() {
     $('.like-heart').tooltip({
         placement: "right"
     });
+    $("#day, #week, #date_value, div.intensity, #points").tooltip();
 
     // Navigation - return page to the top
     $("a[href='#top']").click(function() {
@@ -75,41 +76,37 @@ $(document).ready(function() {
             }, 350, false);
         });
 
-    // Applaud
-    $(".applaud").bind('oanimationend animationend webkitAnimationEnd', function(event) {
-        var id = parseInt($(this).attr('id'));
-        $.ajax({
+    // Like System
+    $(".like-heart").on('click', function(event) { // likeClass onClick 
+        var id = parseInt($(this).attr('id'));      // get id from this activity
+        $.ajax({                                    // create  ajax request to post with id from activity
             type: "POST",
             data: id,
             dataType: "json",
             url: "applaud/" + id,
             success: function(data) {
                 // Extracts data from array
-                imgpath = data.pic;
-                countnum = data.newCount;
-                // create the html img for the user
-                var userimg = '<img id="likeUserPic" src="../' + imgpath + '">';
-                $("#" + id + ".applaud").hide(); // Takes away applaud spinner
-                if ($("#" + id + ".activityLikeImg").length == 0) // if div does NOT exist
+                countnum = data.newCount;         // Still need the updated count 
+                $("#" + id + ".like-heart").hide(); // Takes away applaud spinner - (KEEP) to remove like button
+                console.log($("#" + id + ".activityLikeImg").length);
+                if ($("#" + id + ".activityLikeImg").length == 0)
                 {
-                    $("li#" + id).after("<div class='likecount' id=" + id + "></div><div class='activityLikeImg' id=" + id + "></div>");
+                    $("li#" + id + " .activityStatsContainer").append("<div class='activityLikeImg'><span class='glyphicon glyphicon-heart' style='color:#FF5566'></span><span class='like-count'></span></div>");
                 }
-                // Update animation of new like count
-                $("#" + id + ".likecount").fadeOut('slow', function() {
-                    $("#" + id + ".likecount").html(countnum);
-                    $("#" + id + ".likecount").fadeIn('slow');
+                // Update animation of new like count   (Keep) 
+                $("#" + id + " .like-count").fadeOut('slow', function() {
+                    $("#" + id + " .like-count").html("&nbsp;"+countnum);
+                    $("#" + id + " .like-count").fadeIn('slow');
                 });
-                // Slide in user img from right to left.
-                $(userimg).hide().css({
-                    "margin-left": "100%"
-                }).appendTo("#" + id + ".activityLikeImg").show().animate({
-                    "margin-left": "0%"
-                }, 1500, "easeOutBounce");
             }
         });
-        $(this).unbind('oanimationend animationend webkitAnimationEnd');
         return false;
     });
+    
+    
+    
+    
+    
     // Initalize the date limits for time.
     datelimits();
     // Browser limitations
@@ -228,9 +225,9 @@ function getGoal() {
 
 // Week and Day Restrictions
 function datelimits() {
-    var weekTime = $(".time-list span#week").text();
+    var weekTime = $("#logDataRow span#week").text();
     var weekSeconds = timeToSeconds(weekTime);
-    var dayTime = $(".time-list span#day").text();
+    var dayTime = $("#logDataRow span#day").text();
     var daySeconds = timeToSeconds(dayTime);
     var weekMax = (28800 - weekSeconds) / 60;
     var dayMax = (7200 - daySeconds) / 60;
@@ -238,29 +235,30 @@ function datelimits() {
     if (daySeconds == 7200 && weekSeconds == 28800) { // Day and week limits are reached
         $('button#submitact[type="submit"]').attr('disabled', 'disabled');
         $("span#week, span#day").css("color", "red");
-        $("#time_slider").slider("option", "disabled", true);
+        $("#time_slider2").slider("option", "disabled", true);
     } else if (daySeconds >= 7200) { // Day limit is reached
         $('button#submitact[type="submit"]').attr('disabled', 'disabled');
         $("span#day").css("color", "red");
-        $("#time_slider").slider("option", "disabled", true);
+        $("#time_slider2").slider("option", "disabled", true);
     } else if (weekSeconds >= 28800) // Week limit is reached
     {
         $('button#submitact[type="submit"]').attr('disabled', 'disabled');
         $("span#week, span#day").css("color", "red");
-        $("#time_slider").slider("option", "disabled", true);
+        $("#time_slider2").slider("option", "disabled", true);
     } else {
         if (weekMax < dayMax) {
             newMax = weekMax;
         } else {
             newMax = dayMax;
         }
-        $("#time_slider").slider({
+        $("#time_slider2").slider({
             max: newMax
         });
+        $("#time_slider2").slider("pips");
         $("#time_val").attr('value', "00:15:00");
         $("#time_value").text("00:15:00");
         $('button#submitact[type="submit"]').removeAttr('disabled');
-        $("#time_slider").slider("option", "disabled", false);
+        $("#time_slider2").slider("option", "disabled", false);
         $("span#week, span#day").css("color", "rgb(85, 253, 85)");
     }
 }

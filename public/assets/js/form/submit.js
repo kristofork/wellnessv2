@@ -19,18 +19,23 @@ $(document).ready(function() {
             cache: false,
             dataType: "json",
             beforeSend: function() {
-                $('#escapingBallG').show(); // Show the spinner
+                    $('.bouncywrap').show(); // Show the spinner                
             },
             complete: function() {
-                $('#escapingBallG').hide(); // Hide the spinner
+                $('.bouncywrap').delay(50000).hide(); // Hide the spinner
             },
             success: function(result) {
                 if (result.success == true) {
                     var d = new Date();
                     var n = d.toISOString();
-                    html = "<li class='activityItem'><div class='activityBox'>";
-                    html += "<div class='recentActivityDesc'><div class='profilePicContainer'><span rel='hovercard' data-url='190'><div class='hovercard'></div><img id='profilePic' src='" + result.userpic + "' /></span></div><div class='recentActivityName'>" + result.firstname + " " + result.lastname.charAt(0) + "." + "</div><div class='recentActivityText'>Logged " + result.acttime + " of <strong>" + result.actname + "</strong> </div></div>";
-                    html += "<div class='timeContainer'><span class='glyphicon glyphicon-time'></span><abbr class='timeago' title='" + n + "'> " + now + "</abbr></div>";
+                    html =  "<li class='activityItem'><div class='activityBox'>";
+                    html += "<div class='recentActivityDesc'>";
+                    html += "<div class='profilePicContainer'><span rel='hovercard' data-url='190'><div class='hovercard'></div><img id='profilePic' src='" + result.userpic + "' /></span></div>";
+                    html += "<div class='recentActivityName'>" + result.firstname + " " + result.lastname.charAt(0) + "." + "</div>";
+                    html += "<div class='recentActivityText'>Logged " + result.acttime + " of <strong>" + result.actname + "</strong> </div></div>";
+                    html += "<div class='activityStatsContainer'>";
+                    html += "<div class='timeContainer'><span class='glyphicon glyphicon-time' style='color:#55ffb6'></span> <abbr class='timeago' title='" + n + "'></abbr></div>";
+                    html += "</div>"; // End of the activityStatsContainer
                     html += "<div class='activityIcon'><img src='/assets/img/badges/timeActivity.png' /></div>";
                     html += " </div></li><hr class='activityHR' />";
 
@@ -39,13 +44,16 @@ $(document).ready(function() {
                             opacity: "1"
                         }, 600);
                     });
+                    
+                    // Call Timeago
+                    jQuery("abbr.timeago").timeago();
                     // Update the Time for the day and week with limits
                     getTime(actdate);
                     // Reset the form
                     $("#activity_datepicker").datepicker('setDate', new Date());
                     $("span#date_value").replaceWith("Today");
                     $("input#activity_text_input").val("");
-                    $("#time_slider").slider("value", $("#time_slider").slider("option", "min"));
+                    $("#time_slider2").slider("value", $("#time_slider2").slider("option", "min"));
                     $("span#time_value").text("00:15:00");
                     $("#time_val").val("00:15:00");
                     $(".intensity").find(".active").removeClass("active");

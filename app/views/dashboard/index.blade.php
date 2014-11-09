@@ -125,90 +125,83 @@
         </div>
         <div class="tab-pane" id="log">
             <form id="activity_form" name="activity_form" method="post">
-                <div class="logSide-container container-fluid">
-                    <ul id="navSide" class="time-list">
-                        <li id="header">
-                            <span class="glyphicon glyphicon-time"></span>
-                        </li>
-                        <li id="timeContainer">
-                            <span id="day">0:00</span>
-                            <span>Day Total</span>
-                        </li>
-                        <li id="timeContainer">
-                            <span id="week">0:00</span>
-                            <span>Week Total</span>
-                        </li>
-                    </ul>
-                </div>
-                <div id="datepicker-container" class="hidden-xs">
-                    <div id="datepicker-center">
-                        <div id="datepicker"></div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="log-row col-md-offset-2 col-md-6 col-sm-offset-2 col-sm-6 col-xs-offset-3 col-xs-9">
-                        <div class="col-md-8 col-sm-8 col-xs-8">
-                            <div class="summary_item">Date:
-                                <span id="date_value">Today</span>
-                                <input type="hidden" id="activity_datepicker" name="actdate" />
-                                <span class="glypicon glyphicon-date"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-4 col-xs-4">
-                            <div id="points" class="summary_item">Points:
-                                <span id="points_value">2</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="log-row col-md-offset-2 col-md-6 col-sm-offset-2 col-sm-6 col-xs-offset-3 col-xs-6">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
+                 <div id="logInputRow" class="row">
+                        <!-- Spinner Start -->
+                          <div class="center">
+                              <div class="bouncywrap">
+                              
+                                    <div class="dotcon dc1">
+                                    <div class="dot"></div>
+                                    </div>
+                              
+                                    <div class="dotcon dc2">
+                                    <div class="dot"></div>
+                                    </div>
+                              
+                                    <div class="dotcon dc3">
+                                    <div class="dot"></div>
+                                    </div>
+                              
+                              </div>
+                          </div>
+                            <!-- Spinner Stop -->
+                    <div class="col-md-offset-1 col-md-8 col-sm-12 col-xs-12">
                             <input id="activity_text_input" name="activity_name" type="text" class="form-control" placeholder="Activity" />
                         </div>
-                    </div>
-                    <div class="log-row col-md-offset-2 col-md-6 col-sm-offset-2 col-sm-6 col-xs-offset-3 col-xs-9">
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <div class="summary_item">Time:
-                                <span id="time_value">00:15:00</span>
-                            </div>
-                            <input id="time_val" type="hidden" name="activity_time" />
-                            <div id="time_slider" class="custom-slide"></div>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <div class="summary_item">Intensity:</div>
-
-                            <div class="btn-group-container">
-                                <div class="btn-group intensity" data-toggle="buttons">
-                                    <label class="btn btn-primary low">
-                                        <input type="radio" name="actintensity" id="intLow" value="1">
-                                        <span class="glyphicon glyphicon-fire" style="color:yellow"></span>
-                                    </label>
-                                    <label class="btn btn-primary moderate active">
-                                        <input type="radio" name="actintensity" id="intMod" value="2">
-                                        <span class="glyphicon glyphicon-fire" style="color:orange"></span>
-                                    </label>
-                                    <label class="btn btn-primary high">
-                                        <input type="radio" name="actintensity" id="intHigh" value="3">
-                                        <span class="glyphicon glyphicon-fire" style="color:red"></span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <input id="points_hidden" size="2" name="factpt" type="hidden" />
-                    <div class="log-row col-md-offset-2 col-md-6 col-sm-offset-2 col-sm-6 col-xs-offset-3 col-xs-6">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-md-2 col-sm-12 col-xs-12">
                             <button id="submitact" type="submit" class="btn btn-info btn-block">Submit</button>
-                            <!-- Spinner Start -->
-                            <div id="escapingBallG">
-                                <div id="escapingBall_1" class="escapingBallG">
-                                </div>
-                            </div>
-                            <!-- Spinner Stop -->
+
                         </div>
-                    </div>
+                        <div id="timeSliderContainer" class="col-md-offset-1 col-md-8 col-sm-12 col-xs-12">
+                            <div id="time_slider2" class="custom-slide"></div>
+                            <input id="time_val" type="hidden" name="activity_time" />
+                        </div>
+                        <div id="timeSliderContainer" class="col-md-2">
+                            <div class="summary_item">Time:
+                                <span id="time_value"></span>
+                            </div>
+                            
+                        </div>
+                </div>
+                <!-- End of Row -->
+                 <div id="logDataRow" class="row">
+                     <div class="col-md-3 logDataCol">
+                        <span id="day" title="Total amount of hours logged on for the current day selected">0:00</span>
+                        <span>day |</span>
+                        <span id="week" title="Total amount of hours logged on for the current week selected">0:00</span>
+                        <span>week</span>   
+                     </div>  
+                     <div class="col-md-3 logDataCol">
+                        <div class="summary_item"><input type="hidden" id="datepicker" name="actdate" />
+                            <span id="date_value" title="Date selected">Today</span>
+                        </div>
+                     </div>
+
+                     <div class="col-md-3 logDataCol">
+                        <div class="btn-group-xs intensity" data-toggle="buttons" title="Intensity of activity">
+                            <label class="btn low">
+                                <input type="radio" name="actintensity" id="intLow" value="1">
+                                <span class="glyphicon glyphicon-fire" style="color:yellow"></span>
+                            </label>
+                            <label class="btn moderate active">
+                                <input type="radio" name="actintensity" id="intMod" value="2">
+                                <span class="glyphicon glyphicon-fire" style="color:orange"></span>
+                            </label>
+                            <label class="btn high">
+                                <input type="radio" name="actintensity" id="intHigh" value="3">
+                                <span class="glyphicon glyphicon-fire" style="color:red"></span>
+                            </label>
+                        </div>
+                     </div>
+                     <div class="col-md-3 logDataCol">
+                        <div id="points" class="summary_item" title="Total amount of points for entered activity">Points:
+                            <span id="points_value">2</span>
+                        </div>
+                     </div>
+                        
+                        <input id="points_hidden" size="2" name="factpt" type="hidden" />
+
+                    
                 </div>
                 <!-- End of Row -->
             </form>
@@ -360,7 +353,7 @@
     <!-- End of Sidebar Right-->
     <!-- Start of Recent Activity (middle column) -->
     <div class="col-md-8" id="welcome_recent_activity">
-        <h2>Recent Activity</h2>
+        <h3>Recent Activity</h3>
         {{ Form::open(array('url' => 'activity-filter', 'method' => 'GET', 'id' => 'activity-type-form')) }}
         <div class="btn-group pull-right activity-type" data-toggle="buttons">
             <label class="btn btn-default btn-xs">

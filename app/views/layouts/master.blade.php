@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>
-        @section('title') Fitness Force 2.1 @show
+        @section('title') Wellness 2 @show
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--[if lt IE 10]>
@@ -22,9 +22,6 @@
     <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
     <!-- CSS are placed here -->
     {{ HTML::style('assets/css/bootstrap.css') }} {{ HTML::style('assets/css/less/style.css') }} {{ HTML::style('assets/css/spinner.css') }} {{ HTML::style('assets/css/jquery.sidr.dark.css') }} {{ HTML::style('assets/css/jquery-ui-slider-pips.css') }}
-    <link href='http://fonts.googleapis.com/css?family=Telex' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,400,600' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
@@ -61,7 +58,7 @@
                     <a href="#top">
                         <span class="glyphicon glyphicon-chevron-up"></span>Top</a>
                 </li>
-                <h5 id="sideHeader">Navigation</h5>
+                <h4 id="sideHeader">Navigation</h4>
                 <li class="{{ Request::is( 'blog') ? 'active' : '' }}">
                     <a class="disabled" href="#">
                         <span class="glyphicon glyphicon-lock"></span>
@@ -136,6 +133,7 @@
     @endif
     <script type="text/javascript" src="{{asset('assets/js/slider-pips/jquery-ui-slider-pips.js')}}"></script>
 
+    {{ HTML::script('assets/js/retina.min.js')}}
 </body>
 
 </html>

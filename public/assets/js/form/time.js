@@ -1,5 +1,5 @@
 $(document).ready(function($) {
-    $("#time_val").attr('value', '00:15:00');
+    //$("#time_val").attr('value', '00:15:00');
     var p = {
         0: "00:15:00"
     };
@@ -17,7 +17,7 @@ $(document).ready(function($) {
     function SummaryPoints() {
         /* Points summary */
         var sliderTime = $("#time_value").text();
-        var intensity = $(".btn-group label.active").children('input').attr("value");
+        var intensity = $(".btn-group-xs label.active").children('input').attr("value");
         var points = 2;
         switch (sliderTime) {
             case "00:15:00":
@@ -51,7 +51,19 @@ $(document).ready(function($) {
         $("#points_value").text(points);
         $("#points_hidden").val(points);
     }
-
+    $("#time_slider2").slider({
+        min:15,
+        max:120,
+        step:15,
+        change: function(event,ui){
+            SummaryTime(ui);
+            SummaryPoints();
+        },
+        slide: function(event,ui){
+            SummaryTime(ui);
+            SummaryPoints();
+        }
+    });  
     $("#time_slider").slider({
         min: 15,
         max: 120,
@@ -65,6 +77,8 @@ $(document).ready(function($) {
             SummaryPoints();
         }
     });
-    $("#time_slider").slider("pips").slider("float");
+    
+    
+   $("#time_slider2").slider("pips");
 
 });
