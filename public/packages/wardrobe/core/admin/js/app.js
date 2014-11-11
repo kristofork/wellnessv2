@@ -8,7 +8,7 @@ __p += '<form class="form-horizontal center">\n  <div id="js-errors" class="hide
 ((__t = ( Lang.account_saved )) == null ? '' : __t) +
 '\n  </div>\n  <div class="control-group">\n    <label class="control-label" for="first_name">' +
 ((__t = ( Lang.account_first_name )) == null ? '' : __t) +
-'</label>\n    <div class="controls">\n      <input type="text" id="first_name" name="userFirst" placeholder="' +
+'</label>\n    <div class="controls">\n      <input type="text" id="first_name" name="first_name" placeholder="' +
 ((__t = ( Lang.account_first_name )) == null ? '' : __t) +
 '">\n    </div>\n  </div>\n  <div class="control-group">\n    <label class="control-label" for="last_name">' +
 ((__t = ( Lang.account_last_name )) == null ? '' : __t) +
@@ -48,9 +48,9 @@ var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
 function print() { __p += __j.call(arguments, '') }
 with (obj) {
 __p += '<a href="#" class="details">\n  <img src="" class="avatar img-polaroid" width="100" height="100">\n  ' +
-((__t = ( userFirst )) == null ? '' : __t) +
+((__t = ( first_name )) == null ? '' : __t) +
 ' ' +
-((__t = ( userLast )) == null ? '' : __t) +
+((__t = ( last_name )) == null ? '' : __t) +
 '\n</a>\n';
  if (canDelete()) { ;
 __p += '\n  <a href="#" class="delete" title="' +
@@ -1203,7 +1203,7 @@ this.Wardrobe.module("AccountApp.List", function(List, App, Backbone, Marionette
       return this.listenTo(view, "childview:account:delete:clicked", function(child, args) {
         var confirmMsg, model;
         model = args.model;
-        confirmMsg = Lang.account_delete_confirm.replace("##first_name##", _.escape(model.get("userFirst"))).replace("##last_name##", _.escape(model.get("userLast")));
+        confirmMsg = Lang.account_delete_confirm.replace("##first_name##", _.escape(model.get("first_name"))).replace("##last_name##", _.escape(model.get("last_name")));
         if (confirm(confirmMsg)) {
           return model.destroy();
         } else {
@@ -1618,7 +1618,7 @@ this.Wardrobe.module("Views", function(Views, App, Backbone, Marionette, $, _) {
       $userSelect = this.$("#js-user");
       users = App.request("get:all:users");
       users.each(function(item) {
-        return $userSelect.append($("<option></option>").val(item.id).html(item.get("userFirst") + " " + item.get("userLast")));
+        return $userSelect.append($("<option></option>").val(item.id).html(item.get("first_name") + " " + item.get("last_name")));
       });
       if (this.model.isNew()) {
         user = App.request("get:current:user");

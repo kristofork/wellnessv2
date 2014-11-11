@@ -100,7 +100,7 @@ li.headProfile {
   margin-top: 5em;
 }
 #welcomeBox {
-  color: #efeee9;
+  color: #cccccc;
 }
 #welcomeBox h1 {
   font-size: 3.998em;
@@ -113,7 +113,7 @@ li.headProfile {
 #login-form,
 #home_recent_activity {
   background-color: rgba(0, 0, 0, 0.6);
-  color: #efeee9;
+  color: #cccccc;
   border: none;
 }
 #login-form label {
@@ -251,7 +251,7 @@ img#teamUserPic {
   margin-bottom: 10px;
 }
 #welcome_recent_activity h3 {
-  color: #efeee9;
+  color: #cccccc;
 }
 .admin_usersCol,
 .admin_edituser {
@@ -280,7 +280,7 @@ img#teamUserPic {
 .recentActivityText {
   padding-left: 60px;
   padding-top: .8em;
-  color: #efeee9;
+  color: #cccccc;
 }
 .profilePicContainer {
   border: #fff 3px solid;
@@ -509,7 +509,7 @@ ul.recentActivity {
   position: relative;
 }
 .like-count {
-  color: #efeee9;
+  color: #cccccc;
 }
 /* Navigation Bar */
 ul.navCustom li p,
@@ -549,7 +549,7 @@ ul.navCustom {
   background-image: linear-gradient(to bottom, #151515, #040404);
   background-repeat: repeat-x;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  color: #efeee9;
+  color: #cccccc;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 1px 0 rgba(255, 255, 255, 0.075);
   float: right;
@@ -580,7 +580,7 @@ ul.navCustom {
 }
 .sidebar-right {
   background-color: #222222;
-  color: #efeee9;
+  color: #cccccc;
 }
 .sidebar-padding {
   padding: 10px;
@@ -595,7 +595,7 @@ ul.navCustom {
 #navSide > li a,
 #navTeam > li a,
 #navSide > li > a > #nav-text {
-  color: #efeee9;
+  color: #cccccc;
   font-size: 1em;
   line-height: 40px;
 }
@@ -659,7 +659,7 @@ ul#navSide li.active a #nav-text {
 abbr.timeago {
   border-bottom: 0px none;
   cursor: auto;
-  color: #efeee9;
+  color: #cccccc;
 }
 .statsContainer {
   border-bottom: groove 1px;
@@ -756,7 +756,7 @@ img#profile {
 }
 #loginBtn {
   background-color: #00aaff;
-  border-color: #efeee9;
+  border-color: #cccccc;
   display: inline-block;
   float: right;
 }
@@ -1232,7 +1232,7 @@ div.admin.teams {
   border-radius: 0;
 }
 .tab-pane {
-  color: #efeee9;
+  color: #cccccc;
 }
 #timeSliderContainer {
   margin-top: 1em;
@@ -1532,5 +1532,31 @@ ul#fav-activity li {
     float: right;
     margin-top: 3em;
   }
+}
+/*******
+*  Blog *
+*******/
+.post h2 {
+  text-align: center;
+  padding-top: .1em;
+}
+.post div.image > img {
+  float: left;
+  width: 11em;
+  padding-right: 2em;
+}
+.post div.date {
+  color: #cccccc;
+  margin-top: -0.8em;
+  text-align: center;
+  font-size: .8em;
+  color: #646464;
+}
+div.content.bubble {
+  font-size: 1.2em;
+  padding-top: 1.25em;
+  padding-right: 5em;
+  line-height: 1.4em;
+  color: #cccccc;
 }
 /*# sourceMappingURL=style.css.map */

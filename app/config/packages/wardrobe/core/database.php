@@ -14,7 +14,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'fitforcedb',
+			'database'  => 'wellness',
 			'username'  => 'root',
 			'password'  => '',
 			'charset'   => 'utf8',

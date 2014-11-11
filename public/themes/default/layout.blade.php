@@ -31,11 +31,11 @@
         <!-- Navbar -->
             <div class="navContainer" >
                 <ul class="navCustom">
-                <li class=""><a class="navProfileLink" href="#">{{HTML::image(Auth::user()->pic, Auth::user()->userFirst, array("id" => "navProfileImage")) }}</a>                    
+                <li class=""><a class="navProfileLink" href="#">{{HTML::image(Auth::user()->pic, Auth::user()->first_name, array("id" => "navProfileImage")) }}</a>                    
                     <div class="userProgress">
                         <input type="text" value="0" rel="55" class="dial">
                     </div>
-                    <h5 class="linkText">{{ Auth::user()->userFirst; }}</h5>
+                    <h5 class="linkText">{{ Auth::user()->first_name; }}</h5>
                 </li>
                     <li class="{{ Request::is( 'blog') ? 'active' : '' }}"><a href="{{ URL::to('blog') }}"><img id="navImg" src="assets/img/site/newspaper.png"/></a><p>Read</p></li>
                     <li class="{{ Request::is( 'dashboard') ? 'active' : '' }}"><a href="{{ URL::to('dashboard') }}"><img id="navImg" src="assets/img/site/dashboard.png"/></a><p>Progress</p></li>
