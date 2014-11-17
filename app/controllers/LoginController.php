@@ -10,7 +10,7 @@ class LoginController extends BaseController {
 		$user = array('username' => $username,'password' => $password);
 
 		if (Auth::attempt($user)) {
-			return Redirect::route('dashboard')
+			return Redirect::route('log')
 				->with('message', 'Welcome back!');
 		}
 		else
@@ -23,7 +23,7 @@ class LoginController extends BaseController {
 				$user->password = Hash::make($password);
 				$user->save();
 				Auth::login($user);
-				return Redirect::route('dashboard')
+				return Redirect::route('log')
 					->with('message', "Welcome!");
 			}
 			else

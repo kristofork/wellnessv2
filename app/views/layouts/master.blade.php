@@ -23,12 +23,18 @@
 
     <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
     <!-- CSS are placed here -->
-    {{ HTML::style('assets/css/bootstrap.css') }} {{ HTML::style('assets/css/less/style.css') }} {{ HTML::style('assets/css/spinner.css') }} {{ HTML::style('assets/css/jquery.sidr.dark.css') }} {{ HTML::style('assets/css/jquery-ui-slider-pips.css') }}
+    {{ HTML::style('assets/css/bootstrap.css') }}
+    {{ HTML::style('assets/css/less/style.css') }}
+    {{ HTML::style('assets/css/spinner.css') }}
+    {{ HTML::style('assets/css/jquery.sidr.dark.css') }}
+    {{ HTML::style('assets/css/jquery-ui-slider-pips.css') }}
+    {{ HTML::style('assets/css/glyphicons.css')}}
+
 </head>
 
 <body>
     <div id="background">
-        <img id="background-img" class="bg" src="../assets/img/site/bg/bg-01.jpg">
+        <img id="background-img" class="bg" src="{{URL::asset('assets/img/site/bg/bg-01.jpg')}}">
     </div>
 
     <!-- Container -->
@@ -62,34 +68,34 @@
                 </li>
                 <h4 id="sideHeader">Navigation</h4>
                 <li class="{{ Request::is( 'blog') ? 'active' : '' }}">
-                    <a class="disabled" href="#">
-                        <span class="glyphicon glyphicon-lock"></span>
+                    <a href="{{ URL::to('blog') }}">
+                        <span id="navigationIcon" class="glyphicons blog"></span>
                         <span class="hidden-xs" id="nav-text">Read</span>
                     </a>
                 </li>
                 <li class="{{ Request::is( 'dashboard') ? 'active' : '' }}">
                     <a href="{{ URL::to('dashboard') }}">
-                        <span class="glyphicon glyphicon-dashboard"></span>
+                        <span id="navigationIcon" class="glyphicons dashboard"></span>
                         <span id="badge-data" class="badge pull-right hidden"></span>
                         <span class="hidden-xs" id="nav-text">Dashboard</span>
                     </a>
                 </li>
                 <li class="{{ Request::is( 'user/*') || Request::is('editprofile') ? 'active' : '' }}">
                     <a href="user/{{Auth::user()->id}}">
-                        <span class="glyphicon glyphicon-user"></span>
+                        <span id="navigationIcon" class="glyphicons user"></span>
                         <span class="hidden-xs" id="nav-text">Me</span>
                     </a>
                 </li>
                 <li class="{{ Request::is( 'goal') ? 'active' : '' }}">
                     <a class="disabled" href="#">
-                        <span class="glyphicon glyphicon-lock"></span>
+                        <span id="navigationIcon" class="glyphicons cup"></span>
                         <span class="hidden-xs" id="nav-text">Acheive</span>
                     </a>
                 </li>
                 @if($isAdmin)
                 <li class="{{ Request::is( 'admin') ? 'active' : '' }}">
                     <a class="" href="{{ URL::to('admin') }}">
-                        <span class="glyphicon glyphicon-tower"></span>
+                        <span id="navigationIcon" class="glyphicons tower"></span>
                         <span class="hidden-xs" id="nav-text">Admin</span>
                     </a>
                 </li>
@@ -136,6 +142,9 @@
     <script type="text/javascript" src="{{asset('assets/js/slider-pips/jquery-ui-slider-pips.js')}}"></script>
 
     {{ HTML::script('assets/js/retina.min.js')}}
+    {{ HTML::script('assets/js/modernizer.js')}}
+    
+
 </body>
 
 </html>

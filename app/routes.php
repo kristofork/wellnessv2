@@ -32,6 +32,7 @@ Route::post('upload', 'UserController@postUpload');
 Route::get('user/{id}', array('as' => 'showProfile', 'uses' => 'UserController@showProfile'))->before('auth');
 
 Route::get('dashboard',array('as' => 'dashboard', 'uses' => 'DashboardController@index'))->before('auth');
+Route::get('log', array('as' => 'log', 'uses' => 'LogController@index'))->before('auth');
 
 Route::get('goals',array('as' => 'goals','uses' => 'GoalController@index'))->before('auth');
 Route::post('updatePassword', array('as' => 'user.updatePassword', 'uses'=>'UserController@updatePassword'));

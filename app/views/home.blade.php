@@ -20,10 +20,13 @@
 
     <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
     <!-- CSS are placed here -->
-    {{ HTML::style('assets/css/bootstrap.css') }} {{ HTML::style('assets/css/less/style.css') }} {{ HTML::style('assets/css/spinner.css') }} {{ HTML::style('assets/css/jquery.sidr.dark.css') }} {{ HTML::style('assets/css/jquery-ui-slider-pips.css') }}
+    {{ HTML::style('assets/css/bootstrap.css') }} {{ HTML::style('assets/css/less/cover-lite.css') }} {{ HTML::style('assets/css/spinner.css') }} {{ HTML::style('assets/css/jquery.sidr.dark.css') }} {{ HTML::style('assets/css/jquery-ui-slider-pips.css') }} {{ HTML::style('assets/css/jquery.FullPage.css') }}
     <link href='http://fonts.googleapis.com/css?family=Telex' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,400,600' rel='stylesheet' type='text/css'>
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 </head>
 
 <body style="position:fixed; height: 100%; width: 100%;">
@@ -46,60 +49,66 @@
         </div>
     </div>
 
-    <div class="site-wrapper">
-        <div class="cover-container">
-        
-            <div class="col-md-offset-2 col-md-4">
-                <div id="welcomeBox">
-                    <h1>Wellness</h1>
-                    <h4>by Urban Engineers, Inc.</h4>
+    <div id="fullpage" class="site-wrapper">
+        <div class="cover-container section active">     
+            <div class="row row-centered">
+                <div class="col-md-6 col-centered">
+                    <div class="welcomeBox">
+                        <h1>Wellness</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-centered" id="company">
+                <div class="col-md-3 col-centered">
+                    <div class="welcomeBox">
+                        <h4>by Urban Engineers</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-offset-4 col-xs-4 col-sm-offset-5 col-sm-2 col-md-offset-5 col-md-2">
+                <div class="row row-centered welcomeIcon">
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <span id="iconTime" class="glyphicon glyphicon-time"><div>20k</div></span>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <span id="iconUser" class="glyphicon glyphicon-user"><div>50</div></span>
+                        
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <span id="iconHeart" class="glyphicon glyphicon-heart"><div>1k</div></span>
+                    </div>                                        
                 </div>
             </div>
         
             <div class="col-md-offset-1 col-md-5 well well-small hidden" id="home_recent_activity" style="overflow:hidden">
-        
                 <ul class="recentActivity"></ul>
             </div>
-        
-            <div class="col-md-3 col-md-offset-1">
-        
-        
-                {{ Form::open(array('url'=>'login','action'=> 'POST', 'class' => 'well form-horizontal', 'id'=> 'login-form', 'role' => 'form')) }}
-                <div class="form-group">
-        
-                    <div class="col-md-12">
-                        {{ Form::label('username', 'Username:', array('class'=> 'control-label')) }} {{ Form::text('username', Input::old('username'), array('placeholder' => 'Your Username', 'id' => 'username', 'class'=> 'form-control')) }}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-12">
-                        {{ Form::label('password', 'Password:', array('class' => 'control-label')) }} {{ Form::password('password', array('placeholder' => 'Your Password', 'id' => 'password', 'class'=> 'form-control')) }}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-9">
-                        @if(Session::has('flash_notice'))
-                        <span>{{Session::get('flash_notice')}}</span>
-                        @endif
-                    </div>
-                    <div class="col-md-3">
-                        {{ Form::submit('Login', array('class' => 'btn btn-success', 'id'=> 'loginBtn')) }}
-                    </div>
-        
-                </div>
-                {{ Form::close() }}
-        
-            </div>
-        
             <div class="col-md-offset-1 col-md-5 well well-small hidden" id="home_recent_activity" style="margin-top:-120px">
                 <ul class="top-users"></ul>
             </div>
+            
+            <div id="iconLoginPosition" class="col-xs-offset-4 col-xs-4 col-sm-offset-5 col-sm-2 col-md-offset-5 col-md-2">
+                <div class="col-md-12">
+                   <div id="iconLogin">
+                    <span class="glyphicon glyphicon-chevron-down">
+
+                    </span>
+                    </div>
+                </div>
+            </div>
+        </div>
         
+        <div class="cover-container section">
+            <div class="col-md-offset-4 col-md-4">
+                @include('_partials/loginform')
+            </div>
         </div>
     </div>
 
     {{ HTML::script('assets/js/jquery-ui-1.10.3.min.js') }} {{ HTML::script('assets/js/bootstrap/bootstrap.min.js') }} {{ HTML::script('assets/js/timeplugin.js')}}
-
+    {{ HTML::script('assets/js/jquery.easings.min.js' )}}
+    {{ HTML::script('assets/js/jquery.slimscroll.min.js') }}
+    {{ HTML::script('assets/js/jquery.fullPage.min.js') }}
 
     <script type="text/javascript">
         $(function () {
@@ -138,7 +147,16 @@
             });
         });
     </script>
-
+    <script type="text/javascript">
+		$(document).ready(function() {
+			$('#fullpage').fullpage({
+				sectionsColor: ['#f2f2f2', '#ccdcff', '#7BAABE', 'whitesmoke', '#ccddff'],
+                resize: false,
+                navigation: true,
+                navigationTooltips: ['Welcome','Login']
+			});
+		});
+    </script>
 </body>
 
 </html>

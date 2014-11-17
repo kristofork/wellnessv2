@@ -19,6 +19,12 @@
     font-family: SourceSansPro-Bold;
     src: url("../../fonts/source-sans-pro/SourceSansPro-Bold.otf");
 }
+@font-face{
+    font-family: Roboto-Thin;
+    font-style: normal;
+    font-weight: 400;
+    src: url('../../fonts/roboto/Roboto-Thin.ttf') format('truetype');
+}
 body
 {
     font-family: "SourceSansPro-Regular",  sans-serif;
@@ -252,10 +258,9 @@ img#teamUserPic {
 .red > span {
     background-color: #f0a3a3;
 }
-#welcome_recent_activity, .admin_usersCol, .admin_edituser, .user_edituser {
+#welcome_recent_activity, #container-post, .admin_usersCol, .admin_edituser, .user_edituser {
     background-color: @site_black;
-
-margin-left: 15px;
+    margin-left: 15px;
     margin-top: 5px;
     margin-bottom: 10px;
 }
@@ -605,14 +610,20 @@ ul.navCustom {
 #navSide > li a:hover, #navTeam > li a:hover {
     text-decoration: none;
 }
-ul#navSide li.active a, ul#navSide li.active a #nav-text {
+ul#navSide li.active a, ul#navSide li.active a #nav-text,#navSide li.active a span#navigationIcon:before {
     color: @site_blue;
 
 }
-#navSide li > a span {
+#navSide li > a span, #navSide li > a img, #navSide li > a span#navigationIcon {
     vertical-align: middle;
     margin-right: 20px;
     font-size: 19px;
+    padding-right: 20px;
+}    
+
+#navSide .glyphicons{
+    padding-left: 0;
+    display: inherit;
 }
 #badge-data.badge {
     position: relative;
@@ -648,7 +659,9 @@ ul#navSide li.active a, ul#navSide li.active a #nav-text {
     border-radius: 25px;
     margin-right: 10px;
 }
-#navImg {} 
+#navigationIcon:before {
+    color:@site_white;
+} 
 .timeContainer {
     text-align: left;
 }
@@ -1554,11 +1567,19 @@ ul#fav-activity li {
 .post h2{
     text-align: center;
     padding-top: .1em;
+    color:@site_blue;
 }
-.post div.image > img{
+.post div.image > img, .post #postimg{
     float:left;
-    width:11em;
+    padding-top: 2em;
     padding-right: 2em; 
+    margin-bottom: 1em;
+}
+.post div.image > img {
+    width:11em;
+}
+.post #postimg > img{
+    max-width: 20em;
 }
 .post div.date{
     color:@site_white;
@@ -1571,7 +1592,14 @@ ul#fav-activity li {
 div.content.bubble{
     font-size: 1.2em;
     padding-top: 1.25em;
-    padding-right: 5em;
+    padding-right: 2em;
     line-height: 1.4em;
     color:#cccccc;
+}
+
+div.content.bubble p{
+    word-spacing: 2px;
+}
+#container-post{
+    padding: 0 2em 2em;
 }

@@ -1795,11 +1795,12 @@ this.Wardrobe.module("Views", function(Views, App, Backbone, Marionette, $, _) {
         uploadUrl: App.request("get:url:api") + "/dropzone/image",
         allowedTypes: ["image/jpeg", "image/png", "image/jpg", "image/gif"],
         progressText: "![Uploading file...]()",
-        urlText: "<img id='postimg' src = '{filename}'/>",
+        urlText: "<img id='postimg' src = '{filename}' style='display:none'/>",
         onUploadedFile: function(json) {
           debugger;
           // set image input::hidden
-          document.getElementById("image").value = json.imagepath;
+        
+          document.getElementById("image").value = json.filename;
         },
         errorText: "Error uploading file"
       };
