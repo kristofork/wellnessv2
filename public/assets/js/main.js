@@ -98,7 +98,14 @@ $(document).ready(function() {
                     $("#" + id + " .like-count").html("&nbsp;"+countnum);
                     $("#" + id + " .like-count").fadeIn('slow');
                 });
-            }
+                var userCount = $("div#glyph-text.likes").data('count');
+                userCount = userCount + 1;
+                $("div#glyph-text.likes").data('count',userCount);
+                $("div#glyph-text.likes").html(userCount);
+            },
+            error: function(data){
+            console.log(data.responseText);
+        }
         });
         return false;
     });
@@ -234,16 +241,16 @@ function datelimits() {
     var weekValue = secondsToTime(28800 - weekSeconds);
     if (daySeconds == 7200 && weekSeconds == 28800) { // Day and week limits are reached
         $('button#submitact[type="submit"]').attr('disabled', 'disabled');
-        $("span#week, span#day").css("color", "red");
+        $("span#week, span#day").css("color", "#f27264");
         $("#time_slider2").slider("option", "disabled", true);
     } else if (daySeconds >= 7200) { // Day limit is reached
         $('button#submitact[type="submit"]').attr('disabled', 'disabled');
-        $("span#day").css("color", "red");
+        $("span#day").css("color", "#f27264");
         $("#time_slider2").slider("option", "disabled", true);
     } else if (weekSeconds >= 28800) // Week limit is reached
     {
         $('button#submitact[type="submit"]').attr('disabled', 'disabled');
-        $("span#week, span#day").css("color", "red");
+        $("span#week, span#day").css("color", "#f27264");
         $("#time_slider2").slider("option", "disabled", true);
     } else {
         if (weekMax < dayMax) {
@@ -259,7 +266,7 @@ function datelimits() {
         $("#time_value").text("00:15:00");
         $('button#submitact[type="submit"]').removeAttr('disabled');
         $("#time_slider2").slider("option", "disabled", false);
-        $("span#week, span#day").css("color", "rgb(85, 253, 85)");
+        $("span#week, span#day").css("color", "#7de0ae");
     }
 }
 //IE Check

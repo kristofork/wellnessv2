@@ -59,9 +59,9 @@ function secondsToStringShort ($secs){
 }
 
 /* Round off to the tenths place */
-function percentageRound ( $milestone, $usertime)
+function percentageRound ( $milestone, $usertime, $timedifference)
 {
-   return round (($usertime / $milestone ) * 100, 1);
+   return round ((($usertime - $timedifference) / $milestone ) * 100, 1);
 }
 
 /* Count days for deadlines */

@@ -67,15 +67,15 @@
             </div>
             <div class="col-xs-offset-4 col-xs-4 col-sm-offset-5 col-sm-2 col-md-offset-5 col-md-2">
                 <div class="row row-centered welcomeIcon">
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <span id="iconTime" class="glyphicon glyphicon-time"><div>20k</div></span>
+                    <div class="col-xs-4 col-sm-4 col-md-4 welcomeIconContainer">
+                        <span id="iconTime" class="glyphicon glyphicon-time"><div id="glyph-text">20k</div></span>
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4">
-                        <span id="iconUser" class="glyphicon glyphicon-user"><div>50</div></span>
+                        <span id="iconUser" class="glyphicon glyphicon-user"><div id="glyph-text">50</div></span>
                         
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4">
-                        <span id="iconHeart" class="glyphicon glyphicon-heart"><div>1k</div></span>
+                        <span id="iconHeart" class="glyphicon glyphicon-heart"><div id="glyph-text">1k</div></span>
                     </div>                                        
                 </div>
             </div>
@@ -98,7 +98,7 @@
             </div>
         </div>
         
-        <div class="cover-container section">
+        <div class="cover-container section" data-anchor="login">
             <div class="col-md-offset-4 col-md-4">
                 @include('_partials/loginform')
             </div>

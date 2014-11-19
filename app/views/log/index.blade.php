@@ -61,7 +61,7 @@
                         <span>week</span>   
                      </div>  
                      <div class="col-md-3 col-sm-3 col-xs-4 logDataCol">
-                        <div class="summary_item"><input type="hidden" id="datepicker" name="actdate" />
+                        <div class="summary_item"><input type="hidden" id="activity_datepicker" name="actdate" />
                             <span id="date_value" title="Date selected">Today</span>
                         </div>
                      </div>

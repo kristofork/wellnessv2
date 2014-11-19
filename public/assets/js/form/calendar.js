@@ -21,7 +21,7 @@ function minDate() {
 }
 
 $(document).ready(function($) {
-    $("#datepicker, #datepicker-running").datepicker({
+    $("#activity_datepicker, #datepicker-running").datepicker({
         showOn: "button",
         buttonImage: "../assets/img/site/calendar-blk.png",
         buttonImageOnly: true,

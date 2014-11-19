@@ -29,6 +29,7 @@
     {{ HTML::style('assets/css/jquery.sidr.dark.css') }}
     {{ HTML::style('assets/css/jquery-ui-slider-pips.css') }}
     {{ HTML::style('assets/css/glyphicons.css')}}
+    {{ HTML::style('assets/css/nprogress.css')}}
 
 </head>
 
@@ -47,14 +48,24 @@
                 {{HTML::image(Auth::user()->pic, Auth::user()->first_name, array("id" => "navProfileImage")) }}
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{Auth::user()->first_name}} {{Auth::user()->last_name}} <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li>
+                  <li class="{{ Request::is( 'log') ? 'active' : '' }}">
+                      <a href="{{ URL::to('log') }}">
+                          <span class="glyphicon glyphicon-pencil"></span> Log
+                      </a>
+                  </li>
+                   <li class="{{ Request::is( 'dashboard') ? 'active' : '' }}">
+                       <a href="{{ URL::to('dashboard') }}">
+                           <span class="glyphicon glyphicon-dashboard"></span> Dashboard
+                       </a>
+                   </li>
+                    <li class="{{ Request::is( 'editprofile') ? 'active' : '' }}">
                         <a href="/editprofile">
-                            <span class="glyphicon glyphicon-edit"></span>Edit Profile</a>
+                            <span class="glyphicon glyphicon-edit"></span> Edit Profile</a>
                     </li>
                     <li class="divider"></li>
                     <li>
                         <a href="{{ URL::to('logout')}}">
-                            <span class="glyphicon glyphicon-log-out"></span>Logout</a>
+                            <span class="glyphicon glyphicon-log-out"></span> Logout</a>
                     </li>
                 </ul>
             </li>
@@ -76,6 +87,7 @@
     {{ HTML::script('assets/js/bootstrap/bootstrap.min.js') }} 
     {{ HTML::script('assets/js/timeplugin.js')}} 
     {{ HTML::script('assets/js/jquery.hoverIntent.minified.js')}} 
+    {{ HTML::script('assets/js/nprogress.js') }}
     {{ HTML::script('assets/js/main.js')}} 
     @if($title = "Dashboard" || $title = "Profile")
         <script src="{{ asset('js/activities/new_activityCheck.js') }}"></script>

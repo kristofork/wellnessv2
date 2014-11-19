@@ -47,7 +47,7 @@
                         </div>
                         <span class="hidden" id="stats-progress">
                             <div id="progress">
-                                <div class="bar progress-high" id="team-reward" style="text-align:left;color:#000;width:{{ percentageRound($required_points,$user_points) }}%">{{ percentageRound($required_points,$user_points) }}%</div>
+                                <div class="bar progress-high" id="team-reward" style="text-align:left;color:#000;width:{{ percentageRound($required_points,$user_points,$point_difference) }}%">{{ percentageRound($required_points,$user_points,$point_difference) }}%</div>
                             </div>
                         </span>
                     </div>
@@ -74,26 +74,49 @@
             </div>
         </div>
         -->
+        <div id="userData" class="row">
+            <div class="col-md-4">
+            <span style="line-height:2.6em">{{$teamname}}</span> 
+           </div>
+           <div class="col-md-4" style="text-align:center">
+           <span>{{ $user_title }}</span> 
+            <span id="stats-progress">
+            <div id="progress">
+                <div class="bar progress-high" id="team-reward" style="text-align:left;color:#000;width:{{ percentageRound($required_points,$user_points,$point_difference) }}%">{{ percentageRound($required_points,$user_points, $point_difference) }}%</div>
+            </div>
+
+           </span>
+           
+           </div>
+           
+       </div>
     </div> <!-- End of Tint -->
     </div>
 </div>
    <div id="dashDataRow" class="">
         <div class="col-md-3 logDataCol">
             <span id="likeCount" class="glyphicons heart"></span>
-            <div id="glyph-text">107</div>  
+            <div class="likes" id="glyph-text" data-count="{{$user_like_count}}">{{$user_like_count}}</div>  
         </div> 
      <div class="col-md-3 logDataCol">
         <span id="rankCount" class="glyphicons stats"></span>
-            <div id="glyph-text">1 of 200</div> 
+            <div id="glyph-text">{{$user_rank}} of {{$user_count}}</div> 
      </div>
-
+    @foreach($rewards as $reward)
      <div class="col-md-3 logDataCol">
         <span id="timeCount" class="glyphicons stopwatch"></span>
-        <div id="glyph-text">74 of 240</div> 
+        <div id="glyph-text">{{round($user_time / 60 / 60, 1)}} of {{$reward->milestone /60 / 60}}</div> 
      </div>
+     @endforeach
      <div class="col-md-3 logDataCol">
         <span id="teamrankCount" class="glyphicons group"></span>
-        <div id="glyph-text">7 of 24</div> 
+        <div id="glyph-text">
+        @if ($teamname != "Individuals")
+            <span>{{$team_rank}} of {{$team_count}}</span>
+        @else
+            <span>0 of 0</span>
+        @endif
+        </div> 
      </div>
     </div>
     <!-- Start of Recent Activity (middle column) -->

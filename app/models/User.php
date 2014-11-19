@@ -129,6 +129,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     	$rank = Level::find($user);
     	return $rank->name;
     }
+    public static function rankPointDiff()
+    {
+        $user = Auth::user()->rank_id;
+        if ($user == 1) {
+            return 0;
+        } else
+        {
+        $rank = Level::find($user - 1);
+    	return $rank->required;
+        }
+    }
 
     public static function UserPoints($id)
     {
@@ -143,6 +154,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return User::all()->count();
     }
 
+    public static function userLikeCount()
+    {
+        return UserLike::find(Auth::user()->id)->like_count;
+    }
     public static $picRules = array(
     	'file' => 'required|mimes:jpeg|max:500',
     	);

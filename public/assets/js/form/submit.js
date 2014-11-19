@@ -21,36 +21,17 @@ $(document).ready(function () {
             beforeSend: function () {
                 // Disable the submit button
                 $('button#submitact').prop('disabled', true);
-                $('.bouncywrap').show(); // Show the spinner  ;   
+                NProgress.configure({ showSpinner: false });
+                NProgress.start();// Show the spinner  ;   
             },
             complete: function () {
                 // Hide the spinner
             },
             success: function (result) {
                 setTimeout(function () {
-                    $('.bouncywrap').hide();
+                    NProgress.done();
                     if (result.success == true) {
-                        var d = new Date();
-                        var n = d.toISOString();
-                        html = "<li class='activityItem'><div class='activityBox'>";
-                        html += "<div class='recentActivityDesc'>";
-                        html += "<div class='profilePicContainer'><span rel='hovercard' data-url='190'><div class='hovercard'></div><img id='profilePic' src='" + result.userpic + "' /></span></div>";
-                        html += "<div class='recentActivityName'>" + result.firstname + " " + result.lastname.charAt(0) + "." + "</div>";
-                        html += "<div class='recentActivityText'>Logged " + result.acttime + " of <strong>" + result.actname + "</strong> </div></div>";
-                        html += "<div class='activityStatsContainer'>";
-                        html += "<div class='timeContainer'><span class='glyphicon glyphicon-time' style='color:#55ffb6'></span> <abbr class='timeago' title='" + n + "'></abbr></div>";
-                        html += "</div>"; // End of the activityStatsContainer
-                        html += "<div class='activityIcon'><img src='/assets/img/badges/timeActivity.png' /></div>";
-                        html += " </div></li><hr class='activityHR' />";
-
-                        $(html).prependTo('ul.recentActivity').hide().slideDown("slow", function () {
-                            $("li.activityItem, img#ajaximg").animate({
-                                opacity: "1"
-                            }, 600);
-                        });
-
-                        // Call Timeago
-                        jQuery("abbr.timeago").timeago();
+                        console.log('Success!');
                         // Update the Time for the day and week with limits
                         getTime(actdate);
                         // Reset the form

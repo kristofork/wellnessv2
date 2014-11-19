@@ -20,10 +20,26 @@
   src: url("../../fonts/source-sans-pro/SourceSansPro-Bold.otf");
 }
 @font-face {
-  font-family: Roboto-Thin;
+  font-family: Roboto;
   font-style: normal;
   font-weight: 400;
+  src: url('../../fonts/roboto/Roboto-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: Roboto-Medium;
+  src: url('../../fonts/roboto/Roboto-Medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: Roboto-Thin;
+  font-style: normal;
+  font-weight: 250;
   src: url('../../fonts/roboto/Roboto-Thin.ttf') format('truetype');
+}
+@font-face {
+  font-family: Roboto-Light;
+  font-style: normal;
+  font-weight: 400;
+  src: url('../../fonts/roboto/Roboto-Light.ttf') format('truetype');
 }
 h1,
 h2,
@@ -38,6 +54,7 @@ h6 {
   color: #444;
 }
 body {
+  color: #424242;
   font-family: "SourceSansPro-Regular", sans-serif;
   font-size: 16px;
 }
@@ -56,6 +73,18 @@ h4 {
 b,
 strong {
   font-family: sourcesanspro-bold;
+}
+/* centered columns styles */
+.row-centered {
+  text-align: center;
+}
+.col-centered {
+  display: inline-block;
+  float: none;
+  /* reset the text-align */
+  text-align: left;
+  /* inline-block space fix */
+  margin-right: -4px;
 }
 /* Background */
 #background {
@@ -88,7 +117,7 @@ strong {
 }
 .headbar {
   height: 50px;
-  background-color: #dbdee4;
+  background-color: #fff;
   position: relative;
   z-index: 1;
 }
@@ -97,7 +126,7 @@ li.headProfile {
   text-decoration: none;
 }
 a.dropdown-toggle {
-  color: #3095b3;
+  color: #424242;
   text-decoration: none;
 }
 #pageTitle,
@@ -120,7 +149,7 @@ li.headProfile {
 }
 #time-summary-container h1 {
   font-family: roboto-thin, dejavusans, sans-serif;
-  color: #898989;
+  color: #424242;
   text-align: center;
 }
 /* End Log */
@@ -199,64 +228,49 @@ img#teamUserPic {
 .userProgress {
   margin-top: -45px;
 }
-.meter {
-  display: none;
-  width: 50%;
-  float: left;
-  height: 10px;
-  /* Can be anything */
-  position: relative;
-  background: #555;
-  -moz-border-radius: 25px;
-  -webkit-border-radius: 25px;
-  border-radius: 25px;
-  padding: 2px;
-  -webkit-box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
-  -moz-box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
-  box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
-}
-.meter > span {
-  display: block;
-  height: 100%;
-  -webkit-border-top-right-radius: 8px;
-  -webkit-border-bottom-right-radius: 8px;
-  -moz-border-radius-topright: 8px;
-  -moz-border-radius-bottomright: 8px;
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
-  -webkit-border-top-left-radius: 20px;
-  -webkit-border-bottom-left-radius: 20px;
-  -moz-border-radius-topleft: 20px;
-  -moz-border-radius-bottomleft: 20px;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  background-color: #54F054;
-  -webkit-box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3), inset 0 -2px 6px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3), inset 0 -2px 6px rgba(0, 0, 0, 0.4);
-  position: relative;
-  overflow: hidden;
-}
-.orange.meter {
-  background: rgba(241, 161, 100, 0.24);
-}
-.orange > span {
-  background-color: #f1a165;
-}
-.red > span {
-  background-color: #f0a3a3;
-}
 #welcome_recent_activity,
 #container-post,
 .admin_usersCol,
 .admin_edituser,
-.user_edituser {
-  background-color: #222222;
+.user_edituser,
+.masthead,
+#recent_activity_container {
+  background-color: #fff;
   margin-left: 15px;
   margin-top: 5px;
   margin-bottom: 10px;
 }
+.masthead {
+  padding: 0;
+}
+#activity.masthead {
+  background-image: url("/assets/img/teams/blur2.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.tint:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.8);
+  transition: all .3s linear;
+}
+.row#userData {
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  height: 3em;
+  width: 100%;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.02);
+}
 #welcome_recent_activity h3 {
-  color: #898989;
+  color: #f0fff0;
 }
 .admin_usersCol,
 .admin_edituser {
@@ -285,7 +299,7 @@ img#teamUserPic {
 .recentActivityText {
   padding-left: 60px;
   padding-top: .8em;
-  color: #898989;
+  color: #424242;
 }
 .profilePicContainer {
   border: #fff 3px solid;
@@ -514,7 +528,7 @@ ul.recentActivity {
   position: relative;
 }
 .like-count {
-  color: #898989;
+  color: #f27264;
 }
 /* Navigation Bar */
 ul.navCustom li p,
@@ -530,7 +544,7 @@ ul.navCustom li.active p {
   color: #00a0f0;
 }
 .navContainer {
-  background-color: #222222;
+  background-color: #424242;
   float: left;
   width: 17.5em;
   border-right: 1px solid rgba(215, 215, 215, 0.41);
@@ -554,7 +568,7 @@ ul.navCustom {
   background-image: linear-gradient(to bottom, #151515, #040404);
   background-repeat: repeat-x;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  color: #898989;
+  color: #f0fff0;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 1px 0 rgba(255, 255, 255, 0.075);
   float: right;
@@ -584,8 +598,8 @@ ul.navCustom {
   color: #fff;
 }
 .sidebar-right {
-  background-color: #222222;
-  color: #898989;
+  background-color: #424242;
+  color: #f0fff0;
 }
 .sidebar-padding {
   padding: 10px;
@@ -600,7 +614,7 @@ ul.navCustom {
 #navSide > li a,
 #navTeam > li a,
 #navSide > li > a > #nav-text {
-  color: #898989;
+  color: #f0fff0;
   font-size: 1em;
   line-height: 40px;
 }
@@ -611,7 +625,7 @@ ul.navCustom {
 ul#navSide li.active a,
 ul#navSide li.active a #nav-text,
 #navSide li.active a span#navigationIcon:before {
-  color: #3095b3;
+  color: #64beff;
 }
 #navSide li > a span,
 #navSide li > a img,
@@ -659,7 +673,7 @@ ul#navSide li.active a #nav-text,
   margin-right: 10px;
 }
 #navigationIcon:before {
-  color: #898989;
+  color: #f0fff0;
 }
 .timeContainer {
   text-align: left;
@@ -675,7 +689,7 @@ ul#navSide li.active a #nav-text,
 abbr.timeago {
   border-bottom: 0px none;
   cursor: auto;
-  color: #898989;
+  color: #f0fff0;
 }
 .statsContainer {
   border-bottom: groove 1px;
@@ -771,8 +785,8 @@ img#profile {
   width: 100%;
 }
 #loginBtn {
-  background-color: #3095b3;
-  border-color: #898989;
+  background-color: #64beff;
+  border-color: #f0fff0;
   display: inline-block;
   float: right;
 }
@@ -1038,7 +1052,7 @@ hr {
 .like-heart {
   cursor: pointer;
   text-align: center;
-  color: #3095b3;
+  color: #64beff;
 }
 /* End Spinner Style */
 @media screen and (min-width: 769px) {
@@ -1098,7 +1112,7 @@ div.admin.teams {
 }
 #reward {
   text-align: right;
-  background-color: #3095b3;
+  background-color: #64beff;
 }
 /* JCROP FIX */
 .jcrop-keymgr {
@@ -1233,7 +1247,7 @@ div.admin.teams {
   border-bottom: 5px solid #00a0f0;
 }
 #dash-nav li.active a {
-  color: #3095b3;
+  color: #64beff;
 }
 #dash-nav li a:hover,
 #dash-nav li a:focus {
@@ -1248,7 +1262,7 @@ div.admin.teams {
   border-radius: 0;
 }
 .tab-pane {
-  color: #898989;
+  color: #f0fff0;
 }
 #timeSliderContainer {
   margin-top: 1em;
@@ -1384,6 +1398,13 @@ img.ui-datepicker-trigger {
 #logInputRow {
   margin: 3em 0 2em;
 }
+#dashDataRow {
+  width: 100%;
+  color: grey;
+  background-color: #fff;
+  text-align: center;
+  height: 3em;
+}
 #logDataRow {
   color: grey;
   background-color: #fff;
@@ -1396,7 +1417,37 @@ img.ui-datepicker-trigger {
 .logDataCol {
   padding-top: .2em;
   text-align: center;
-  color: #898989;
+  color: #a2b3c0;
+}
+div#glyph-text {
+  font-size: 0.8em;
+  font-family: roboto, dejavusans, sans-serif;
+}
+#likeCount,
+#rankCount,
+#timeCount,
+#teamrankCount {
+  padding: 0;
+}
+#likeCount:before,
+#rankCount:before,
+#timeCount:before,
+#teamrankCount:before {
+  position: relative;
+  font-size: 1em;
+  margin: 0;
+}
+#likeCount:before {
+  color: #F563A1;
+}
+#rankCount:before {
+  color: #63a1f5;
+}
+#timeCount:before {
+  color: #63f590;
+}
+#teamrankCount:before {
+  color: #f5bd63;
 }
 #points {
   text-align: center;
@@ -1404,7 +1455,7 @@ img.ui-datepicker-trigger {
 #points_value,
 #date_value {
   font-size: 1em;
-  color: #00D1FF;
+  color: #64beff;
 }
 #timeContainer {
   color: #fff;
@@ -1446,7 +1497,7 @@ img.ui-datepicker-trigger {
   background-color: #E8C53A;
 }
 .progress-high {
-  background-color: #3095b3;
+  background-color: #64beff;
 }
 .progress-complete {
   background-color: #3AE878;
@@ -1476,9 +1527,10 @@ li.userInfo {
 #stats_profileImg {
   display: block;
   margin: 0 auto;
+  border: 5px solid #64E464;
 }
 #stats-progress {
-  background-color: #6C6C6C;
+  background-color: #fff;
   border-radius: 34px;
   height: 10px;
   width: 100px;
@@ -1509,10 +1561,11 @@ li.userInfo {
 }
 #stats_profile_image {
   height: 60%;
+  position: relative;
 }
 .stats_data_container .row span,
 .admin_data_container .row span {
-  color: #3095b3;
+  color: #64beff;
   font-size: 1.5em;
 }
 ul.nav.tabs li a,
@@ -1542,7 +1595,7 @@ ul.nav.tabs li a span.glyphicon {
 ul#fav-activity li {
   text-align: center;
   font-size: 28px;
-  color: #3095b3;
+  color: #64beff;
   padding: 5px;
 }
 @media (min-width: 481px) and (max-width: 768px) {
@@ -1560,7 +1613,7 @@ ul#fav-activity li {
 .post h2 {
   text-align: center;
   padding-top: .1em;
-  color: #3095b3;
+  color: #64beff;
 }
 .post div.image > img,
 .post #postimg {
@@ -1576,7 +1629,7 @@ ul#fav-activity li {
   max-width: 20em;
 }
 .post div.date {
-  color: #898989;
+  color: #f0fff0;
   margin-top: -0.8em;
   text-align: center;
   font-size: .8em;

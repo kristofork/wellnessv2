@@ -10,6 +10,7 @@ class DashboardController extends BaseController
 		$team                      = $user->team_id;
 		$user_id                   = $user->id;
 		$points                    = $user->userTotalPts;
+        $pointDifference           = User::rankPointDiff();
 		$userData                  = $user;
 		$username                  = $user->username;
 		$user_rank                 = $user->rank_id;
@@ -19,12 +20,14 @@ class DashboardController extends BaseController
 		$year                      = new DateTime($user->created_at);
 		$year                      = $year->format('Y');
 		$columns                   = array(DB::raw('users.id as `users_id`'), 'users.first_name', 'users.last_name', 'users.username', 'activities.id', 'activities.activity_name', 'activities.likeCount','activities.type','activities.goal_num', 'users.pic', 'activities.created_at', 'activities.activity_time');
-		return View::make('dashboard.index')
+		return View::make('dashboard.lite')
 			->with('title', 'Dashboard') // Page title
 			->with('name',array('first_name'=> $user->first_name, 'last_name'=> $user->last_name))
 			->with('pic',$user->pic)
 			->with('user_title', User::UserTitle()) 				// Rank title
 			->with('user_points', $points)							// User's points
+            ->with('point_difference', $pointDifference)        // Point difference
+            ->with('user_like_count', User::userLikeCount())
 			->with('user_time', $user->currentYearStats ? $user->currentYearStats->time : "0")		// User's time
 			->with('required_points',User::UserPoints($user_rank))	// Next Level Points
 			->with('teamname',Team::teamName())						// Team Name
