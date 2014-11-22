@@ -258,7 +258,7 @@ img#teamUserPic {
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.5);
   transition: all .3s linear;
 }
 .row#userData{
@@ -1139,15 +1139,13 @@ div.admin.teams {
 }
 #hovercard-bg {
     height: 80px;
-    width: 98%;
-    position: absolute;
+    width: 100%;
+    display: inline-block;
 }
 #hovercard-bg > img#profileImg {
     position: relative;
-    left: 5%;
-    top: -40px;
+    left: 33%;
     border: #fff 4px solid;
-    box-shadow: 1px 1px 3px #000;
 }
 .hovercard h3 {
     font-family: Verdana, Georgia;
@@ -1165,7 +1163,6 @@ div.admin.teams {
     line-height: 20px;
     text-align: center;
     position: relative;
-    top: 26px;
     color: #9C9C9C;
     text-align: center;
     padding-left: 7px;
@@ -1609,42 +1606,73 @@ ul#fav-activity li {
 /*******
 *  Blog *
 *******/
+.post{
+    margin-bottom:5em;
+}
+.post #post-meta > span.glyphicons:before{
+    color:#787878;
+    font-size: 1em;
+    position: inherit;
+}
 .post h2{
     text-align: center;
     padding-top: .1em;
-    color:@site_blue;
+    color:@site_black;
+    margin-top: 1em;
+}
+.post h2 a{
+    color:@site_black;
+}
+.post h2 a:hover{
+    text-decoration: none;
 }
 .post div.image > img, .post #postimg{
-    float:left;
-    padding-top: 2em;
-    padding-right: 2em; 
-    margin-bottom: 1em;
+
 }
 .post div.image > img {
-    width:11em;
+    width:100%;
 }
 .post #postimg > img{
     max-width: 20em;
 }
 .post div.date{
-    color:@site_white;
-    margin-top:-0.8em;
-    text-align: center;
-    font-size: .8em;
-    color:#646464;
+background-color: #fff;
+    color:#787878;
+width: 10em;
+position: absolute;
+bottom: 0;
+height: 3em;
+    padding-left: 1em;
+}
+em#day{
+    font-size: 2.5em;
+float: left;
+}
+em#month{
+    float: left;
+margin-left: 1.5em;
+margin-top: 1em;
+}
+em#year{
+    float: left;
+margin-top: 1em;
 }
 
 div.content.bubble{
     font-size: 1.2em;
     padding-top: 1.25em;
     padding-right: 2em;
+    padding-left:2em;
     line-height: 1.4em;
-    color:#cccccc;
+    color:#787878;
 }
 
 div.content.bubble p{
     word-spacing: 2px;
 }
 #container-post{
-    padding: 0 2em 2em;
+    padding: 0;
+    margin-top: 1em;
+    margin-left: 0;
+    margin-right: 0;
 }

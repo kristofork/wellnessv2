@@ -90,9 +90,10 @@
             <div id="iconLoginPosition" class="col-xs-offset-4 col-xs-4 col-sm-offset-5 col-sm-2 col-md-offset-5 col-md-2">
                 <div class="col-md-12">
                    <div id="iconLogin">
+                   <a href="#login">
                     <span class="glyphicon glyphicon-chevron-down">
 
-                    </span>
+                    </span></a>
                     </div>
                 </div>
             </div>
@@ -150,8 +151,9 @@
     <script type="text/javascript">
 		$(document).ready(function() {
 			$('#fullpage').fullpage({
-				sectionsColor: ['#f2f2f2', '#ccdcff', '#7BAABE', 'whitesmoke', '#ccddff'],
+				sectionsColor: ['#fff', '#ccdcff', '#7BAABE', 'whitesmoke', '#ccddff'],
                 resize: false,
+                anchors:['home', 'login'],
                 navigation: true,
                 navigationTooltips: ['Welcome','Login']
 			});
