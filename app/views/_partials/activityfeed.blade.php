@@ -8,7 +8,7 @@
                         if ($likeids != 0)  // Prevents error for activities with no 'likes' in the Activity_like table
                             $liked = DB::table('activity_likes')->where('user_id',Auth::user()->id)->where('act_id',$activity->id)->pluck('user_id');  // Query to check if the currently logged in user liked the activity. 
                  ?>
-
+                <div id="recent_activity_container" class="col-md-8 col-centered">
                     <li id="{{$activeId}}">
 
                         <div class="activityBox">
@@ -21,7 +21,9 @@
                                                     {{HTML::image($activity->pic, $activity->first_name, array('id'=> 'profilePic'));}}
                                             </span>
                                         </div>
-                                        <div class="recentActivityName hidden-sm hidden-xs">{{ $activity->first_name}} {{ substr($activity->last_name, 0, 1) }}. </div>
+                                        <div class="recentActivityName hidden-sm hidden-xs">{{ $activity->first_name}} {{ substr($activity->last_name, 0, 1) }}.</div>
+                                        <div id="container-flair"><span class="flair sm_flair_scholar" title="Scholar - Level 1"></span></div>
+
                                         <div class="recentActivityText">Logged {{ secondsToString(hoursToSeconds($activity->activity_time )) }} of <strong>{{ $activity->activity_name }} </strong>
 
                                         </div>
@@ -85,7 +87,8 @@
 
                     </div> <!-- End Activitybox-->
                 </li>
-                <hr class="activityHR" />
+                
+</div>
                 @endforeach
                 <li id ='more' class="load-more" num_loaded='10' data-icon="arrow-d">
                     <a href="" style="text-align: center">Load More <span class="glyphicon glyphicon-chevron-down"></span></a>

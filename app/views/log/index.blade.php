@@ -47,18 +47,18 @@
                         </div>
                         <div id="timeSliderContainer" class="col-md-2">
                             <div class="summary_item" style="text-align:center"><span class="glyphicon glyphicon-time"></span>
-                                <span id="time_value"></span>
                             </div>
-                            
                         </div>
                 </div>
                 <!-- End of Row -->
                  <div id="logDataRow" class="row-centered">
                      <div class="col-md-3 col-sm-3 col-xs-4 logDataCol">
-                        <span id="day" title="Total amount of hours logged on for the current day selected">0:00</span>
-                        <span>day |</span>
-                        <span id="week" title="Total amount of hours logged on for the current week selected">0:00</span>
-                        <span>week</span>   
+                    <div class="progress" id="reward-progress">
+                       @foreach($rewards as $reward)
+                        <div class="bar" id="reward" style="width: {{ percentageRound($reward->milestone, $user_time, 0); }}%">{{ percentageRound($reward->milestone, $user_time,0); }}%</div>
+                        @endforeach
+                    </div>
+                    <div id="glyph-text">{{round($user_time / 60 / 60, 1)}} of {{$reward->milestone /60 / 60}} hours</div> 
                      </div>  
                      <div class="col-md-3 col-sm-3 col-xs-4 logDataCol">
                         <div class="summary_item"><input type="hidden" id="activity_datepicker" name="actdate" />
@@ -70,7 +70,7 @@
                         <div class="btn-group-xs intensity" data-toggle="buttons" title="Intensity of activity">
                             <label class="btn low">
                                 <input type="radio" name="actintensity" id="intLow" value="1">
-                                <span class="glyphicon glyphicon-fire" style="color:yellow"></span>
+                                <span class="glyphicon glyphicon-fire" style="color:rgb(0, 255, 57)"></span>
                             </label>
                             <label class="btn moderate active">
                                 <input type="radio" name="actintensity" id="intMod" value="2">

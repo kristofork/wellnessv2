@@ -37,6 +37,8 @@ Route::get('log', array('as' => 'log', 'uses' => 'LogController@index'))->before
 Route::get('goals',array('as' => 'goals','uses' => 'GoalController@index'))->before('auth');
 Route::post('updatePassword', array('as' => 'user.updatePassword', 'uses'=>'UserController@updatePassword'));
 
+Route::get('user-activity/{id}', array('as' => 'user_activity_chart', 'uses' => 'UserController@hourChart'));
+
 // Admin Routes
 Route::group(array('before' => array('auth|admin')), function()
 {

@@ -165,19 +165,19 @@
                 </div>
                 <!-- End of Row -->
                  <div id="logDataRow" class="row">
-                     <div class="col-md-3 logDataCol">
+                     <div class="col-md-3 dashDataCol">
                         <span id="day" title="Total amount of hours logged on for the current day selected">0:00</span>
                         <span>day |</span>
                         <span id="week" title="Total amount of hours logged on for the current week selected">0:00</span>
                         <span>week</span>   
                      </div>  
-                     <div class="col-md-3 logDataCol">
+                     <div class="col-md-3 dashDataCol">
                         <div class="summary_item"><input type="hidden" id="datepicker" name="actdate" />
                             <span id="date_value" title="Date selected">Today</span>
                         </div>
                      </div>
 
-                     <div class="col-md-3 logDataCol">
+                     <div class="col-md-3 dashDataCol">
                         <div class="btn-group-xs intensity" data-toggle="buttons" title="Intensity of activity">
                             <label class="btn low">
                                 <input type="radio" name="actintensity" id="intLow" value="1">

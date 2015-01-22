@@ -303,23 +303,42 @@ class UserController extends BaseController
 		// Current Year
 		$sql = "SELECT ROUND(SUM(TIME_TO_SEC(activity_time))/3600,2) as name FROM activities WHERE activity_date Between '$currentStart' AND '$currentFinish' AND user_id =". $id ."  AND type = 'time' GROUP BY MONTH(activity_date)ORDER BY (CASE 
           WHEN activity_date = MONTH(NOW())THEN 0 ELSE 1 END) ASC, activity_date ASC";
-		
+        
+		// Current Year
+		$sql2 = "SELECT ROUND(SUM(TIME_TO_SEC(activity_time))/3600,2) as time, MONTH(activity_date) as month_number  FROM activities WHERE activity_date Between '$currentStart' AND '$currentFinish' AND user_id =". $id ."  AND type = 'time' GROUP BY MONTH(activity_date)ORDER BY (CASE 
+          WHEN activity_date = MONTH(NOW())THEN 0 ELSE 1 END) ASC, activity_date ASC";		
 		// Last Year
-		$sql1 = "SELECT ROUND(SUM(TIME_TO_SEC(activity_time))/3600,2) as name FROM activities WHERE activity_date between '$oldStart' AND '$oldFinish' AND user_id = ". $id ." AND type = 'time' GROUP BY MONTH(activity_date)ORDER BY (CASE 
+		$sql1 = "SELECT ROUND(SUM(TIME_TO_SEC(activity_time))/3600,2) as time, MONTH(activity_date) as month_number FROM activities WHERE activity_date between '$oldStart' AND '$oldFinish' AND user_id = ". $id ." AND type = 'time' GROUP BY MONTH(activity_date)ORDER BY (CASE 
           WHEN activity_date = MONTH(NOW())THEN 0 ELSE 1 END) ASC, activity_date ASC";
 		
-
-		$json = DB::select($sql);
-		$json = array_pluck($json, 'name');
-		$json = json_encode($json, JSON_NUMERIC_CHECK);
-		$json = json_decode($json);
-
+		$json = DB::select($sql2);
+		//$json = array_pluck($json, 'name');
+		//$json = json_encode($json, JSON_NUMERIC_CHECK);
+		//$json = json_decode($json);
 		$json1 = DB::select($sql1);
-		$json1 = array_pluck($json1, 'name');
-		$json1 = json_encode($json1, JSON_NUMERIC_CHECK);
+                
+        // Current Year
+        for($x = 0; $x < count($json); $x++){
+            $json[$x] = (object) array_merge( (array)$json[$x], array('name'=> 'Current'));
+        }
+        // Last Year
+        for($x = 0; $x < count($json1); $x++){
+            $json1[$x] = (object) array_merge( (array)$json1[$x], array('name'=> 'Last'));
+        }    
+        
+        
+		//$json1 = array_pluck($json1, 'name');
+		$json1 = json_encode($json1);
 		$json1 = json_decode($json1);
+        /* $json1 = array(
+            "Last Year" => $json1,
+            "This Year" => $json
+        ); */
 
-		return Response::json(array(['name' => 'Current Year' ,'data' => $json], ['name' => 'Last Year' ,'data' => $json1]));
+        //$json1 = json_decode($json1);
+
+		return Response::json(array($json1,$json));
+        //return Response::json($json1);
 	}
 
 	function hovercard($id)

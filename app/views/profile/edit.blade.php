@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.lite')
 
 {{ HTML::style('assets/css/jquery.Jcrop.min.css') }}
 

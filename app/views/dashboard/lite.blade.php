@@ -18,6 +18,7 @@
                 <img class="img-circle" id="stats_profileImg" src='{{$pic}}'>
             </div>
            </div>
+
         <!-- Tab panes 
         <div class="tab-pane fluid-container " id="activity">
             <div class="row">
@@ -86,7 +87,20 @@
             </div>
 
            </span>
-           
+           </div>
+           <div class="col-md-4">
+               @foreach($rewards as $reward)
+                <div style="text-align:center; font-size:1em; line-height:2.6em;">
+                       @if(deadlineCount( date("Y/m/d") ,$reward->deadline)< 30)
+                            <span style="color:red">{{deadlineCount( date("Y/m/d") ,$reward->deadline)}}</span>
+                        @elseif(deadlineCount( date("Y/m/d") ,$reward->deadline) >= 30 && deadlineCount( date("Y/m/d") ,$reward->deadline)< 60 )
+                            <strong style="color:#F05912">{{deadlineCount( date("Y/m/d") ,$reward->deadline)}}</strong>
+                        @else
+                            <span style="color:#5f5">{{deadlineCount( date("Y/m/d") ,$reward->deadline)}}</span>
+                        @endif 
+                        days left
+                </div>
+                @endforeach
            </div>
            
        </div>
@@ -94,21 +108,21 @@
     </div>
 </div>
    <div id="dashDataRow" class="">
-        <div class="col-md-3 logDataCol">
+        <div class="col-md-3 dashDataCol">
             <span id="likeCount" class="glyphicons heart"></span>
             <div class="likes" id="glyph-text" data-count="{{$user_like_count}}">{{$user_like_count}}</div>  
         </div> 
-     <div class="col-md-3 logDataCol">
+     <div class="col-md-3 dashDataCol">
         <span id="rankCount" class="glyphicons stats"></span>
             <div id="glyph-text">{{$user_rank}} of {{$user_count}}</div> 
      </div>
     @foreach($rewards as $reward)
-     <div class="col-md-3 logDataCol">
+     <div class="col-md-3 dashDataCol">
         <span id="timeCount" class="glyphicons stopwatch"></span>
         <div id="glyph-text">{{round($user_time / 60 / 60, 1)}} of {{$reward->milestone /60 / 60}}</div> 
      </div>
      @endforeach
-     <div class="col-md-3 logDataCol">
+     <div class="col-md-3 dashDataCol">
         <span id="teamrankCount" class="glyphicons group"></span>
         <div id="glyph-text">
         @if ($teamname != "Individuals")
@@ -139,12 +153,13 @@
                 <span class="glyphicon glyphicon-globe"></span>
             </label>
         </div>
+    </div>
         {{ Form::close() }}
         <ul class="recentActivity">
             @include('_partials.activityfeed')
         </ul>
+    
     </div>
-</div>
 
 {{ HTML::script('assets/js/highcharts/highcharts.js')}} 
 {{ HTML::script('assets/js/highcharts/modules/exporting.js')}} 

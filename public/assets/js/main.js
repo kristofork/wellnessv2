@@ -3,20 +3,12 @@ jQuery(document).ready(function() {
 });
 
 $(document).ready(function() {
+    $('.bouncywrap').hide();
     // Tooltips
-    $('.bouncywrap').hide(); // Hide the spinner
-    $('img#teamUserPic').tooltip();
-    $('.activityLikeImg img').tooltip({
-        placement: "top"
-    });
-    $('.moreNames span').tooltip({
-        placement: "bottom"
-    });
-    $('#team-progress').tooltip();
-    $('.like-heart').tooltip({
-        placement: "right"
-    });
-    $("#day, #week, #date_value, div.intensity, #points").tooltip();
+    $('.activityLikeImg img').tooltip({placement: "top"});
+    $('.moreNames span,span.flair').tooltip({placement: "bottom"});
+    $('.like-heart').tooltip({placement: "right"});
+    $("#day, #week, #date_value, div.intensity, #points, img#teamUserPic, #team-progress, span.flair").tooltip();
 
     // Navigation - return page to the top
     $("a[href='#top']").click(function() {
@@ -26,15 +18,13 @@ $(document).ready(function() {
         return false;
     });
 
-    var config = {
+    //Hovercard code
+    $('span[rel="hovercard"]').hoverIntent({
         over: cardover,
         out: cardout,
         interval: 200,
         timeout: 200,
-    };
-    //Hovercard code
-    $('span[rel="hovercard"]').hoverIntent(config);
-
+    });
     function cardover(e) {
         $(this).children(".hovercard").fadeIn("slow");
         x = $(this).data('url');
@@ -46,13 +36,11 @@ $(document).ready(function() {
             success: function(data) {
                 var createdDate = new Date(data.created_at.date.replace(/-/g, "/"));
                 var joined = createdDate.getFullYear();
-
-                $('.hovercard').html('<span id="hovercard-bg"><img id="bg" class="bg" src="../assets/img/site/bg/bg-02.jpg"><img class="img-circle" id="profileImg" src=/' + data.pic + '></span><h3>' + eval('data.userFirst') + ' ' + eval('data.userLast') + '</h3>' + '<div class="row-centered" style="top:60px; position:relative"><div id="memberDate" class="col-md-offset-2 col-md-2"><div class="glyphicon glyphicon-calendar"></div><div>' + data.year + '</div></div><div id="memberDate" class="col-md-offset-1 col-md-2"><div class="glyphicon glyphicon-time"></div><div>' + data.time + '</div></div><div id="memberDate" class="col-md-offset-1 col-md-2"><div class="glyphicon glyphicon-stats"></div><div>' + data.activities + '</div></div></div><!-- End of Row--><div id="label">' + data.title + '</div><div id="points">205/1000</div><span id="progress"><div class="bar" id="team-reward" style="width: 10%">10%</div></span>');
+                $('.hovercard').html('<span class="hovercard-bg"><img id="team-bg" src="../assets/img/teams/blur2.png"><img class="img-circle" id="profileImg" src=/' + data.pic + '></span><div class="row-centered" style="top:92px; position:relative"><h4 class="col-md-12">' + eval('data.userFirst') + ' ' + eval('data.userLast') + '</h4></div>' + '<div class="row-centered" style="top:80px; position:relative"><div id="memberDate" class="col-md-3"><div class="glyphicon glyphicon-calendar"></div><div>' + data.year + '</div></div><div id="memberDate" class="col-md-3"><div class="glyphicon glyphicon-time"></div><div>' + data.time + '</div></div><div id="memberDate" class="col-md-3"><div class="glyphicon glyphicon-stats"></div><div>' + data.activities + '</div></div><div id="memberDate" class="col-md-3"><div id="glyph-hover-points" class="glyphicons vcard"></div><div><span id="progress"><div class="bar" id="team-reward" style="width: 10%">10%</div></span></div></div></div><!-- End of Row-->');
                     
             }
         });
     }
-
     function cardout(e) {
         $(this).children(".hovercard").hide();
     }
@@ -120,6 +108,7 @@ $(document).ready(function() {
     checkIE();
 }); // End of $(document).ready()
 
+
 /* Setup Application functions */
 // Converts time to seconds
 function timeToSeconds(time) {
@@ -148,13 +137,7 @@ function secondsToTime(sec) {
     return h + ":" + (m < 10 ? '0' + m : m); //zero padding on minutes and seconds
 }
 
-// Condense applaud names
-function ApplaudMoreNames($id) {
-    for (var i = 0, l = moreNamesList.length; i < l; i++) {
-        var orginTitle = $("#" + $id + ".moreNames span").attr("title");
-        $("#" + $id + ".moreNames span").attr("title", orginTitle + moreNamesList[i] + ", ");
-    }
-}
+
 
 // Ajax to grab team info after a member was clicked.
 $("a.navProfileLink").click(function(e) {
@@ -232,9 +215,9 @@ function getGoal() {
 
 // Week and Day Restrictions
 function datelimits() {
-    var weekTime = $("#logDataRow span#week").text();
+    var weekTime = $(".logDataCol span#week").text();
     var weekSeconds = timeToSeconds(weekTime);
-    var dayTime = $("#logDataRow span#day").text();
+    var dayTime = $(".logDataCol span#day").text();
     var daySeconds = timeToSeconds(dayTime);
     var weekMax = (28800 - weekSeconds) / 60;
     var dayMax = (7200 - daySeconds) / 60;
