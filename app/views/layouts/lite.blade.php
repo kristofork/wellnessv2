@@ -1,3 +1,4 @@
+<?php $current_user = Auth::user(); ?>
 <!DOCTYPE html>
 <!--[if lt IE 10 ]> <html class="badIE"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
@@ -45,8 +46,8 @@
             <span id="pageTitle">{{$title}}</span>
 
             <li class="dropdown pull-right headProfile">
-                {{HTML::image(Auth::user()->pic, Auth::user()->first_name, array("id" => "navProfileImage")) }}
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{Auth::user()->first_name}} {{Auth::user()->last_name}} <b class="caret"></b></a>
+                {{HTML::image($current_user->pic, $current_user->first_name, array("id" => "navProfileImage")) }}
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{$current_user->first_name}} {{$current_user->last_name}} <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li class="{{ Request::is( 'log') ? 'active' : '' }}">
                       <a href="{{ URL::to('log') }}">
@@ -58,10 +59,29 @@
                            <span class="glyphicon glyphicon-dashboard"></span> Dashboard
                        </a>
                    </li>
+                   <li class="{{ Request::is( 'blog') ? 'active' : '' }}">
+                       <a href="{{ URL::to('blog') }}">
+                           <span class="glyphicon glyphicon-book"></span> Blog
+                       </a>
+                   </li>
+                    <li class="{{ Request::is( 'showProfile') ? 'active' : '' }}">
+                        <a href="/user/{{$current_user->id}}">
+                            <span class="glyphicons glyphicons-person"></span> Profile</a>
+                    </li>                   
                     <li class="{{ Request::is( 'editprofile') ? 'active' : '' }}">
                         <a href="/editprofile">
                             <span class="glyphicon glyphicon-edit"></span> Edit Profile</a>
                     </li>
+                    <li class="{{ Request::is( 'badges') ? 'active' : '' }}">
+                        <a href="/badges">
+                            <span class="glyphicon glyphicon-certificate"></span> Badges</a>
+                    </li>
+                    @if($isAdmin)
+                    <li class="{{ Request::is( 'admin') ? 'active' : '' }}">
+                        <a class="" href="{{ URL::to('admin') }}">
+                            <span class="glyphicon glyphicon-tower"></span> Admin</a>
+                    </li>
+                    @endif                    
                     <li class="divider"></li>
                     <li>
                         <a href="{{ URL::to('logout')}}">
@@ -91,6 +111,14 @@
     {{ HTML::script('assets/js/main.js')}} 
     @if($title = "Dashboard" || $title = "Profile")
         <script src="{{ asset('js/activities/new_activityCheck.js') }}"></script>
+        <script>initHoverCard();</script>
+        {{ HTML::script('js/activities/pagination.js') }}
+    @endif
+    @if($title = "Blog")
+    {{ HTML::script('assets/js/blog.js') }}
+    @endif
+    @if($title = "Profile")
+    {{ HTML::script('assets/js/form/calendar.js')}} 
     @endif
     <script type="text/javascript" src="{{asset('assets/js/slider-pips/jquery-ui-slider-pips.js')}}"></script>
 

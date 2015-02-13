@@ -19,7 +19,15 @@ class DashboardController extends BaseController
 		$reward2                   = Reward::find(2);
 		$year                      = new DateTime($user->created_at);
 		$year                      = $year->format('Y');
-		$columns                   = array(DB::raw('users.id as `users_id`'), 'users.first_name', 'users.last_name', 'users.username', 'activities.id', 'activities.activity_name', 'activities.likeCount','activities.type','activities.goal_num', 'users.pic', 'activities.created_at', 'activities.activity_time');
+       // $activities                = Activity::with(array('user.badgeuser' => function($q){
+       //                             $q->with('badge')->first();
+       // }),'user')->orderBy('activities.created_at', 'desc')->take(10)->get();
+        $activities                = Activity::with(array('user.badgeuser' => function($q){
+                                    $q->join('badges','badges.id','=','badge_id')->first();
+                                    }),'user')->with(array('likes' => function($q) use ($user_id){
+                    $q->where('user_id',$user_id)->get();
+                }))->orderBy('activities.created_at', 'desc')->take(10)->get();
+
 		return View::make('dashboard.lite')
 			->with('title', 'Dashboard') // Page title
 			->with('name',array('first_name'=> $user->first_name, 'last_name'=> $user->last_name))
@@ -27,7 +35,7 @@ class DashboardController extends BaseController
 			->with('user_title', User::UserTitle()) 				// Rank title
 			->with('user_points', $points)							// User's points
             ->with('point_difference', $pointDifference)        // Point difference
-            ->with('user_like_count', User::userLikeCount())
+            ->with('user_like_count', User::userLikeCount($user_id))
 			->with('user_time', $user->currentYearStats ? $user->currentYearStats->time : "0")		// User's time
 			->with('required_points',User::UserPoints($user_rank))	// Next Level Points
 			->with('teamname',Team::teamName())						// Team Name
@@ -42,26 +50,22 @@ class DashboardController extends BaseController
 			->with('team_rank',Team::Rank($team))
 			->with('team_count',Team::Count())
 			->with('rewards', Reward::current())
-			->with('activities', DB::table('activities')
-				->join('users', 'users.id', '=', 'activities.user_id')
-				->orderBy('activities.created_at', 'desc')
-				->take(10)
-				->get($columns))
+			->with('activities', $activities)
 			->with('activity_likes',DB::table('activity_likes')
 				->where('user_id',$user_id)
 				->get(array('activity_likes.user_id','activity_likes.act_id')))
 			->with('teamMembers', DB::table('users')
 				->where('team_id', $team)
 				->get(array('users.id','users.first_name','users.last_name','users.pic','users.userTotalHrs')))
-			->with('goals', DB::table('goals_users')
-				->join('goals','goals.id','=', 'goals_users.goal_id')
+			->with('goals', DB::table('goals_progress')
+				->join('goals','goals.id','=', 'goals_progress.goal_id')
 				->where('user_id', $user_id)
-				->get(array('goals.goal_name','goals.tier','goals.goal','goals_users.progress')))
+				->get(array('goals.goal_name','goals.tier','goals.goal','goals_progress.progress')))
 			->with('rewards', DB::table('rewards')
 				->where('startdate', '<=', $todaysDate)
 				->where('deadline', '>=', $todaysDate)
 				->get())
-			->with(array('user' => $userData, 'reward1' => $reward1, 'reward2' => $reward2));
+			->with(array('reward1' => $reward1, 'reward2' => $reward2));
 	}
 
 	public function teamMembers(){

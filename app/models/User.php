@@ -69,6 +69,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->email;
 	}
 
+  	/**
+	 * Relationship Models
+	 *
+	 * 
+	 */  
+    
     public function team()
     {
         return $this->hasOne('Team', 'id');
@@ -84,9 +90,19 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return $this->hasMany('Activity');
     }
 
-    public function badges()
+    public function badge()
     {
-    	return $this->hasMany('Badge');
+    	return $this->hasManyThrough('Badge','BadgeUser','badge_id', 'id');
+    }
+    public function badgeuser()
+    {
+        return $this->hasMany('BadgeUser');
+    }
+
+    
+     public function posts()
+    {
+        return $this->hasManyThrough('Post', 'User', 'country_id', 'user_id');
     }
 
     public function ranks()
@@ -98,6 +114,18 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return $this->hasOne('CurrentYearStat');
     }
 
+    public function badgeprogress()
+    {
+        return $this->hasMany('BadgeProgress');
+    }
+    public function goalprogress()
+    {
+        return $this->hasMany('GoalProgress');
+    }
+    public function activitylikes()
+    {
+        return $this->hasMany('ActivityLike');
+    }
     // Average per day to meet Reward
     public static function hoursToReward()
     {
@@ -154,9 +182,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return User::all()->count();
     }
 
-    public static function userLikeCount()
+    public static function userLikeCount($id)
     {
-        return UserLike::find(Auth::user()->id)->like_count;
+        $q = UserLike::find($id);
+        
+        return $q ? $q->like_count : "0";
     }
     public static $picRules = array(
     	'file' => 'required|mimes:jpeg|max:500',

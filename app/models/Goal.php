@@ -6,4 +6,9 @@ class Goal extends Eloquent
 	{
 		return $this->belongsTo('GoalUser');
 	}
+    
+    public function badge()
+    {
+        return $this->hasOne('Badge');
+    }
 }

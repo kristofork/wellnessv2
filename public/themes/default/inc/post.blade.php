@@ -11,13 +11,19 @@
   @endif
   <h2><a href="{{ wardrobe_url('post/'.$post->slug) }}">{{ $post->title }}</a></h2>
     
-<div class="row" id="post-meta">
-<span class="glyphicons pen"></span> 
-<span>William K.</span>
-<span class="glyphicons check"></span> 
-<span>38</span>
-<span class="glyphicons tag"></span> 
-<span>Food</span>
+<div class="col-md-12" id="post-meta">
+<span>
+    <span class="glyphicons glyphicons-pen"></span> 
+    <span class="post-data">William K.</span>
+</span>
+<span>
+    <span class="glyphicons glyphicons-check"></span> 
+    <span class="post-data">{{$post->counter}}</span>
+    </span>
+<span>
+    <span class="glyphicons glyphicons-tag"></span> 
+    <span class="post-data">Food</span>
+    </span>
 </div>
   <div class="content bubble">
 		{{  

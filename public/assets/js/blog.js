@@ -2,6 +2,8 @@ $(document).ready(function(){
 
 $("button.read").click(function(e){
 	e.preventDefault();
+    
+    console.log("click");
 
            var id = parseInt($(this).attr('id'));
            $.ajax({

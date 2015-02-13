@@ -1,5 +1,7 @@
 <?php
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -16,6 +18,7 @@ Route::get('/',array('as' => 'home', 'uses'=>'HomeController@index'));
 
 
 // Send the POST action to the Login controller. Function Login()
+
 Route::post('login', array('as'=> 'login', 'uses'=> 'LoginController@login' ));
 
 Route::get('logout', array('before' => 'auth', 'uses' => 'LoginController@logout'));
@@ -29,15 +32,20 @@ Route::post('upload_profilePic', array('as' => 'upload_profilePic', 'uses'=> 'Us
 Route::post('previewpic', array('before' => 'csrf', 'uses'=> 'UserController@preview_Picture_post'));
 Route::post('upload', 'UserController@postUpload');
 
-Route::get('user/{id}', array('as' => 'showProfile', 'uses' => 'UserController@showProfile'))->before('auth');
+Route::get('user/{id}', array('as' => 'showProfile', 'uses' => 'UserController@showProfile'))->before('auth|user');
 
 Route::get('dashboard',array('as' => 'dashboard', 'uses' => 'DashboardController@index'))->before('auth');
 Route::get('log', array('as' => 'log', 'uses' => 'LogController@index'))->before('auth');
 
 Route::get('goals',array('as' => 'goals','uses' => 'GoalController@index'))->before('auth');
+Route::post('goal/weight_registration', array('as' => 'weight_registration', 'uses' => 'GoalController@weight_registration')); // Weight Goal Signup
+
 Route::post('updatePassword', array('as' => 'user.updatePassword', 'uses'=>'UserController@updatePassword'));
 
 Route::get('user-activity/{id}', array('as' => 'user_activity_chart', 'uses' => 'UserController@hourChart'));
+Route::get('user-weight/{id}',array('as' => 'user_weight_chart', 'uses' => 'UserController@weightchart')); 
+
+Route::get('badges', array('as' => 'badge.index', 'uses' => 'BadgeController@index'));
 
 // Admin Routes
 Route::group(array('before' => array('auth|admin')), function()
@@ -66,7 +74,7 @@ Route::group(array('before' => array('auth|admin')), function()
 if (Request::ajax()){
 Route::post('applaud/{id}', array('as' => 'applaud', 'uses' => 'ApplaudController@create'));
 Route::get('user-info/{id}', array('as' => 'user_profile', 'uses' => 'UserController@show'));
-Route::get('user-activity/{id}', array('as' => 'user_activity_chart', 'uses' => 'UserController@hourChart'));
+Route::get('user-activity/{id}', array('as' => 'user_activity_chart', 'uses' => 'UserController@hourChart')); 
 Route::post('activities_pag/', array('as' => 'activities_pag', 'uses' => 'ActivityController@pagination'));
 Route::get('team-donut', array('as' => 'team_donut_chart', 'uses' => 'DashboardController@donutChart'));
 Route::get('hovercard/{id}', array('as' => 'hovercard', 'uses' => 'UserController@hovercard'));
@@ -74,6 +82,8 @@ Route::post('user/applaud/{id}', array('as' => 'user_applaud', 'uses' => 'Applau
 Route::post('activity/{data}', array('as' => 'activity', 'uses' => 'ActivityController@store'));
 Route::post('activityread/{id}', array('as' => 'read', 'uses' => 'ActivityController@read'));
 Route::get('activitycheck/{data}',array('as'=> 'timecheck', 'uses' => 'ActivityController@check'));
+Route::get('weightcheck/{data}', array('as'=> 'weightcheck', 'uses' => 'GoalController@weight_check'));
+Route::post('goalstore/{data}',array('uses' => 'GoalController@store'));
 Route::get('newactivities/{data}', array('as'=> 'newactivity', 'uses' => 'ActivityController@newActivities'));
 Route::post('goal/update_progress', array('as'=> 'update_progress','uses'=>'GoalController@update_progress'));
 Route::get('goal/check',array('as'=>'goalcheck', 'uses'=>'GoalController@check'));

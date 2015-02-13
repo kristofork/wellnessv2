@@ -127,15 +127,25 @@ class UserController extends BaseController
 	// find user profile
 	public function showProfile($id)
 	{
-
-		$user = User::find($id); 
+        
+        $currentHalf = currentHalfDate();
+		$user = User::find($id);
 		$team = Auth::user()->team_id;
 		$currentuser = Auth::user()->id;
 		$todaysDate = date('Y-m-d');
 		$reward1 = Reward::find(1);
 		$reward2 = Reward::find(2);
+        $activities = Activity::with(array('user.badgeuser' => function($q){
+                                    $q->join('badges','badges.id','=','badge_id')->first();
+        }),'user')->where('user_id', '=',$id)->orderBy('activities.created_at', 'desc')->take(10)->get();
+        $userdata = User::with(array('goalprogress' => function($q) use($currentHalf){
+            $q->whereBetween('created_at',array($currentHalf['start'], $currentHalf['end']))->with('goal');
+        }))->where('id',$id)->first();
+        $goaluser_count = GoalProgress::where('active', 1)->count();
+        
 		return View::make('profile.user')
 			->with('title', 'Profile')
+            ->with('userdata', $userdata)
 			->with('teamname',Team::teamName())
 			->with('userYearStats', Team::userYearStat($team))
 			->with('user_time', $user->currentYearStats ? $user->currentYearStats->time : "0")		// User's time
@@ -145,51 +155,14 @@ class UserController extends BaseController
 				->where('team_id', $team)
 				->get(array('users.id','users.first_name','users.last_name','users.pic','users.userTotalHrs')))
 			->with('fav_activities',Activity::favorites())
-			->with('activities', DB::table('activities')
-				->join('users', 'users.id', '=', 'activities.user_id')
-				->where('users.id', $user->id)
-				->orderBy('activities.created_at', 'desc')
-				->take(10)
-				->get(array(DB::raw('users.id as `users_id`'), 'users.first_name', 'users.last_name', 'users.username', 'activities.id', 'activities.activity_name', 'activities.likeCount','activities.type','activities.goal_num', 'users.pic', 'activities.created_at', 'activities.activity_time')))
+			->with('activities', $activities)
 			->with('activity_likes',DB::table('activity_likes')
 				->where('user_id',$currentuser)
 				->get(array('activity_likes.user_id','activity_likes.act_id')))
-			->with('rewards', DB::table('rewards')
-				->where('startdate', '<=', $todaysDate)
-				->where('deadline', '>=', $todaysDate)
-				->get())
 			->with('rewards', Reward::current())
-			->with(array('user' => $user, 'reward1' => $reward1, 'reward2' => $reward2));
+            ->with('goal_user_count', $goaluser_count);
 	}
 
-	// show user's profile
-	public function showMyProfile()
-	{
-		$user = Auth::user();
-		$reward1 = Reward::find(1);
-		$reward2 = Reward::find(2);
-		$reward3 = Reward::find(3);
-		$reward4 = Reward::find(4);
-		$reward5 = Reward::find(5);
-		return View::make('profile.user')
-			->with('fav_activities', DB::table('activities')
-				->join('users', 'activities.username', '=', 'users.username')
-				->where('users.id',$user->id)
-				->groupBy('activity_name')
-				->orderBy(DB::raw('COUNT(activities.activity_name)'), 'desc')
-				->take(1)
-				->get(array('activities.activity_name')))
-			->with('activities', DB::table('activities')
-				->join('users', 'users.username', '=', 'activities.username')
-				->where('users.id', $user->id)
-				->orderBy('activities.created_at', 'desc')
-				->take(5)
-				->get(array('users.first_name', 'users.last_name', 'users.username', 'activities.id', 'activities.actname', 'activities.likeCount', 'users.pic', 'activities.created_at', 'activities.activity_time')))
-			->with('activity_likes',DB::table('activity_likes')
-				->where('user_id',$user)
-				->get(array('activity_likes.user_id','activity_likes.act_id')))
-			->with(array('user' => $user, 'reward1' => $reward1, 'reward2' => $reward2,'reward3' => $reward3, 'reward4' => $reward4, 'reward5' => $reward5));
-	}
 
 	// Edit user profile
 	public function editMyProfile()
@@ -219,7 +192,7 @@ class UserController extends BaseController
 			$hash = Session::get('hash');
 			if (!File::exists('uploads/'.$hash)) File::makeDirectory('uploads/'.$hash);
 		}
-		$newPath         = 'assets/img/users/avatars/';
+		$newPath         = '/assets/img/users/avatars/';
 		$userID          = Auth::user()->id;
 		$fileExt         = "jpg";
 		$newFileName     = $userID . '.' . $fileExt;
@@ -299,10 +272,6 @@ class UserController extends BaseController
 		$oldFinish = $lastYearDates[1];
 		$currentStart = $currentYearDates[0];
 		$currentFinish =  $currentYearDates[1];
-
-		// Current Year
-		$sql = "SELECT ROUND(SUM(TIME_TO_SEC(activity_time))/3600,2) as name FROM activities WHERE activity_date Between '$currentStart' AND '$currentFinish' AND user_id =". $id ."  AND type = 'time' GROUP BY MONTH(activity_date)ORDER BY (CASE 
-          WHEN activity_date = MONTH(NOW())THEN 0 ELSE 1 END) ASC, activity_date ASC";
         
 		// Current Year
 		$sql2 = "SELECT ROUND(SUM(TIME_TO_SEC(activity_time))/3600,2) as time, MONTH(activity_date) as month_number  FROM activities WHERE activity_date Between '$currentStart' AND '$currentFinish' AND user_id =". $id ."  AND type = 'time' GROUP BY MONTH(activity_date)ORDER BY (CASE 
@@ -311,12 +280,12 @@ class UserController extends BaseController
 		$sql1 = "SELECT ROUND(SUM(TIME_TO_SEC(activity_time))/3600,2) as time, MONTH(activity_date) as month_number FROM activities WHERE activity_date between '$oldStart' AND '$oldFinish' AND user_id = ". $id ." AND type = 'time' GROUP BY MONTH(activity_date)ORDER BY (CASE 
           WHEN activity_date = MONTH(NOW())THEN 0 ELSE 1 END) ASC, activity_date ASC";
 		
+        
 		$json = DB::select($sql2);
-		//$json = array_pluck($json, 'name');
-		//$json = json_encode($json, JSON_NUMERIC_CHECK);
-		//$json = json_decode($json);
 		$json1 = DB::select($sql1);
-                
+        
+        if( count($json) && count($json1)) // if data is returned for both years
+        {
         // Current Year
         for($x = 0; $x < count($json); $x++){
             $json[$x] = (object) array_merge( (array)$json[$x], array('name'=> 'Current'));
@@ -326,26 +295,58 @@ class UserController extends BaseController
             $json1[$x] = (object) array_merge( (array)$json1[$x], array('name'=> 'Last'));
         }    
         
-        
-		//$json1 = array_pluck($json1, 'name');
 		$json1 = json_encode($json1);
 		$json1 = json_decode($json1);
-        /* $json1 = array(
-            "Last Year" => $json1,
-            "This Year" => $json
-        ); */
-
-        //$json1 = json_decode($json1);
 
 		return Response::json(array($json1,$json));
-        //return Response::json($json1);
+        }
+        elseif( ! count($json) && count($json1)) // if data is return for only last year
+        {
+        // Last Year
+        for($x = 0; $x < count($json1); $x++){
+            $json1[$x] = (object) array_merge( (array)$json1[$x], array('name'=> 'Last'));
+        }
+            return Response::json(array($json1));
+        }
+        else
+        {
+        // Current Year
+        for($x = 0; $x < count($json); $x++){
+            $json[$x] = (object) array_merge( (array)$json[$x], array('name'=> 'Current'));
+        }
+             return Response::json(array($json));   
+        }
 	}
+    
+    function weightchart($id)
+    {
+        $activity = GoalProgress::with(array('goalactivity' => function($query)
+                                       {
+                                           $query->orderBy('goal_date', 'desc');
+                                       }
+                                       ,'goal'))->where('user_id', $id)->where('active', 1)->get();
+        $start_weight = $activity[0]->start;
+        $goal = $activity[0]->goal->goal;
+        $weight_goal = $start_weight - $goal;
+        $deadline = $activity[0]->deadline;
+
+        foreach($activity as $act)
+        {
+            $counter = (count($act->goalactivity));
+            for($x = 0; $x < $counter; $x++)
+                {
+                    $new[$x] = (object) array_merge((array)$act->goalactivity[$x]->toArray(), array('goalline'=> $weight_goal));
+                }     
+        }
+        
+        return Response::json($new);
+    }
 
 	function hovercard($id)
 	{
 		$count = Activity::activityTotal($id);
 		$user = User::find($id);
-		$title = Badge::find($user->rank_id)->name;
+		$title = Level::find($user->rank_id)->name;
 		$time = $user->userTotalHrs / 3600;
 		$year = new DateTime($user->created_at);
 		$year = $year->format('Y');

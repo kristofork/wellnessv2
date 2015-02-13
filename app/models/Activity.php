@@ -1,17 +1,28 @@
 <?php
 
 class Activity extends Eloquent {
+    
 	public static $tables = 'activities';
 
-	public function users()
+	public function user()
 	{
-		return $this->belongsTo('User');
+		return $this->belongsTo('User','user_id');
 	}
+    
+    public static function currentuserid()
+    {
+        return Auth::user()->id;
+    }
 
 	public function likes()
 	{
 		return $this->hasMany('ActivityLike','act_id');
 	}
+    
+    public function badgeuser()
+    {
+        return $this->hasManyThrough('BadgeUser','Badge');
+    }
 
     public static $rules = array(
    	  'actname' => 'required',

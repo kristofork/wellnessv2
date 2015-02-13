@@ -18,7 +18,7 @@ class ActivityController extends BaseController {
           'factpt'       => 'required'
         );
         $messages = array(
-           'actname.required'      => 'Oops! You must select a activity.',
+           'actname.required'      => 'Oops! You must enter a activity.',
            'actdate.required'      => 'Oops! You must select a date.',
            'acttime.required'      => 'Uh oh! You forgot to set the time!',
            'actintensity.required' => 'Oh no! You did not set a intensity.',
@@ -26,7 +26,7 @@ class ActivityController extends BaseController {
         );
 
 
-        $v = Validator::make(Input::all(), $rules);
+        $v = Validator::make($input, $rules, $messages);
         if ($v->fails() ) {
             $result = array('success'=> false, 'message'=> 'Activity Not Saved!');
             return Response::json($v->errors());
@@ -96,35 +96,80 @@ class ActivityController extends BaseController {
 
     public function read($id)
     {
-        $post = Post::find($id);
+        $post = Post::find($id); // find the post that was clicked
+        $user = Auth::user();   // find the current user
 
-
-        $activity           = new Activity;
-        $activity->userName = Auth::user()->username;
-        $activity->actName  = $post['title'];
+        $activity = new Activity;   //create the activity 
+        $activity->user_id = $user->id;
+        $activity->team_id = $user->team_id;
+        $activity->activity_name  = $post['title'];
         $activity->type     = 'read';
         $activity->save();
+        
+        // increment counter
+        $postcount = $post->counter + 1; 
+        $post->counter = $postcount;
+        $post->save();
 
-        $badge = BadgeProgress::find(1);
-
-        if (is_null($badge))
+        // need to find the user and badge that is tracking the progress
+        
+        $badge = BadgeProgress::where('user_id','=',$user->id)
+            ->where('type','=','read')
+            ->first(); 
+        
+        
+        if (! count($badge)) // if user progress is not found, create an entry for the user, get the first level requirement for the badge, set a starting lvl of 1, and add a count of 1 and save.
         {
+            $badge_data = Badge::where('type', '=' ,'read')
+                ->where('lvl', '=', 1)
+                ->first();
+            
             $badge = new BadgeProgress;
-            $badge->badge_id = 1;
+            $badge->badge_id = $badge_data->id;
             $badge->user_id = Auth::user()->id;
-            $badge->count = 1;
+            $badge->counter = 1;
+            $badge->lvl = 1;
+            $badge->required = $badge_data->required;
+            $badge->type = "read";
+            $badge->progress_id = $id;
             $badge->save();
+            $result = array('success'=> true, 'message'=> 'Activity Saved!');
         }
-        else
+        else  
         {
-            $badge = BadgeProgress::where('user_id', '=', Auth::user()->id)
-                ->where('badge_id', '=', 1)
-                ->get();
-            $count = $badge['count'] + 1;
-            $badge->count = $count;
+                // if statement to see if user will meet the required count for the next level. If so increment lvl ++ and message back with response.
+            $required = $badge['required'];
+            $count = $badge['counter'] + 1;
+            if($required == $count)
+                {
+                    $lvlup = $badge->lvl +1;
+                    $badge->lvl =$lvlup;
+                    $badge_data = Badge::where('type', '=' ,'read')->where('lvl', '=', $lvlup)->first();
+                    $badge->required = $badge_data->required;
+                
+                    // Create activity for badge earned
+                    $activity = new Activity;   //create the activity 
+                    $activity->user_id = $user->id;
+                    $activity->team_id = $user->team_id;
+                    $activity->activity_name  = "Earned a level ". $badge_data->lvl ." ". $badge_data->name . "badge";
+                    $activity->type     = 'badge';
+                    $activity->save();
+                
+                    // record badge to user
+                
+                    $userbadge = new BadgeUser;
+                    $userbadge->user_id = Auth::user()->id;
+                    $userbadge->badge_id = $badge->badge_id;
+                    $userbadge->save();
+                    $result = array('success'=> true, 'message'=> 'Badge Earned!');
+                }
+            $badge->counter = $count;
+            $badge->progress_id = $badge['progress_id'].",".$id;
             $badge->save();
+            $result = array('success'=> true, 'message'=> 'Activity Saved!');
+            
         }
-                $result = array('success'=> true, 'message'=> 'Activity Saved!');
+                
 
             return Response::json($result);
     }
@@ -147,40 +192,43 @@ class ActivityController extends BaseController {
 
     public static function pagination()
     {
+        $user_id = Auth::user()->id;
         $input = Input::all();
         $from = $input['load'];
         $type = $input['filter'];
         $columns = array('users.first_name', 'users.last_name', 'users.username', 'activities.id', 'activities.activity_name', 'activities.likeCount','activities.type','activities.goal_num', 'users.pic', 'activities.created_at', 'activities.activity_time');
+        
         if($type == 'Everyone')
         {
-                $activities = Activity::orderBy('activities.created_at', 'desc')
-                ->join('users','activities.user_id', '=','users.id')
-                ->skip($from)
-                ->take(10)
-                ->get($columns);
+            
+            $activities = Activity::with(array('user.badgeuser' => function($q){
+                                    $q->join('badges','badges.id','=','badge_id')->first();
+                                    }),'user')
+                ->with(array('likes' => function($q) use ($user_id){
+                    $q->where('user_id',$user_id)->first();
+                }))->orderBy('activities.created_at', 'desc')->skip($from)->take(10)->get();
         } 
         elseif($type == 'Team')
         {
             $team = Auth::user()->team_id;
-                $activities = Activity::orderBy('activities.created_at', 'desc')
-                ->join('users','activities.user_id', '=','users.id')
-                ->where('activities.team_id','=',$team)
-                ->skip($from)
-                ->take(10)
-                ->get($columns);
+            $activities = Activity::with(array('user.badgeuser' => function($q){
+                                    $q->join('badges','badges.id','=','badge_id')->first();
+                                    }),'user')
+                ->with(array('likes' => function($q) use ($user_id){
+                    $q->where('user_id',$user_id)->first();
+                }))->where('team_id',$team)->orderBy('activities.created_at', 'desc')->skip($from)->take(10)->get();
         }
         else
         {
-            $user = Auth::user()->id;
-                $activities = Activity::orderBy('activities.created_at', 'desc')
-                ->join('users','activities.user_id', '=','users.id')
-                ->where('activities.user_id', '=', $user)
-                ->skip($from)
-                ->take(10)
-                ->get($columns);
+            $activities = Activity::with(array('user.badgeuser' => function($q){
+                                    $q->join('badges','badges.id','=','badge_id')->first();
+                                    }),'user')
+                ->with(array('likes' => function($q) use ($user_id){
+                    $q->where('user_id',$user_id)->first();
+                }))->where('user_id',$user_id)->orderBy('activities.created_at', 'desc')->skip($from)->take(10)->get();
         }
 
-        return Response::json($activities);
+        return Response::json(['activities' => $activities, 'userid'=> $user_id]);
     }
 
     public function newActivities($data)
@@ -191,33 +239,35 @@ class ActivityController extends BaseController {
 
     public static function getActivityFilter($type)
     {
-        $columns = array(DB::raw('users.id as `users_id`'),'users.first_name', 'users.last_name', 'users.username', 'activities.id', 'activities.activity_name', 'activities.likeCount','activities.type','activities.goal_num', 'users.pic', 'activities.created_at', 'activities.activity_time');
+        $user_id = Auth::user()->id;
+        
         if($type == 'Everyone'){
-        $activities = DB::table('activities')
-                ->join('users', 'users.id', '=', 'activities.user_id')
-                ->orderBy('activities.created_at', 'desc')
-                ->take(10)
-                ->get($columns);
+            $activities = Activity::with(array('user.badgeuser' => function($q){
+                                    $q->join('badges','badges.id','=','badge_id')->first();
+                                    }),'user')
+                ->with(array('likes' => function($q) use ($user_id){
+                    $q->where('user_id',$user_id)->first();
+                }))->orderBy('activities.created_at', 'desc')->take(10)->get();
+            
         } elseif($type == "Team"){
             $team = Auth::user()->team_id;
-        $activities = DB::table('activities')
-                ->join('users', 'users.id', '=', 'activities.user_id')
-                ->where('activities.team_id','=', $team)
-                ->orderBy('activities.created_at', 'desc')
-                ->take(10)
-                ->get($columns);
+            $activities = Activity::with(array('user.badgeuser' => function($q){
+                                    $q->join('badges','badges.id','=','badge_id')->first();
+                                    }),'user')
+                ->with(array('likes' => function($q) use ($user_id){
+                    $q->where('user_id',$user_id)->first();
+                }))->where('team_id',$team)->orderBy('activities.created_at', 'desc')->take(10)->get();
 
         }else{
             $user = Auth::user()->id;
-        $activities = DB::table('activities')
-                ->join('users', 'users.id', '=', 'activities.user_id')
-                ->where('activities.user_id','=', $user)
-                ->orderBy('activities.created_at', 'desc')
-                ->take(10)
-                ->get($columns);
+            $activities = Activity::with(array('user.badgeuser' => function($q){
+                                    $q->join('badges','badges.id','=','badge_id')->first();
+                                    }),'user')
+                ->with(array('likes' => function($q) use ($user_id){
+                    $q->where('user_id',$user_id)->first();
+                }))->where('user_id',$user)->orderBy('activities.created_at', 'desc')->take(10)->get();
         }
-        $view = View::make('_partials.activityfeed')->with('activities', $activities);
-        echo $view;
-        exit;
-    }
+        return Response::json(array('activities' =>$activities, 'user' => $user_id));
+
+}
 }

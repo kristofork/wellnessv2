@@ -2,6 +2,13 @@
 
 @section('content')
 
+    @if(Session::has('message'))
+    <div id="dash-side-right" class="alert alert-custom">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <p>{{Session::get('message') }}</p>
+    </div>
+    @endif
+
 <div class="table-container">
     <div class="tablecell-container">
         <div id="time-summary-container">
@@ -37,17 +44,17 @@
                     <div class="col-md-offset-1 col-md-8 col-sm-12 col-xs-12">
                             <input id="activity_text_input" name="activity_name" type="text" class="form-control" placeholder="Activity" />
                         </div>
-                        <div class="col-md-2 col-sm-12 col-xs-12">
-                            <button id="submitact" type="submit" class="btn btn-info btn-block">Submit</button>
-
+                        <div id="timeSliderContainer" class="col-md-2 hidden-sm hidden-xs">
+                            <div class="summary_item" style="text-align:center"><span class="glyphicon glyphicon-time"></span>
+                            </div>
                         </div>
                         <div id="timeSliderContainer" class="col-md-offset-1 col-md-8 col-sm-12 col-xs-12">
                             <div id="time_slider2" class="custom-slide"></div>
                             <input id="time_val" type="hidden" name="activity_time" />
                         </div>
-                        <div id="timeSliderContainer" class="col-md-2">
-                            <div class="summary_item" style="text-align:center"><span class="glyphicon glyphicon-time"></span>
-                            </div>
+
+                        <div class="col-md-2 col-sm-12 col-xs-12" style="margin-top:1em">
+                            <button id="submitact" type="submit" class="btn btn-info btn-block">Submit</button>
                         </div>
                 </div>
                 <!-- End of Row -->

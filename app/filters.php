@@ -43,6 +43,12 @@ Route::filter('admin', function($route, $request)
  }
 });
 
+Route::filter('user',function($route)
+{
+   if ( Auth::user()->id != $route->getParameter('id') ){
+       return App::abort(401, 'You are not authorized');
+   }               
+});
 
 Route::filter('auth', function()
 {

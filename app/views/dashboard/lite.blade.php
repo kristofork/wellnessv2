@@ -3,12 +3,16 @@
 @section('content')
 
 
+    
+
     @if(Session::has('message'))
     <div id="dash-side-right" class="alert alert-custom">
         <button type="button" class="close" data-dismiss="alert">x</button>
         <p>{{Session::get('message') }}</p>
     </div>
     @endif
+
+   
 
     <div class="row-centered table-container" style="position:relative;">
     <div id="activity" class="col-centered masthead tablecell-container" style="height:250px;">
@@ -76,10 +80,10 @@
         </div>
         -->
         <div id="userData" class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 col-sm-4 col-xs-4">
             <span style="line-height:2.6em">{{$teamname}}</span> 
            </div>
-           <div class="col-md-4" style="text-align:center">
+           <div class="col-md-4 col-sm-4 col-xs-4" style="text-align:center">
            <span>{{ $user_title }}</span> 
             <span id="stats-progress">
             <div id="progress">
@@ -88,7 +92,7 @@
 
            </span>
            </div>
-           <div class="col-md-4">
+           <div class="col-md-4 col-sm-4 col-xs-4">
                @foreach($rewards as $reward)
                 <div style="text-align:center; font-size:1em; line-height:2.6em;">
                        @if(deadlineCount( date("Y/m/d") ,$reward->deadline)< 30)
@@ -108,22 +112,22 @@
     </div>
 </div>
    <div id="dashDataRow" class="">
-        <div class="col-md-3 dashDataCol">
-            <span id="likeCount" class="glyphicons heart"></span>
+        <div class="col-md-3 col-sm-3 col-xs-3 dashDataCol">
+            <span id="likeCount" class="glyphicons glyphicons-heart"></span>
             <div class="likes" id="glyph-text" data-count="{{$user_like_count}}">{{$user_like_count}}</div>  
         </div> 
-     <div class="col-md-3 dashDataCol">
-        <span id="rankCount" class="glyphicons stats"></span>
+     <div class="col-md-3 col-sm-3 col-xs-3 dashDataCol">
+        <span id="rankCount" class="glyphicons glyphicons-stats"></span>
             <div id="glyph-text">{{$user_rank}} of {{$user_count}}</div> 
      </div>
     @foreach($rewards as $reward)
-     <div class="col-md-3 dashDataCol">
-        <span id="timeCount" class="glyphicons stopwatch"></span>
+     <div class="col-md-3 col-sm-3 col-xs-3 dashDataCol">
+        <span id="timeCount" class="glyphicons glyphicons-stopwatch"></span>
         <div id="glyph-text">{{round($user_time / 60 / 60, 1)}} of {{$reward->milestone /60 / 60}}</div> 
      </div>
      @endforeach
-     <div class="col-md-3 dashDataCol">
-        <span id="teamrankCount" class="glyphicons group"></span>
+     <div class="col-md-3 col-sm-3 col-xs-3 dashDataCol">
+        <span id="teamrankCount" class="glyphicons glyphicons-group"></span>
         <div id="glyph-text">
         @if ($teamname != "Individuals")
             <span>{{$team_rank}} of {{$team_count}}</span>
@@ -135,26 +139,6 @@
     </div>
     <!-- Start of Recent Activity (middle column) -->
     <div class="row-centered" style="position:relative;">
-    <div class="col-centered col-md-8" id="recent_activity_container">
-        <h3>Recent Activity</h3>
-        {{ Form::open(array('url' => 'activity-filter', 'method' => 'GET', 'id' => 'activity-type-form')) }}
-        <div class="btn-group pull-right activity-type" data-toggle="buttons">
-            <label class="btn btn-default btn-xs">
-                <input type="radio" name="filter" value="User">
-                <span class="glyphicon glyphicon-user"></span>
-            </label>
-            <label class="btn btn-default btn-xs">
-                <input type="radio" name="filter" value="Team">
-                <span id="custom-glyph-user" style="font-size:8px" class="glyphicon glyphicon-user"></span>
-                <span class="glyphicon glyphicon-user"></span>
-            </label>
-            <label class="btn btn-default btn-xs active">
-                <input type="radio" name="filter" value="Everyone">
-                <span class="glyphicon glyphicon-globe"></span>
-            </label>
-        </div>
-    </div>
-        {{ Form::close() }}
         <ul class="recentActivity">
             @include('_partials.activityfeed')
         </ul>
@@ -174,17 +158,9 @@
 {{ HTML::script('assets/js/form/weight.js') }} 
 {{ HTML::script('js/charts/chart.js')}} 
 {{ HTML::script('js/charts/dark-theme.js')}}
-
+{{ HTML::script('assets/js/form/type.js')}}
 <script type="text/javascript">
 teamChart(); // start donut chart
 
-// Reward Filter
-$('.activity-type input[type=radio]').on('change', function(e) {
-    var value = $("input[name='filter']:checked").val()
-    $.get("/activity-filter/" + value, function(data) {
-        $('.recentActivity').html(data);
-        jQuery("abbr.timeago").timeago();
-    });
-});
 </script>
 @stop

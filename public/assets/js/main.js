@@ -3,12 +3,14 @@ jQuery(document).ready(function() {
 });
 
 $(document).ready(function() {
-    $('.bouncywrap').hide();
+    
+    $('.bouncywrap, div.alert.badge').hide();
     // Tooltips
     $('.activityLikeImg img').tooltip({placement: "top"});
-    $('.moreNames span,span.flair').tooltip({placement: "bottom"});
+    $('div#container-flair span').tooltip({placement: "bottom"});
     $('.like-heart').tooltip({placement: "right"});
-    $("#day, #week, #date_value, div.intensity, #points, img#teamUserPic, #team-progress, span.flair").tooltip();
+    $("#day, #week, #date_value, div.intensity, #points, img#teamUserPic, #team-progress, span.flair,#badge-info-button").tooltip();
+    
 
     // Navigation - return page to the top
     $("a[href='#top']").click(function() {
@@ -17,34 +19,106 @@ $(document).ready(function() {
         }, "slow");
         return false;
     });
-
-    //Hovercard code
-    $('span[rel="hovercard"]').hoverIntent({
-        over: cardover,
-        out: cardout,
-        interval: 200,
-        timeout: 200,
+    
+    
+    // filter active switch
+    
+    $('div.activity-type label.btn input').on("click",function(e){
+        e.preventDefault();
+        console.log(this.parent);
+        //alert(this.value);
+        
     });
-    function cardover(e) {
-        $(this).children(".hovercard").fadeIn("slow");
-        x = $(this).data('url');
+    
+    //Popover
+    
+var tmp = $.fn.popover.Constructor.prototype.show;
+$.fn.popover.Constructor.prototype.show = function () {
+  tmp.call(this);
+  if (this.options.callback) {
+    this.options.callback();
+  }
+}
+    $('.popover-markup>.trigger').popover({
+    html: true,
+    title: function () {
+        return $(this).parent().find('.head').html();
+    },
+    content: function () {
+        return $(this).parent().find('.content').html();
+    },
+    callback: function() {
+       $("button#weight_submit").click(function(e) {
+       e.preventDefault();
+            
+        var date = $("#weight_datepicker").prop('value'); // get date
+        var weight = $("input#weight").prop('value');     // get weight
+        var regexp = /^\d{2,3}(\.\d{1})?$/;               // xxx.x or xx.x            
+        var testFormat = regexp.test(weight);             // test the format
+           
+        if(date == "" || weight == "" || testFormat === false)  // validate data
+        {
+            alert("Please enter a valid weight and date");
+            return;
+        }else {    
+        var dataString = {date: date, weight: weight};
+        
         $.ajax({
-            type: "GET",
-            data: x,
+            type: "POST",
+            url:"/goalstore/" + dataString,
+            data: dataString,
+            cache: false,
             dataType: "json",
-            url: "/hovercard/" + x,
-            success: function(data) {
-                var createdDate = new Date(data.created_at.date.replace(/-/g, "/"));
-                var joined = createdDate.getFullYear();
-                $('.hovercard').html('<span class="hovercard-bg"><img id="team-bg" src="../assets/img/teams/blur2.png"><img class="img-circle" id="profileImg" src=/' + data.pic + '></span><div class="row-centered" style="top:92px; position:relative"><h4 class="col-md-12">' + eval('data.userFirst') + ' ' + eval('data.userLast') + '</h4></div>' + '<div class="row-centered" style="top:80px; position:relative"><div id="memberDate" class="col-md-3"><div class="glyphicon glyphicon-calendar"></div><div>' + data.year + '</div></div><div id="memberDate" class="col-md-3"><div class="glyphicon glyphicon-time"></div><div>' + data.time + '</div></div><div id="memberDate" class="col-md-3"><div class="glyphicon glyphicon-stats"></div><div>' + data.activities + '</div></div><div id="memberDate" class="col-md-3"><div id="glyph-hover-points" class="glyphicons vcard"></div><div><span id="progress"><div class="bar" id="team-reward" style="width: 10%">10%</div></span></div></div></div><!-- End of Row-->');
-                    
+            success: function(result) {
+                if(result.badge){
+                    weightChart.updateChart();
+                    $('.popover-markup>.trigger').popover('hide');
+                    $('div#modal-badge-data').html("<h4>"+result.name+"</h4><img src='/assets/img/badges/" + result.image + "'> <p>Level "+ result.lvl +" : " +result.goal+" lbs</p>");
+                $('#badgeModal').modal({show:true});
+                }
+                weightChart.updateChart();
+                $('.popover-markup>.trigger').popover('hide');
+                $('span#weight_data').text(result.weight_lost);
+            },
+            error: function(error){
+                console.log(error);
             }
-        });
-    }
-    function cardout(e) {
-        $(this).children(".hovercard").hide();
-    }
+        })
+       }
+    });
 
+var alert_badge = "<div id='dash-side-right' class='alert alert-custom'>";
+        alert_badge+="<button type='button' class='close' data-dismiss='alert'>x</button>";
+        alert_badge+="<p>Badge Earned!</p>";
+        alert_badge+="</div>";
+
+    $('#weight_datepicker').datepicker({
+        showOn: "button",
+        buttonImage: "../assets/img/site/calendar-blk.png",
+        buttonImageOnly: true,
+        dateFormat: 'yy-mm-dd',
+        altField: '#weight_datepicker',
+        altFormat: 'yy-mm-dd',
+        defaultDate: new Date(),
+        minDate: new Date(minDate()),
+        maxDate: new Date(),
+        onSelect: function(dateText, inst) {
+            var theDate = new Date(Date.parse($(this).datepicker('getDate')));
+            var dateSelected = $.datepicker.formatDate('yy-mm-dd', theDate);
+            var dateFormatted = $.datepicker.formatDate('MM d, yy', theDate); // Ex. November 11, 2013
+            $("#date_value").text(dateFormatted);
+            checkWeight(dateSelected);
+        }
+        
+    }); 
+   $('#weight_datepicker').datepicker('setDate', new Date());
+        var today = $('#weight_datepicker').prop('value');
+    checkWeight(today);
+  }
+}).click(function (e) {
+        e.preventDefault();
+ });
+    
 
     // Activity Feed Hover 
     $('.recentActivity li').hoverIntent(function() {
@@ -110,6 +184,8 @@ $(document).ready(function() {
 
 
 /* Setup Application functions */
+
+
 // Converts time to seconds
 function timeToSeconds(time) {
     time = time.split(/:/);
@@ -264,3 +340,56 @@ function checkIE() {
         $('input#loginBtn[type="submit"]').attr('disabled', 'disabled');
     }
 }
+
+// check weight activity
+
+function checkWeight(dateSelected) {
+    $.ajax({
+    type: "GET",
+    url: "/weightcheck/" + dateSelected,
+    success: function(result) {
+        console.log(result.length);
+        if(result.length != 0)
+        {
+            $("button#weight_submit").prop( "disabled", true );
+        }
+        else
+        {
+            $("button#weight_submit").prop( "disabled", false );
+        }
+    }
+
+});
+}
+
+    //Hovercard code
+    // initialize hovercard
+function initHoverCard(){
+
+    $('span[rel="hovercard"]').hoverIntent({
+        over: cardover,
+        out: cardout,
+        interval: 200,
+        timeout: 200,
+    });
+}
+    function cardover(e) {
+        $(this).children(".hovercard").fadeIn("slow");
+        x = $(this).data('url');
+        $.ajax({
+            type: "GET",
+            data: x,
+            dataType: "json",
+            url: "/hovercard/" + x,
+            success: function(data) {
+                var createdDate = new Date(data.created_at.date.replace(/-/g, "/"));
+                var joined = createdDate.getFullYear();
+                $('.hovercard').html('<span class="hovercard-bg"><img id="team-bg" src="../assets/img/teams/blur2.png"><img class="img-circle" id="profileImg" src=' + data.pic + '></span><div class="row-centered" style="top:92px; position:relative"><h4 class="col-md-12">' + eval('data.userFirst') + ' ' + eval('data.userLast') + '</h4></div>' + '<div class="row-centered" style="top:80px; position:relative"><div id="memberDate" class="col-md-3"><div class="glyphicon glyphicon-calendar"></div><div>' + data.year + '</div></div><div id="memberDate" class="col-md-3"><div class="glyphicon glyphicon-time"></div><div>' + data.time + '</div></div><div id="memberDate" class="col-md-3"><div class="glyphicon glyphicon-stats"></div><div>' + data.activities + '</div></div><div id="memberDate" class="col-md-3"><div id="glyph-hover-points" class="glyphicons glyphicons-star"></div><div><span id="progress"><div class="bar" id="team-reward" style="width: 10%">10%</div></span></div></div></div><!-- End of Row-->');
+                    
+            }
+        });
+    }
+    function cardout(e) {
+        $(this).children(".hovercard").hide();
+    }
+

@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.lite')
 
 @section('content')
 <link href='http://fonts.googleapis.com/css?family=Chelsea+Market|Nothing+You+Could+Do' rel='stylesheet' type='text/css'>

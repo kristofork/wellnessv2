@@ -85,7 +85,7 @@ h4
     /* reset the text-align */
     text-align:left;
     /* inline-block space fix */
-    margin-right:-4px;
+    //margin-right:-4px;
 }
 /* Background */
 
@@ -241,6 +241,12 @@ img#teamUserPic {
 }
 .userProgress {
     margin-top: -45px;
+}
+
+#recent_activity_toolbar, #recent_activity_header{
+    background-color: #fff;
+    margin-left: 15px;
+    margin-top: 5px;
 }
 
 #welcome_recent_activity, #container-post, .admin_usersCol, .admin_edituser, .user_edituser,.masthead, #recent_activity_container {
@@ -1285,8 +1291,11 @@ div.admin.teams {
     text-decoration: none;
 }
 #dash-side-right {
-    width: 30%;
-    float: right;
+    width: 25%;
+    position: absolute;
+    right: 0;
+    top:2.8em;
+    z-index:2;
     margin-top: 5px;
     border-radius: 0;
 }
@@ -1295,7 +1304,8 @@ div.admin.teams {
 
 }
 #timeSliderContainer{
-    margin-top: 1em;   
+    margin-top: .5em;
+    margin-bottom: .5em;
 }
 
 
@@ -1604,14 +1614,14 @@ ul.nav.tabs li a span.glyphicon {
 }
 //Custom Alert
 .alert-custom {
-    color: #0af;
-    background-color: rgba(0, 0, 0, 0.37);
+    color: @site_black;
+    background-color: rgba(69, 255, 0, 0.4);
 }
 .alert-custom button.close {
-    color: #fff;
+    color: #000;
 }
 .alert-custom button.close:hover {
-    color: #fff;
+    color: #000;
 }
 // Custom Glyphicon
 #custom-glyph-user {
@@ -1636,7 +1646,6 @@ ul#fav-activity li {
         margin-top: 3em;
     }
 }
-
 
 
 
@@ -1716,19 +1725,178 @@ div.content.bubble p{
     margin-right: 0;
 }
 
+#post-meta
+{
+    line-height: .5em;
+    font-size: .8em;
+}
+
+#post-meta span[class*="glyphicons-"]
+{
+    color:#2A6496;
+    margin-right:.2em;
+    vertical-align: middle;
+}
+
+#post-meta .post-data
+{
+    margin-right: 2em;
+}
+
+//Badges
+
+.badge_container
+{
+    background-color:#fff;
+    height:200px;
+    margin: 10px auto;
+    padding: 20px;
+}
+
+.badge_container #title{
+    padding: 5px;
+}
+
+.badge_container #desc{
+    font-size: .9em;
+    width:80%;
+    margin: 0 auto;
+}
+
+.badge_container span#badge-info-button{
+    position: absolute;
+    right:30px;
+    width:10%;
+    top: 25px;
+}
+.badge_container span#badge-info-button:before {
+    color:@site_blue;
+}
+.badge_container span#golden-cup:before{
+    color:@site_yellow;
+}
+img.badge-notification
+{
+    width:64px;
+}
+img.badge-lineup
+{
+    width:96px;
+}
+
+.badge_container .tooltip .tooltip-inner, div#container-flair .tooltip .tooltip-inner{
+    min-width: 150px;
+    max-width: 150px;
+}
+
+
 //flair
-.flair.sm_flair_captain{ background-position: 0 0 !important; width: 14px; height: 14px; } 
-.flair.sm_flair_scholar{ background-position: 0 -64px !important; width: 14px; height: 14px; } 
-.flair.sm_flair_trophy{ background-position: 0 -128px !important; width: 14px; height: 14px; } 
 
 #container-flair{
-      float: left;
-    height: 27px;
+    float: left;
+    height: 31px;
     width: 21px;
     position: relative;  
 }
 #container-flair span {
-    background: url(/assets/img/site/flair-master.png) no-repeat top left;
+    background: url(/assets/img/site/master_flair.png) no-repeat top left;
     position: absolute;
     bottom: 0px;
 }
+//.sprite-flair_type_lvl
+
+.sprite-flair_run_1{ background-position: 0 0 !important; width: 18px; height: 18px;} 
+.sprite-flair_run_2{ background-position: 0 -68px !important; width: 18px; height: 18px; } 
+.sprite-flair_run_3{ background-position: 0 -136px !important; width: 18px; height: 18px; } 
+.sprite-flair_run_4{ background-position: 0 -204px !important; width: 18px; height: 18px; } 
+.sprite-flair_scholar_1{ background-position: 0 -272px !important; width: 18px; height: 18px; } 
+.sprite-flair_weight_1{ background-position: 0 -340px !important; width: 18px; height: 18px; } 
+.sprite-flair_weight_2{ background-position: 0 -408px !important; width: 18px; height: 18px; } 
+.sprite-flair_weight_3{ background-position: 0 -476px !important; width: 18px; height: 18px; } 
+
+.tooltip-inner {
+    max-width: 350px;
+    /* If max-width does not work, try using width instead */
+    width: 100px; 
+}
+
+.carousel-indicators li {
+
+  background-color: #999;
+  background-color: rgba(70,70,70,.25);
+}
+
+.carousel-indicators .active {
+  background-color: #444;
+}
+.carousel-indicators {
+    height: 1em;
+    bottom: 0;
+}
+
+
+
+// Charts
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+    
+.grid path,
+.grid line {
+  fill: none;
+  stroke: rgba(0, 0, 0, 0.15);
+  shape-rendering: crispEdges;
+}
+
+
+.line {
+  fill: none;
+  stroke-width: 2.5px;
+}
+.tick .text {
+    font-size:12px;
+}
+.tick line {
+      opacity: 0.2;
+}
+    
+div.tooltip {
+	position: absolute;
+	text-align: center;
+	width: 80px;
+	height: 40px;
+	padding: 2px;
+	font: 12px sans-serif;
+	background: #eee;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	pointer-events: none;
+	
+}
+
+#chart-container{
+    font-size:.5em;
+}    
+.svg-container {
+    display: block;
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+    vertical-align: top;
+    overflow: ;
+}
+    
+.carousel-inner{
+  width:100%;
+  
+}
+div#chart-weight .y.axis text{ font-size: 0.7em;}
+div#chart-weight .x.axis text {font-size: 0.6em;}
+    
+div#chart-container .y.axis text {font-size: 1.3em;}
+div#chart-container .x.axis text {font-size: 1.3em;}
+div#chart-container text.names{font-size: 1.3em;}

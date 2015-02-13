@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="256"
+   height="256"
+   id="svg3344"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   viewBox="0 0 256 256"
+   sodipodi:docname="run-marathon.svg"
+   inkscape:export-filename="C:\Users\wkkerns\Dropbox\Badges\flair\flair_run_4.png"
+   inkscape:export-xdpi="6.4899998"
+   inkscape:export-ydpi="6.4899998">
+  <defs
+     id="defs3346" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.9445437"
+     inkscape:cx="27.369178"
+     inkscape:cy="52.335144"
+     inkscape:current-layer="layer2"
+     showgrid="true"
+     inkscape:document-units="px"
+     inkscape:grid-bbox="true"
+     showguides="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1058"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:guide-bbox="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3352" />
+    <sodipodi:guide
+       position="32,32"
+       orientation="1,0"
+       id="guide3360" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata3349">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     transform="translate(0,192)"
+     style="display:none;opacity:0.93000034"
+     sodipodi:insensitive="true">
+    <circle
+       style="fill:#ff0056;fill-opacity:1;fill-rule:evenodd;stroke:#00e1ff;stroke-width:15.36848068;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path3359"
+       cx="127.88097"
+       cy="-63.910732"
+       r="119.10573"
+       d="m 246.98669,-63.910732 c 0,65.780277 -53.32545,119.105728 -119.10572,119.105728 -65.780281,0 -119.105732,-53.325451 -119.105732,-119.105728 0,-65.780278 53.325451,-119.105728 119.105732,-119.105728 65.78027,0 119.10572,53.32545 119.10572,119.105728 z" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="trophy">
+    <g
+       id="g4165"
+       transform="matrix(11.32381,0,0,10.604045,-144.80058,-126.53138)"
+       style="fill:#ffdd00;fill-opacity:1"
+       inkscape:export-filename="E:\Dropbox\Badges\flair\flair_run_4.png"
+       inkscape:export-xdpi="6.4899998"
+       inkscape:export-ydpi="6.4899998">
+      <g
+         id="glyphicons"
+         style="fill:#ffdd00;fill-opacity:1">
+        <g
+           id="cup"
+           style="fill:#ffdd00;fill-opacity:1">
+          <path
+             id="path4155"
+             d="m 34,14 -3,0 c 0,-0.499 0,-1.862 0,-2 l -14,0 c 0,0.138 0,1.501 0,2 l -3,0 c -0.55,0 -1,0.45 -1,1 0,2.955 0,6 1.203,8.031 1.646,2.778 4.726,4.107 7.874,3.957 0.431,0.681 0.758,1.361 0.923,2.063 L 23,30 c 0,0.852 -0.366,1.511 -0.782,2 L 21,32 l 0,1 -1,0 0,3 8,0 0,-3 -1,0 0,-1 -1.218,0 C 25.366,31.511 25,30.852 25,30 l 0,-1.148 c 0.136,-0.683 0.384,-1.314 0.708,-1.91 1.27,0.393 3.263,-0.178 4.454,-0.662 1.394,-0.566 2.304,-1.394 3.378,-2.803 C 34.62,22.06 35,21.512 35,15 35,14.45 34.55,14 34,14 z M 16.912,23.313 C 14.748,21.111 14.928,18.855 14.969,16 L 17,16 c 0,1.761 -0.048,2.473 0.589,4.148 0.672,1.772 1.836,3.282 2.986,4.766 -1.585,-0.191 -2.795,-0.717 -3.663,-1.601 0.868,0.884 -2.013,-2.047 0,0 z M 31.111,23.31 c -1.025,1.025 -2.272,1.49 -4.044,1.641 1.127,-1.422 2.235,-2.649 3.152,-4.437 C 31.136,18.727 31,17.908 31,16 l 2.01,0 c 0,0.551 0.018,1.496 0.018,2 0,2.91 -0.891,4.285 -1.917,5.31 z"
+             inkscape:connector-curvature="0"
+             style="fill:#ffdd00;fill-opacity:1" />
+        </g>
+      </g>
+      <g
+         id="Layer_2"
+         style="fill:#ffdd00;fill-opacity:1" />
+      <g
+         style="fill:#ffdd00;fill-opacity:1;display:none"
+         id="nyt_x5F_exporter_x5F_info" />
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="runner">
+    <g
+       id="g4186"
+       transform="matrix(3.9193486,0,0,3.9193486,31.740565,-22.341291)"
+       style="stroke:none">
+      <g
+         id="glyphicons-4"
+         style="stroke:none">
+        <g
+           id="person-running"
+           style="stroke:none">
+          <path
+             id="path4177"
+             d="m 27.898,21.501 -1.421,2.947 c 0,0 4.257,1.849 4.805,2.01 0.765,0.261 0.739,0.905 0.504,1.343 -0.187,0.349 -2.423,2.809 -3.322,3.791 l 1.385,1.52 c 0.18,0.208 0.144,0.581 -0.017,0.742 -0.161,0.161 -0.541,0.248 -0.764,0.087 L 26.705,32.15 C 26.497,32 26.447,31.721 26.569,31.502 l 2.361,-3.384 -4.009,-0.791 -3.069,3.426 -4.198,3.333 0.346,0.68 0.598,0.102 c 0.269,0.059 0.446,0.309 0.432,0.603 -0.014,0.294 -0.284,0.524 -0.559,0.529 l -0.877,-0.005 c 0,0 -1.277,-0.999 -1.57,-1.292 -0.293,-0.293 -0.148,-0.609 0.086,-0.891 0.05,-0.06 3.247,-4.016 3.247,-4.016 l 2.777,-5.538 1.709,-4.927 -2.378,0.307 c -0.273,0.035 -0.648,0.23 -0.834,0.433 l -2.38,2.599 c -0.186,0.203 -0.551,0.345 -0.885,0.345 -0.334,0 -0.376,-0.209 -0.226,-0.44 l 2.539,-3.876 c 0.151,-0.23 0.486,-0.493 0.745,-0.585 0,0 4.747,-1.677 5.341,-1.755 0.594,-0.078 1.067,0.062 1.067,0.062 0.03,0.009 0.871,0.46 0.871,0.46 0.24,0.135 0.524,0.451 0.632,0.705 l 1.169,2.755 c 0.107,0.253 0.4,0.366 0.65,0.252 l 3.094,-1.415 c 0.25,-0.115 0.564,-0.06 0.697,0.12 0.133,0.18 0.06,0.46 -0.163,0.621 l -4.065,2.945 c -0.223,0.161 -0.551,0.122 -0.73,-0.087 l -1.089,-1.276 z m 1.602,-4.72 c 1.26,0 2.281,-1.021 2.281,-2.281 0,-1.26 -1.021,-2.281 -2.281,-2.281 -1.26,0 -2.281,1.021 -2.281,2.281 0,1.26 1.021,2.281 2.281,2.281 z"
+             inkscape:connector-curvature="0"
+             style="stroke:none" />
+        </g>
+      </g>
+      <g
+         id="Layer_2-2"
+         style="stroke:none" />
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="13.1"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4160"
+       style="font-style:normal;font-weight:normal;font-size:100.16928864px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:0.93333333;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="matrix(1.1500988,0,0,1.1500988,-52.003651,7.1490484)"><flowRegion
+         id="flowRegion4162"><rect
+           id="rect4164"
+           width="206.42361"
+           height="101.70738"
+           x="63.765846"
+           y="52.710266"
+           style="font-size:100.16928864px;fill:#ffffff;fill-opacity:0.93333333" /></flowRegion><flowPara
+         id="flowPara4166"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:78.25414276px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#ffffff;fill-opacity:0.93333333">13<flowSpan
+   style="font-size:43.47452545px"
+   id="flowSpan5026">.</flowSpan>1</flowPara></flowRoot>  </g>
+</svg>

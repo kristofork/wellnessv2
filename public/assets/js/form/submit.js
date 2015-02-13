@@ -50,12 +50,13 @@ $(document).ready(function () {
                         $('button#submitact').prop('disabled', false);
                     } else {
                         $.each(result, function (index, value) {
-                            html = "<div class='alert alert-error' id='log_list' style='display: none'>";
+                                
+                            html = "<div id='dash-side-right' class='alert alert-custom'>";
                             html += "<button type='button' class='close' data-dismiss='alert'>x</button>";
                             html += "<ul class='log_errors'>";
                             html += "<li>" + value + "</li></ul></div>";
-                            $("#activity_form.sidebar-nav").after(html);
-                            $("#log_list").show().effect('shake');
+                            $("div.headbar").after(html);
+
                         })
                     }
                 }, 5000); // End of timeout
@@ -64,6 +65,8 @@ $(document).ready(function () {
     })
 
 
+
+    
     $("button#goalsubmit").click(function (e) {
         e.preventDefault();
         var oz = $("#weight_val").val();
