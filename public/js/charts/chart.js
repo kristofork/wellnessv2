@@ -70,7 +70,7 @@ data.forEach(function(kv) {
         });
 });
 
-var div = d3.select("body").append("div").attr("class", "tooltip")
+var div = d3.select("body").append("div").attr("class", "tooltip").attr('id','chart-tooltip')
 	    .style("opacity", 0);
     
     var y = d3.scale.linear()
