@@ -77,7 +77,11 @@ class ActivityController extends BaseController {
                 $time = User::find($id)->currentYearStats;
                 // Get the current time reward
                 $reward = Reward::current();
+                
+                // *** TODO - Prevent user from logging multiple alerts and badges if the user finishes the log challenge early. Add 2 columns to table currentyearstats to track completion status
                 if($time->time >= $reward[0]->milestone){
+                    $reward_id = $reward[0]->badge_id;
+                    // Alert Admin of completed milestone
                     try{
                         $goal = new RewardActivity;
                         $goal->user_id = $id;
@@ -87,8 +91,19 @@ class ActivityController extends BaseController {
                     }catch(Exception $e){
                         echo "Error";
                     }
+                    // Get badge data
+                    $badge = Badge::find($reward_id);
+                    
+                    // Issue Badge to user
+                    $badge_user = new BadgeUser;
+                    $badge_user->badge_id = $badge->id; 
+                    $badge_user->user_id = $user->id;
+                    $badge_user->save();
+                    // display alert badge earned.
+                    $result = array('success'=> true, 'message'=> 'Congrats, you earned a badge!', 'badge'=> true, 'name'=>$badge->name, 'goal' => $badge->required, 'image'=> $badge->image, 'lvl'=> $badge->lvl);
+                }else{
+                $result = array('success'=> true, 'message'=> 'Activity Saved!');
                 }
-                $result = array('success'=> true, 'message'=> 'Activity Saved!','userpic' => $userpic, 'acttime' => $acttimeConverted, 'actname' => $input['actname'], 'firstname'=> $userfirst, 'lastname' => $userlast, 'currentTime' => $currentDateTime);
                 return Response::json($result);
             }
         }

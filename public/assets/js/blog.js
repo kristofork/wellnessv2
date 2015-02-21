@@ -2,7 +2,6 @@ $(document).ready(function(){
 
 $("button.read").click(function(e){
 	e.preventDefault();
-    
     console.log("click");
 
            var id = parseInt($(this).attr('id'));
@@ -14,6 +13,7 @@ $("button.read").click(function(e){
             success: function(data)
             {
             	console.log('Read!');
+                $("button.read").hide();
             }
 })
 })

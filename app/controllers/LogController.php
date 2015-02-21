@@ -15,7 +15,7 @@ class LogController extends BaseController {
 		$reward1                   = Reward::find(1);
 		$reward2                   = Reward::find(2);
 		return View::make('log.index')->with('title','Log')
-            ->with('isAdmin', false)
+            ->with('isAdmin', $user->isAdmin())
             ->with('rewards', Reward::current())
             ->with('teamname',Team::teamName())
             ->with('userYearStats', Team::userYearStat($team))

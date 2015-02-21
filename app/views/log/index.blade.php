@@ -102,7 +102,9 @@
                 <!-- End of Row -->
             </form>
     </div>
- </div>           
+ </div>  
+           
+@include('_partials.modal-badge')
             
 {{ HTML::script('assets/js/jquery.sidr.min.js')}} 
 {{ HTML::script('assets/js/form/activity.js')}} 
@@ -112,4 +114,4 @@
 {{ HTML::script('assets/js/form/submit.js')}} 
 {{ HTML::script('assets/js/form/weight.js') }} 
             
-           @stop
+@stop
