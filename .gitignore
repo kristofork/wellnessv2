@@ -1,5 +1,6 @@
 /bootstrap/compiled.php
 vendor/*
+!vendor/wardrobe/core/src/Wardrobe/Core/Controllers
 composer.phar
 .DS_Store
 /node_modules
