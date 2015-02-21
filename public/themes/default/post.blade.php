@@ -27,7 +27,7 @@
 <div class="col-md-12" id="post-meta">
 <span>
     <span class="glyphicons glyphicons-pen"></span> 
-    <span class="post-data">William K.</span>
+    <span class="post-data">Wellness Team</span>
 </span>
 <span>
     <span class="glyphicons glyphicons-check"></span> 

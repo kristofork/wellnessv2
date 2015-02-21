@@ -14,7 +14,7 @@
 <div class="col-md-12" id="post-meta">
 <span>
     <span class="glyphicons glyphicons-pen"></span> 
-    <span class="post-data">William K.</span>
+    <span class="post-data">Wellness Team</span>
 </span>
 <span>
     <span class="glyphicons glyphicons-check"></span> 
@@ -22,7 +22,7 @@
     </span>
 <span>
     <span class="glyphicons glyphicons-tag"></span> 
-    <span class="post-data">Food</span>
+    <span class="post-data">@include(theme_view('inc.tags'))</span>
     </span>
 </div>
   <div class="content bubble">
