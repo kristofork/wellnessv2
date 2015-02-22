@@ -61,6 +61,7 @@
                  <div id="logDataRow" class="row-centered">
                      <div class="col-md-3 col-sm-3 col-xs-4 logDataCol">
                     <div class="progress" id="reward-progress">
+                      <span class="tick">|</span>
                        @foreach($rewards as $reward)
                         <div class="bar" id="reward" style="width: {{ percentageRound($reward->milestone, $user_time, 0); }}%">{{ percentageRound($reward->milestone, $user_time,0); }}%</div>
                         @endforeach
