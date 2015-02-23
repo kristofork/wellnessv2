@@ -1785,43 +1785,53 @@ div#container-flair .tooltip .tooltip-inner {
   position: absolute;
   bottom: 0px;
 }
-.sprite-flair_run_1 {
+.sprite-flair_log_20141 {
   background-position: 0 0 !important;
   width: 18px;
   height: 18px;
 }
-.sprite-flair_run_2 {
+.sprite-flair_log_20152 {
   background-position: 0 -68px !important;
   width: 18px;
   height: 18px;
 }
-.sprite-flair_run_3 {
+.sprite-flair_run_1 {
   background-position: 0 -136px !important;
   width: 18px;
   height: 18px;
 }
-.sprite-flair_run_4 {
+.sprite-flair_run_2 {
   background-position: 0 -204px !important;
   width: 18px;
   height: 18px;
 }
-.sprite-flair_scholar_1 {
+.sprite-flair_run_3 {
   background-position: 0 -272px !important;
   width: 18px;
   height: 18px;
 }
-.sprite-flair_weight_1 {
+.sprite-flair_run_4 {
   background-position: 0 -340px !important;
   width: 18px;
   height: 18px;
 }
-.sprite-flair_weight_2 {
+.sprite-flair_scholar_1 {
   background-position: 0 -408px !important;
   width: 18px;
   height: 18px;
 }
-.sprite-flair_weight_3 {
+.sprite-flair_weight_1 {
   background-position: 0 -476px !important;
+  width: 18px;
+  height: 18px;
+}
+.sprite-flair_weight_2 {
+  background-position: 0 -544px !important;
+  width: 18px;
+  height: 18px;
+}
+.sprite-flair_weight_3 {
+  background-position: 0 -612px !important;
   width: 18px;
   height: 18px;
 }

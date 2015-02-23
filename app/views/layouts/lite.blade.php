@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <!--[if lt IE 10 ]> <html class="badIE"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
-<html class="">
+<html>
 <!--<![endif]-->
 
 <head>

@@ -136,7 +136,7 @@ class UserController extends BaseController
 		$reward1 = Reward::find(1);
 		$reward2 = Reward::find(2);
         $activities = Activity::with(array('user.badgeuser' => function($q){
-                                    $q->join('badges','badges.id','=','badge_id')->first();
+                                    $q->join('badges','badges.id','=','badge_id')->orderBy('created_at','desc')->first();
         }),'user')->where('user_id', '=',$id)->orderBy('activities.created_at', 'desc')->take(10)->get();
         $userdata = User::with(array('goalprogress' => function($q) use($currentHalf){
             $q->whereBetween('created_at',array($currentHalf['start'], $currentHalf['end']))->with('goal');
@@ -144,18 +144,22 @@ class UserController extends BaseController
         $goaluser_count = GoalProgress::where('active', 1)->count();
         
         if(count($userdata->goalprogress) > 0){
-        //$goaldata=  $userdata->goalprogress->toArray()[0]; 
+        $goaldata=  $userdata->goalprogress->toArray()[0]; 
         //$hasGoal =count($userdata->goalprogress->toArray());
         $isGoalActive = ($goaldata['active']);
         $goaltype = $goaldata['goal']['type'];
         }else
         {
+            $goaltype = null;
+            $goaldata = null;
             $isGoalActive = false;
         }
 
 		return View::make('profile.user')
 			->with('title', 'Profile')
             ->with('userdata', $userdata)
+            ->with('isGoalActive', $isGoalActive)
+            ->with('goaltype', $goaltype)
 			->with('teamname',Team::teamName())
 			->with('userYearStats', Team::userYearStat($team))
 			->with('user_time', $user->currentYearStats ? $user->currentYearStats->time : "0")		// User's time

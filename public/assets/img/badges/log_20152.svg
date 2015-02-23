@@ -15,10 +15,10 @@
    version="1.1"
    inkscape:version="0.91 r13725"
    viewBox="0 0 256 256"
-   sodipodi:docname="log-2.svg"
-   inkscape:export-filename="E:\Dropbox\Badges\weightloss128x128.png"
-   inkscape:export-xdpi="180.50999"
-   inkscape:export-ydpi="180.50999">
+   sodipodi:docname="log_20152.svg"
+   inkscape:export-filename="C:\Users\wkkerns\Dropbox\Badges\flair\flair_log_20141.png"
+   inkscape:export-xdpi="6.328125"
+   inkscape:export-ydpi="6.328125">
   <defs
      id="defs3346" />
   <sodipodi:namedview
@@ -29,17 +29,17 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.9445437"
-     inkscape:cx="136.39218"
+     inkscape:cx="134.59227"
      inkscape:cy="124.19444"
-     inkscape:current-layer="layer4"
+     inkscape:current-layer="layer2"
      showgrid="true"
      inkscape:document-units="px"
      inkscape:grid-bbox="true"
      showguides="true"
      inkscape:window-width="1600"
      inkscape:window-height="838"
-     inkscape:window-x="1912"
-     inkscape:window-y="1112"
+     inkscape:window-x="-8"
+     inkscape:window-y="32"
      inkscape:window-maximized="1"
      inkscape:guide-bbox="true">
     <inkscape:grid
@@ -58,6 +58,49 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer6"
+     inkscape:label="stopwatch"
+     style="display:inline"
+     sodipodi:insensitive="true">
+    <g
+       id="g4187"
+       transform="matrix(9.4609225,0,0,9.4609225,-101.00606,-85.254232)"
+       style="fill:#231b76;fill-opacity:1">
+      <g
+         id="glyphicons-6"
+         style="fill:#231b76;fill-opacity:1">
+        <g
+           id="stopwatch_1_"
+           style="fill:#231b76;fill-opacity:1">
+          <path
+             id="path4177"
+             d="m 24,13.865 c -6.065,0 -11,4.935 -11,11 0,6.066 4.935,11 11,11 6.065,0 11,-4.934 11,-11 0,-6.065 -4.935,-11 -11,-11 z m 0,19 c -4.411,0 -8,-3.589 -8,-8 0,-4.411 3.589,-8 8,-8 4.411,0 8,3.589 8,8 0,4.411 -3.589,8 -8,8 z m 2,-8 c 0,0.738 -0.404,1.376 -1,1.723 l 0,0.891 C 25,27.754 24.775,28 24.5,28 l -1,0 C 23.225,28 23,27.754 23,27.479 l 0,-0.891 c -0.596,-0.347 -1,-0.984 -1,-1.723 0,-0.738 0.404,-1.376 1,-1.723 L 23,19.5 C 23,19.225 23.225,19 23.5,19 l 1,0 c 0.275,0 0.5,0.225 0.5,0.5 l 0,3.643 c 0.596,0.346 1,0.984 1,1.722 z M 24,11.906 c -0.508,0 -1.508,0.035 -2,0.094 L 22,9.531 C 22,9.256 22.225,9 22.5,9 l 3,0 C 25.775,9 26,9.256 26,9.531 L 26,12 c -0.492,-0.059 -1.492,-0.094 -2,-0.094 z m 11.624,3.753 -1.48,1.48 C 33.838,16.75 33.508,16.372 33.149,16.013 32.791,15.655 32.413,15.325 32.023,15.018 l 1.48,-1.479 c 0.195,-0.194 0.514,-0.194 0.708,0 l 1.414,1.414 c 0.193,0.193 0.193,0.512 -10e-4,0.706 z"
+             inkscape:connector-curvature="0"
+             style="fill:#231b76;fill-opacity:1" />
+        </g>
+      </g>
+      <g
+         id="Layer_2-35"
+         style="fill:#231b76;fill-opacity:1" />
+      <g
+         style="display:none;fill:#231b76;fill-opacity:1"
+         id="nyt_x5F_exporter_x5F_info-3" />
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer7"
+     inkscape:label="circle"
+     sodipodi:insensitive="true">
+    <circle
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:15.36800003;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4195"
+       cx="125"
+       cy="149"
+       r="65" />
+  </g>
   <g
      id="layer1"
      inkscape:label="Layer 1"
@@ -104,30 +147,30 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="star"
-     sodipodi:insensitive="true"
-     style="display:inline">
+     style="display:inline"
+     sodipodi:insensitive="true">
     <g
        id="g4164"
-       transform="matrix(10.270959,0,0,10.270959,-123.36228,-113.49284)"
-       style="fill:#feff00;fill-opacity:1;stroke:none;stroke-opacity:1">
+       transform="matrix(7.9054316,0,0,7.9054316,-68.000565,-48.59409)"
+       style="fill:#00a5ff;fill-opacity:1;stroke:none;stroke-opacity:1">
       <g
          id="glyphicons-1"
-         style="fill:#feff00;fill-opacity:1;stroke:none;stroke-opacity:1">
+         style="fill:#00a5ff;fill-opacity:1;stroke:none;stroke-opacity:1">
         <g
            id="star"
-           style="fill:#feff00;fill-opacity:1;stroke:none;stroke-opacity:1">
+           style="fill:#00a5ff;fill-opacity:1;stroke:none;stroke-opacity:1">
           <path
              id="path4154"
              d="m 36.906,21 -9.438,0 -2.922,-9 -2.971,9 -9.575,0 7.757,5.455 -2.913,8.862 7.648,-5.564 7.679,5.508 -2.909,-8.85 L 36.906,21 Z"
              inkscape:connector-curvature="0"
-             style="fill:#feff00;fill-opacity:1;stroke:none;stroke-opacity:1" />
+             style="fill:#00a5ff;fill-opacity:1;stroke:none;stroke-opacity:1" />
         </g>
       </g>
       <g
          id="Layer_2-3"
-         style="fill:#feff00;fill-opacity:1;stroke:none;stroke-opacity:1" />
+         style="fill:#00a5ff;fill-opacity:1;stroke:none;stroke-opacity:1" />
       <g
-         style="display:none;fill:#feff00;fill-opacity:1;stroke:none;stroke-opacity:1"
+         style="display:none;fill:#00a5ff;fill-opacity:1;stroke:none;stroke-opacity:1"
          id="nyt_x5F_exporter_x5F_info" />
     </g>
   </g>
@@ -135,39 +178,40 @@
      inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="star-half"
-     style="display:none">
+     style="display:none"
+     sodipodi:insensitive="true">
     <g
        id="g4185"
-       transform="matrix(10.147071,0,0,10.147071,-119.81858,-111.35477)"
-       style="fill:#ffd600;fill-opacity:1;stroke:none;stroke-opacity:1">
+       transform="matrix(8.0730917,0,0,8.0730917,-70.760633,-50.352794)"
+       style="fill:#00a5ff;fill-opacity:1;stroke:none;stroke-opacity:1">
       <g
          id="glyphicons-9"
-         style="fill:#ffd600;fill-opacity:1;stroke:none;stroke-opacity:1">
+         style="fill:#00a5ff;fill-opacity:1;stroke:none;stroke-opacity:1">
         <g
            id="star-half"
-           style="fill:#ffd600;fill-opacity:1;stroke:none;stroke-opacity:1">
+           style="fill:#00a5ff;fill-opacity:1;stroke:none;stroke-opacity:1">
           <path
              id="path4176"
              d="m 16.812,35.364 0.04,-0.029 -0.009,0.027 -0.031,0.002 z m 12.45,-8.907 2.909,8.85 -7.679,-5.508 -7.639,5.536 L 19.757,26.5 12,21.045 l 9.576,0 2.939,-9 0.031,0 2.922,9 9.438,0 -7.644,5.412 z m -0.883,3.702 -1.472,-4.476 3.79,-2.639 -4.683,0 -1.018,-3.135 0.004,0.01 0,7.777 3.379,2.463 z"
              inkscape:connector-curvature="0"
-             style="fill:#ffd600;fill-opacity:1;stroke:none;stroke-opacity:1" />
+             style="fill:#00a5ff;fill-opacity:1;stroke:none;stroke-opacity:1" />
         </g>
       </g>
       <g
          id="Layer_2-5"
-         style="fill:#ffd600;fill-opacity:1;stroke:none;stroke-opacity:1" />
+         style="fill:#00a5ff;fill-opacity:1;stroke:none;stroke-opacity:1" />
     </g>
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer5"
      inkscape:label="year"
-     style="display:none">
+     style="display:inline">
     <flowRoot
        xml:space="preserve"
        id="flowRoot4192"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       transform="translate(8.284271,31.884087)"><flowRegion
+       transform="matrix(0.86949493,-0.49394187,0.49394187,0.86949493,-28.220512,33.143297)"><flowRegion
          id="flowRegion4194"><rect
            id="rect4196"
            width="80"
@@ -175,23 +219,24 @@
            x="15"
            y="16" /></flowRegion><flowPara
          id="flowPara4198"
-         style="font-size:45px">'14</flowPara></flowRoot>  </g>
+         style="font-size:45px">'15</flowPara></flowRoot>  </g>
   <g
+     style="display:none"
      inkscape:label="year copy"
-     id="g4200"
+     id="g4197"
      inkscape:groupmode="layer"
-     style="display:none">
+     sodipodi:insensitive="true">
     <flowRoot
-       transform="translate(144.50691,30.341308)"
+       transform="matrix(0.86949493,0.49394187,-0.49394187,0.86949493,155.26645,-34.946359)"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       id="flowRoot4202"
+       id="flowRoot4199"
        xml:space="preserve"><flowRegion
-         id="flowRegion4204"><rect
+         id="flowRegion4201"><rect
            y="16"
            x="15"
            height="60"
            width="80"
-           id="rect4206" /></flowRegion><flowPara
-         id="flowPara4208"
-         style="font-size:45px">'15</flowPara></flowRoot>  </g>
+           id="rect4203" /></flowRegion><flowPara
+         style="font-size:45px"
+         id="flowPara4205">'14</flowPara></flowRoot>  </g>
 </svg>

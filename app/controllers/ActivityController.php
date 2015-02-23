@@ -176,7 +176,7 @@ class ActivityController extends BaseController {
                     $activity = new Activity;   //create the activity 
                     $activity->user_id = $user->id;
                     $activity->team_id = $user->team_id;
-                    $activity->activity_name  = "Earned a level ". $badge_data->lvl ." ". $badge_data->name . "badge";
+                    $activity->activity_name  = "Earned a level ". $badge_data->lvl ." ". $badge_data->name . " badge";
                     $activity->type     = 'badge';
                     $activity->save();
                 

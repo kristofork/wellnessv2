@@ -101,7 +101,7 @@
                                             @if($hasBadge)
                                             <div id="container-flair"><span class="{{$flairclass}}" title="{{$badgedesc}}"></span></div>
                                             @endif
-                                        <div class="recentActivityText">Lost {{ ounceToPounds($activity->goal_num ) }} last week towards their <strong>{{ $activity->activity_name }} goal </strong></div>
+                                        <div class="recentActivityText">{{ $activity->activity_name }} </strong></div>
                                     </div>
                                 @endif
                             
@@ -111,7 +111,7 @@
                                     <abbr class="timeago" title="{{ convertTimeIso($activity->created_at) }}"></abbr>
                                 </div>
                                 <!--Conditional: User cannot like own activities and cannot like activities more than once -->
-                                @if(Auth::user()->username != $activity->user->username &&  count($liked))
+                                @if(Auth::user()->username != $activity->user->username &&  count($liked) < 1)
                                 <div class="toLikeImg">
                                 <div class="glyphicon glyphicon-heart like-heart" id='{{ $activity->id}}' title="Click to like!"></div>   
                                 </div>
