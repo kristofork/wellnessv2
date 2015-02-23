@@ -143,6 +143,16 @@ class UserController extends BaseController
         }))->where('id',$id)->first();
         $goaluser_count = GoalProgress::where('active', 1)->count();
         
+        if(count($userdata->goalprogress) > 0){
+        //$goaldata=  $userdata->goalprogress->toArray()[0]; 
+        //$hasGoal =count($userdata->goalprogress->toArray());
+        $isGoalActive = ($goaldata['active']);
+        $goaltype = $goaldata['goal']['type'];
+        }else
+        {
+            $isGoalActive = false;
+        }
+
 		return View::make('profile.user')
 			->with('title', 'Profile')
             ->with('userdata', $userdata)

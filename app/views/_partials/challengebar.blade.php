@@ -4,6 +4,7 @@
      3. Completed Challenge / Wait
        -->   
       <!-- Choosing a Challenge -->
+
       @if(! count($userdata->goalprogress)) 
        <div id="dashDataRow" class="">
         <div class="col-md-3 col-sm-3 col-xs-3 dashDataCol">
@@ -15,27 +16,10 @@
             </div>  
         </div> 
      <div class="col-md-3 col-sm-3 col-xs-3 dashDataCol">
-        
-            <div class="popover-markup">   
-                <a href="#" class="trigger"><span id="rankCount" class="glyphicons glyphicons-person-running"></span></a>
-                <div id="glyph-text" data-count="">
-                Running
-                </div>
-                {{ Form::open(array('url' => 'goal/store')) }}
-                <div class="head hide">
-                    <input type="hidden" id="weight_datepicker" name="date" />
-                    <span id="date_value" title="Date selected">Today</span>
-                </div>
-                <div class="content hide">
-                    <div class="form-group">
-                        <input id="weight" type="text" name="weight" placeholder="123.4 lbs" pattern="\d{2,3}(\.\d{1})?" required />
-                    </div>
-                    <button id="weight_submit" type="submit" class="btn btn-default btn-block">
-                        Submit
-                    </button>
-                </div>
-                {{ Form::close()}}
-            </div>
+                <span id="rankCount" class="glyphicons glyphicons-person-running"></span>
+                <div class="running" id="glyph-text" data-count="">
+                <a data-toggle="modal" data-target="#goalRunModal" href="#goalRunModal">Click to set a goal</a>
+                 </div>
      </div>
 
      <div class="col-md-3 col-sm-3 col-xs-3 dashDataCol">

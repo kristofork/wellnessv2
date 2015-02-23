@@ -31,11 +31,12 @@ $(document).ready(function () {
                 setTimeout(function () {
                     NProgress.done();
                     if (result.success == true) {
+                        // if user earned badge
                         if(result.badge){
-                            weightChart.updateChart();
+                           
                             $('.popover-markup>.trigger').popover('hide');
-                            $('div#modal-badge-data').html("<h4>"+result.name+"</h4><img src='/assets/img/badges/" + result.image + "'> <p>Level "+ result.lvl +" : " +result.goal+" lbs</p>");
-                        $('#badgeModal').modal({show:true});
+                            $('div#modal-badge-data').html("<h4>"+result.name+"</h4><img src='/assets/img/badges/" + result.image + "'> <p>Level "+ result.lvl +" : " +result.goal+" hrs</p>");
+                            $('#badgeModal').modal({show:true});
                         }
                         console.log('Success!');
                         // Update the Time for the day and week with limits

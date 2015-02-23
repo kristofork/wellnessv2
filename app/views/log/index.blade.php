@@ -106,7 +106,7 @@
  </div>  
            
 @include('_partials.modal-badge')
-            
+
 {{ HTML::script('assets/js/jquery.sidr.min.js')}} 
 {{ HTML::script('assets/js/form/activity.js')}} 
 {{ HTML::script('assets/js/form/calendar.js')}} 

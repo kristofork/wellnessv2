@@ -74,12 +74,22 @@ class ActivityController extends BaseController {
                     
                 }
                 // Get the user's total time and check if they completed the time goal
-                $time = User::find($id)->currentYearStats;
+                $time = $user->currentYearStats;
                 // Get the current time reward
                 $reward = Reward::current();
+                // Base on the current Reward this will check if the user already has completed the goal to prevent multiple alerts and badge awards.
+                if($reward[0]->id == 1)
+                {$hasGoal = $time->half;}else{$hasGoal = $time->full;}
                 
-                // *** TODO - Prevent user from logging multiple alerts and badges if the user finishes the log challenge early. Add 2 columns to table currentyearstats to track completion status
-                if($time->time >= $reward[0]->milestone){
+                if($time->time >= $reward[0]->milestone && $hasGoal != 1){
+                    
+                    // Update currentYearStats half/full bool column
+                    if($reward[0]->id == 1)
+                        {$time->half = 1; $time->save();}
+                        else
+                        {$time->full = 1; $time->save();}
+                    
+                    
                     $reward_id = $reward[0]->badge_id;
                     // Alert Admin of completed milestone
                     try{
@@ -100,7 +110,7 @@ class ActivityController extends BaseController {
                     $badge_user->user_id = $user->id;
                     $badge_user->save();
                     // display alert badge earned.
-                    $result = array('success'=> true, 'message'=> 'Congrats, you earned a badge!', 'badge'=> true, 'name'=>$badge->name, 'goal' => $badge->required, 'image'=> $badge->image, 'lvl'=> $badge->lvl);
+                    $result = array('success'=> true, 'message'=> 'Congrats, you earned a badge!', 'badge'=> true, 'name'=>$badge->name, 'goal' => $badge->required, 'image'=> $badge->image, 'lvl'=> $badge->lvl, 'type'=>$badge->type);
                 }else{
                 $result = array('success'=> true, 'message'=> 'Activity Saved!');
                 }
