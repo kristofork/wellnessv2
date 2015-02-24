@@ -123,7 +123,7 @@ class ActivityController extends BaseController {
     {
         $post = Post::find($id); // find the post that was clicked
         $user = Auth::user();   // find the current user
-
+        $last_badge  = Badge::where('type', 'read')->orderBy('lvl', 'desc')->first(); // get the last badge lvl
         $activity = new Activity;   //create the activity 
         $activity->user_id = $user->id;
         $activity->team_id = $user->team_id;
@@ -162,14 +162,22 @@ class ActivityController extends BaseController {
         }
         else  
         {
-                // if statement to see if user will meet the required count for the next level. If so increment lvl ++ and message back with response.
+                // if statement to see if user will meet the required count for the next level and does not exceed the last lvl possible. If so increment lvl ++ and message back with response.
             $required = $badge['required'];
             $count = $badge['counter'] + 1;
-            if($required == $count)
+            if($required == $count && $last_badge->lvl >= ($badge->lvl + 1) ) 
                 {
-                    $lvlup = $badge->lvl +1;
-                    $badge->lvl =$lvlup;
-                    $badge_data = Badge::where('type', '=' ,'read')->where('lvl', '=', $lvlup)->first();
+                    // set vars for current and new badge lvl
+                    //** need a if to prevent going to a lvl that doesn't exsist.
+                    $lvl = $badge->lvl;
+                    $lvlup_new = $badge->lvl +1;
+                
+                    // get current and new badge data
+                    $badge_data = Badge::where('type', '=' ,'read')->where('lvl', '=', $lvl )->first();
+                    $badge_data_new = Badge::where('type', '=' ,'read')->where('lvl', '=', $lvlup_new)->first();
+                    
+                    // set new current lvl and required values
+                    $badge->lvl =$lvlup_new;
                     $badge->required = $badge_data->required;
                 
                     // Create activity for badge earned
@@ -186,16 +194,16 @@ class ActivityController extends BaseController {
                     $userbadge->user_id = Auth::user()->id;
                     $userbadge->badge_id = $badge->badge_id;
                     $userbadge->save();
-                    $result = array('success'=> true, 'message'=> 'Badge Earned!');
+                    $result = array('success'=> true, 'message'=> 'Congrats, you earned a badge!', 'badge'=> true,'name'=>$badge_data->name, 'goal' => $badge_data->required, 'image'=> $badge_data->image, 'lvl'=> $badge_data->lvl, 'type'=>$badge_data->type,'desc'=>$badge_data->desc);
+                }
+            else{
+                $result = array('success'=> true, 'message'=> 'Activity Saved!');
                 }
             $badge->counter = $count;
             $badge->progress_id = $badge['progress_id'].",".$id;
             $badge->save();
-            $result = array('success'=> true, 'message'=> 'Activity Saved!');
-            
+              
         }
-                
-
             return Response::json($result);
     }
 

@@ -25,6 +25,7 @@ class DashboardController extends BaseController
                     $q->where('user_id',$user_id)->get();
                 }))->orderBy('activities.created_at', 'desc')->take(10)->get();
 
+                
 		return View::make('dashboard.lite')
 			->with('title', 'Dashboard') // Page title
 			->with('name',array('first_name'=> $user->first_name, 'last_name'=> $user->last_name))

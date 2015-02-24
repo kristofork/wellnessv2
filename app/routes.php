@@ -47,6 +47,8 @@ Route::get('user-weight/{id}',array('as' => 'user_weight_chart', 'uses' => 'User
 
 Route::get('badges', array('as' => 'badge.index', 'uses' => 'BadgeController@index'));
 
+Route::get('goal/start_date', array('as' => 'goalstartdate', 'uses' => 'GoalController@startDate'));
+
 // Admin Routes
 Route::group(array('before' => array('auth|admin')), function()
 {
@@ -86,7 +88,8 @@ Route::get('weightcheck/{data}', array('as'=> 'weightcheck', 'uses' => 'GoalCont
 Route::post('goalstore/{data}',array('uses' => 'GoalController@store'));
 Route::get('newactivities/{data}', array('as'=> 'newactivity', 'uses' => 'ActivityController@newActivities'));
 Route::post('goal/update_progress', array('as'=> 'update_progress','uses'=>'GoalController@update_progress'));
-Route::get('goal/check',array('as'=>'goalcheck', 'uses'=>'GoalController@check'));
+Route::get('goal/start_date', array('as' => 'goalstartdate', 'uses' => 'GoalController@startDate'));
+//Route::get('goal/check',array('as'=>'goalcheck', 'uses'=>'GoalController@check')); delete
 Route::get('activity-filter/{type}', array('as'=>'activity.filter', 'uses'=> 'ActivityController@getActivityFilter'));
 Route::get('activity-minifeed', array('as'=> 'minifeed', 'uses' => 'HomeController@getMiniFeed'));
 Route::get('topusers',array('as'=> 'topusers', 'uses' => 'HomeController@getTopUsers'));

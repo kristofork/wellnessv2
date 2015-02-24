@@ -48,6 +48,7 @@ $.fn.popover.Constructor.prototype.show = function () {
         return $(this).parent().find('.content').html();
     },
     callback: function() {
+        
        $("button#weight_submit").click(function(e) {
        e.preventDefault();
             
@@ -60,7 +61,7 @@ $.fn.popover.Constructor.prototype.show = function () {
         {
             alert("Please enter a valid weight and date");
             return;
-        }else {    
+        }else {
         var dataString = {date: date, weight: weight};
         
         $.ajax({
@@ -87,10 +88,7 @@ $.fn.popover.Constructor.prototype.show = function () {
        }
     });
 
-var alert_badge = "<div id='dash-side-right' class='alert alert-custom'>";
-        alert_badge+="<button type='button' class='close' data-dismiss='alert'>x</button>";
-        alert_badge+="<p>Badge Earned!</p>";
-        alert_badge+="</div>";
+
 
     $('#weight_datepicker').datepicker({
         showOn: "button",
@@ -100,7 +98,7 @@ var alert_badge = "<div id='dash-side-right' class='alert alert-custom'>";
         altField: '#weight_datepicker',
         altFormat: 'yy-mm-dd',
         defaultDate: new Date(),
-        minDate: new Date(minDate()),
+
         maxDate: new Date(),
         onSelect: function(dateText, inst) {
             var theDate = new Date(Date.parse($(this).datepicker('getDate')));
@@ -110,10 +108,13 @@ var alert_badge = "<div id='dash-side-right' class='alert alert-custom'>";
             checkWeight(dateSelected);
         }
         
-    }); 
+    });
+
    $('#weight_datepicker').datepicker('setDate', new Date());
         var today = $('#weight_datepicker').prop('value');
     checkWeight(today);
+
+    goalStartDate();
   }
 }).click(function (e) {
         e.preventDefault();
@@ -273,17 +274,20 @@ function getTime(dateSelected) {
     });
 }
 
-//Ajax to check if user submitted a goal this week
-function getGoal() {
+//get goal start date for goal datepicker
+function goalStartDate() {
+    var that = this;
     $.ajax({
         type: "GET",
-        url: "goal/check",
+        url: "/goal/start_date",
         success: function(result) {
-            if (result.message != "") {
-                $('button#goalsubmit[type="submit"]').attr('disabled', 'disabled');
-                $("#weight_slider").slider("disable");
-
-            }
+            var date = new Date(result.date);
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var day = date.getDate() + 1;
+            var startday = year + "," + month + "," + day;
+            var target = $(that.document).find(".hasDatepicker");
+            $(target).datepicker('option',{minDate:new Date(startday)});
         }
     });
 }
@@ -361,6 +365,7 @@ function checkWeight(dateSelected) {
 
 });
 }
+
 
     //Hovercard code
     // initialize hovercard

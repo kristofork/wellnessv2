@@ -30,12 +30,12 @@ class GoalController extends BaseController
         
         
         // Check if the user met the set goal
-        $start_weight = $goal_data->start;
-        $total_weight = $start_weight - $_POST['weight'];
+        $start_weight = $goal_data->start; // 170lbs
+        $total_weight = $start_weight - $_POST['weight']; // 170 - 169 = 1
         $target = $goal_data->target;
         
             // if user met goal
-            if($total_weight <= $target)
+            if($_POST['weight'] <= $target)
             {
                 $goal_id = $goal_data->goal_id;
 
@@ -112,6 +112,29 @@ class GoalController extends BaseController
 		return Response::json($result);
 	}
     
+    public function startDate()
+    {
+        $user = Auth::user();
+        
+
+        $goal = User::with(array('goalprogress' => function($q) 
+                                 {
+                                     $q->where('active',1)->get();
+                                 }))->where('id', $user->id)->first();
+        if($goal)
+        {
+            $start = $goal->goalprogress->toArray()[0]['created_at'];
+            $start = date_create($start);
+            $start = date_format($start, "Y-m-d");
+            $result = array("date" => $start);
+        }
+        else
+        {
+            $result=null;
+        }
+        return Response::json($result);
+    }
+    
     public function weight_check($date)
     {
         $user = Auth::user();
@@ -128,10 +151,10 @@ class GoalController extends BaseController
         // find current season
         
         $season = currentyear(); // helper
-        
+
         $input = Input::all();
         $user = Auth::user();
-        $usergoal = User::with(array('goalprogress' => function($q) 
+        $usergoal = User::with(array('goalprogress' => function($q) use($season) 
             {
                 $q->whereBetween('created_at', array($season['start'],$season['end']));
             }

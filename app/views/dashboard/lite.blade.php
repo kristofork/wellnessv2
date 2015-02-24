@@ -155,7 +155,7 @@
 {{ HTML::script('assets/js/form/intensity.js')}} 
 {{ HTML::script('assets/js/form/time.js')}} 
 {{ HTML::script('assets/js/form/submit.js')}} 
-{{ HTML::script('assets/js/form/weight.js') }} 
+
 {{ HTML::script('js/charts/chart.js')}} 
 {{ HTML::script('js/charts/dark-theme.js')}}
 {{ HTML::script('assets/js/form/type.js')}}

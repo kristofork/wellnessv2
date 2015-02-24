@@ -49,5 +49,7 @@
 
         
 </div>
+
+@include('_partials.modal-badge')
 @stop
 
