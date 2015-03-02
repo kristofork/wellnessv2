@@ -12,7 +12,7 @@ class AdminController extends baseController
 			->with('allusers',User::orderBy('last_name', 'asc')->paginate(15))
 			->with('allteams',Team::orderBy('teamName','asc')->paginate(10))
 			->with('allrewards',RewardActivity::with('users')->paginate(10))
-			->with('userCount', User::all()->count())
+			->with('userCount', User::where('active','1')->get()->count())
 			->with('teamCount', Team::all()->count());
 	}
 
@@ -143,6 +143,8 @@ class AdminController extends baseController
 			$user->first_name = Input::get('first_name');
 			$user->last_name  = Input::get('last_name');
 			$user->email      = Input::get('email');
+            $user->active     = '1';
+            $user->admin      = '0';
 			$user->username   = strstr($user->email, '@', true); 
 			$user->team_id    = Input::get('team');
 			$user->password   = Hash::make('password1@');
@@ -199,6 +201,8 @@ class AdminController extends baseController
 			$user->first_name = Input::get('first_name');
 			$user->last_name  = Input::get('last_name');
 			$user->email      = Input::get('email');
+            $user->active     = Input::get('active',0);
+            $user->admin      = Input::get('admin',0);
 			$user->team_id    = Input::get('team');
 			$user->save();
 
@@ -284,5 +288,32 @@ public function getRewardFilter($filter)
     exit;
 }
 
+public function nameCache()
+{
+    $results= array();
+		$name = Input::get('firstname');
+		$result = User::where(DB::raw('CONCAT(first_name," ",last_name)'), 'LIKE', '%'.$name.'%')->get(array('id','first_name', 'last_name','pic'));
 
+
+
+		if( $result->isEmpty())
+		{
+			//$results = array('name' => 'No matches');
+			$results = "";
+		}
+		else
+		{
+			foreach ($result as $key => $value) {
+
+				$results[] = array('name' => $value['first_name'] . " " . $value['last_name'],'id' => $value['id'], 'pic' => $value['pic']);
+			}
+		}
+		return Response::json($results);
+}
+
+    public function report_index()
+    {
+        
+    }
+    
 }

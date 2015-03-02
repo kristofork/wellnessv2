@@ -18,7 +18,7 @@
      <div class="col-md-3 col-sm-3 col-xs-3 dashDataCol">
                 <span id="rankCount" class="glyphicons glyphicons-person-running"></span>
                 <div class="running" id="glyph-text" data-count="">
-                <a data-toggle="modal" data-target="#goalRunModal" href="#goalRunModal">Click to set a goal</a>
+                <a class="disabled" data-toggle="modal" data-target="#goalRunModal" href="#">Running</a>
                  </div>
      </div>
 

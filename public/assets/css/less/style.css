@@ -531,25 +531,6 @@ ul.navCustom li.active p {
 .active a {
   color: #00a0f0;
 }
-.navContainer {
-  background-color: #222222;
-  float: left;
-  width: 17.5em;
-  border-right: 1px solid rgba(215, 215, 215, 0.41);
-  height: 100%;
-  position: fixed;
-  z-index: 0;
-  bottom: 0;
-}
-.navCustom {
-  list-style: none;
-}
-ul.navCustom {
-  margin: 0 0 10px;
-}
-.navCustom li span a {
-  display: inline-flex;
-}
 .navbar-menu {
   display: block;
   background-color: #0e0e0e;

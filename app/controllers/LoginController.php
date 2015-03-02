@@ -7,7 +7,7 @@ class LoginController extends BaseController {
 		$username = Input::get('username');
 		$password = Input::get('password');
 
-		$user = array('username' => $username,'password' => $password);
+		$user = array('username' => $username,'password' => $password, 'active' => 1);
 
 		if (Auth::attempt($user)) {
 			return Redirect::route('log')
@@ -16,7 +16,7 @@ class LoginController extends BaseController {
 		else
 		{
 
-			$user = User::where('username',$username)->first();
+			$user = User::where('username',$username)->where('active',1)->first();
 
 			if( $user && $user->password == md5($password))
 			{

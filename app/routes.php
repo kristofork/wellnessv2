@@ -15,6 +15,7 @@
 
 
 Route::get('/',array('as' => 'home', 'uses'=>'HomeController@index'));
+Route::get('error', array('as' => 'error', 'uses'=>'HomeController@error'));
 
 
 // Send the POST action to the Login controller. Function Login()
@@ -49,6 +50,7 @@ Route::get('badges', array('as' => 'badge.index', 'uses' => 'BadgeController@ind
 
 Route::get('goal/start_date', array('as' => 'goalstartdate', 'uses' => 'GoalController@startDate'));
 
+
 // Admin Routes
 Route::group(array('before' => array('auth|admin')), function()
 {
@@ -67,6 +69,8 @@ Route::group(array('before' => array('auth|admin')), function()
 	Route::delete('/admin/team/delete/{id}', array('as' => 'admin_team.destroy', 'uses' => 'AdminController@destroyTeam'));
 	Route::get('admin/reward-filter/{type}', array('as'=> 'admin_reward.update', 'uses'=> 'AdminController@getRewardFilter'));
 	Route::get('admin/ajax/{type}', array('as'=> 'item.type', 'uses'=> 'AdminController@getAdminType'))->where('type', 'user|team|reward');
+    Route::get('admin/reports', array('as' => 'admin_reports', 'uses'=> 'AdminController@report_index'));
+    Route::get('people', array('before' => 'auth', 'as'=> 'people', 'uses' => 'AdminController@nameCache'));
 });
 
 

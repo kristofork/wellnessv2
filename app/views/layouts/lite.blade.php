@@ -1,9 +1,16 @@
 <?php $current_user = Auth::user(); ?>
 <!DOCTYPE html>
-<!--[if lt IE 10 ]> <html class="badIE"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
-<html>
+<html lang="en">
 <!--<![endif]-->
+<!--[if IE 8 | IE 9]>
+  <script type="text/javascript">
+    window.location = "/error";
+  </script>
+<![endif]-->
+<!--[if IE 7]>
+  <meta http-equiv="REFRESH" content="0;url=/error">
+<![endif]-->
 
 <head>
     <meta charset="utf-8">
@@ -15,30 +22,21 @@
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--[if lt IE 10]>
-        {{ HTML::script('assets/js/jquery-1.9.1.min.js') }}
+        {{ HTML::script('js/jquery/jquery-1.9.1.min.js') }}
         <![endif]-->
     <!--[if (gt IE 9)|!(IE)]><!-->
-    {{ HTML::script('assets/js/jquery-2.0.2.js') }}
-
+        {{ HTML::script('js/jquery/jquery-2.0.2.min.js') }}
     <!--<![endif]-->
 
-    <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
     <!-- CSS are placed here -->
-    {{ HTML::style('assets/css/bootstrap.css') }}
-    {{ HTML::style('assets/css/less/style-lite.css') }}
-    {{ HTML::style('assets/css/spinner.css') }}
-    {{ HTML::style('assets/css/jquery.sidr.dark.css') }}
-    {{ HTML::style('assets/css/jquery-ui-slider-pips.css') }}
-    {{ HTML::style('assets/css/glyphicons.css')}}
-    {{ HTML::style('assets/css/nprogress.css')}}
+
+    {{ HTML::style('css/style.min.css') }}
+    
 
 </head>
 
 <body>
-    <div id="background">
-        <img id="background-img" class="bg" src="{{URL::asset('assets/img/site/bg/bg-01.jpg')}}">
-    </div>
-
+       <div id="background"></div>
     <!-- Container -->
     <div class="main-container">
         @if (Auth::check()==true)
@@ -102,29 +100,29 @@
     </div>
 
     <!-- Scripts are placed here -->
-
-    {{ HTML::script('assets/js/jquery-ui-1.10.3.min.js') }} 
-    {{ HTML::script('assets/js/bootstrap/bootstrap.min.js') }} 
-    {{ HTML::script('assets/js/timeplugin.js')}} 
-    {{ HTML::script('assets/js/jquery.hoverIntent.minified.js')}} 
-    {{ HTML::script('assets/js/nprogress.js') }}
-    {{ HTML::script('assets/js/main.js')}} 
-    @if($title = "Dashboard" || $title = "Profile")
-        <script src="{{ asset('js/activities/new_activityCheck.js') }}"></script>
-        <script>initHoverCard();</script>
-        {{ HTML::script('js/activities/pagination.js') }}
-    @endif
-    @if($title = "Blog")
+    {{ HTML::script('js/all-vendor.js')}}
+    {{ HTML::script('js/app.min.js')}}
+    {{ HTML::script('assets/js/main.js')}}
+    @if($title == "Dashboard")
+    <script>
+    initDash();
+    </script>
+    @elseif($title == "Profile")
+    <script>
+    initProfile();
+    </script>
+    @elseif($title == "Log")
+    <script>
+    initLog();
+    </script>
+    @elseif($title == "Badges")
+    <script>
+    initBadge();
+    </script>
+    @else($title == "Blog")
     {{ HTML::script('assets/js/blog.js') }}
     @endif
-    @if($title = "Profile")
-    {{ HTML::script('assets/js/form/calendar.js')}} 
-    @endif
-    <script type="text/javascript" src="{{asset('assets/js/slider-pips/jquery-ui-slider-pips.js')}}"></script>
 
-    {{ HTML::script('assets/js/retina.min.js')}}
-    {{ HTML::script('assets/js/modernizr.js')}}
-    
 
 </body>
 

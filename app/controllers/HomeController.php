@@ -19,6 +19,10 @@ class HomeController extends BaseController {
 	{
 		return View::make('home');
 	}
+    public function error()
+    {
+        return View::make('error');
+    }
 
     public static function getMiniFeed()
     {

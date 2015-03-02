@@ -40,6 +40,14 @@
 			      {{ Form::email('email',null, array('class' => 'form-control'))}}
 			    </div>
 			  </div>
+			  <div class="form-group">
+			    {{ Form::label('active', 'Active') }}
+			    {{ Form::checkbox('active', 1, array('class' => 'form-control')) }}
+			  </div>
+			  <div class="form-group">
+			    {{ Form::label('admin', 'Admin') }}
+			    {{ Form::checkbox('admin', 1, array('class' => 'form-control')) }}
+			  </div>
 			  	{{ Form::label('team', 'Teams')}}
 				{{Form::select('team',array('Teams'=> $teams), $user->team_id, array('class' => 'form-control'))}}
 				{{ Form::submit('Submit Changes', array('class' => 'btn btn-default'))}}

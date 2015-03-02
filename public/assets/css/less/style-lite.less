@@ -3,48 +3,32 @@
 /* Fonts */
 @font-face{
     font-family: DejaVuSans;
-    src: url("../../fonts/dejavu-sans/DejaVuSans.ttf");
+    src: url("../../../css/fonts/dejavu-sans/DejaVuSans.ttf");
     font-weight: 400;
 }
 @font-face{
     font-family: SourceSansPro-Regular;
-    src: url("../../fonts/source-sans-pro/SourceSansPro-Regular.otf");
+    src: url("../../../css/fonts/source-sans-pro/SourceSansPro-Regular.otf");
     font-weight: 400;
 }
 @font-face{
-    font-family: SourceSansPro-Light;
-    src: url("../../fonts/source-sans-pro/SourceSansPro-Light.otf");
-}
-@font-face{
-    font-family: SourceSansPro-Bold;
-    src: url("../../fonts/source-sans-pro/SourceSansPro-Bold.otf");
-}
-@font-face{
     font-family: Heuristica;
-    src: url("../../fonts/heuristica/heuristica-regular.otf");
+    src: url("../../../css/fonts/heuristica/heuristica-regular.otf");
 }
 @font-face{
     font-family: Roboto;
     font-style: normal;
     font-weight: 400;
-    src: url('../../fonts/roboto/Roboto-Regular.ttf') format('truetype');
+    src: url('../../../css/fonts/roboto/Roboto-Regular.ttf') format('truetype');
 }
-@font-face{
-    font-family: Roboto-Medium;
-    src: url('../../fonts/roboto/Roboto-Medium.ttf') format('truetype');
-}
+
 @font-face{
     font-family: Roboto-Thin;
     font-style: normal;
     font-weight: 250;
-    src: url('../../fonts/roboto/Roboto-Thin.ttf') format('truetype');
+    src: url('../../../css/fonts/roboto/Roboto-Thin.ttf') format('truetype');
 }
-@font-face{
-    font-family: Roboto-Light;
-    font-style: normal;
-    font-weight: 400;
-    src: url('../../fonts/roboto/Roboto-Light.ttf') format('truetype');
-}
+
 h1,h2,h3,h4,h5,h6 {
     font-weight: normal;
     font-size: 100%;
@@ -116,9 +100,7 @@ h4
     min-height: 100%;
 }
 
-.main-row {
-    margin-left: 17.5em;
-}
+
 .headbar {
     height: 50px;
     background-color:#fff;
@@ -141,7 +123,6 @@ a.dropdown-toggle {
 
 /* Log  */
 .masthead-container{
-
     top: 0px;
     display: table;
     width: 100%;
@@ -170,6 +151,9 @@ height: 100%;
     font-size: 5px;
     top:20%;
     left:50%;
+}
+#log-bg{
+    background-color: #f8f8f8;
 }
 /* End Log */
 
@@ -213,14 +197,14 @@ img#teamUserPic {
 }
 .teamMemberName {
     color: #fff;
-    font-family: 'Telex', sans-serif;
+    font-family: sans-serif;
     font-size: 14px;
     float: left;
     margin-left: 15px;
     display: none;
 }
 .teamMemberTitle {
-    font-family: 'Telex', sans-serif;
+    font-family: sans-serif;
     color: #C1C0C0;
     margin-left: 15px;
     margin-top: -4px;
@@ -266,7 +250,7 @@ img#teamUserPic {
     padding: 0;
 }
 #activity.masthead{
-    background-image: url("/assets/img/teams/blur2.png");
+    background-color: #E8F7FF;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -283,13 +267,14 @@ img#teamUserPic {
   transition: all .3s linear;
 }
 .row#userData{
+    color:@site_white;
 position: absolute;
 bottom: 0;
 margin: 0;
 height: 3em;
 width: 100%;
 padding: 5px;
-background-color: rgba(0, 0, 0, 0.02);
+background-color: rgba(0, 0, 0, 0.4);
 }
 #welcome_recent_activity h3 {
     color: @site_white;
@@ -550,35 +535,11 @@ ul.recentActivity {
 }
 /* Navigation Bar */
 
-ul.navCustom li p, .linkText {
-    color: #00F1FE;
-    margin: 0;
-}
-ul.navCustom li.active p {
-    color: rgba(255, 152, 0, 0.93);
-}
+
 .active, .active a {
     color: #00a0f0;
 }
-.navContainer {
-    background-color: @site_black; float: left;
-    width: 17.5em;
-    border-right: 1px solid rgba(215, 215, 215, 0.41);
-    height: 100%;
-    position: fixed;
-    z-index: 0;
-    bottom: 0;
-}
-.navCustom {
-    list-style: none;
-}
 
-ul.navCustom {
-    margin: 0 0 10px;
-}
-.navCustom li span a {
-    display: inline-flex;
-}
 .navbar-menu {
     display: block;
     background-color: #0e0e0e;
@@ -611,47 +572,12 @@ ul.navCustom {
     font-size: 18px;
     padding: 5px;
 }
-#sideHeader
-{
-    color:#fff;   
-}
-.sidebar-right {
-    background-color: @site_black;
-    color: @site_white;
-}
+
+
 .sidebar-padding {
     padding: 10px;
 }
-#navSide a {
-    font-size: 19px;
-    margin-right: 20px;
-}
-#navSide li:first-child a {
-    color: #DE50CB;
-}
-#navSide > li a, #navTeam > li a, #navSide > li > a > #nav-text {
-    color: @site_white;
-    font-size: 1em;
-    line-height: 40px;
-}
-#navSide > li a:hover, #navTeam > li a:hover {
-    text-decoration: none;
-}
-ul#navSide li.active a, ul#navSide li.active a #nav-text,#navSide li.active a span#navigationIcon:before {
-    color: @site_blue;
 
-}
-#navSide li > a span, #navSide li > a img, #navSide li > a span#navigationIcon {
-    vertical-align: middle;
-    margin-right: 20px;
-    font-size: 19px;
-    padding-right: 20px;
-}    
-
-#navSide .glyphicons{
-    padding-left: 0;
-    display: inherit;
-}
 #badge-data.badge {
     position: relative;
     top: 10px;
@@ -1080,64 +1006,7 @@ hr {
     }
 }
 @media (min-width: 481px) and (max-width: 768px) {}
-/* ******************************** */
 
-/* Admin ui                         */
-
-/* ******************************** */
-
-.admin_data_container {} .admin_data_container .row {
-    text-align:center;
-}
-.teamContainer {
-    margin-left: 31px;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-}
-div.admin.teams {
-    list-style: none;
-    overflow: auto;
-}
-.teams li {
-    background-color: rgba(0, 0, 0, 0.49);
-    height: 50px;
-    border-bottom: 1px #000 solid;
-}
-.teams li:last-child {
-    border-bottom: none;
-}
-.teams a {
-    height: 50px;
-    display: table-cell;
-    vertical-align: middle;
-    width: 170px;
-}
-.teams li:hover {
-    background-color: rgba(0, 0, 0, 0.70);
-}
-.teamContainer a:hover {
-    text-decoration: none;
-}
-.teams a.active {
-    background-color: #003454;
-}
-.userContainer li {
-    color: #fff;
-    list-style: none;
-    border-radius: 5px;
-    border: solid 2px #fff;
-    line-height: 50px;
-    margin-bottom: 1em;
-    padding: 5px;
-}
-#reward {
-    font-size:.5em;
-    color:#000;
-    background-color: @site_blue;
-
-}
 /* JCROP FIX */
 
 .jcrop-keymgr {
@@ -1241,75 +1110,7 @@ div.admin.teams {
 #memberDate > span {
     cursor: default;
 }
-.tab-row {
-    display: inline-block;
-    width: 100%;
-    clear: both;
-}
-#dash-nav {
-    margin-top: 15px;
-    margin-left: 15px;
-    padding: 0;
-    font-size:.9em;
-}
-#dash-nav li {
-    display: inline-block;
-    line-height: 20px;
-    text-align: center;
-    width: 24%;
-    padding: 0;
-    margin-bottom: 10px;
-    background-color: @site_black;
-    color: #fff;
-    margin-right: 0.9%;
-}
-#dash-nav li.last {
-    margin-right: 0;
-}
-.nav > div > li > a {
-    position: relative;
-    display: block;
-    padding: 10px 15px;
-}
-@media(max-width: 1513px) {
-    #dash-nav li {
-        width: 24.4%;
-        margin-right: 0;
-    }
-}
-//tablets
-@media (min-width: 991px) {}// phones
-@media (max-width: 767px) {
-    #dash-nav li {
-        width: 23%;
-        display: inline-block;
-    }
-}
-#dash-nav li.active {
-    border-bottom: 5px solid #00a0f0;
-}
-#dash-nav li.active a {
-    color: @site_blue;
 
-}
-#dash-nav li a:hover, #dash-nav li a:focus {
-    background-color: rgba(0, 0, 0, 0.36);
-    outline: none;
-    text-decoration: none;
-}
-#dash-side-right {
-    width: 25%;
-    position: absolute;
-    right: 0;
-    top:2.8em;
-    z-index:2;
-    margin-top: 5px;
-    border-radius: 0;
-}
-.tab-pane {
-    color: @site_white;
-
-}
 #timeSliderContainer{
     margin-top: .5em;
     margin-bottom: .5em;
@@ -1464,6 +1265,7 @@ img.ui-datepicker-trigger{
     color:@site_grey;
 }
 #reward-progress{
+    font-size: 10px;
     height:10px;
     margin-bottom: 0;
     width:50%;
@@ -1613,12 +1415,7 @@ li.userInfo {
 
 font-size: 1.5em;
 }
-ul.nav.tabs li a, ul.nav.tabs li a.disabled, ul#navSide.navCustom li a.disabled {
-    color: grey;
-}
-ul.nav.tabs li a span.glyphicon {
-    font-size: 10px;
-}
+
 //Custom Alert
 .alert-custom {
     color: @site_black;
@@ -1643,15 +1440,6 @@ ul#fav-activity li {
     font-size: 28px;
     color: @site_blue;
     padding: 5px;
-}
-@media (min-width: 481px) and (max-width: 768px) {
-    ul.navCustom li p {
-        display: none;
-    }
-    #sidebar {
-        float: right;
-        margin-top: 3em;
-    }
 }
 
 
@@ -1791,15 +1579,10 @@ img.badge-lineup
     width:96px;
 }
 
-.badge_container .tooltip .tooltip-inner, div#container-flair .tooltip .tooltip-inner{
-    min-width: 150px;
-    max-width: 150px;
+.badge_container .tooltip .tooltip-inner{
+min-width: 150px;
 }
 
-#container-flair div.tooltip, .badge_container div.tooltip
-{
-
-}
 
 //flair
 
@@ -1917,3 +1700,77 @@ div#chart-weight .x.axis text {font-size: 0.6em;}
 div#chart-container .y.axis text {font-size: 1.3em;}
 div#chart-container .x.axis text {font-size: 1.3em;}
 div#chart-container text.names{font-size: 1.3em;}
+
+// Carousel
+
+.slide-wrapper {
+  width: 100%;
+  /* whatever width you want */
+  display: inline-block;
+  position: relative;
+}
+.slide-wrapper:after {
+  padding-bottom: 10%;
+  display: block;
+  content: '';
+}
+.slide {
+  position: inherit;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  /* let's see it! */
+  color: white;
+}
+
+
+// Edit Profile
+
+#dash-nav {
+    margin-top: 15px;
+    margin-left: 15px;
+    padding: 0;
+    font-size:.9em;
+}
+#dash-nav li {
+    display: inline-block;
+    line-height: 20px;
+    text-align: center;
+    width: 24%;
+    padding: 0;
+    margin-bottom: 10px;
+    background-color: #EDF2FF;
+    color: @site_black;
+    margin-right: 0.8%;
+}
+#dash-nav li.last {
+    margin-right: 0;
+}
+
+#dash-nav li.active {
+    border-bottom: 5px solid #00a0f0;
+}
+#dash-nav li.active a {
+    color: @site_blue;
+
+}
+#dash-nav li a:hover, #dash-nav li a:focus {
+    background-color: rgba(0, 0, 0, 0.36);
+    outline: none;
+    text-decoration: none;
+}
+#dash-side-right {
+    width: 25%;
+    position: absolute;
+    right: 15px;
+    top:3.5em;
+    z-index:0;
+    margin-top: 15px;
+    border-radius: 0;
+}
+
+.sidebar-right
+{
+    background-color: #fff;
+}

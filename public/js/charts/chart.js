@@ -55,10 +55,12 @@ console.log(data);
     
 var color = d3.scale.category10();
       
-var margin = {top: 20,right: 20, bottom: 30, left: 30},
+var margin = {top: 20,right: 10, bottom: 0, left: 30}, // 20 20 10 30
 width = 630,
 height = 250;
 
+//630
+//250
     
 var monthNum = d3.time.format("%b");
 
@@ -104,7 +106,7 @@ var div = d3.select("body").append("div").attr("class", "tooltip").attr('id','ch
 
     var svg = d3.select("#chart-container")
         .append("svg")
-        .attr('preserveAspectRatio','xMinYMin')
+        .attr('preserveAspectRatio','xMinYMin meet')
         .attr('viewBox','0 0 700 300' )
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");

@@ -4,20 +4,9 @@
 
 
 @section('content')
-        
 
-<div class="main-row">
-	<div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-8" id="dash-nav">
-                <ul class="nav tabs">
-                <li class="active"><a href="#picture" data-toggle="tab" data-target="#picture, #picture_tips"><span class="hidden-xs">Picture </span><span class="glyphicon glyphicon-user"></span> </a></li>
-                <li><a href="#password" data-toggle="tab" data-target="#password, #password_tips"><span class="hidden-xs">Password </span><span class="glyphicon glyphicon-list-alt"></span> </a></li>
-                </ul>
-                <!-- Nav tabs -->
-            </div>
-            @if(Session::has('message'))
-            <div id="dash-side-right" class="alert alert-success" style="width:29%">
+               @if(Session::has('message'))
+            <div id="dash-side-right" class="alert alert-success" style="width:29%; z-index:1;">
                 <button type="button" class="close" data-dismiss="alert">x</button>
                 <p>{{Session::get('message') }} </p>
             </div>
@@ -30,7 +19,18 @@
 
 			    </ul>
 			</div>
-			@endif
+			@endif   
+
+<div class="main-row">
+	<div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-8" id="dash-nav">
+                <ul class="nav tabs">
+                <li class="active"><a href="#picture" data-toggle="tab" data-target="#picture, #picture_tips"><span class="hidden-xs">Picture </span><span class="glyphicon glyphicon-user"></span> </a></li>
+                <li><a href="#password" data-toggle="tab" data-target="#password, #password_tips"><span class="hidden-xs">Password </span><span class="glyphicon glyphicon-list-alt"></span> </a></li>
+                </ul>
+                <!-- Nav tabs -->
+            </div>
         </div> <!-- End of Row -->
     </div><!-- End of Container -->
     <!-- Start of Main Container -->

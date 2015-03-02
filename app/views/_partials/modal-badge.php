@@ -10,7 +10,7 @@
       <div class="modal-body">
            <div class="row-centered" id="modal-badge-data">
                 <h4>Weight Loss</h4>
-                <img src="/assets/img/badges/weightloss-low.svg" alt=""> 
+                <img src="" alt=""> 
                 <p>Level 2: 15 lbs</p>
             </div>
 

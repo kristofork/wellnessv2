@@ -206,7 +206,7 @@ class UserController extends BaseController
 			$hash = Session::get('hash');
 			if (!File::exists('uploads/'.$hash)) File::makeDirectory('uploads/'.$hash);
 		}
-		$newPath         = '/assets/img/users/avatars/';
+		$newPath         = 'assets/img/users/avatars/';
 		$userID          = Auth::user()->id;
 		$fileExt         = "jpg";
 		$newFileName     = $userID . '.' . $fileExt;
