@@ -137,7 +137,7 @@
 {{ HTML::script('assets/js/upload/jquery.fileupload.js')}}
 {{ HTML::script('assets/js/upload/jquery.fileupload-process.js')}}
 {{ HTML::script('assets/js/upload/jquery.fileupload-validate.js')}}
-{{ HTML::script('assets/js/upload/jquery.Jcrop.min.js')}}
+
 {{ HTML::script('assets/js/upload/upload-crop.js') }}
 
 

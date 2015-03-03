@@ -21,10 +21,16 @@
     <!-- Start of Recent Activity (middle column) -->
     <div class="col-md-8 admin_edituser">
     	<div class="active fluid-container" id="user">
-	    	<h2>Edit: {{$user->first_name}} {{$user->last_name}}</h2>
+	    	<h2 class="pull-left">Edit: {{$user->first_name}} {{$user->last_name}}</h2>
+    	      <div id="deleteUserForm">
+	    	  {{ Form::open(array('url' => 'admin/delete/' . $user->id)) }}
+              {{ Form::hidden('_method', 'DELETE') }}
+              {{ Form::submit('Delete', array('class' => 'btn btn-danger btn-sm pull-right', 'onclick'=> 'if(!confirm("Are you sure to delete this item?")){return false;};')) }}
+            {{ Form::close() }}
+            </div>
 			<!-- if there are creation errors, they will show here -->
 			{{ HTML::ul($errors->all()) }}
-	    	{{ Form::model($user, array('route' => array('admin_user.update', $user->id), 'method' => 'PUT')) }}
+	    	{{ Form::model($user, array('route' => array('admin_user.update', $user->id), 'method' => 'PUT', 'style' => 'clear:both')) }}
 			  <div class="form-group">
 			    {{ Form::label('first_name', 'First Name') }}
 			    {{ Form::text('first_name', null, array('class' => 'form-control')) }}
@@ -50,8 +56,11 @@
 			  </div>
 			  	{{ Form::label('team', 'Teams')}}
 				{{Form::select('team',array('Teams'=> $teams), $user->team_id, array('class' => 'form-control'))}}
-				{{ Form::submit('Submit Changes', array('class' => 'btn btn-default'))}}
+				<br>
+				{{ Form::submit('Submit Changes', array('class' => 'btn btn-success'))}}
+   	            <a href="/admin/password/{{$user->id}}" class="btn btn-info btn-sm pull-right" role="button">Reset Password <span class="glyphicon glyphicon-off"></span></a>
 			{{ Form::close()}}
+
     	</div> <!-- End of User Tab-->
     </div> <!-- End of Middle Column-->
 

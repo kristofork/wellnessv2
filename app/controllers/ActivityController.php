@@ -276,7 +276,7 @@ class ActivityController extends BaseController {
         
         if($type == 'Everyone'){
             $activities = Activity::with(array('user.badgeuser' => function($q){
-                                    $q->join('badges','badges.id','=','badge_id')->first();
+                                    $q->join('badges','badges.id','=','badge_id')->orderBy('created_at','desc')->first();
                                     }),'user')
                 ->with(array('likes' => function($q) use ($user_id){
                     $q->where('user_id',$user_id)->first();
@@ -285,7 +285,7 @@ class ActivityController extends BaseController {
         } elseif($type == "Team"){
             $team = Auth::user()->team_id;
             $activities = Activity::with(array('user.badgeuser' => function($q){
-                                    $q->join('badges','badges.id','=','badge_id')->first();
+                                    $q->join('badges','badges.id','=','badge_id')->orderBy('created_at','desc')->first();
                                     }),'user')
                 ->with(array('likes' => function($q) use ($user_id){
                     $q->where('user_id',$user_id)->first();
@@ -294,7 +294,7 @@ class ActivityController extends BaseController {
         }else{
             $user = Auth::user()->id;
             $activities = Activity::with(array('user.badgeuser' => function($q){
-                                    $q->join('badges','badges.id','=','badge_id')->first();
+                                    $q->join('badges','badges.id','=','badge_id')->orderBy('created_at','desc')->first();
                                     }),'user')
                 ->with(array('likes' => function($q) use ($user_id){
                     $q->where('user_id',$user_id)->first();

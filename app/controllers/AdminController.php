@@ -12,7 +12,7 @@ class AdminController extends baseController
 			->with('allusers',User::orderBy('last_name', 'asc')->paginate(15))
 			->with('allteams',Team::orderBy('teamName','asc')->paginate(10))
 			->with('allrewards',RewardActivity::with('users')->paginate(10))
-			->with('userCount', User::where('active','1')->get()->count())
+			->with('userCount', User::activeUsers())
 			->with('teamCount', Team::all()->count());
 	}
 
@@ -147,20 +147,35 @@ class AdminController extends baseController
             $user->admin      = '0';
 			$user->username   = strstr($user->email, '@', true); 
 			$user->team_id    = Input::get('team');
-			$user->password   = Hash::make('password1@');
+                //password
+            $string = str_random(8);
+            $user->password = Hash::make($string);
 			$user->save();
-
+            
+            $email = $user->email;
+		    $name  = $user->first_name;
+            
+            // create entry to start tracking time for the current year
 			$stat          = new CurrentYearStat;
 			$stat->user_id = $user->id;
 			$stat->team_id = Input::get('team');
 			$stat->save();
-
+            
+            
+            // create rank entry
 			$rank           = new Rank;
 			$rank->user_id  = $user->id;
 			$rank->username = $user->username;
 			$rank->rank     = 0;
 			$rank->rankLw   = 0;
 			$rank->save();
+            
+            // Send welcome email to new user
+            $data  = array( 'email' => $user->email, 'name' => $user->first_name, 'password' => $string, 'username' => $user->username);
+            Mail::send('emails.welcome', $data, function($message) use($email, $name)
+            {
+                $message->to($email, $name)->subject($name . ': Welcome to Wellness!');
+            });
 
 			// redirect
 			Session::flash('message', 'Successfully created user!');

@@ -41,10 +41,10 @@
                 <!-- End of Row -->
                  <div id="logDataRow" class="row-centered">
                      <div class="col-md-3 col-sm-3 col-xs-4 logDataCol">
-                    <div class="progress progress-high" id="reward-progress">
+                    <div class="progress" id="reward-progress">
                       <span class="tick">|</span>
                        @foreach($rewards as $reward)
-                        <div class="bar" id="reward" title="Reward Progress" style="width: {{ percentageRound($reward->milestone, $user_time, 0); }}%">{{ percentageRound($reward->milestone, $user_time,0); }}%</div>
+                        <div class="bar progress-high" id="reward" title="Reward Progress" style="width: {{ percentageRound($reward->milestone, $user_time, 0); }}%">{{ percentageRound($reward->milestone, $user_time,0); }}%</div>
                         @endforeach
                     </div>
                     <div id="glyph-text">{{round($user_time / 60 / 60, 1)}} of {{$reward->milestone /60 / 60}} hours</div> 

@@ -54,6 +54,10 @@ class Activity extends Eloquent {
         ->get(array('activities.activity_name'));
   }
 
+public static function activityTotalTypeTime()
+{
+    return Activity::where('type','time')->count();
+}
 
   public static function activityTotal($id)
   {

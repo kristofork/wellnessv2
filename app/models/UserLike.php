@@ -11,5 +11,11 @@ class UserLike extends Eloquent
 	{
 		return $this->belongsTo('User','user_id');
 	}
+    
+    public static function likeTotal()
+    {
+        return DB::table('user_likes')
+            ->sum('like_count');
+    }
 
 }

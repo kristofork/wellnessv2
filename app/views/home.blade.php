@@ -56,14 +56,14 @@
             <div class="col-xs-offset-4 col-xs-4 col-sm-offset-5 col-sm-2 col-md-offset-5 col-md-2">
                 <div class="row row-centered welcomeIcon">
                     <div class="col-xs-4 col-sm-4 col-md-4 welcomeIconContainer">
-                        <span id="iconTime" class="glyphicons glyphicons-stopwatch"><div id="glyph-text">20k</div></span>
+                        <span id="iconTime" class="glyphicons glyphicons-stopwatch"><div id="glyph-text">{{NumberFormat($totalActivity)}}</div></span>
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4">
-                        <span id="iconUser" class="glyphicons glyphicons-user"><div id="glyph-text">50</div></span>
+                        <span id="iconUser" class="glyphicons glyphicons-user"><div id="glyph-text">{{$totalUsers}}</div></span>
                         
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4">
-                        <span id="iconHeart" class="glyphicons glyphicons-heart"><div id="glyph-text">1k</div></span>
+                        <span id="iconHeart" class="glyphicons glyphicons-heart"><div id="glyph-text">{{$totalLikes}}</div></span>
                     </div>                                        
                 </div>
             </div>

@@ -40,6 +40,8 @@ function initProfile() {
             Like();
         /* Activity Filter */
             ActivityFilter();   
+            $(".activity-type").find("label.active").removeClass('active');
+            $(".activity-type").find("input[value='Team']").parent().addClass('active');
         /* Activity Hover */
             ActivityHover();
         /* Activity Pagination */

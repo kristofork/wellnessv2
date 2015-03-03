@@ -17,7 +17,10 @@ class HomeController extends BaseController {
 
 	public function index()
 	{
-		return View::make('home');
+		return View::make('home')
+            ->with('totalUsers', User::activeUsers())
+            ->with('totalActivity', Activity::activityTotalTypeTime())
+            ->with('totalLikes', UserLike::likeTotal());
 	}
     public function error()
     {

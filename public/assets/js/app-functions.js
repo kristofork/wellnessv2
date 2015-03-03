@@ -487,11 +487,10 @@ function ActivityFilter() {
 
 
     // Type Filter (User, Team, Everyone)
-$('div.activity-type label.btn input').on('click', function (e) {
-    e.preventDefault();
-    var loaded, value, that;
-    
-    that = this;
+$('div.activity-type label.btn').on('click', function (e) {
+    //e.preventDefault();
+
+    var loaded, value;
     // disable the buttons
     $('.activity-type label.btn').attr('disabled', 'disabled');
     // set variable to the number that is loaded. Default is 10
@@ -501,11 +500,11 @@ $('div.activity-type label.btn input').on('click', function (e) {
 
     NProgress.configure({
         showSpinner: false,
-        speed: 600
+        speed: 400
     });
     NProgress.start(); // Show the spinner  ;   
 
-    value = $("input[name='filter']:checked").val();
+    value = $(this).find("input").val();
     $.get("/activity-filter/" + value, function (data) {
 
         $('.recentActivity').find('*').not('.recentheader, .recentheader *').remove(); // remove all activities from feed
@@ -530,7 +529,7 @@ $('div.activity-type label.btn input').on('click', function (e) {
                 html += "<div class='recentActivityDesc'>";
                 html += "<div class='profilePicContainer'>";
                 html += "<span rel='hovercard' data-url=" + val.user_id + "><div class='hovercard'></div>";
-                html += "<img id='profilePic' src=" + userdata.pic + " /></span></div>";
+                html += "<img id='profilePic' src=/" + userdata.pic + " /></span></div>";
                 html += "<div class='recentActivityName'>" + userdata.first_name + " " + userdata.last_name.charAt(0) + ". </div>";
                 // if Badge
 
@@ -587,8 +586,8 @@ $('div.activity-type label.btn input').on('click', function (e) {
             }); // end of for each
             $('.activity-type label.btn').removeAttr('disabled'); // enable buttons
         }, 1000); // End of timeout
-        $('.activity-type label.btn').removeClass('active');
-        $(that.parentNode).addClass('active'); // mark button active
+
+
         jQuery("abbr.timeago").timeago();
         initHoverCard();
         // Since the ajax call was successful we set the loaded variable + 10
@@ -879,8 +878,7 @@ var url = window.location.href.split('/');
 d3.xhr("/user-activity/" + url[4], function(data) {
 data = JSON.parse(data.responseText);
     
-console.log(data);
-    
+console.log(data.length);
 var color = d3.scale.category10();
       
 var margin = {top: 20,right: 20, bottom: 30, left: 30},
@@ -955,6 +953,8 @@ var div = d3.select("body").append("div").attr("class", "tooltip").attr('id','ch
         .attr("class", "y axis")
         .call(yAxis);
 
+    if(data[0].length > 0 ) // only draw the lines if data for current year exsists.
+{
     var lines = svg.selectAll(".line")
         .data(data);
     
@@ -1005,6 +1005,7 @@ var div = d3.select("body").append("div").attr("class", "tooltip").attr('id','ch
         .duration(2000)
         .ease("linear")
         .attr("stroke-dashoffset", 0);
+}
 });
 }
 

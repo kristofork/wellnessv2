@@ -7,6 +7,7 @@
                     <button type="button" class="close" data-dismiss="alert">x</button>
                     <p>{{Session::get('message') }} </p>
                 </div>
+    {{Session::forget('message')}}
             @endif
 
 <div class="main-row">

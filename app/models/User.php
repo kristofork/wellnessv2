@@ -8,9 +8,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
     protected $guarded = array('password');
 
-    use SoftDeletingTrait;
-
-    protected $dates = ['deleted_at'];
+    
 	/**
 	 * The database table used by the model.
 	 *
@@ -177,6 +175,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
          return $points_required->required;
     }
 
+    public static function activeUsers()
+    {
+        return User::where('active','1')->get()->count();
+    }
     public static function userCount()
     {
         return User::all()->count();

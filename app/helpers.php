@@ -150,5 +150,17 @@ else{
     return array('start' =>$varStart, 'end'=>$varEnd);
 }
 
+function Numberformat($number)
+{
+    if($number < 1000)
+    {
+        return $number;
+    }
+    else
+    {
+        return number_format(($number / 1000),1) . "k";
+    }
+}
+
 
 ?>

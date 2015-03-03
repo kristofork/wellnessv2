@@ -106,9 +106,4 @@
 
 {{ HTML::script('assets/js/d3.min.js') }}
 
-<script type="text/javascript">
-
-    
-</script>
-
 @stop
