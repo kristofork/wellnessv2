@@ -36,14 +36,14 @@
                <div class="col-md-3">
                <div class="badge_container">
                   @if($badgecount == 0) <!-- locked badge -->
-                   <img class="badge-lineup" src="assets/img/badges/locked.svg" >
+                   <img class="badge-lineup" src="img/badges/locked.svg" >
                    <h4 id="title">{{$badge['name']}}</h4>
                    <div id="desc">{{$badge['desc']}}</div>
                    
                    @else  <!-- unlocked badge -->
                    <span class="glyphicons glyphicons-circle-info" id="badge-info-button" data-placement="left" data-html="true" title="@foreach($dates as $date)<div><span id='golden-cup' class='glyphicons glyphicons-cup'></span> Earned on {{$date}} </div> @endforeach"></span>
                    
-                   <img class="badge-lineup" src="assets/img/badges/{{$badge['image']}} " alt="">
+                   <img class="badge-lineup" src="img/badges/{{$badge['image']}} " alt="">
                    <h4 id="title">{{$badge['name']}}</h4>
                    <div id="desc">{{$badge['desc']}}</div>                   
                    @endif

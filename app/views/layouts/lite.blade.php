@@ -102,14 +102,26 @@
     <!-- Scripts are placed here -->
     {{ HTML::script('js/all-vendor.js')}}
     {{ HTML::script('js/app.min.js')}}
-    {{ HTML::script('assets/js/main.js')}}
+    {{ HTML::script('js/main.min.js')}}
     @if($title == "Dashboard")
     <script>
     initDash();
     </script>
     @elseif($title == "Profile")
+    {{ HTML::script('js/vendor/d3.min.js') }}
     <script>
     initProfile();
+    </script>
+    @elseif($title == "Edit Profile")
+    {{ HTML::script('js/upload/spin.min.js')}}
+    {{ HTML::script('js/upload/jquery.ui.widget.js')}}
+    {{ HTML::script('js/upload/jquery.iframe-transport.js')}}
+    {{ HTML::script('js/upload/jquery.fileupload.min.js')}}
+    {{ HTML::script('js/upload/jquery.fileupload-process.js')}}
+    {{ HTML::script('js/upload/jquery.fileupload-validate.js')}}
+    {{ HTML::script('js/upload/upload.min.js') }}
+    <script>
+    initEditProfile();
     </script>
     @elseif($title == "Log")
     <script>
@@ -119,8 +131,11 @@
     <script>
     initBadge();
     </script>
-    @else($title == "Blog")
-    {{ HTML::script('assets/js/blog.js') }}
+    @else
+    {{ HTML::script('js/blog.min.js') }}
+    <script>
+    initBlog();
+    </script>
     @endif
 
 

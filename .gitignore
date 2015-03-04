@@ -9,11 +9,8 @@ vendor/wardrobe/core/src/*
 !vendor/wardrobe/core/src/Wardrobe/
 
 
-
-
-
-
 composer.phar
 .DS_Store
 /node_modules
 app/tests
+app/assets

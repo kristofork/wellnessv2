@@ -102,8 +102,4 @@
 
     @include('_partials.modal-badge'));
 
-
-
-{{ HTML::script('assets/js/d3.min.js') }}
-
 @stop

@@ -206,11 +206,12 @@ class UserController extends BaseController
 			$hash = Session::get('hash');
 			if (!File::exists('uploads/'.$hash)) File::makeDirectory('uploads/'.$hash);
 		}
-		$newPath         = 'assets/img/users/avatars/';
+        $randomstring    = str_random(16);
+		$newPath         = 'img/users/';
 		$userID          = Auth::user()->id;
 		$fileExt         = "jpg";
-		$newFileName     = $userID . '.' . $fileExt;
-		$newFullPath     = $newPath. $userID . '.' . $fileExt; 
+		$newFileName     = $randomstring . $userID . '.' . $fileExt;
+		$newFullPath     = $newPath . $randomstring . $userID . '.' . $fileExt; 
 		$destinationPath = 'uploads/'.$hash;
 		$filename        = Session::get('filename','original.jpg');
 		$fullpath        = $destinationPath.'/'.$filename;
@@ -231,7 +232,7 @@ class UserController extends BaseController
 		$user = User::find($userID);
 		$user->pic = $newPath . $newFileName;
 		$user->save();	
-		$upload_success = File::move($fullpath, $newFullPath);	
+		$upload_success = File::move($fullpath, $newFullPath);
 
 		// Delete directory
 		if (File::exists($destinationPath)){

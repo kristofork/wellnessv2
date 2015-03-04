@@ -134,11 +134,11 @@
 </div> <!-- End of Main-Row -->
 
 {{HTML::script('js/admin/pagination.js')}}
-{{HTML::script('assets/js/admin/vendor/handlebars-v1.3.0.js')}}
-{{HTML::script('assets/js/admin/vendor/typeahead.bundle.min.js')}}
-{{HTML::script('assets/js/admin/app.js')}}
-{{HTML::script('assets/js/admin/autocomplete.js')}}
-{{HTML::script('assets/js/admin/events.js')}}
-{{HTML::script('assets/js/admin/init.js')}}
+{{HTML::script('js/admin/vendor/handlebars-v1.3.0.js')}}
+{{HTML::script('js/admin/vendor/typeahead.bundle.min.js')}}
+{{HTML::script('js/admin/app.js')}}
+{{HTML::script('js/admin/autocomplete.js')}}
+{{HTML::script('js/admin/events.js')}}
+{{HTML::script('js/admin/init.js')}}
 
 @stop

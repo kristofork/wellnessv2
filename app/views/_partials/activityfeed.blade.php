@@ -125,11 +125,11 @@
 
                         <div class="activityIcon hidden-sm hidden-xs">
                             @if ($activity->type == "time")
-                            {{HTML::image("/assets/img/badges/timeActivity.png", "Time Activty");}} 
+                            {{HTML::image("/img/timeActivity.png", "Time Activty");}} 
                             @elseif ($activity->type == "read")
-                            {{HTML::image("/assets/img/badges/readActivity.png", "Read Activty");}}
+                            {{HTML::image("/img/readActivity.png", "Read Activty");}}
                             @else
-                            {{HTML::image("/assets/img/badges/goalActivity.png", "Goal Activty");}}
+                            {{HTML::image("/img/goalActivity.png", "Goal Activty");}}
                             @endif
                         </div>
 

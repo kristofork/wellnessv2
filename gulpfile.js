@@ -15,7 +15,7 @@ var gulp = require('gulp'),
 
 // directories
 var appDir = "app",
-    assetsDir = "public/assets",
+    assetsDir = "app/assets",
     lessDir = assetsDir + "/css/less",
     jsVendor = assetsDir + "/js/vendor",
     jsWorking = assetsDir + "/js",
@@ -56,6 +56,7 @@ gulp.task('styles-vendor', function() {
    gulp.src(assetsDir+ '/css/vendor/*.css')
    .pipe(concatCSS('all-vendor.css'))
    .pipe(minifyCSS())
+   .pipe(rename({ suffix: '.min' }))
    .pipe(gulp.dest(publicCSS))
    .pipe(notify({message: 'CSS Vendor file task complete.'}));
    
@@ -86,6 +87,15 @@ gulp.task('js-merge-vendor', function() {
         .pipe(notify({message: 'Vender js merged'}));
 });
 
+//minify main js
+gulp.task('js-min-main', function() {
+    return gulp.src(jsWorking + "/main.js")
+        .pipe(uglify())
+        .pipe(rename({suffix: '.min'}))
+        .pipe(gulp.dest(jsDir))
+        .pipe(notify({message: 'Main js processed'}));
+});
+
 // minify all app functions
 gulp.task('js-min-app-functions', function() {
     return gulp.src(jsWorking + "/app-functions.js")
@@ -93,6 +103,16 @@ gulp.task('js-min-app-functions', function() {
         .pipe(rename({basename: 'app', suffix: '.min'}))
         .pipe(gulp.dest(jsDir))
         .pipe(notify({message: 'App Functions processed'}));
+});
+
+// minify upload js 
+gulp.task('js-min-upload', function() {
+    return gulp.src(jsWorking + "/upload/vendor/*.js")
+        .pipe(concat('upload-vendor.js'))
+        .pipe(uglify())
+        .pipe(rename({suffix: '.min'}))
+        .pipe(gulp.dest(jsDir))
+        .pipe(notify({message: 'Upload Processed'}));
 });
 
 

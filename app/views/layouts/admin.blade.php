@@ -13,10 +13,10 @@
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--[if lt IE 10]>
-        {{ HTML::script('assets/js/jquery-1.9.1.min.js') }}
+        {{ HTML::script('js/jquery/jquery-1.9.1.min.js') }}
         <![endif]-->
     <!--[if (gt IE 9)|!(IE)]><!-->
-    {{ HTML::script('assets/js/jquery-2.0.2.js') }}
+    {{ HTML::script('js/jquery/jquery-2.0.2.min.js') }}
 
     <!--<![endif]-->
 

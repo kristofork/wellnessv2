@@ -25,9 +25,8 @@
 
     <!-- CSS are placed here -->
     {{ HTML::style('css/all-jquery.css') }}
-    {{ HTML::style('css/all-vendor.css')}}
+    {{ HTML::style('css/all-vendor.min.css')}}
     {{ HTML::style('css/cover-lite.min.css') }}
-    {{ HTML::style('assets/css/jquery.FullPage.css') }}
     
 </head>
 
@@ -95,7 +94,7 @@
     </div>
     
     {{ HTML::script('js/all-vendor.js' )}}
-    {{ HTML::script('assets/js/app-functions.js') }}
+    {{ HTML::script('js/app.min.js') }}
 <script>
     initFullPage();
     </script>

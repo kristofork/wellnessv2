@@ -1,8 +1,5 @@
 @extends('layouts.lite')
 
-{{ HTML::style('assets/css/jquery.Jcrop.min.css') }}
-
-
 @section('content')
 
                @if(Session::has('message'))
@@ -130,15 +127,5 @@
     </div>
     <!-- End of Sidebar Right-->
 </div>
-
-{{ HTML::script('assets/js/upload/spin.min.js')}}
-{{ HTML::script('assets/js/upload/jquery.ui.widget.js')}}
-{{ HTML::script('assets/js/upload/jquery.iframe-transport.js')}}
-{{ HTML::script('assets/js/upload/jquery.fileupload.js')}}
-{{ HTML::script('assets/js/upload/jquery.fileupload-process.js')}}
-{{ HTML::script('assets/js/upload/jquery.fileupload-validate.js')}}
-
-{{ HTML::script('assets/js/upload/upload-crop.js') }}
-
 
 @stop
