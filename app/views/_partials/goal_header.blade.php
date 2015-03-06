@@ -31,6 +31,7 @@
       
 
       @elseif( count($userdata->goalprogress) && $isGoalActive)
+
    <div class="row-centered table-container" style="position:relative; max-height:300px">
     <div id="myCarousel" class="carousel slide" data-interval="false" data-ride="carousel">
        <ol class="carousel-indicators">
@@ -40,17 +41,23 @@
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
         <div class="item active">
+            <div id="recent_activity_container" class="col-centered col-md-7" style="margin:5px auto; display:block;">
+               @if($goaltype === "weight")
+                <div id="chart-weight"></div>
+                <script>
+                    $(document).ready(function () {
+                       weightChart(); 
+                       weightChallengeDataEntry();
+                    }); 
+                </script>
+               @endif
+            </div>
+        </div>
+        <div class="item">
            <div id="recent_activity_container" class="col-centered col-md-7" style="margin: 5px auto; display:block;">
                <div id="chart-container"></div>
             </div>
         </div>
-
-        <div class="item">
-            <div id="recent_activity_container" class="col-centered col-md-7" style="margin:5px auto; display:block;">
-                <div id="chart-weight"></div>
-            </div>
-        </div>
-
 
       </div>
 
@@ -71,7 +78,7 @@
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
         <div class="item">
-           <div id="recent_activity_container" class="col-centered col-md-7" style="margin: 5px auto; display:block;">
+           <div id="recent_activity_container" class="col-centered col-xs-12 col-sm-12 col-md-8 col-lg-8" style="margin: 5px auto; display:block;">
                <div id="chart-container"></div>
             </div>
         </div>

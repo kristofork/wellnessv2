@@ -5,35 +5,53 @@
        -->   
       <!-- Choosing a Challenge -->
 
-      @if(! count($userdata->goalprogress)) 
+      @if(! count($userdata->goalprogress))
        <div id="dashDataRow" class="">
         <div class="col-md-3 col-sm-3 col-xs-3 dashDataCol">
-            <span id="likeCount" class="glyphicons glyphicons-scale"></span>
+            <span id="bar-col-1" class="glyphicons glyphicons-scale bar-columns"></span>
             <div class="weight" id="glyph-text" data-count="">
 
-            <a data-toggle="modal" data-target="#goalWeightModal" href="#goalWeightModal">Click to set a goal</a>
+            <a data-toggle="modal" data-target="#goalWeightModal" href="#goalWeightModal">Click to start</a>
 
             </div>  
         </div> 
      <div class="col-md-3 col-sm-3 col-xs-3 dashDataCol">
-                <span id="rankCount" class="glyphicons glyphicons-person-running"></span>
-                <div class="running" id="glyph-text" data-count="">
-                <a class="disabled" data-toggle="modal" data-target="#goalRunModal" href="#">Running</a>
-                 </div>
+                <span id="bar-col-2" class="glyphicons glyphicons-person-running bar-columns"></span>
+                <div class="" id="glyph-text" data-count="">
+                <a href="#" id="run-popover">Click to start</a>
+                </div>  
      </div>
 
      <div class="col-md-3 col-sm-3 col-xs-3 dashDataCol">
 
-        <span id="timeCount" class="glyphicons glyphicons-person-walking"></span>
+        <span id="bar-col-3" class="glyphicons glyphicons-person-walking bar-columns"></span>
         <div id="glyph-text">Walking</div>        
         
      </div>
      <div class="col-md-3 col-sm-3 col-xs-3 dashDataCol">
-        <span id="timeCount" class="glyphicons glyphicons-dumbbell"></span>
+        <span id="bar-col-4" class="glyphicons glyphicons-dumbbell bar-columns"></span>
         <div id="glyph-text">Gym</div>               
         
      </div>
     </div>
+    
+    @include('_partials.goal_signup')
+    
+    <script type="text/javascript">
+        $(document).ready(function (){
+            var runbuttons = '<div class="btn-group">';
+                runbuttons+= '<button data-toggle="modal" data-target="#goalRunDistanceModal" href="#goalRunDistanceModal" type="button" class="btn btn-default"><span class="glyphicons glyphicons-map"></span></button>';
+                runbuttons+= '<button data-toggle="modal" data-target="#goalRunEventModal" href="#goalRunEventModal" type="button" class="btn btn-default"><span class="glyphicons glyphicons-calendar"></span></button>';
+                runbuttons+= '</div>';
+  
+            $("#run-popover").popover({
+                html:true,
+                placement: "bottom",
+                trigger: "click",
+                content: runbuttons
+            });
+        });
+    </script>
     
 @elseif(count($userdata->goalprogress) && $goaltype =="weight" && $isGoalActive)       
         <!-- Active Challenge Stats -->

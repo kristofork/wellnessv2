@@ -137,7 +137,7 @@ class UserController extends BaseController
 		$reward2 = Reward::find(2);
         $activities = Activity::with(array('user.badgeuser' => function($q){
                                     $q->join('badges','badges.id','=','badge_id')->orderBy('created_at','desc')->first();
-        }),'user')->where('user_id', '=',$id)->orderBy('activities.created_at', 'desc')->take(10)->get();
+        }),'user')->where('team_id', '=',$team)->orderBy('activities.created_at', 'desc')->take(10)->get();
         $userdata = User::with(array('goalprogress' => function($q) use($currentHalf){
             $q->whereBetween('created_at',array($currentHalf['start'], $currentHalf['end']))->with('goal');
         }))->where('id',$id)->first();
@@ -361,11 +361,15 @@ class UserController extends BaseController
 	{
 		$count = Activity::activityTotal($id);
 		$user = User::find($id);
-		$title = Level::find($user->rank_id)->name;
+        $rank = Level::find($user->rank_id);
+		$title = $rank->name;
 		$time = $user->userTotalHrs / 3600;
+        $points = $user->userTotalPts;
+        $nextrankpts = Level::find($user->rank_id + 1)->required;
+        $ptpercentage = round(($points / $nextrankpts) * 100,1);
 		$year = new DateTime($user->created_at);
 		$year = $year->format('Y');
-		$result = array('userFirst' => $user->first_name, 'userLast' => $user->last_name, 'pic' => $user->pic, 'created_at' => $user->created_at, 'activities' => $count, 'time' => $time, 'year' => $year, 'title' => $title);
+		$result = array('userFirst' => $user->first_name, 'userLast' => $user->last_name, 'pic' => $user->pic, 'created_at' => $user->created_at, 'activities' => $count, 'time' => $time, 'year' => $year, 'title' => $title, 'points' => $points, 'ptpercentage' => $ptpercentage);
 
 		return Response::json($result);
 	}

@@ -66,7 +66,7 @@ class GoalController extends BaseController
         $goal_data->progress = $total_weight;
         $goal_data->save();
         
-        $result = array('success'=> true, 'message'=> 'Goal Updated','weight_lost' => $total_weight);   
+        $result = array('success'=> true, 'message'=> 'Goal Updated','weight_lost' => number_format($total_weight, 1, '.',''));   
             
         }
         

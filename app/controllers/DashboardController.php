@@ -44,7 +44,7 @@ class DashboardController extends BaseController
 			->with('hoursToReward', User::hoursToReward())
 			->with('userYearStats', Team::userYearStat($team))
 			->with('user_rank',$user->ranks ? $user->ranks->rank : "0")
-			->with('user_count',User::userCount())
+			->with('user_count',User::activeUsers())
 			->with('team_rank',Team::Rank($team))
 			->with('team_count',Team::Count())
 			->with('rewards', Reward::current())

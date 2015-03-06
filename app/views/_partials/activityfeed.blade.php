@@ -101,7 +101,7 @@
                                             @if($hasBadge)
                                             <div id="container-flair"><span class="{{$flairclass}}" title="{{$badgedesc}}"></span></div>
                                             @endif
-                                        <div class="recentActivityText">{{ $activity->activity_name }} </strong></div>
+                                        <div class="recentActivityText"><strong>{{ $activity->activity_name }} </strong></div>
                                     </div>
                                 @endif
                             
