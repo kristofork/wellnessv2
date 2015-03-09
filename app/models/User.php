@@ -203,7 +203,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
     public function isAdmin()
     {
-       return $this->role === "admin";
+       return $this->admin === 1;
     }
 
 

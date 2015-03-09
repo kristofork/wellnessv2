@@ -1,4 +1,4 @@
-@extends(theme_view('layout'))
+@extends('../layouts.lite') 
 
 @section('title')
   Post Preview

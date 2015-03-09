@@ -116,7 +116,7 @@ class PostController extends BaseController {
 			return App::abort(404, 'Page not found');
 		}
 
-		return View::make($this->theme.'.preview', array('id' => $id));
+		return View::make($this->theme.'.preview', array('id' => $id))->with('title',"Preview Post")->with('isAdmin',true);
 	}
 
 }
