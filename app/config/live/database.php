@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'wellness',
+			'database'  => 'wellnessv2',
 			'username'  => 'root',
 			'password'  => 'otad300',
 			'charset'   => 'utf8',
