@@ -28,7 +28,7 @@ $env = $app->detectEnvironment(array(
 
 	'local' => array('THEOCHO'),
 	'staging' => array('WEBSVR01'),
-	'live'=> array('URBAN-HQ-WEBSVR01'),
+	'live'=> array('URBAN-HQ-WEBSVR'),
 
 ));
 
