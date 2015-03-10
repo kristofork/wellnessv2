@@ -52,7 +52,7 @@ Route::filter('user',function($route)
 
 Route::filter('auth', function()
 {
-	if (Auth::guest()) return Redirect::guest('home')
+	if (Auth::guest()) return Redirect::guest('/')
 		->with('flash_error','You must be logged in to view this page!') ;
 });
 
