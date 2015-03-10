@@ -81,7 +81,7 @@
                                                     {{HTML::image($activity->user->pic, $activity->user->first_name, array('id'=> 'profilePic'));}}
                                             </span>
                                         </div>
-                                    <div class="recentActivityName hidden-sm hidden-xs">{{ $activity->first_name}} {{ substr($activity->user->last_name, 0, 1) }}. </div>
+                                    <div class="recentActivityName hidden-sm hidden-xs">{{ $activity->user->first_name}} {{ substr($activity->user->last_name, 0, 1) }}. </div>
                                             <!-- Flair-->
                                             @if($hasBadge)
                                             <div id="container-flair"><span class="{{$flairclass}}" title="{{$badgedesc}}"></span></div>
