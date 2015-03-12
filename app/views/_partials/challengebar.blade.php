@@ -76,7 +76,7 @@
                 </div>
                 <div class="content hide">
                     <div class="form-group">
-                        <input id="weight" type="text" name="weight" placeholder="123.4 lbs" pattern="\d{2,3}(\.\d{1})?" required />
+                        <input id="weight" type="text" name="weight" placeholder="123.4 lbs" autocomplete="off" pattern="\d{2,3}(\.\d{1})?" required />
                     </div>
                     <button id="weight_submit" type="submit" class="btn btn-default btn-block">
                         Submit
