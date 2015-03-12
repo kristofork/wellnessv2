@@ -94,6 +94,19 @@
         @if(Session::has('flash_notice'))
             <div id="flash_notice">{{ Session::get('flash_notice') }}</div>
         @endif
+               @if(Session::has('message'))
+    <div id="" class="alert alert-custom">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <p>{{Session::get('message') }}</p>
+    </div>
+        @elseif($errors->has())
+    <div id="" class="alert alert-custom">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        @foreach($errors->all() as $error)
+        <p>{{$error}}</p>
+        @endforeach
+    </div>
+    @endif
         <!-- Content -->
         @yield('content')
 

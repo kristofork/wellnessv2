@@ -2,19 +2,7 @@
 
 <?php $today = new DateTime(); ?>
          
-       @if(Session::has('message'))
-    <div id="dash-side-right" class="alert alert-custom">
-        <button type="button" class="close" data-dismiss="alert">x</button>
-        <p>{{Session::get('message') }}</p>
-    </div>
-        @elseif($errors->has())
-    <div id="dash-side-right" class="alert alert-custom">
-        <button type="button" class="close" data-dismiss="alert">x</button>
-        @foreach($errors->all() as $error)
-        <p>{{$error}}</p>
-        @endforeach
-    </div>
-    @endif
+
     
     
     @include('_partials.goal_header')

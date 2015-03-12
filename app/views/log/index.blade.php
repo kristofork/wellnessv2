@@ -2,12 +2,6 @@
 
 @section('content')
 
-    @if(Session::has('message'))
-    <div id="dash-side-right" class="alert alert-custom">
-        <button type="button" class="close" data-dismiss="alert">x</button>
-        <p>{{Session::get('message') }}</p>
-    </div>
-    @endif
 
 <div class="table-container" id="log-bg">
     <div class="tablecell-container">

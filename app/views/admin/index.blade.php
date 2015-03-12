@@ -2,13 +2,6 @@
 
 @section('content')
 
-             @if(Session::has('message'))
-                <div class="alert alert-custom">
-                    <button type="button" class="close" data-dismiss="alert">x</button>
-                    <p>{{Session::get('message') }} </p>
-                </div>
-    {{Session::forget('message')}}
-            @endif
 
 <div class="main-row">
             <div class="col-md-8" id="dash-nav">

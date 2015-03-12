@@ -112,6 +112,13 @@
         @if(Session::has('flash_notice'))
         <div id="flash_notice">{{ Session::get('flash_notice') }}</div>
         @endif
+                     @if(Session::has('message'))
+                <div class="alert alert-custom">
+                    <button type="button" class="close" data-dismiss="alert">x</button>
+                    <p>{{Session::get('message') }} </p>
+                </div>
+    {{Session::forget('message')}}
+            @endif
         <!-- Content -->
         @yield('content')
 

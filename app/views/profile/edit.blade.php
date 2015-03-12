@@ -2,21 +2,7 @@
 
 @section('content')
 
-               @if(Session::has('message'))
-            <div id="dash-side-right" class="alert alert-success" style="width:29%; z-index:1;">
-                <button type="button" class="close" data-dismiss="alert">x</button>
-                <p>{{Session::get('message') }} </p>
-            </div>
-            @endif
-            @if($errors->has())
-			<div id="dash-side-right" class="alert alert-error" style="width:29%">
-			    <button type="button" class="close" data-dismiss="alert">x</button>
-			    <ul>
-			    {{ $errors->first('file', '<li>:message</li>') }}
 
-			    </ul>
-			</div>
-			@endif   
 
 <div class="main-row">
 	<div class="container-fluid">
