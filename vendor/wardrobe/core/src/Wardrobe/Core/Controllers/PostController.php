@@ -62,7 +62,7 @@ class PostController extends BaseController {
 			return App::abort(404, 'Page not found');
 		}
 
-		return View::make($this->theme.'.archive', compact('posts', 'tag'));
+		return View::make($this->theme.'.archive', compact('posts', 'tag'))->with('title',"Blog")->with('isAdmin', false);
 	}
 
 	/**
