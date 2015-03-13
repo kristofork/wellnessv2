@@ -14,7 +14,7 @@
 */
 
 
-Route::get('/',array('as' => 'home', 'uses'=>'HomeController@index'));
+Route::get('/',array('as' => 'home', 'uses'=>'HomeController@index'))->before('guest');
 Route::get('error', array('as' => 'error', 'uses'=>'HomeController@error'));
 
 
