@@ -20,7 +20,7 @@ class DashboardController extends BaseController
 		$year                      = new DateTime($user->created_at);
 		$year                      = $year->format('Y');
         $activities                = Activity::with(array('user.badgeuser' => function($q){
-                                    $q->join('badges','badges.id','=','badge_id')->orderBy('created_at','desc')->first();
+                                    $q->join('badges','badges.id','=','badge_id')->orderBy('created_at','desc')->get();
                                     }),'user')->with(array('likes' => function($q) use ($user_id){
                     $q->where('user_id',$user_id)->get();
                 }))->orderBy('activities.created_at', 'desc')->take(10)->get();
