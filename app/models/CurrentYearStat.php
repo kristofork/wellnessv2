@@ -2,6 +2,7 @@
 
 class CurrentYearStat extends Eloquent 
 {
+    protected $primaryKey = 'user_id';
 	
 	protected $table = 'current_year_stats';
 
