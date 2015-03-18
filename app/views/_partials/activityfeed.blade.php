@@ -4,16 +4,16 @@
 <h3 class="recentheader">Recent Activity</h3>
         <div id="activity-type-form" class="recentheader">
         <div class="btn-group pull-right activity-type" data-toggle="buttons">
-            <label class="btn btn-default btn-xs">
+            <label class="btn btn-default btn-xs tooltip-item" data-tooltip="You">
                 <input type="radio" name="filter" value="User">
                 <span class="glyphicon glyphicon-user"></span>
             </label>
-            <label class="btn btn-default btn-xs">
+            <label class="btn btn-default btn-xs tooltip-item" data-tooltip="Team">
                 <input type="radio" name="filter" value="Team">
                 <span id="custom-glyph-user" style="font-size:8px" class="glyphicon glyphicon-user"></span>
                 <span class="glyphicon glyphicon-user"></span>
             </label>
-            <label class="btn btn-default btn-xs active">
+            <label class="btn btn-default btn-xs active tooltip-item" data-tooltip="Everyone">
                 <input type="radio" name="filter" value="Everyone">
                 <span class="glyphicon glyphicon-globe"></span>
             </label>
@@ -52,7 +52,7 @@
                                         <div class="recentActivityName hidden-sm hidden-xs">{{ $activity->user->first_name}} {{ substr($activity->user->last_name, 0, 1) }}.</div>
                                             <!-- Flair-->
                                             @if($hasBadge)
-                                            <div id="container-flair"><span class="{{$flairclass}}" title="{{$badgedesc}}"></span></div>
+                                            <div id="container-flair"><span class="{{$flairclass}} tooltip-item" data-tooltip="{{$badgedesc}}"></span></div>
                                             @endif
                                         <div class="recentActivityText">Logged {{ secondsToString(hoursToSeconds($activity->activity_time )) }} of <strong>{{ $activity->activity_name }} </strong>
 
@@ -69,7 +69,7 @@
                                     <div class="recentActivityName hidden-sm hidden-xs">{{ $activity->user->first_name}} {{ substr($activity->user->last_name, 0, 1) }}. </div>
                                             <!-- Flair-->
                                             @if($hasBadge)
-                                            <div id="container-flair"><span class="{{$flairclass}}" title="{{$badgedesc}}"></span></div>
+                                            <div id="container-flair"><span class="{{$flairclass}} tooltip-item" data-tooltip="{{$badgedesc}}"></span></div>
                                             @endif
                                         <div class="recentActivityText">Read <a href="{{URL::to('blog')}}">{{ $activity->activity_name }} </a></div>
                                     </div>
@@ -84,7 +84,7 @@
                                     <div class="recentActivityName hidden-sm hidden-xs">{{ $activity->user->first_name}} {{ substr($activity->user->last_name, 0, 1) }}. </div>
                                             <!-- Flair-->
                                             @if($hasBadge)
-                                            <div id="container-flair"><span class="{{$flairclass}}" title="{{$badgedesc}}"></span></div>
+                                            <div id="container-flair"><span class="{{$flairclass}} tooltip-item" data-tooltip="{{$badgedesc}}"></span></div>
                                             @endif
                                         <div class="recentActivityText"><strong>{{ $activity->activity_name }} </strong></div>
                                     </div>
@@ -99,7 +99,7 @@
                                     <div class="recentActivityName hidden-sm hidden-xs">{{ $activity->user->first_name}} {{ substr($activity->user->last_name, 0, 1) }}. </div>
                                             <!-- Flair-->
                                             @if($hasBadge)
-                                            <div id="container-flair"><span class="{{$flairclass}}" title="{{$badgedesc}}"></span></div>
+                                            <div id="container-flair"><span class="{{$flairclass}} tooltip-item" data-tooltip="{{$badgedesc}}"></span></div>
                                             @endif
                                         <div class="recentActivityText"><strong>{{ $activity->activity_name }} </strong></div>
                                     </div>
@@ -113,7 +113,7 @@
                                 <!--Conditional: User cannot like own activities and cannot like activities more than once -->
                                 @if(Auth::user()->username != $activity->user->username &&  count($liked) < 1)
                                 <div class="toLikeImg">
-                                <div class="glyphicon glyphicon-heart like-heart" id='{{ $activity->id}}' title="Click to like!"></div>   
+                                <div class="glyphicon glyphicon-heart like-heart tooltip-item" id='{{ $activity->id}}' data-tooltip="Click to like!"></div>   
                                 </div>
                                 @else
                                 <div class="activityLikeImg" id="{{ $activity->id }}">

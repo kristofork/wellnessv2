@@ -48,21 +48,21 @@
 </div>
    <div id="dashDataRow" class="">
         <div class="col-md-3 col-sm-3 col-xs-3 dashDataCol">
-            <span id="likeCount" class="glyphicons glyphicons-heart"></span>
+            <span id="likeCount" class="glyphicons glyphicons-heart tooltip-item" data-tooltip="Like Count"></span>
             <div class="likes" id="glyph-text" data-count="{{$user_like_count}}">{{$user_like_count}}</div>  
         </div> 
      <div class="col-md-3 col-sm-3 col-xs-3 dashDataCol">
-        <span id="rankCount" class="glyphicons glyphicons-stats"></span>
+        <span id="rankCount" class="glyphicons glyphicons-stats tooltip-item" data-tooltip="Rank"></span>
             <div id="glyph-text">{{$user_rank}} of {{$user_count}}</div> 
      </div>
     @foreach($rewards as $reward)
      <div class="col-md-3 col-sm-3 col-xs-3 dashDataCol">
-        <span id="timeCount" class="glyphicons glyphicons-stopwatch"></span>
+        <span id="timeCount" class="glyphicons glyphicons-stopwatch tooltip-item" data-tooltip="Total Time"></span>
         <div id="glyph-text">{{round($user_time / 60 / 60, 1)}} of {{$reward->milestone /60 / 60}}</div> 
      </div>
      @endforeach
      <div class="col-md-3 col-sm-3 col-xs-3 dashDataCol">
-        <span id="teamrankCount" class="glyphicons glyphicons-group"></span>
+        <span id="teamrankCount" class="glyphicons glyphicons-group tooltip-item" data-tooltip="Team Rank"></span>
         <div id="glyph-text">
         @if ($teamname != "Individuals")
             <span>{{$team_rank}} of {{$team_count}}</span>

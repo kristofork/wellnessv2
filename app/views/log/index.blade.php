@@ -9,9 +9,9 @@
        <h1><span id="time_value"></span></h1>
         </div>
          <div class="logDataCol">
-            <span id="day" title="Total amount of hours logged on for the current day selected">0:00</span>
+            <span class="tooltip-item" id="day" data-tooltip="Day total">0:00</span>
             <span>day &#8226;</span>
-            <span id="week" title="Total amount of hours logged on for the current week selected">0:00</span>
+            <span class="tooltip-item" id="week" data-tooltip="Week total">0:00</span>
             <span>week</span>   
          </div>  
 <form id="activity_form" name="activity_form" method="post">
@@ -38,19 +38,19 @@
                     <div class="progress" id="reward-progress">
                       <span class="tick">|</span>
                        @foreach($rewards as $reward)
-                        <div class="bar progress-high" id="reward" title="Reward Progress" style="width: {{ percentageRound($reward->milestone, $user_time, 0); }}%">{{ percentageRound($reward->milestone, $user_time,0); }}%</div>
+                        <div class="bar progress-high tooltip-item" id="reward" data-tooltip="Reward Progress" style="width: {{ percentageRound($reward->milestone, $user_time, 0); }}%">{{ percentageRound($reward->milestone, $user_time,0); }}%</div>
                         @endforeach
                     </div>
                     <div id="glyph-text">{{round($user_time / 60 / 60, 1)}} of {{$reward->milestone /60 / 60}} hours</div> 
                      </div>  
                      <div class="col-md-3 col-sm-3 col-xs-4 logDataCol">
                         <div class="summary_item"><input type="hidden" id="activity_datepicker" name="actdate" />
-                            <span id="date_value" title="Date selected">Today</span>
+                            <span class="tooltip-item" id="date_value" data-tooltip="Date selected">Today</span>
                         </div>
                      </div>
 
                      <div class="col-md-3 col-sm-3 col-xs-4 logDataCol">
-                        <div class="btn-group-xs intensity" data-toggle="buttons" title="Intensity of activity">
+                        <div class="btn-group-xs intensity tooltip-item" data-toggle="buttons" data-tooltip="Intensity of activity">
                             <label class="btn low">
                                 <input type="radio" name="actintensity" id="intLow" value="1">
                                 <span class="glyphicon glyphicon-fire" style="color:rgb(0, 255, 57)"></span>
@@ -66,7 +66,7 @@
                         </div>
                      </div>
                      <div class="col-md-3 col-sm-3 hidden-xs logDataCol">
-                        <div id="points" class="summary_item" title="Total amount of points for entered activity">Points:
+                        <div id="points" class="summary_item tooltip-item" data-tooltip="Total points">Points:
                             <span id="points_value">2</span>
                         </div>
                      </div>

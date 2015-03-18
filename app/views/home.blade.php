@@ -77,10 +77,7 @@
             <div id="iconLoginPosition" class="col-xs-offset-4 col-xs-4 col-sm-offset-5 col-sm-2 col-md-offset-5 col-md-2">
                 <div class="col-md-12">
                    <div id="iconLogin">
-                   <a href="#login">
-                    <span class="glyphicon glyphicon-chevron-down">
-
-                    </span></a>
+                   <a href="#login" tabindex="-1"><span class="glyphicon glyphicon-chevron-down"></span></a>
                     </div>
                 </div>
             </div>
