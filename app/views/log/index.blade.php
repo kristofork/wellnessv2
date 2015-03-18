@@ -36,9 +36,9 @@
                  <div id="logDataRow" class="row-centered">
                      <div class="col-md-3 col-sm-3 col-xs-4 logDataCol">
                     <div class="progress" id="reward-progress">
-                      <span class="tick">|</span>
+                      <span class="tick tooltip-item" data-tooltip="Reward Progress">|</span>
                        @foreach($rewards as $reward)
-                        <div class="bar progress-high tooltip-item" id="reward" data-tooltip="Reward Progress" style="width: {{ percentageRound($reward->milestone, $user_time, 0); }}%">{{ percentageRound($reward->milestone, $user_time,0); }}%</div>
+                        <div class="bar progress-high" id="reward" style="width: {{ percentageRound($reward->milestone, $user_time, 0); }}%">{{ percentageRound($reward->milestone, $user_time,0); }}%</div>
                         @endforeach
                     </div>
                     <div id="glyph-text">{{round($user_time / 60 / 60, 1)}} of {{$reward->milestone /60 / 60}} hours</div> 
@@ -50,12 +50,12 @@
                      </div>
 
                      <div class="col-md-3 col-sm-3 col-xs-4 logDataCol">
-                        <div class="btn-group-xs intensity tooltip-item" data-toggle="buttons" data-tooltip="Intensity of activity">
+                        <div class="btn-group-xs intensity" data-toggle="buttons">
                             <label class="btn low">
                                 <input type="radio" name="actintensity" id="intLow" value="1">
                                 <span class="glyphicon glyphicon-fire" style="color:rgb(0, 255, 57)"></span>
                             </label>
-                            <label class="btn moderate active">
+                            <label class="btn moderate active tooltip-item" data-tooltip="Intensity of activity">
                                 <input type="radio" name="actintensity" id="intMod" value="2">
                                 <span class="glyphicon glyphicon-fire" style="color:orange"></span>
                             </label>
@@ -66,8 +66,8 @@
                         </div>
                      </div>
                      <div class="col-md-3 col-sm-3 hidden-xs logDataCol">
-                        <div id="points" class="summary_item tooltip-item" data-tooltip="Total points">Points:
-                            <span id="points_value">2</span>
+                        <div id="points" class="summary_item">Points:
+                            <span id="points_value" class=" tooltip-item" data-tooltip="Total points">2</span>
                         </div>
                      </div>
                         
