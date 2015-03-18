@@ -111,7 +111,8 @@
                                     <abbr class="timeago" title="{{ convertTimeIso($activity->created_at) }}"></abbr>
                                 </div>
                                 <!--Conditional: User cannot like own activities and cannot like activities more than once -->
-                                @if(Auth::user()->username != $activity->user->username &&  count($liked) < 1)
+                                
+                                @if(Auth::user()->username != $activity->user->username && count($liked) < 1)
                                 <div class="toLikeImg">
                                 <div class="glyphicon glyphicon-heart like-heart tooltip-item" id='{{ $activity->id}}' data-tooltip="Click to like!"></div>   
                                 </div>
