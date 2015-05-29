@@ -67,7 +67,7 @@ App::error(function(Exception $exception, $code)
 App::down(function()
 {
     $ip = Request::getClientIp();
-    $allowed = array('10.1.4.134','127.0.0.1');
+    $allowed = array('73.193.179.164');
 
     if(!in_array($ip, $allowed))
     {
