@@ -2,7 +2,7 @@
 <div id="recent_activity_header" class="col-md-8 col-sm-11 col-xs-11 col-centered recentheader">   
 
 <h3 class="recentheader">Recent Activity</h3>
-        <div id="activity-type-form" class="recentheader">
+        <div id="activity-type-form" class="recentheader hidden-xs">
         <div class="btn-group pull-right activity-type" data-toggle="buttons">
             <label class="btn btn-default btn-xs tooltip-item" data-tooltip="You">
                 <input type="radio" name="filter" value="User">

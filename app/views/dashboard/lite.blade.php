@@ -15,10 +15,10 @@
            </div>
 
         <div id="userData" class="row">
-            <div class="col-md-4 col-sm-4 col-xs-4">
+            <div class="col-md-4 col-sm-4 hidden-xs">
             <span style="line-height:2.6em">{{$teamname}}</span> 
            </div>
-           <div class="col-md-4 col-sm-4 col-xs-4" style="text-align:center">
+           <div class="col-md-4 col-sm-4 col-xs-6" style="text-align:center">
            <span>{{ $user_title }}</span> 
             <span id="stats-progress">
             <div id="progress">
@@ -27,7 +27,7 @@
 
            </span>
            </div>
-           <div class="col-md-4 col-sm-4 col-xs-4">
+           <div class="col-md-4 col-sm-4 col-xs-6">
                @foreach($rewards as $reward)
                 <div style="text-align:center; font-size:1em; line-height:2.6em;">
                        @if(deadlineCount( date("Y/m/d") ,$reward->deadline)< 30)
@@ -47,21 +47,21 @@
     </div>
 </div>
    <div id="dashDataRow" class="">
-        <div class="col-md-3 col-sm-3 col-xs-3 dashDataCol">
+        <div class="col-md-3 col-sm-3 col-xs-4 dashDataCol">
             <span id="likeCount" class="glyphicons glyphicons-heart tooltip-item" data-tooltip="Like Count"></span>
             <div class="likes" id="glyph-text" data-count="{{$user_like_count}}">{{$user_like_count}}</div>  
         </div> 
-     <div class="col-md-3 col-sm-3 col-xs-3 dashDataCol">
+     <div class="col-md-3 col-sm-3 col-xs-4 dashDataCol">
         <span id="rankCount" class="glyphicons glyphicons-stats tooltip-item" data-tooltip="Rank"></span>
             <div id="glyph-text">{{$user_rank}} of {{$user_count}}</div> 
      </div>
     @foreach($rewards as $reward)
-     <div class="col-md-3 col-sm-3 col-xs-3 dashDataCol">
+     <div class="col-md-3 col-sm-3 col-xs-4 dashDataCol">
         <span id="timeCount" class="glyphicons glyphicons-stopwatch tooltip-item" data-tooltip="Total Time"></span>
         <div id="glyph-text">{{round($user_time / 60 / 60, 1)}} of {{$reward->milestone /60 / 60}}</div> 
      </div>
      @endforeach
-     <div class="col-md-3 col-sm-3 col-xs-3 dashDataCol">
+     <div class="col-md-3 col-sm-3 hidden-xs dashDataCol">
         <span id="teamrankCount" class="glyphicons glyphicons-group tooltip-item" data-tooltip="Team Rank"></span>
         <div id="glyph-text">
         @if ($teamname != "Individuals")

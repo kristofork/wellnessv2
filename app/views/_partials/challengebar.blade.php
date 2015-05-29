@@ -18,7 +18,7 @@
      <div class="col-md-3 col-sm-3 col-xs-3 dashDataCol">
                 <span id="bar-col-2" class="glyphicons glyphicons-person-running bar-columns"></span>
                 <div class="" id="glyph-text" data-count="">
-                <a href="#" id="run-popover">Click to start</a>
+                <a href="#" id="">Run</a>
                 </div>  
      </div>
 
@@ -56,18 +56,18 @@
 @elseif(count($userdata->goalprogress) && $goaltype =="weight" && $isGoalActive)       
         <!-- Active Challenge Stats -->
        <div id="dashDataRow" class="">
-        <div class="col-md-3 col-sm-3 col-xs-3 dashDataCol">
+        <div class="col-md-3 col-sm-3 col-xs-4 dashDataCol">
             <span id="likeCount" class="glyphicons glyphicons-scale"></span>
             <div class="weight" id="glyph-text" data-count="">
             <span id="weight_data">{{$userdata->goalprogress[0]->progress}}</span> lbs lost
             </div>  
         </div> 
-     <div class="col-md-3 col-sm-3 col-xs-3 dashDataCol">
+     <div class="col-md-3 col-sm-3 col-xs-4 dashDataCol">
         
             <div class="popover-markup">   
 
                 <a href="#" class="trigger"><span id="rankCount" class="glyphicons glyphicons-plus"></span></a>
-                <div id="glyph-text"> <?php $daydiff =  $today->diff($userdata->goalprogress[0]->updated_at)->days; echo ($daydiff < 2) ?  $daydiff.' day ' : $daydiff.' days '; ?>since last weigh in </div>
+                <div id="glyph-text">Last entry <?php $daydiff =  $today->diff($userdata->goalprogress[0]->updated_at)->days; echo $daydiff.'d'; ?></div>
 
                 {{ Form::open(array('url' => 'goal/store')) }}
                 <div class="head hide">
@@ -86,14 +86,14 @@
             </div>
      </div>
 
-     <div class="col-md-3 col-sm-3 col-xs-3 dashDataCol">
+     <div class="col-md-3 col-sm-3 col-xs-4 dashDataCol">
 
         <span id="timeCount" class="glyphicons glyphicons-stopwatch"></span>
         <div id="glyph-text">{{deadlineCount( date("Y/m/d") ,$rewards[0]->deadline)}} days left</div> 
         
      </div>
      
-     <div class="col-md-3 col-sm-3 col-xs-3 dashDataCol">
+     <div class="col-md-3 col-sm-3 hidden-xs dashDataCol">
 
         <span id="teamrankCount" class="glyphicons glyphicons-group"></span>
         <div id="glyph-text"><span>{{$goal_user_count}} users taking challenge</span></div>     

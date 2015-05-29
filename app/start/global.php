@@ -66,7 +66,14 @@ App::error(function(Exception $exception, $code)
 
 App::down(function()
 {
-	return Response::view('maintenance', array(), 503);
+    $ip = Request::getClientIp();
+    $allowed = array('10.1.4.134','127.0.0.1');
+
+    if(!in_array($ip, $allowed))
+    {
+        return Response::view('maintenance', array('ip'=>$ip), 503);
+    }
+    
 });
 
 /*

@@ -34,7 +34,7 @@
                 </div>
                 <!-- End of Row -->
                  <div id="logDataRow" class="row-centered">
-                     <div class="col-md-3 col-sm-3 col-xs-4 logDataCol">
+                     <div class="col-md-3 col-sm-3 hidden-xs logDataCol">
                     <div class="progress" id="reward-progress">
                       <span class="tick tooltip-item" data-tooltip="Reward Progress">|</span>
                        @foreach($rewards as $reward)
@@ -43,13 +43,13 @@
                     </div>
                     <div id="glyph-text">{{round($user_time / 60 / 60, 1)}} of {{$reward->milestone /60 / 60}} hours</div> 
                      </div>  
-                     <div class="col-md-3 col-sm-3 col-xs-4 logDataCol">
+                     <div class="col-md-3 col-sm-3 col-xs-6 logDataCol">
                         <div class="summary_item"><input type="hidden" id="activity_datepicker" name="actdate" />
                             <span class="tooltip-item" id="date_value" data-tooltip="Date selected">Today</span>
                         </div>
                      </div>
 
-                     <div class="col-md-3 col-sm-3 col-xs-4 logDataCol">
+                     <div class="col-md-3 col-sm-3 col-xs-6 logDataCol">
                         <div class="btn-group-xs intensity" data-toggle="buttons">
                             <label class="btn low">
                                 <input type="radio" name="actintensity" id="intLow" value="1">
