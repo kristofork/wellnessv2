@@ -26,15 +26,17 @@ function hoursToSeconds ($hour) { // $hour must be a string type: "HH:mm:ss"
 
 /* Convert the seconds to a string */
 function secondsToString ($time){
+
         if (empty($time))
         {
             return 0;
-        }
-    	if(60 < $time && $time <= 3600){
-    		return round($time/60,0).' minutes';
-    	}
-    	if(3600 < $time && $time <= 86400){
+        }elseif($time == 3600){
+    		return round($time/3600,0).' hour';
+    	}elseif($time == 7200){
     		return round($time/3600,0).' hours';
+    	}
+        else {
+    		return round($time/60,0).' minutes';
     	}
 }
 
